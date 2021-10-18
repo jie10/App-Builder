@@ -1,5 +1,6 @@
 import React, { Fragment, useState } from 'react'
 import { connect } from 'react-redux'
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 import Box from '@mui/material/Box';
 import Tabs from '@mui/material/Tabs';
@@ -20,6 +21,15 @@ import {
     sendBlocks
 } from '../../stores/actions'
 
+let theme = createTheme({
+    components: {
+        MuiButtonBase: {
+        defaultProps: {
+            disableRipple: true
+        },
+        },
+    }
+});
 
 const BlocksList = (props) => {
     const { sendBlocks } = props;
@@ -131,26 +141,28 @@ const ComponentTabs = (props) => {
       };
 
     return(
-        <Box>
-            <Tabs
-                component="div"
-                id="nested-list-subheader"
-                variant="fullWidth"
-                value={value}
-                onChange={handleChange} >
-                <Tab 
-                    label="Blocks"
-                    id="component-tab-0"
-                    aria-controls="component-tab-0"
-                />
-                <Tab 
-                    label="Patterns"
-                    id="component-tab-1"
-                    aria-controls="component-tab-1"
-                />
-            </Tabs>
-            <TabPanel value={value} sendBlocks={sendBlocks} />
-        </Box>
+        <ThemeProvider theme={theme}>
+            <Box>
+                <Tabs
+                    component="div"
+                    id="nested-list-subheader"
+                    variant="fullWidth"
+                    value={value}
+                    onChange={handleChange} >
+                    <Tab 
+                        label="Blocks"
+                        id="component-tab-0"
+                        aria-controls="component-tab-0"
+                    />
+                    <Tab 
+                        label="Patterns"
+                        id="component-tab-1"
+                        aria-controls="component-tab-1"
+                    />
+                </Tabs>
+                <TabPanel value={value} sendBlocks={sendBlocks} />
+            </Box>
+        </ThemeProvider>
     );
 }
 
