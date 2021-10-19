@@ -23,11 +23,36 @@ import {
 
 let theme = createTheme({
     components: {
-        MuiButtonBase: {
-        defaultProps: {
-            disableRipple: true
+        MuiTab: {
+            defaultProps: {
+                disableRipple: true
+            },
+            styleOverrides: {
+                root: {
+                    textTransform: "capitalize",
+                    fontWeight: "bold",
+                    alignItems: "flex-start",
+                    color: '#000000',
+                    "&:hover": {
+                        color: "#000000"
+                    },
+                    "&.Mui-selected": {
+                        color: "#000000"
+                    }
+                }
+            }
         },
-        },
+        MuiTabs: {
+            styleOverrides: {
+                root: {
+                    borderBottom: "1px solid #cccccc"
+                },
+                indicator: {
+                    height: "4px",
+                    backgroundColor: "#0979B3"
+                }
+            }
+        }
     }
 });
 
