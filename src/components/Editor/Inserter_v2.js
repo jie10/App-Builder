@@ -47,11 +47,11 @@ let theme = createTheme({
         MuiTabs: {
             styleOverrides: {
                 root: {
-                    borderBottom: "1px solid #cccccc"
+                    borderBottom: "2px solid #F0F0F0"
                 },
                 indicator: {
                     height: "4px",
-                    backgroundColor: "#0979B3"
+                    backgroundColor: "#68A9C3"
                 }
             }
         }
@@ -160,6 +160,10 @@ const TabPanel = (props) => {
 }
 
 const ComponentTabs = (props) => {
+    const styleBoxComponentTabs = {
+        height: 1,
+        borderRight: "1.5px solid #F0F0F0"
+    };
     const { sendBlocks } = props
     const [value, setValue] = useState(0);
 
@@ -169,7 +173,7 @@ const ComponentTabs = (props) => {
 
     return(
         <ThemeProvider theme={theme}>
-            <Box>
+            <Box className="box-component-tabs" sx={styleBoxComponentTabs}>
                 <Tabs
                     component="div"
                     id="nested-list-subheader"
