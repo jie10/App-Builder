@@ -31,6 +31,8 @@ let theme = createTheme({
                 root: {
                     textTransform: "capitalize",
                     fontWeight: "bold",
+                    fontSize: "12px",
+                    padding: "12px 16px 8px 16px",
                     alignItems: "flex-start",
                     color: '#000000',
                     "&:hover": {
