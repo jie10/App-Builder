@@ -9,7 +9,7 @@ import {
 import Grid from '@mui/material/Grid'
 import Header from './Header'
 import Canvas from './Canvas'
-import Inserter from './Inserter'
+import Inserter from './Inserter_v2'
 import Settings from './Settings'
 
 const Editor = (props) => {
@@ -22,8 +22,8 @@ const Editor = (props) => {
 
     const toggleInserter = () => {
         if(!isInserterEnabled && !isSettingsEnabled){
-            setInserterWidth('18%')
-            setCanvasWidth('82%')
+            setInserterWidth('25%')
+            setCanvasWidth('75%')
             setSettingsWidth('0%')
             setInserterEnabled(true)
             props.toggleInserter(!isInserterEnabled)
@@ -34,8 +34,8 @@ const Editor = (props) => {
             setInserterEnabled(false)
             props.toggleInserter(!isInserterEnabled)
         }else if (!isInserterEnabled && isSettingsEnabled) {
-            setInserterWidth('18%')
-            setCanvasWidth('64%')
+            setInserterWidth('25%')
+            setCanvasWidth('57%')
             setSettingsWidth('18%')
             setInserterEnabled(true)
             props.toggleInserter(!isInserterEnabled)
@@ -62,14 +62,14 @@ const Editor = (props) => {
             setSettingsEnabled(false)
             props.toggleSettings(!isSettingsEnabled)
         }else if (isInserterEnabled && !isSettingsEnabled) {
-            setInserterWidth('18%')
-            setCanvasWidth('64%')
+            setInserterWidth('25%')
+            setCanvasWidth('57%')
             setSettingsWidth('18%')
             setSettingsEnabled(true)
             props.toggleSettings(!isSettingsEnabled)
         }else if (isInserterEnabled && isSettingsEnabled) {
-            setInserterWidth('18%')
-            setCanvasWidth('82%')
+            setInserterWidth('25%')
+            setCanvasWidth('75%')
             setSettingsWidth('0%')
             setSettingsEnabled(false)
             props.toggleSettings(!isSettingsEnabled)

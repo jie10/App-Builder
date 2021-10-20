@@ -1,0 +1,78 @@
+.box-component-tabs {
+    margin: 5px 0 0 0;
+}
+
+.component-grids-container {
+    padding: 8px 5px;
+}
+
+.component-box {
+    position: relative;
+    width: 100%;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid transparent;
+}
+
+.component-grid {
+    border: 1px solid transparent;
+    cursor: move; /* fallback if grab cursor is unsupported */
+    cursor: grab;
+    cursor: -moz-grab;
+    cursor: -webkit-grab;
+}
+
+.component-grid:hover {
+    border: 1px solid #68A9C3;
+    color: #68A9C3;
+    transition: all .2s ease-in-out;
+}
+
+.component-icon {
+    display: flex;
+    height: 24px;
+    justify-content: center;
+    width: 24px;
+    font-size: 13px;
+    padding: 0 0 8px 0;
+    cursor: move; /* fallback if grab cursor is unsupported */
+    cursor: grab;
+    cursor: -moz-grab;
+    cursor: -webkit-grab;
+}
+
+.component-box :active, .component-icon :active {
+    fill: #1e1e1e;
+    cursor: grabbing;
+    cursor: -moz-grabbing;
+    cursor: -webkit-grabbing;
+}
+
+.component-icon svg {
+    fill: #1e1e1e;
+    max-height: 24px;
+    max-width: 24px;
+    min-height: 20px;
+    min-width: 20px;
+}
+
+.component-text {
+    width: 100%;
+    font-size: 12px;
+    padding: 4px 2px 8px;
+    color: #1e1e1e;
+    word-break: break-word;
+    text-align: center;
+    cursor: pointer;
+    -webkit-user-select: none;  /* Chrome all / Safari all */
+    -moz-user-select: none;     /* Firefox all */
+    -ms-user-select: none;      /* IE 10+ */
+    user-select: none;          /* Likely future */    
+}
+
+.component-text:hover {
+
+    transition: all .2s ease-in-out;
+}
