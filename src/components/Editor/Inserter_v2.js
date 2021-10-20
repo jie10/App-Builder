@@ -1234,37 +1234,48 @@ let theme = createTheme({
 
 const BlocksList = (props) => {
     const { sendBlocks } = props;
-    const [open, setOpen] = useState(false);
-
-    const handleClick = () => {
-        setOpen(!open);
-    };
-
-    const components = Object.values(componentsList).flatMap(component => component);
+    let categories = Object.keys(componentsList).map((key, i) => ({
+        "_id": i + 1,
+        "group": key,
+        "components_list": componentsList[key]
+    }));
 
     return (
-        <Grid className="component-grids-container" container>
-            { components.map((component, i) => 
-                (<Grid className={`component-grid component-grid-${i}-${component.name}`}
+        <Grid className="component-group-grids-container" container>
+            {
+                categories.map((category, i) => (
+                    <Grid
+                        className={`component-group-grid component-group-grid-${i}-${category.group}`}
                         item
-                        key={`${i}_${component._id}`}
-                        xs={12}
-                        md={4}
-                        sx={{padding: "16px 8px"}}
-                        onClick={() => sendBlocks({
-                                                    type: component.block_type,
-                                                    parameters: component.block_parameters})
-                            }>
-                    <Box className={`component-box component-box-${i}-${component.name}`}>
-                        <span className={`component-icon component-icon-${i}-${component.name}`}>
-                            {component.icon}
-                        </span>
-                        <span className={`component-text component-text-${i}-${component.name}`}>
-                            {component.text}
-                        </span>
-                    </Box>
-                </Grid>)
-            ) }
+                        key={i}
+                        xl={12} xs={12}>
+                            <h2 className={`component-group-h2 component-group-h2-${i}-${category.group}`}>{category.group}</h2>
+                               <Grid className="component-grids-container" container>
+                                    { category.components_list.map((component, i) => 
+                                        (<Grid className={`component-grid component-grid-${i}-${component.name}`}
+                                            item
+                                            key={`${i}_${component._id}`}
+                                            xs={12}
+                                            md={4}
+                                            sx={{padding: "16px 8px"}}
+                                            onClick={() => sendBlocks({
+                                                                        type: component.block_type,
+                                                                        parameters: component.block_parameters})
+                                                }>
+                                        <Box className={`component-box component-box-${i}-${component.name}`}>
+                                            <span className={`component-icon component-icon-${i}-${component.name}`}>
+                                                {component.icon}
+                                            </span>
+                                            <span className={`component-text component-text-${i}-${component.name}`}>
+                                                {component.text}
+                                            </span>
+                                        </Box>
+                                    </Grid>)
+                                ) }
+                            </Grid>
+                    </Grid>
+                ))
+            }
         </Grid>
     );
 }
