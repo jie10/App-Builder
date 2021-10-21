@@ -6,6 +6,8 @@ import Box from '@mui/material/Box';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Grid from '@mui/material/Grid';
+import InputBase from '@mui/material/InputBase';
+import IconButton from '@mui/material/IconButton';
 import {
             FormatTextdirectionLToR as FormatTextdirectionLToRIcon, 
             Bookmark as BookmarkIcon,
@@ -68,7 +70,8 @@ import {
             Payment as PaymentIcon,
             PriceCheck as PriceCheckIcon,
             DynamicForm as DynamicFormIcon,
-            AddBusinessOutlined as AddBusinessOutlinedIcon
+            AddBusinessOutlined as AddBusinessOutlinedIcon,
+            Close as CloseIcon
         } from '@mui/icons-material';
 
 import "./Inserter_v2.css";
@@ -981,8 +984,8 @@ const componentsList = {
     "CrowdSignal": [
         {
             "_id": 1,
-            "name": "PollIcon",
-            "text": "PollIcon",
+            "name": "poll",
+            "text": "Poll",
             "icon": <PollIcon />,
             "block_type": "SECTION",
             "block_parameters": {}
@@ -1194,7 +1197,7 @@ const componentsList = {
     ]
 }
 
-let theme = createTheme({
+const theme = createTheme({
     components: {
         MuiTab: {
             defaultProps: {
@@ -1207,12 +1210,12 @@ let theme = createTheme({
                     fontSize: "12px",
                     padding: "12px 16px 8px 16px",
                     alignItems: "flex-start",
-                    color: '#000000',
+                    color: '#1e1e1e',
                     "&:hover": {
-                        color: "#000000"
+                        color: "#1e1e1e"
                     },
                     "&.Mui-selected": {
-                        color: "#000000"
+                        color: "#1e1e1e"
                     }
                 }
             }
@@ -1228,12 +1231,29 @@ let theme = createTheme({
                     backgroundColor: "#68A9C3"
                 }
             }
+        },
+        MuiIconButton: {
+            defaultProps: {
+                disableRipple: true
+            },
+            styleOverrides: {
+                root: {
+                    color: '#1e1e1e',
+                    transform: "scaleX(-1)",
+                    "&:hover": {
+                        backgroundColor: "transparent"
+                    }
+                }
+            }
         }
     }
 });
 
 const BlocksList = (props) => {
     const { sendBlocks } = props;
+
+    const styleGridComponent = {padding: "16px 8px"};
+
     let categories = Object.keys(componentsList).map((key, i) => ({
         "_id": i + 1,
         "group": key,
@@ -1257,7 +1277,7 @@ const BlocksList = (props) => {
                                             key={`${i}_${component._id}`}
                                             xs={12}
                                             md={4}
-                                            sx={{padding: "16px 8px"}}
+                                            sx={styleGridComponent}
                                             onClick={() => sendBlocks({
                                                                         type: component.block_type,
                                                                         parameters: component.block_parameters})
@@ -1288,34 +1308,137 @@ const PatternsList = (props) => {
     );
 }
 
-const TabPanel = (props) => {
-    const { value, sendBlocks } = props;
+const NoResutsFound = (props) => {
+    return (
+        <Box className="tab-panel-no-results-found">
+            <p>No results found.</p>
+        </Box>
+    );
+}
+
+const SearchResultsList = (props) => {
+    const { sendBlocks, keyword } = props;
+
+    const styleGridComponent = {padding: "16px 8px"};
+
+    const searchCriteria = new RegExp(`${keyword}`, 'gi');
+    const components = Object.values(componentsList)
+                        .flatMap(component => component)
+                        .filter(component => searchCriteria.test(component.text) === true)
+                        .sort();
 
     return (
-        <Box>
-            <div
-                hidden={value !== 0 ? true : false}
-                id={`simple-tabpanel-0`} >
-                <BlocksList sendBlocks={sendBlocks} />
-            </div>
-            <div
-                hidden={value !== 1 ? true : false}
-                id={`simple-tabpanel-1`} >
-                <PatternsList />
-            </div>
+        <Grid className="component-grids-container" container>
+            { components.length > 0 ? components.map((component, i) => 
+                (<Grid className={`component-grid component-grid-${i}-${component.name}`}
+                        item
+                        key={`${i}_${component._id}`}
+                        xs={12}
+                        md={4}
+                        sx={styleGridComponent}
+                        onClick={() => sendBlocks({
+                                                    type: component.block_type,
+                                                    parameters: component.block_parameters})
+                            }>
+                    <Box className={`component-box component-box-${i}-${component.name}`}>
+                        <span className={`component-icon component-icon-${i}-${component.name}`}>
+                            {component.icon}
+                        </span>
+                        <span className={`component-text component-text-${i}-${component.name}`}>
+                            {component.text}
+                        </span>
+                    </Box>
+                </Grid>)
+            )  : <NoResutsFound />}
+        </Grid>
+    );
+}
+
+const TabPanel = (props) => {
+    const { value, sendBlocks, keyword } = props;
+    
+    return (
+        keyword && keyword.length > 0 ? 
+            <SearchResultsList sendBlocks={sendBlocks} keyword={keyword} />
+        :
+            <Box>
+                <div
+                    hidden={value !== 0 ? true : false}
+                    id={`simple-tabpanel-0`} >
+                    <BlocksList sendBlocks={sendBlocks} />
+                </div>
+                <div
+                    hidden={value !== 1 ? true : false}
+                    id={`simple-tabpanel-1`} >
+                    <PatternsList />
+                </div>
+            </Box>
+    );
+}
+
+const ComponentSearchBar = (props) => {
+    const { keyword, setKeyword } = props;
+    const [inputFocus, setInputFocus] = useState(true);
+
+    const inputBaseStyle = { width: 1, padding: "10px 0 10px 16px" };
+    const resetButtonStyle = { padding: '0 8px 0 16px' };
+    const searchButtonStyle = { padding: '0 8px 0 16px', cursor: "default" };
+
+    const handleChange = e => setKeyword(e.target.value);
+
+    const handleInputFocusIn = e => setInputFocus(true);
+
+    const handleInputFocusOut = e => setInputFocus(false);
+
+    const handleReset = e => {
+        e.preventDefault();
+        setKeyword("");
+    }
+
+    return (
+        <Box className={`component-searchbar-container ${inputFocus ? "component-searchbar--focus" : ""}`}>
+            <InputBase
+                placeholder="Search"
+                sx={inputBaseStyle}
+                aria-label="search components list"
+                onChange={handleChange}
+                onFocus={handleInputFocusIn}
+                onBlur={handleInputFocusOut}
+                value={keyword}
+                autoFocus={inputFocus} />
+            {
+                keyword && keyword.length > 0 ?
+                    <IconButton
+                        sx={resetButtonStyle}
+                        aria-label="reset"
+                        title="Reset search"
+                        onClick={handleReset}>
+                        <CloseIcon />
+                    </IconButton>
+                :
+                    <IconButton
+                        sx={searchButtonStyle}
+                        aria-label="search">
+                        <SearchIcon />
+                    </IconButton>
+            }
         </Box>
     );
 }
 
 const ComponentTabs = (props) => {
-    const styleBoxComponentTabs = {
+    const { sendBlocks } = props
+    const [value, setValue] = useState(0);
+    const [keyword, setKeyword] = useState('');
+
+    const styleComponentTabs = {
+        position: "relative",
         height: 1,
         borderRight: "1.5px solid #F0F0F0",
         maxHeight: 1,
         overflow: "auto"
     };
-    const { sendBlocks } = props
-    const [value, setValue] = useState(0);
+    const styleTabs = { width: 1 };
 
     const handleChange = (event, newValue) => {
         setValue(newValue);
@@ -1323,26 +1446,27 @@ const ComponentTabs = (props) => {
 
     return(
         <ThemeProvider theme={theme}>
-            <Box className="box-component-tabs" sx={styleBoxComponentTabs}>
-                <Tabs
-                    component="div"
-                    id="nested-list-subheader"
-                    variant="fullWidth"
-                    value={value}
-                    onChange={handleChange}
-                    sx={{width: 1, paddingTop: 2}}>
-                    <Tab 
-                        label="Blocks"
-                        id="component-tab-0"
-                        aria-controls="component-tab-0"
-                    />
-                    <Tab 
-                        label="Patterns"
-                        id="component-tab-1"
-                        aria-controls="component-tab-1"
-                    />
-                </Tabs>
-                <TabPanel value={value} sendBlocks={sendBlocks} />
+            <Box className="component-tabs" sx={styleComponentTabs}>
+                <div className="components-tabs-controls-container">
+                    <ComponentSearchBar keyword={keyword} setKeyword={setKeyword} />
+                    <Tabs
+                        id="nested-list-subheader"
+                        component="div"
+                        variant="fullWidth"
+                        value={value}
+                        onChange={handleChange}
+                        sx={styleTabs}>
+                        <Tab
+                            label="Blocks"
+                            id="component-tab-0"
+                            aria-controls="component-tab-0" />
+                        <Tab
+                            label="Patterns"
+                            id="component-tab-1"
+                            aria-controls="component-tab-1" />
+                    </Tabs>
+                </div>
+                <TabPanel value={value} sendBlocks={sendBlocks} keyword={keyword} />
             </Box>
         </ThemeProvider>
     );

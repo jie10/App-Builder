@@ -1,5 +1,16 @@
-.box-component-tabs {
+.component-tabs {
+    position: relative;
+    width: 100%;
     margin: 5px 0 0 0;
+}
+
+.components-tabs-controls-container {
+    position: sticky;
+    position: -webkit-sticky;
+    top: 0;
+    z-index: 1;
+    padding: 8px 0 0 0;
+    background-color: #ffffff;
 }
 
 .component-group-grids-container {
@@ -94,7 +105,25 @@
     user-select: none;          /* Likely future */    
 }
 
-.component-text:hover {
+.component-searchbar-container {
+    background-color: #F0F0F0;
+    border: 1.5px solid transparent;
+    margin: 16px;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: space-between;
+}
 
-    transition: all .2s ease-in-out;
+.component-searchbar--focus {
+    background-color: #FFFFFF;
+    border: 1.5px solid #68A9C3;
+}
+
+.tab-panel-no-results-found {
+    height: 50%;
+    width: 100%;
+    margin: 50% 0;
+    text-align: center;
+    font-size: 12px;
 }
