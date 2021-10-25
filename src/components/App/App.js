@@ -7,6 +7,7 @@ import './App.css'
 import Layout from '../Layout'
 
 import Editor from '../Editor'
+import CreateApp from '../../domains/create-app/CreateApp';
 
 export default class extends Component {
   state = {
@@ -27,6 +28,7 @@ export default class extends Component {
         <BrowserRouter>
           <Switch>
             <Route exact path="/" render={() => <Editor />} />
+            <Route exact path="/account/apps" render={() => <CreateApp />} />
           </Switch>
         </BrowserRouter>
       </ThemeProvider>
