@@ -75,7 +75,13 @@ import {
         } from '@mui/icons-material';
 
 import "./Inserter_v2.css";
-import noPreviewAvailableImage from '../../assets/images/no-preview-available.png'
+import noPreviewAvailableImage from '../../assets/images/no-preview-available.png';
+import codePreviewImage from '../../assets/images/code-preview.png';
+import headingPreviewImage from '../../assets/images/heading-preview.png';
+import listPreviewImage from '../../assets/images/list-preview.png';
+import paragraphPreviewImage from '../../assets/images/paragraph-preview.png';
+import quotePreviewImage from '../../assets/images/quote-preview.png';
+import tablePreviewImage from '../../assets/images/table-preview.png';
 
 import {
     sendBlocks
@@ -92,7 +98,7 @@ const componentsList = {
             "block_type": "SECTION",
             "block_parameters": {},
             "preview_description": "Start with the building block of all narrative.",
-            "preview_image": <img src={noPreviewAvailableImage} alt="component preview" />
+            "preview_image": paragraphPreviewImage
         },
         {
             "_id": 2,
@@ -102,7 +108,7 @@ const componentsList = {
             "block_type": "SECTION",
             "block_parameters": {},
             "preview_description": "Introduce new sections and organize content to help visitors (and search engines) understand the structure of your content.",
-            "preview_image": <img src={noPreviewAvailableImage} alt="component preview" />
+            "preview_image": headingPreviewImage
         },
         {
             "_id": 3,
@@ -112,7 +118,7 @@ const componentsList = {
             "block_type": "SECTION",
             "block_parameters": {},
             "preview_description": "Create a bulleted or numbered list.",
-            "preview_image": <img src={noPreviewAvailableImage} alt="component preview" />
+            "preview_image": listPreviewImage
         },
         {
             "_id": 4,
@@ -122,7 +128,7 @@ const componentsList = {
             "block_type": "SECTION",
             "block_parameters": {},
             "preview_description": "Give quoted text visual emphasis.",
-            "preview_image": <img src={noPreviewAvailableImage} alt="component preview" />
+            "preview_image": quotePreviewImage
         },
         {
             "_id": 5,
@@ -132,7 +138,7 @@ const componentsList = {
             "block_type": "SECTION",
             "block_parameters": {},
             "preview_description": "Display code snippets.",
-            "preview_image": <img src={noPreviewAvailableImage} alt="component preview" />
+            "preview_image": codePreviewImage
         },
         {
             "_id": 6,
@@ -142,7 +148,7 @@ const componentsList = {
             "block_type": "SECTION",
             "block_parameters": {},
             "preview_description": "Use the classic editor.",
-            "preview_image": <img src={noPreviewAvailableImage} alt="component preview" />
+            "preview_image": noPreviewAvailableImage
         },
         {
             "_id": 7,
@@ -152,7 +158,7 @@ const componentsList = {
             "block_type": "SECTION",
             "block_parameters": {},
             "preview_description": "Add text that respects your spacing and tabs, and also allows styling.",
-            "preview_image": <img src={noPreviewAvailableImage} alt="component preview" />
+            "preview_image": noPreviewAvailableImage
         },
         {
             "_id": 8,
@@ -162,7 +168,7 @@ const componentsList = {
             "block_type": "SECTION",
             "block_parameters": {},
             "preview_description": "Give special visual emphasis to quote from your text.",
-            "preview_image": <img src={noPreviewAvailableImage} alt="component preview" />
+            "preview_image": noPreviewAvailableImage
         },
         {
             "_id": 9,
@@ -172,7 +178,7 @@ const componentsList = {
             "block_type": "SECTION",
             "block_parameters": {},
             "preview_description": "Create structured content in rows and columns to display information.",
-            "preview_image": <img src={noPreviewAvailableImage} alt="component preview" />
+            "preview_image": tablePreviewImage
         },
         {
             "_id": 10,
@@ -182,7 +188,7 @@ const componentsList = {
             "block_type": "SECTION",
             "block_parameters": {},
             "preview_description": "Insert poetry. Use special spacing formats. Or quote song lyrics.",
-            "preview_image": <img src={noPreviewAvailableImage} alt="component preview" />
+            "preview_image": noPreviewAvailableImage
         },
         {
             "_id": 11,
@@ -192,7 +198,7 @@ const componentsList = {
             "block_type": "SECTION",
             "block_parameters": {},
             "preview_description": "Use regular characters and punctuation to style text, links, and lists.",
-            "preview_image": <img src={noPreviewAvailableImage} alt="component preview" />
+            "preview_image": noPreviewAvailableImage
         },
         {
             "_id": 12,
@@ -202,7 +208,7 @@ const componentsList = {
             "block_type": "SECTION",
             "block_parameters": {},
             "preview_description": "Add syntax highlighting to source code (front end only)",
-            "preview_image": <img src={noPreviewAvailableImage} alt="component preview" />
+            "preview_image": noPreviewAvailableImage
         },
     ],
     "Media": [
@@ -214,7 +220,7 @@ const componentsList = {
             "block_type": "SECTION",
             "block_parameters": {},
             "preview_description": "Insert an image to make a visual statement.",
-            "preview_image": <img src={noPreviewAvailableImage} alt="component preview" />
+            "preview_image": noPreviewAvailableImage
         },
         {
             "_id": 2,
@@ -224,7 +230,7 @@ const componentsList = {
             "block_type": "SECTION",
             "block_parameters": {},
             "preview_description": "Display multiple images in a rich gallery.",
-            "preview_image": <img src={noPreviewAvailableImage} alt="component preview" />
+            "preview_image": noPreviewAvailableImage
         },
         {
             "_id": 3,
@@ -234,7 +240,7 @@ const componentsList = {
             "block_type": "SECTION",
             "block_parameters": {},
             "preview_description": "Embed a simple audio player.",
-            "preview_image": <img src={noPreviewAvailableImage} alt="component preview" />
+            "preview_image": noPreviewAvailableImage
         },
         {
             "_id": 4,
@@ -244,7 +250,7 @@ const componentsList = {
             "block_type": "SECTION",
             "block_parameters": {},
             "preview_description": "Add an image or video with a text overlay - great for headers.",
-            "preview_image": <img src={noPreviewAvailableImage} alt="component preview" />
+            "preview_image": noPreviewAvailableImage
         },
         {
             "_id": 5,
@@ -254,7 +260,7 @@ const componentsList = {
             "block_type": "SECTION",
             "block_parameters": {},
             "preview_description": "Add a link to a downloadable file.",
-            "preview_image": <img src={noPreviewAvailableImage} alt="component preview" />
+            "preview_image": noPreviewAvailableImage
         },
         {
             "_id": 6,
@@ -264,7 +270,7 @@ const componentsList = {
             "block_type": "SECTION",
             "block_parameters": {},
             "preview_description": "Set media and words side-by-side for a richer layout.",
-            "preview_image": <img src={noPreviewAvailableImage} alt="component preview" />
+            "preview_image": noPreviewAvailableImage
         },
         {
             "_id": 7,
@@ -274,7 +280,7 @@ const componentsList = {
             "block_type": "SECTION",
             "block_parameters": {},
             "preview_description": "Embed a video from your media library or upload a new one.",
-            "preview_image": <img src={noPreviewAvailableImage} alt="component preview" />
+            "preview_image": noPreviewAvailableImage
         },
         {
             "_id": 8,
@@ -284,7 +290,7 @@ const componentsList = {
             "block_type": "SECTION",
             "block_parameters": {},
             "preview_description": "Compare two images with a slider.",
-            "preview_image": <img src={noPreviewAvailableImage} alt="component preview" />
+            "preview_image": noPreviewAvailableImage
         },
         {
             "_id": 9,
@@ -294,7 +300,7 @@ const componentsList = {
             "block_type": "SECTION",
             "block_parameters": {},
             "preview_description": "Add an interactive slideshow.",
-            "preview_image": <img src={noPreviewAvailableImage} alt="component preview" />
+            "preview_image": noPreviewAvailableImage
         },
         {
             "_id": 10,
@@ -304,7 +310,7 @@ const componentsList = {
             "block_type": "SECTION",
             "block_parameters": {},
             "preview_description": "Add an interactive story.",
-            "preview_image": <img src={noPreviewAvailableImage} alt="component preview" />
+            "preview_image": noPreviewAvailableImage
         },
         {
             "_id": 11,
@@ -314,7 +320,7 @@ const componentsList = {
             "block_type": "SECTION",
             "block_parameters": {},
             "preview_description": "Display multiple images in an elegantly organized tiled layout.",
-            "preview_image": <img src={noPreviewAvailableImage} alt="component preview" />
+            "preview_image": noPreviewAvailableImage
         },
         {
             "_id": 12,
@@ -324,7 +330,7 @@ const componentsList = {
             "block_type": "SECTION",
             "block_parameters": {},
             "preview_description": "Assemble images into a beautiful collage gallery.",
-            "preview_image": <img src={noPreviewAvailableImage} alt="component preview" />
+            "preview_image": noPreviewAvailableImage
         },
         {
             "_id": 13,
@@ -334,7 +340,7 @@ const componentsList = {
             "block_type": "SECTION",
             "block_parameters": {},
             "preview_description": "Display multiple images in an organized masonry gallery.",
-            "preview_image": <img src={noPreviewAvailableImage} alt="component preview" />
+            "preview_image": noPreviewAvailableImage
         },
         {
             "_id": 14,
@@ -344,7 +350,7 @@ const componentsList = {
             "block_type": "SECTION",
             "block_parameters": {},
             "preview_description": "Display images in an offset brick pattern gallery.",
-            "preview_image": <img src={noPreviewAvailableImage} alt="component preview" />
+            "preview_image": noPreviewAvailableImage
         },
         {
             "_id": 15,
@@ -354,7 +360,7 @@ const componentsList = {
             "block_type": "SECTION",
             "block_parameters": {},
             "preview_description": "Display multiple images in a single column stacked gallery.",
-            "preview_image": <img src={noPreviewAvailableImage} alt="component preview" />
+            "preview_image": noPreviewAvailableImage
         },
     ],
     "Design": [
@@ -366,7 +372,7 @@ const componentsList = {
             "block_type": "SECTION",
             "block_parameters": {},
             "preview_description": "Prompt visitors to take action with a group of button-style links.",
-            "preview_image": <img src={noPreviewAvailableImage} alt="component preview" />
+            "preview_image": noPreviewAvailableImage
         },
         {
             "_id": 2,
@@ -376,7 +382,7 @@ const componentsList = {
             "block_type": "SECTION",
             "block_parameters": {},
             "preview_description": "Display content in multiple columns, with blocks added to each column.",
-            "preview_image": <img src={noPreviewAvailableImage} alt="component preview" />
+            "preview_image": noPreviewAvailableImage
         },
         {
             "_id": 3,
@@ -386,7 +392,7 @@ const componentsList = {
             "block_type": "SECTION",
             "block_parameters": {},
             "preview_description": "Combine blocks into a group.",
-            "preview_image": <img src={noPreviewAvailableImage} alt="component preview" />
+            "preview_image": noPreviewAvailableImage
         },
         {
             "_id": 4,
@@ -396,7 +402,7 @@ const componentsList = {
             "block_type": "SECTION",
             "block_parameters": {},
             "preview_description": "Content before this block will be shown in the excerpt on your archives page.",
-            "preview_image": <img src={noPreviewAvailableImage} alt="component preview" />
+            "preview_image": noPreviewAvailableImage
         },
         {
             "_id": 5,
@@ -406,7 +412,7 @@ const componentsList = {
             "block_type": "SECTION",
             "block_parameters": {},
             "preview_description": "Separate your content into a multi-page experience.",
-            "preview_image": <img src={noPreviewAvailableImage} alt="component preview" />
+            "preview_image": noPreviewAvailableImage
         },
         {
             "_id": 6,
@@ -416,7 +422,7 @@ const componentsList = {
             "block_type": "SECTION",
             "block_parameters": {},
             "preview_description": "Create a break between idea or sections with a horizontal separator.",
-            "preview_image": <img src={noPreviewAvailableImage} alt="component preview" />
+            "preview_image": noPreviewAvailableImage
         },
         {
             "_id": 7,
@@ -426,7 +432,7 @@ const componentsList = {
             "block_type": "SECTION",
             "block_parameters": {},
             "preview_description": "Add whitespace between blocks and customize its height.",
-            "preview_image": <img src={noPreviewAvailableImage} alt="component preview" />
+            "preview_image": noPreviewAvailableImage
         },
         {
             "_id": 8,
@@ -436,7 +442,7 @@ const componentsList = {
             "block_type": "SECTION",
             "block_parameters": {},
             "preview_description": "Display a graphic to represent this site.",
-            "preview_image": <img src={noPreviewAvailableImage} alt="component preview" />
+            "preview_image": noPreviewAvailableImage
         },
         {
             "_id": 9,
@@ -446,7 +452,7 @@ const componentsList = {
             "block_type": "SECTION",
             "block_parameters": {},
             "preview_description": "Describe in a few words what the website is about.",
-            "preview_image": <img src={noPreviewAvailableImage} alt="component preview" />
+            "preview_image": noPreviewAvailableImage
         },
         {
             "_id": 10,
@@ -456,7 +462,7 @@ const componentsList = {
             "block_type": "SECTION",
             "block_parameters": {},
             "preview_description": "Displays the name of this site.",
-            "preview_image": <img src={noPreviewAvailableImage} alt="component preview" />
+            "preview_image": noPreviewAvailableImage
         },
         {
             "_id": 11,
@@ -466,7 +472,7 @@ const componentsList = {
             "block_type": "SECTION",
             "block_parameters": {},
             "preview_description": "Blocks shown in a row.",
-            "preview_image": <img src={noPreviewAvailableImage} alt="component preview" />
+            "preview_image": noPreviewAvailableImage
         },
         {
             "_id": 12,
@@ -476,7 +482,7 @@ const componentsList = {
             "block_type": "SECTION",
             "block_parameters": {},
             "preview_description": "Display the archive title based on the queried object.",
-            "preview_image": <img src={noPreviewAvailableImage} alt="component preview" />
+            "preview_image": noPreviewAvailableImage
         },
         {
             "_id": 13,
@@ -486,7 +492,7 @@ const componentsList = {
             "block_type": "SECTION",
             "block_parameters": {},
             "preview_description": "Display a post categories.",
-            "preview_image": <img src={noPreviewAvailableImage} alt="component preview" />
+            "preview_image": noPreviewAvailableImage
         },
         {
             "_id": 14,
@@ -496,7 +502,7 @@ const componentsList = {
             "block_type": "SECTION",
             "block_parameters": {},
             "preview_description": "Display a post's tags.",
-            "preview_image": <img src={noPreviewAvailableImage} alt="component preview" />
+            "preview_image": noPreviewAvailableImage
         },
         {
             "_id": 15,
@@ -506,7 +512,7 @@ const componentsList = {
             "block_type": "SECTION",
             "block_parameters": {},
             "preview_description": "Align blocks to a global grid with support for responsive breakpoints.",
-            "preview_image": <img src={noPreviewAvailableImage} alt="component preview" />
+            "preview_image": noPreviewAvailableImage
         },
         {
             "_id": 16,
@@ -516,7 +522,7 @@ const componentsList = {
             "block_type": "SECTION",
             "block_parameters": {},
             "preview_description": "Add a resizable spacer between other blocks.",
-            "preview_image": <img src={noPreviewAvailableImage} alt="component preview" />
+            "preview_image": noPreviewAvailableImage
         },
         {
             "_id": 17,
@@ -526,7 +532,7 @@ const componentsList = {
             "block_type": "SECTION",
             "block_parameters": {},
             "preview_description": "An introductory area of a page accompanied by a small amount of text and a call to action.",
-            "preview_image": <img src={noPreviewAvailableImage} alt="component preview" />
+            "preview_image": noPreviewAvailableImage
         },
     ],
     "Widgets": [
@@ -538,7 +544,7 @@ const componentsList = {
             "block_type": "SECTION",
             "block_parameters": {},
             "preview_description": "Insert additional custom elements with a shortcode.",
-            "preview_image": <img src={noPreviewAvailableImage} alt="component preview" />
+            "preview_image": noPreviewAvailableImage
         },
         {
             "_id": 2,
@@ -548,7 +554,7 @@ const componentsList = {
             "block_type": "SECTION",
             "block_parameters": {},
             "preview_description": "Display a monthly archive of your posts.",
-            "preview_image": <img src={noPreviewAvailableImage} alt="component preview" />
+            "preview_image": noPreviewAvailableImage
         },
         {
             "_id": 3,
@@ -558,7 +564,7 @@ const componentsList = {
             "block_type": "SECTION",
             "block_parameters": {},
             "preview_description": "A calendar of your site's posts.",
-            "preview_image": <img src={noPreviewAvailableImage} alt="component preview" />
+            "preview_image": noPreviewAvailableImage
         },
         {
             "_id": 4,
@@ -568,7 +574,7 @@ const componentsList = {
             "block_type": "SECTION",
             "block_parameters": {},
             "preview_description": "Display a list of all categories.",
-            "preview_image": <img src={noPreviewAvailableImage} alt="component preview" />
+            "preview_image": noPreviewAvailableImage
         },
         {
             "_id": 5,
@@ -578,7 +584,7 @@ const componentsList = {
             "block_type": "SECTION",
             "block_parameters": {},
             "preview_description": "Add custom HTML code and preview it as you edit.",
-            "preview_image": <img src={noPreviewAvailableImage} alt="component preview" />
+            "preview_image": noPreviewAvailableImage
         },
         {
             "_id": 6,
@@ -588,7 +594,7 @@ const componentsList = {
             "block_type": "SECTION",
             "block_parameters": {},
             "preview_description": "Display a list of your most recent comments.",
-            "preview_image": <img src={noPreviewAvailableImage} alt="component preview" />
+            "preview_image": noPreviewAvailableImage
         },
         {
             "_id": 7,
@@ -598,7 +604,7 @@ const componentsList = {
             "block_type": "SECTION",
             "block_parameters": {},
             "preview_description": "Display a list of your most recent posts.",
-            "preview_image": <img src={noPreviewAvailableImage} alt="component preview" />
+            "preview_image": noPreviewAvailableImage
         },
         {
             "_id": 8,
@@ -608,7 +614,7 @@ const componentsList = {
             "block_type": "SECTION",
             "block_parameters": {},
             "preview_description": "Display a list of all pages.",
-            "preview_image": <img src={noPreviewAvailableImage} alt="component preview" />
+            "preview_image": noPreviewAvailableImage
         },
         {
             "_id": 9,
@@ -618,7 +624,7 @@ const componentsList = {
             "block_type": "SECTION",
             "block_parameters": {},
             "preview_description": "Display entries from any RSS or Atom feed.",
-            "preview_image": <img src={noPreviewAvailableImage} alt="component preview" />
+            "preview_image": noPreviewAvailableImage
         },
         {
             "_id": 10,
@@ -628,7 +634,7 @@ const componentsList = {
             "block_type": "SECTION",
             "block_parameters": {},
             "preview_description": "Display icons linking to your social media profies or websites.",
-            "preview_image": <img src={noPreviewAvailableImage} alt="component preview" />
+            "preview_image": noPreviewAvailableImage
         },
         {
             "_id": 11,
@@ -638,7 +644,7 @@ const componentsList = {
             "block_type": "SECTION",
             "block_parameters": {},
             "preview_description": "A cloud of your most used tags.",
-            "preview_image": <img src={noPreviewAvailableImage} alt="component preview" />
+            "preview_image": noPreviewAvailableImage
         },
         {
             "_id": 12,
@@ -648,7 +654,7 @@ const componentsList = {
             "block_type": "SECTION",
             "block_parameters": {},
             "preview_description": "Help visitors find your content.",
-            "preview_image": <img src={noPreviewAvailableImage} alt="component preview" />
+            "preview_image": noPreviewAvailableImage
         },
         {
             "_id": 13,
@@ -658,7 +664,7 @@ const componentsList = {
             "block_type": "SECTION",
             "block_parameters": {},
             "preview_description": "Rate movies, books, songs, recipes - anything you can put a number on.",
-            "preview_image": <img src={noPreviewAvailableImage} alt="component preview" />
+            "preview_image": noPreviewAvailableImage
         },
         {
             "_id": 14,
@@ -668,7 +674,7 @@ const componentsList = {
             "block_type": "SECTION",
             "block_parameters": {},
             "preview_description": "Control block visibility based on how often a visitor has viewed the page.",
-            "preview_image": <img src={noPreviewAvailableImage} alt="component preview" />
+            "preview_image": noPreviewAvailableImage
         },
         {
             "_id": 15,
@@ -678,7 +684,7 @@ const componentsList = {
             "block_type": "SECTION",
             "block_parameters": {},
             "preview_description": "Count down to your favorite next thing and celebrate with fireworks when the time is right.",
-            "preview_image": <img src={noPreviewAvailableImage} alt="component preview" />
+            "preview_image": noPreviewAvailableImage
         },
         {
             "_id": 16,
@@ -688,7 +694,7 @@ const componentsList = {
             "block_type": "SECTION",
             "block_parameters": {},
             "preview_description": "Create a timeline of events.",
-            "preview_image": <img src={noPreviewAvailableImage} alt="component preview" />
+            "preview_image": noPreviewAvailableImage
         },
         {
             "_id": 17,
@@ -698,7 +704,7 @@ const componentsList = {
             "block_type": "SECTION",
             "block_parameters": {},
             "preview_description": "A block for displaying homepage posts.",
-            "preview_image": <img src={noPreviewAvailableImage} alt="component preview" />
+            "preview_image": noPreviewAvailableImage
         },
         {
             "_id": 18,
@@ -708,7 +714,7 @@ const componentsList = {
             "block_type": "SECTION",
             "block_parameters": {},
             "preview_description": "A carousel of posts.",
-            "preview_image": <img src={noPreviewAvailableImage} alt="component preview" />
+            "preview_image": noPreviewAvailableImage
         },
     ],
     "Theme": [
@@ -720,7 +726,7 @@ const componentsList = {
             "block_type": "SECTION",
             "block_parameters": {},
             "preview_description": "An advanced block that allows displaying post types based on different query parameters and visual configurations.",
-            "preview_image": <img src={noPreviewAvailableImage} alt="component preview" />
+            "preview_image": noPreviewAvailableImage
         },
         {
             "_id": 2,
@@ -730,7 +736,7 @@ const componentsList = {
             "block_type": "SECTION",
             "block_parameters": {},
             "preview_description": "Displays the title of a post, page, or any other content type.",
-            "preview_image": <img src={noPreviewAvailableImage} alt="component preview" />
+            "preview_image": noPreviewAvailableImage
         },
         {
             "_id": 3,
@@ -740,7 +746,7 @@ const componentsList = {
             "block_type": "SECTION",
             "block_parameters": {},
             "preview_description": "Displays the content of a post or page.",
-            "preview_image": <img src={noPreviewAvailableImage} alt="component preview" />
+            "preview_image": noPreviewAvailableImage
         },
         {
             "_id": 4,
@@ -750,7 +756,7 @@ const componentsList = {
             "block_type": "SECTION",
             "block_parameters": {},
             "preview_description": "Add the date of this post.",
-            "preview_image": <img src={noPreviewAvailableImage} alt="component preview" />
+            "preview_image": noPreviewAvailableImage
         },
         {
             "_id": 5,
@@ -760,7 +766,7 @@ const componentsList = {
             "block_type": "SECTION",
             "block_parameters": {},
             "preview_description": "Display a post's excerpt.",
-            "preview_image": <img src={noPreviewAvailableImage} alt="component preview" />
+            "preview_image": noPreviewAvailableImage
         },
         {
             "_id": 6,
@@ -770,7 +776,7 @@ const componentsList = {
             "block_type": "SECTION",
             "block_parameters": {},
             "preview_description": "Displays a post's featured image.",
-            "preview_image": <img src={noPreviewAvailableImage} alt="component preview" />
+            "preview_image": noPreviewAvailableImage
         },
         {
             "_id": 7,
@@ -780,7 +786,7 @@ const componentsList = {
             "block_type": "SECTION",
             "block_parameters": {},
             "preview_description": "Show login & logout links.",
-            "preview_image": <img src={noPreviewAvailableImage} alt="component preview" />
+            "preview_image": noPreviewAvailableImage
         },
         {
             "_id": 8,
@@ -790,7 +796,7 @@ const componentsList = {
             "block_type": "SECTION",
             "block_parameters": {},
             "preview_description": "A collection of blocks that allow visitors to get around your site.",
-            "preview_image": <img src={noPreviewAvailableImage} alt="component preview" />
+            "preview_image": noPreviewAvailableImage
         },
         {
             "_id": 9,
@@ -800,7 +806,7 @@ const componentsList = {
             "block_type": "SECTION",
             "block_parameters": {},
             "preview_description": "Display a list of your most recent posts, excluding sticky posts.",
-            "preview_image": <img src={noPreviewAvailableImage} alt="component preview" />
+            "preview_image": noPreviewAvailableImage
         },
     ],
     "Embeds": [
@@ -812,7 +818,7 @@ const componentsList = {
             "block_type": "SECTION",
             "block_parameters": {},
             "preview_description": "Add a block that displays content pulled from other sites, like Twitter or YouTube.",
-            "preview_image": <img src={noPreviewAvailableImage} alt="component preview" />
+            "preview_image": noPreviewAvailableImage
         },
         {
             "_id": 2,
@@ -822,7 +828,7 @@ const componentsList = {
             "block_type": "SECTION",
             "block_parameters": {},
             "preview_description": "Embed a tweet.",
-            "preview_image": <img src={noPreviewAvailableImage} alt="component preview" />
+            "preview_image": noPreviewAvailableImage
         },
         {
             "_id": 3,
@@ -832,7 +838,7 @@ const componentsList = {
             "block_type": "SECTION",
             "block_parameters": {},
             "preview_description": "Embed a YouTube video.",
-            "preview_image": <img src={noPreviewAvailableImage} alt="component preview" />
+            "preview_image": noPreviewAvailableImage
         },
         {
             "_id": 4,
@@ -842,7 +848,7 @@ const componentsList = {
             "block_type": "SECTION",
             "block_parameters": {},
             "preview_description": "Embed SoundCloud content.",
-            "preview_image": <img src={noPreviewAvailableImage} alt="component preview" />
+            "preview_image": noPreviewAvailableImage
         },
         {
             "_id": 5,
@@ -852,7 +858,7 @@ const componentsList = {
             "block_type": "SECTION",
             "block_parameters": {},
             "preview_description": "Embed Spotify content.",
-            "preview_image": <img src={noPreviewAvailableImage} alt="component preview" />
+            "preview_image": noPreviewAvailableImage
         },
         {
             "_id": 6,
@@ -862,7 +868,7 @@ const componentsList = {
             "block_type": "SECTION",
             "block_parameters": {},
             "preview_description": "Embed Flickr content.",
-            "preview_image": <img src={noPreviewAvailableImage} alt="component preview" />
+            "preview_image": noPreviewAvailableImage
         },
         {
             "_id": 7,
@@ -872,7 +878,7 @@ const componentsList = {
             "block_type": "SECTION",
             "block_parameters": {},
             "preview_description": "Embed a Vimeo video.",
-            "preview_image": <img src={noPreviewAvailableImage} alt="component preview" />
+            "preview_image": noPreviewAvailableImage
         },
         {
             "_id": 8,
@@ -882,7 +888,7 @@ const componentsList = {
             "block_type": "SECTION",
             "block_parameters": {},
             "preview_description": "Embed an Animoto video.",
-            "preview_image": <img src={noPreviewAvailableImage} alt="component preview" />
+            "preview_image": noPreviewAvailableImage
         },
         {
             "_id": 9,
@@ -892,7 +898,7 @@ const componentsList = {
             "block_type": "SECTION",
             "block_parameters": {},
             "preview_description": "Embed Cloudup content.",
-            "preview_image": <img src={noPreviewAvailableImage} alt="component preview" />
+            "preview_image": noPreviewAvailableImage
         },
         {
             "_id": 10,
@@ -902,7 +908,7 @@ const componentsList = {
             "block_type": "SECTION",
             "block_parameters": {},
             "preview_description": "Embed Crowdsignal content.",
-            "preview_image": <img src={noPreviewAvailableImage} alt="component preview" />
+            "preview_image": noPreviewAvailableImage
         },
         {
             "_id": 11,
@@ -912,7 +918,7 @@ const componentsList = {
             "block_type": "SECTION",
             "block_parameters": {},
             "preview_description": "Embed a Dailymotion video.",
-            "preview_image": <img src={noPreviewAvailableImage} alt="component preview" />
+            "preview_image": noPreviewAvailableImage
         },
         {
             "_id": 12,
@@ -922,7 +928,7 @@ const componentsList = {
             "block_type": "SECTION",
             "block_parameters": {},
             "preview_description": "Embed Imgur content.",
-            "preview_image": <img src={noPreviewAvailableImage} alt="component preview" />
+            "preview_image": noPreviewAvailableImage
         },
         {
             "_id": 13,
@@ -932,7 +938,7 @@ const componentsList = {
             "block_type": "SECTION",
             "block_parameters": {},
             "preview_description": "Embed Issuu content.",
-            "preview_image": <img src={noPreviewAvailableImage} alt="component preview" />
+            "preview_image": noPreviewAvailableImage
         },
         {
             "_id": 14,
@@ -942,7 +948,7 @@ const componentsList = {
             "block_type": "SECTION",
             "block_parameters": {},
             "preview_description": "Embed Kickstarter content.",
-            "preview_image": <img src={noPreviewAvailableImage} alt="component preview" />
+            "preview_image": noPreviewAvailableImage
         },
         {
             "_id": 15,
@@ -952,7 +958,7 @@ const componentsList = {
             "block_type": "SECTION",
             "block_parameters": {},
             "preview_description": "Embed Mixcloud content.",
-            "preview_image": <img src={noPreviewAvailableImage} alt="component preview" />
+            "preview_image": noPreviewAvailableImage
         },
         {
             "_id": 16,
@@ -962,7 +968,7 @@ const componentsList = {
             "block_type": "SECTION",
             "block_parameters": {},
             "preview_description": "Embed a Reddit thread.",
-            "preview_image": <img src={noPreviewAvailableImage} alt="component preview" />
+            "preview_image": noPreviewAvailableImage
         },
         {
             "_id": 17,
@@ -972,7 +978,7 @@ const componentsList = {
             "block_type": "SECTION",
             "block_parameters": {},
             "preview_description": "Embed Reverbnation content.",
-            "preview_image": <img src={noPreviewAvailableImage} alt="component preview" />
+            "preview_image": noPreviewAvailableImage
         },
         {
             "_id": 18,
@@ -982,7 +988,7 @@ const componentsList = {
             "block_type": "SECTION",
             "block_parameters": {},
             "preview_description": "Embed Screencast content.",
-            "preview_image": <img src={noPreviewAvailableImage} alt="component preview" />
+            "preview_image": noPreviewAvailableImage
         },
         {
             "_id": 19,
@@ -992,7 +998,7 @@ const componentsList = {
             "block_type": "SECTION",
             "block_parameters": {},
             "preview_description": "Embed Scribd content.",
-            "preview_image": <img src={noPreviewAvailableImage} alt="component preview" />
+            "preview_image": noPreviewAvailableImage
         },
         {
             "_id": 20,
@@ -1002,7 +1008,7 @@ const componentsList = {
             "block_type": "SECTION",
             "block_parameters": {},
             "preview_description": "Embed Slideshare content.",
-            "preview_image": <img src={noPreviewAvailableImage} alt="component preview" />
+            "preview_image": noPreviewAvailableImage
         },
         {
             "_id": 21,
@@ -1012,7 +1018,7 @@ const componentsList = {
             "block_type": "SECTION",
             "block_parameters": {},
             "preview_description": "Embed SmugMug content.",
-            "preview_image": <img src={noPreviewAvailableImage} alt="component preview" />
+            "preview_image": noPreviewAvailableImage
         },
         {
             "_id": 22,
@@ -1022,7 +1028,7 @@ const componentsList = {
             "block_type": "SECTION",
             "block_parameters": {},
             "preview_description": "Embed Speaker Deck content.",
-            "preview_image": <img src={noPreviewAvailableImage} alt="component preview" />
+            "preview_image": noPreviewAvailableImage
         },
         {
             "_id": 23,
@@ -1032,7 +1038,7 @@ const componentsList = {
             "block_type": "SECTION",
             "block_parameters": {},
             "preview_description": "Embed a TikTok video.",
-            "preview_image": <img src={noPreviewAvailableImage} alt="component preview" />
+            "preview_image": noPreviewAvailableImage
         },
         {
             "_id": 24,
@@ -1042,7 +1048,7 @@ const componentsList = {
             "block_type": "SECTION",
             "block_parameters": {},
             "preview_description": "Embed a TED video.",
-            "preview_image": <img src={noPreviewAvailableImage} alt="component preview" />
+            "preview_image": noPreviewAvailableImage
         },
         {
             "_id": 25,
@@ -1052,7 +1058,7 @@ const componentsList = {
             "block_type": "SECTION",
             "block_parameters": {},
             "preview_description": "Embed a Tumblr post.",
-            "preview_image": <img src={noPreviewAvailableImage} alt="component preview" />
+            "preview_image": noPreviewAvailableImage
         },
         {
             "_id": 26,
@@ -1062,7 +1068,7 @@ const componentsList = {
             "block_type": "SECTION",
             "block_parameters": {},
             "preview_description": "Embed a VideoPress video.",
-            "preview_image": <img src={noPreviewAvailableImage} alt="component preview" />
+            "preview_image": noPreviewAvailableImage
         },
         {
             "_id": 27,
@@ -1072,7 +1078,7 @@ const componentsList = {
             "block_type": "SECTION",
             "block_parameters": {},
             "preview_description": "Embed a Wordpress video.",
-            "preview_image": <img src={noPreviewAvailableImage} alt="component preview" />
+            "preview_image": noPreviewAvailableImage
         },
         {
             "_id": 28,
@@ -1082,7 +1088,7 @@ const componentsList = {
             "block_type": "SECTION",
             "block_parameters": {},
             "preview_description": "Embed Amazon Kindle content.",
-            "preview_image": <img src={noPreviewAvailableImage} alt="component preview" />
+            "preview_image": noPreviewAvailableImage
         },
         {
             "_id": 29,
@@ -1092,7 +1098,7 @@ const componentsList = {
             "block_type": "SECTION",
             "block_parameters": {},
             "preview_description": "Embed a Facebook post.",
-            "preview_image": <img src={noPreviewAvailableImage} alt="component preview" />
+            "preview_image": noPreviewAvailableImage
         },
         {
             "_id": 30,
@@ -1102,7 +1108,7 @@ const componentsList = {
             "block_type": "SECTION",
             "block_parameters": {},
             "preview_description": "Embed an Instagram post.",
-            "preview_image": <img src={noPreviewAvailableImage} alt="component preview" />
+            "preview_image": noPreviewAvailableImage
         },
         {
             "_id": 31,
@@ -1112,7 +1118,7 @@ const componentsList = {
             "block_type": "SECTION",
             "block_parameters": {},
             "preview_description": "Emved a Loom video.",
-            "preview_image": <img src={noPreviewAvailableImage} alt="component preview" />
+            "preview_image": noPreviewAvailableImage
         },
         {
             "_id": 32,
@@ -1122,7 +1128,7 @@ const componentsList = {
             "block_type": "SECTION",
             "block_parameters": {},
             "preview_description": "Embed a SmartFrame image.",
-            "preview_image": <img src={noPreviewAvailableImage} alt="component preview" />
+            "preview_image": noPreviewAvailableImage
         },
         {
             "_id": 33,
@@ -1132,7 +1138,7 @@ const componentsList = {
             "block_type": "SECTION",
             "block_parameters": {},
             "preview_description": "Embed Eventbrite event details and ticket checkout.",
-            "preview_image": <img src={noPreviewAvailableImage} alt="component preview" />
+            "preview_image": noPreviewAvailableImage
         },
         {
             "_id": 34,
@@ -1142,7 +1148,7 @@ const componentsList = {
             "block_type": "SECTION",
             "block_parameters": {},
             "preview_description": "Search for and insert an animated image.",
-            "preview_image": <img src={noPreviewAvailableImage} alt="component preview" />
+            "preview_image": noPreviewAvailableImage
         },
         {
             "_id": 35,
@@ -1152,7 +1158,7 @@ const componentsList = {
             "block_type": "SECTION",
             "block_parameters": {},
             "preview_description": "Embed a Google Calendar.",
-            "preview_image": <img src={noPreviewAvailableImage} alt="component preview" />
+            "preview_image": noPreviewAvailableImage
         },
         {
             "_id": 36,
@@ -1162,7 +1168,7 @@ const componentsList = {
             "block_type": "SECTION",
             "block_parameters": {},
             "preview_description": "Display an automatically updating list of the latest posts from your Instagram feed.",
-            "preview_image": <img src={noPreviewAvailableImage} alt="component preview" />
+            "preview_image": noPreviewAvailableImage
         },
         {
             "_id": 37,
@@ -1172,7 +1178,7 @@ const componentsList = {
             "block_type": "SECTION",
             "block_parameters": {},
             "preview_description": "Add an interactive map showing one or more locations.",
-            "preview_image": <img src={noPreviewAvailableImage} alt="component preview" />
+            "preview_image": noPreviewAvailableImage
         },
         {
             "_id": 38,
@@ -1182,7 +1188,7 @@ const componentsList = {
             "block_type": "SECTION",
             "block_parameters": {},
             "preview_description": "Embed a Pinterest pin, board, or user.",
-            "preview_image": <img src={noPreviewAvailableImage} alt="component preview" />
+            "preview_image": noPreviewAvailableImage
         },
         {
             "_id": 39,
@@ -1192,7 +1198,7 @@ const componentsList = {
             "block_type": "SECTION",
             "block_parameters": {},
             "preview_description": "Select and play episodes from a single podcast.",
-            "preview_image": <img src={noPreviewAvailableImage} alt="component preview" />
+            "preview_image": noPreviewAvailableImage
         },
         {
             "_id": 40,
@@ -1202,7 +1208,7 @@ const componentsList = {
             "block_type": "SECTION",
             "block_parameters": {},
             "preview_description": "Related Posts.",
-            "preview_image": <img src={noPreviewAvailableImage} alt="component preview" />
+            "preview_image": noPreviewAvailableImage
         },
     ],
     "CrowdSignal": [
@@ -1214,7 +1220,7 @@ const componentsList = {
             "block_type": "SECTION",
             "block_parameters": {},
             "preview_description": "Create polls and get your audience's opinion.",
-            "preview_image": <img src={noPreviewAvailableImage} alt="component preview" />
+            "preview_image": noPreviewAvailableImage
         },
         {
             "_id": 2,
@@ -1224,7 +1230,7 @@ const componentsList = {
             "block_type": "SECTION",
             "block_parameters": {},
             "preview_description": "Allow your audience to rate your work or express their opinion.",
-            "preview_image": <img src={noPreviewAvailableImage} alt="component preview" />
+            "preview_image": noPreviewAvailableImage
         },
         {
             "_id": 3,
@@ -1234,7 +1240,7 @@ const componentsList = {
             "block_type": "SECTION",
             "block_parameters": {},
             "preview_description": "Let your audience cheer with a big round of applause.",
-            "preview_image": <img src={noPreviewAvailableImage} alt="component preview" />
+            "preview_image": noPreviewAvailableImage
         },
         {
             "_id": 4,
@@ -1244,7 +1250,7 @@ const componentsList = {
             "block_type": "SECTION",
             "block_parameters": {},
             "preview_description": "Collect feedback and track customer satisfaction over time.",
-            "preview_image": <img src={noPreviewAvailableImage} alt="component preview" />
+            "preview_image": noPreviewAvailableImage
         },
         {
             "_id": 5,
@@ -1254,7 +1260,7 @@ const componentsList = {
             "block_type": "SECTION",
             "block_parameters": {},
             "preview_description": "Add an always visible button that allows your audience to share feedback anytime.",
-            "preview_image": <img src={noPreviewAvailableImage} alt="component preview" />
+            "preview_image": noPreviewAvailableImage
         },
     ],
     "Earn": [
@@ -1266,7 +1272,7 @@ const componentsList = {
             "block_type": "SECTION",
             "block_parameters": {},
             "preview_description": "Collect one-time, monthly, or annually recurring donations.",
-            "preview_image": <img src={noPreviewAvailableImage} alt="component preview" />
+            "preview_image": noPreviewAvailableImage
         },
         {
             "_id": 2,
@@ -1276,7 +1282,7 @@ const componentsList = {
             "block_type": "SECTION",
             "block_parameters": {},
             "preview_description": "Allow visitors to book a reservaton with OpenTable.",
-            "preview_image": <img src={noPreviewAvailableImage} alt="component preview" />
+            "preview_image": noPreviewAvailableImage
         },
         {
             "_id": 3,
@@ -1286,7 +1292,7 @@ const componentsList = {
             "block_type": "SECTION",
             "block_parameters": {},
             "preview_description": "Button allowing you to sell products and subscriptions.",
-            "preview_image": <img src={noPreviewAvailableImage} alt="component preview" />
+            "preview_image": noPreviewAvailableImage
         },
         {
             "_id": 4,
@@ -1296,7 +1302,7 @@ const componentsList = {
             "block_type": "SECTION",
             "block_parameters": {},
             "preview_description": "Lets you add credit and debit card payment buttons with minimal setup.",
-            "preview_image": <img src={noPreviewAvailableImage} alt="component preview" />
+            "preview_image": noPreviewAvailableImage
         },
         {
             "_id": 5,
@@ -1306,7 +1312,7 @@ const componentsList = {
             "block_type": "SECTION",
             "block_parameters": {},
             "preview_description": "Add pricing tables to help visitors compare products and plans.",
-            "preview_image": <img src={noPreviewAvailableImage} alt="component preview" />
+            "preview_image": noPreviewAvailableImage
         },
     ],
     "Grow": [
@@ -1318,7 +1324,7 @@ const componentsList = {
             "block_type": "SECTION",
             "block_parameters": {},
             "preview_description": "Display opening hours for your business.",
-            "preview_image": <img src={noPreviewAvailableImage} alt="component preview" />
+            "preview_image": noPreviewAvailableImage
         },
         {
             "_id": 2,
@@ -1328,7 +1334,7 @@ const componentsList = {
             "block_type": "SECTION",
             "block_parameters": {},
             "preview_description": "Embed a calendar for customers to schedule appointments.",
-            "preview_image": <img src={noPreviewAvailableImage} alt="component preview" />
+            "preview_image": noPreviewAvailableImage
         },
         {
             "_id": 3,
@@ -1338,7 +1344,7 @@ const componentsList = {
             "block_type": "SECTION",
             "block_parameters": {},
             "preview_description": "A simple way to get feedback from folks visiting your site.",
-            "preview_image": <img src={noPreviewAvailableImage} alt="component preview" />
+            "preview_image": noPreviewAvailableImage
         },
         {
             "_id": 4,
@@ -1348,7 +1354,7 @@ const componentsList = {
             "block_type": "SECTION",
             "block_parameters": {},
             "preview_description": "Lets you add an email address, phone number, and physical address with improved markup for better SEO results.",
-            "preview_image": <img src={noPreviewAvailableImage} alt="component preview" />
+            "preview_image": noPreviewAvailableImage
         },
         {
             "_id": 5,
@@ -1358,7 +1364,7 @@ const componentsList = {
             "block_type": "SECTION",
             "block_parameters": {},
             "preview_description": "A form enabling readers to join a Mailchimp audience.",
-            "preview_image": <img src={noPreviewAvailableImage} alt="component preview" />
+            "preview_image": noPreviewAvailableImage
         },
         {
             "_id": 6,
@@ -1368,7 +1374,7 @@ const componentsList = {
             "block_type": "SECTION",
             "block_parameters": {},
             "preview_description": "Add a subscription form for your Revue newsletter.",
-            "preview_image": <img src={noPreviewAvailableImage} alt="component preview" />
+            "preview_image": noPreviewAvailableImage
         },
         {
             "_id": 7,
@@ -1378,7 +1384,7 @@ const componentsList = {
             "block_type": "SECTION",
             "block_parameters": {},
             "preview_description": "A form enabling readers to get notifications when new posts are published from this site.",
-            "preview_image": <img src={noPreviewAvailableImage} alt="component preview" />
+            "preview_image": noPreviewAvailableImage
         },
         {
             "_id": 8,
@@ -1388,7 +1394,7 @@ const componentsList = {
             "block_type": "SECTION",
             "block_parameters": {},
             "preview_description": "Restrict access to your content for paying subscribers.",
-            "preview_image": <img src={noPreviewAvailableImage} alt="component preview" />
+            "preview_image": noPreviewAvailableImage
         },
         {
             "_id": 9,
@@ -1398,7 +1404,7 @@ const componentsList = {
             "block_type": "SECTION",
             "block_parameters": {},
             "preview_description": "Add a quote for readers to tweet via Twitter.",
-            "preview_image": <img src={noPreviewAvailableImage} alt="component preview" />
+            "preview_image": noPreviewAvailableImage
         },
         {
             "_id": 10,
@@ -1408,7 +1414,7 @@ const componentsList = {
             "block_type": "SECTION",
             "block_parameters": {},
             "preview_description": "Add logos, badges, or certifications to build credibility.",
-            "preview_image": <img src={noPreviewAvailableImage} alt="component preview" />
+            "preview_image": noPreviewAvailableImage
         },
         {
             "_id": 11,
@@ -1418,7 +1424,7 @@ const componentsList = {
             "block_type": "SECTION",
             "block_parameters": {},
             "preview_description": "Add a contact form to your page.",
-            "preview_image": <img src={noPreviewAvailableImage} alt="component preview" />
+            "preview_image": noPreviewAvailableImage
         },
         {
             "_id": 12,
@@ -1428,7 +1434,7 @@ const componentsList = {
             "block_type": "SECTION",
             "block_parameters": {},
             "preview_description": "Add an RSVP form to your page.",
-            "preview_image": <img src={noPreviewAvailableImage} alt="component preview" />
+            "preview_image": noPreviewAvailableImage
         },
         {
             "_id": 13,
@@ -1438,7 +1444,7 @@ const componentsList = {
             "block_type": "SECTION",
             "block_parameters": {},
             "preview_description": "Add a Registration form to your page.",
-            "preview_image": <img src={noPreviewAvailableImage} alt="component preview" />
+            "preview_image": noPreviewAvailableImage
         },
         {
             "_id": 14,
@@ -1448,7 +1454,7 @@ const componentsList = {
             "block_type": "SECTION",
             "block_parameters": {},
             "preview_description": "Add an Appointment booking form to your page.",
-            "preview_image": <img src={noPreviewAvailableImage} alt="component preview" />
+            "preview_image": noPreviewAvailableImage
         },
         {
             "_id": 15,
@@ -1458,7 +1464,7 @@ const componentsList = {
             "block_type": "SECTION",
             "block_parameters": {},
             "preview_description": "Add a Feedback form to your page.",
-            "preview_image": <img src={noPreviewAvailableImage} alt="component preview" />
+            "preview_image": noPreviewAvailableImage
         },
         {
             "_id": 16,
@@ -1468,7 +1474,7 @@ const componentsList = {
             "block_type": "SECTION",
             "block_parameters": {},
             "preview_description": "Let your visitors send you messages on WhatsApp with the tap of a button.",
-            "preview_image": <img src={noPreviewAvailableImage} alt="component preview" />
+            "preview_image": noPreviewAvailableImage
         },
     ]
 }
@@ -1544,7 +1550,7 @@ const ComponentPreview = (props) => {
     return (
         <div className={`component-preview-container ${component && onPreview !== true ? 'hidden' : '' }`}>
             <div className="component-preview-image-container">
-            <img src={noPreviewAvailableImage} alt="component preview" />
+                <img src={component.preview_image} alt={`${component.text} preview`} />
             </div>
             <div className="component-preview-details-container">
                 <div className="component-preview-details-icon">
@@ -1583,9 +1589,9 @@ const BlocksList = (props) => {
         let uniqueId = e.target.className.split(" ")[1];
         let findComponent = categories.filter(category => category.group === uniqueId.split("-")[0]);
         let component = findComponent.length > 0 ? findComponent[0].components_list
-                    .filter(component => component.name === uniqueId.split("-")[1])[0] : {};
+                        .filter(component => component.name === uniqueId.split("-")[1])[0] : {};
         setSelectedComponent(component);
-        setOnPreview(true);
+        setOnPreview(findComponent.length > 0 ? true : false);
     };
 
     const handleOnHidePreview = (e) => {
@@ -1681,7 +1687,7 @@ const SearchResultsList = (props) => {
         let findComponent = components.filter(component => component.name === uniqueId);
         let component = findComponent.length > 0 ? findComponent[0] : {};
         setSelectedComponent(component);
-        setOnPreview(true);
+        setOnPreview(findComponent.length > 0 ? true : false);
     };
 
     const handleOnHidePreview = (e) => {
