@@ -8,7 +8,7 @@
     position: sticky;
     position: -webkit-sticky;
     top: 0;
-    z-index: 1;
+    z-index: 2;
     padding: 8px 0 0 0;
     background-color: #ffffff;
 }
@@ -39,14 +39,12 @@
     padding: 8px 5px;
 }
 
-.component-box {
-    position: relative;
+.component-box .component-box-clicker {
+    position: absolute;
     width: 100%;
-    display: flex;
-    flex-flow: column nowrap;
-    justify-content: center;
-    align-items: center;
-    border: 1px solid transparent;
+    height: 100%;
+    background-color: transparent;
+    color: #ffffff;
 }
 
 .component-grid {
@@ -55,6 +53,7 @@
     cursor: grab;
     cursor: -moz-grab;
     cursor: -webkit-grab;
+    z-index: 1;
 }
 
 .component-grid:hover {
@@ -96,6 +95,7 @@
     font-size: 12px;
     padding: 4px 2px 8px;
     color: #1e1e1e;
+    text-transform: capitalize;
     word-break: break-word;
     text-align: center;
     cursor: pointer;
@@ -127,3 +127,46 @@
     text-align: center;
     font-size: 12px;
 }
+
+.component-preview-container {
+    position: fixed;
+    display: block;
+    width: 300px;
+    top: calc(0% + 80px);
+    left: calc(25% + 16px);
+    background-color: #ffffff;
+    border: 1px solid #F0F0F0;
+
+}
+
+.component-preview-image-container img {
+    max-height:100%;
+    max-width:100%;
+}
+
+.component-preview-details-container {
+    display: flex;
+    flex-flow: row nowrap;
+    padding: 24px 16px;
+}
+
+.component-preview-details-text {
+    padding: 0 0 0 16px;
+    background-color: #FFFFFF;
+}
+
+.component-preview-details-text .component-preview-text {
+    margin: 2px 0 8px 0;
+    font-size: 14px;
+    padding: 0;
+}
+
+.component-preview-details-text .component-preview-description {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.5rem;
+    padding: 0;
+    overflow-wrap: break-word;
+}
+
+.hidden { display: none; }
