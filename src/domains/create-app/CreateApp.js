@@ -1,10 +1,5 @@
 import * as React from 'react';
-import {
-    Container,
-    Grid,
-    Box,
-    Typography
-} from '@mui/material';
+import { Divider, Grid } from '@mui/material';
 
 import {
     KeyboardArrowDownOutlined as KeyboardArrowDownIcon,
@@ -18,6 +13,7 @@ import "./CreateApp.css";
 
 import siteLogo from "../../assets/logos/ceblogo.png";
 import sampleUserAvatar from "../../assets/images/sample-user-avatar.jpeg";
+import sampleCoverImage from "../../assets/images/sample-cover-image.png";
 
 const sampleUser = {
     username: "Tim Powell",
@@ -94,11 +90,55 @@ const Header = () => {
     );
 }
 
+const FirstWebsiteSection = () => {
+    const styledGridContainer = { justifyContent: "center" };
+    const styledDivider = { margin: "0 48px" };
+
+    return(
+        <div className="first-website-section-container">
+            <div className="first-website-section main-cover-container">
+                <div className="cover-image-container">
+                    <img className="cover-image" src={sampleCoverImage} alt="cover" />
+                </div>
+                <div className="cover-details-container">
+                    <h2 className="cover-details-title">Create Your First App</h2>
+                    <p className="cover-details-subtitle">You're on your way to creating your first working application.</p>
+                    <button className="cover-details-action-button">
+                        <span className="button-icon"><AddOutlinedIcon /></span>
+                        <span className="button-text">Create New App</span>
+                    </button>
+                </div>
+            </div>
+            <div className="first-website-section main-features-container">
+                <Grid container sx={styledGridContainer}>
+                    <Grid item xs={3}>
+                        <h3 className="main-features-title">Hire a Professional</h3>
+                        <p className="main-features-subtitle">Need help creating your site? Choose from 100s of web designers. <a href="/" target="_blank">Browse Now</a></p>
+                    </Grid>
+                    <Divider orientation="vertical" flexItem sx={styledDivider} />
+                    <Grid item xs={3}>
+                        <h3 className="main-features-title">Get Inspired</h3>
+                        <p className="main-features-subtitle">Explore stunning apps created by users like you. <a href="/" target="_blank">Explore Now</a></p>
+                    </Grid>
+                    <Divider orientation="vertical" flexItem sx={styledDivider} />
+                    <Grid item xs={3}>
+                        <h3 className="main-features-title">Can’t find your app?</h3>
+                        <p className="main-features-subtitle">You may have opened another account. <a href="/" target="_blank">Read More</a></p>
+                    </Grid>
+                </Grid>
+            </div>
+        </div>
+    );
+}
+
 const CreateApp = (props) => {
     return(
         <>
             <TopNavBar />
-            <Header />
+            <div className="content-container">
+                <Header />
+                <FirstWebsiteSection />
+            </div>
         </>
     )
 }

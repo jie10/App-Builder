@@ -2,6 +2,7 @@
 
 /** 0 --- UTILITIES AND OTHER ADJUSTMENTS */
 body {
+    background-color: #F1F4F7;
     font-family: 'Lato', sans-serif;
 }
 
@@ -222,3 +223,110 @@ body {
     color: #FFFFFF;
 }
 
+
+/** 2 --- FIRST WEBSITE SECTION */
+.content-container {
+    position: relative;
+    height: calc(100vh - 50px);
+    width: 100%;
+    overflow-y: scroll;
+}
+
+.first-website-section-container {
+    height: 750px;
+    width: 85%;
+    margin: 0 auto;
+}
+
+.first-website-section-container .main-cover-container {
+    margin: 42px 0 84px 0;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.first-website-section .cover-image-container {
+    position: relative;
+    display: block;
+    max-height: 300px;
+    margin: 0 24px 0 0;
+}
+
+.cover-image-container .cover-image {
+    height: 100%;
+}
+
+.cover-details-container .cover-details-title {
+    margin: 0 0 10px 0;
+    font-weight: 700;
+    font-size: 48px;
+}
+
+.cover-details-container .cover-details-subtitle {
+    margin: 0 0 32px;
+    color: #20455e;
+    font-size: 20px;
+}
+
+.cover-details-container .cover-details-action-button {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 4px 16px;
+    border-radius: 20px;
+    cursor: pointer;
+    background-color: transparent;
+    border: 1px solid #5299E5;
+    color: #5299E5;
+    transition-duration: 0.2s;
+}
+
+.cover-details-action-button .button-icon {
+    margin: 3px 6px 0 0;
+}
+
+.cover-details-action-button .button-text {
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 1px;
+}
+
+.cover-details-container .cover-details-action-button:hover {
+    background-color: #69B6EF;
+    border: 1px solid #69B6EF;
+    color: #FFFFFF;
+}   
+
+.cover-details-container .cover-details-action-button:active {
+    background-color: #5299E5;
+    border: 1px solid #5299E5;
+    color: #FFFFFF;
+}
+
+.first-website-section .main-features-container {
+    width: 100%;
+}
+
+.main-features-container .main-features-title {
+    margin: 0 0 14px 0;
+    font-size: 24px;
+    font-weight: 400;
+}
+
+.main-features-container .main-features-subtitle {
+    margin: 0;
+    color: #20455e;
+    font-size: 16px;
+    line-height: 1.5em;
+}
+
+.main-features-subtitle a {
+    color: #5299E5;
+    text-decoration: none;
+}
+
+.main-features-subtitle a:hover {
+    text-decoration: underline;
+}
