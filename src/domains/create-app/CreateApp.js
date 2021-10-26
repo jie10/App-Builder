@@ -1,13 +1,17 @@
 import * as React from 'react';
 import {
+    Container,
+    Grid,
     Box,
-    Container
+    Typography
 } from '@mui/material';
 
 import {
     KeyboardArrowDownOutlined as KeyboardArrowDownIcon,
     ChatBubbleOutlineOutlined as ChatBubbleIcon,
-    NotificationsNoneOutlined as NotificationsIcon
+    NotificationsNoneOutlined as NotificationsIcon,
+    AddOutlined as AddOutlinedIcon,
+    CreateNewFolderOutlined as CreateNewFolderOutlinedIcon
 }from '@mui/icons-material';
 
 import "./CreateApp.css";
@@ -67,10 +71,34 @@ const TopNavBar = () => {
     );
 }
 
+const Header = () => {
+    return (
+        <div className="jumbo-header-container">
+            <div className="jumbo-content-container">
+                <div className="jumbo-content">
+                    <h1 className="jumbo-content-title">My Apps</h1>
+                    <p className="jumbo-content-subtitle">Select an app to edit, view and open its dashboard.</p>
+                </div>
+                <div className="jumbo-content jumbo-content-buttons">
+                    <button className="jumbo-content-button">
+                        <span className="button-icon"><CreateNewFolderOutlinedIcon /></span>
+                        <span className="button-text">Create New Folder</span>
+                    </button>
+                    <button className="jumbo-content-button jumbo-content-main-button">
+                        <span className="button-icon"><AddOutlinedIcon /></span>
+                        <span className="button-text">Create New App</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    );
+}
+
 const CreateApp = (props) => {
     return(
         <>
             <TopNavBar />
+            <Header />
         </>
     )
 }

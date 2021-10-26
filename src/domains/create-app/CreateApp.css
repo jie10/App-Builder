@@ -1,3 +1,20 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap');
+
+/** 0 --- UTILITIES AND OTHER ADJUSTMENTS */
+body {
+    font-family: 'Lato', sans-serif;
+}
+
+.vertical-divider {
+    height: 1.5rem;
+    border-left: 0.5px solid #e1e1e1;
+    margin: 0 20px;
+}
+
+.hidden { display: none; }
+
+
+/** 1 --- TOP NAVIGATION BAR */
 .top-nav-bar-container {
     position: sticky;
     position: -webkit-sticky;
@@ -128,10 +145,80 @@
     transform: scale(0.8);
 }
 
-.vertical-divider {
-    height: 1.5rem;
-    border-left: 0.5px solid #e1e1e1;
-    margin: 0 20px;
+
+/** 2 --- HEADER */
+.jumbo-header-container {
+    padding: 36px 0;
+    width: 100%;
+    background-color: #FFFFFF;
 }
 
-.hidden { display: none; }
+.jumbo-content-container {
+    width: 80%;
+    margin: 0 auto;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.jumbo-content h1.jumbo-content-title {
+    margin: 0 0 8px 0;
+    font-weight: 700;
+    font-size: 36px;
+}
+
+.jumbo-content p.jumbo-content-subtitle {
+    margin: 0;
+    color: #20455e;
+    font-size: 16px;
+}
+
+.jumbo-content-buttons {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+}
+
+.jumbo-content-buttons .jumbo-content-button {
+    margin: 0 0 0 18px;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 4px 16px;
+    border-radius: 20px;
+    cursor: pointer;
+    background-color: transparent;
+    border: 1px solid #5299E5;
+    color: #5299E5;
+    transition-duration: 0.2s;
+}
+
+.jumbo-content-buttons .jumbo-content-main-button {
+    background-color: #5299E5;
+    color: #FFFFFF;
+}
+
+.jumbo-content-button .button-icon {
+    margin: 3px 6px 0 0;
+}
+
+.jumbo-content-button .button-text {
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 1px;
+}
+
+.jumbo-content-buttons .jumbo-content-button:hover {
+    background-color: #69B6EF;
+    border: 1px solid #69B6EF;
+    color: #FFFFFF;
+}   
+
+.jumbo-content-buttons .jumbo-content-button:active {
+    background-color: #5299E5;
+    border: 1px solid #5299E5;
+    color: #FFFFFF;
+}
+
