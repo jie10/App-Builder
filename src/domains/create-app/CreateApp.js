@@ -1,5 +1,5 @@
-import * as React from 'react';
-import { Divider, Grid } from '@mui/material';
+import React, { useState } from 'react'
+import { Divider, Grid, Tooltip, Zoom } from '@mui/material';
 
 import {
     KeyboardArrowDownOutlined as KeyboardArrowDownIcon,
@@ -69,7 +69,14 @@ const TopNavBar = () => {
     );
 }
 
-const Header = () => {
+const Header = (props) => {
+    const { setHiddenModal } = props;
+
+    const handleCreateNewFolderClick = (e) => {
+        e.preventDefault();
+        setHiddenModal(false);
+    }
+
     return (
         <div className="jumbo-header-container">
             <div className="jumbo-content-container">
@@ -78,7 +85,7 @@ const Header = () => {
                     <p className="jumbo-content-subtitle">Select an app to edit, view and open its dashboard.</p>
                 </div>
                 <div className="jumbo-content jumbo-content-buttons">
-                    <button className="jumbo-content-button">
+                    <button className="jumbo-content-button" onClick={handleCreateNewFolderClick}>
                         <span className="button-icon"><CreateNewFolderOutlinedIcon /></span>
                         <span className="button-text">Create New Folder</span>
                     </button>
@@ -133,27 +140,75 @@ const FirstWebsiteSection = () => {
     );
 }
 
-const CreateNewFolderModal = () => {
+const CreateNewFolderModal = (props) => {
+    const { hiddenModal, setHiddenModal } = props;
+
+    const [userInput, setUserInput] = useState(null);
+
+    const handleCloseModal = (e) => {
+        e.preventDefault();
+        setUserInput(null);
+        setHiddenModal(true);
+    }
+
+    const handleUserInput = (e) => {
+        e.preventDefault();
+        setUserInput(e.target.value);
+    }
+
     return(
-        <div className="create-new-folder-modal-container">
+        <div className={`create-new-folder-modal-container ${ hiddenModal === true ? 'hidden' : ''}`}>
             <div className="create-new-folder-modal-box">
                 <div className="modal-box modal-box-header">
                     <span className="header-title">Create New Folder</span>
-                    <button className="header-close-button"><CloseOutlinedIcon /></button>
+                    <button
+                        className="header-close-button"
+                        onClick={handleCloseModal}>
+                            <CloseOutlinedIcon />
+                    </button>
                 </div>
                 <div className="modal-box modal-box-body">
                     <div className="body-form-label-container">
                         <label className="form-label">Name your folder, then move any app to this folder via Actions.</label>
                     </div>
                     <div className="body-form-input-container">
-                        <input classname="form-input" type="text" maxlength="300" placeholder="e.g. In Progress" />
-                        <span className="form-error-icon hidden"><ErrorIcon /></span>
+                        <input
+                            className={`form-input ${ userInput === null ? '' : userInput && userInput.length > 0 ? '' : 'form-error' }`}
+                            type="text"
+                            maxLength="300"
+                            placeholder="e.g. In Progress"
+                            onChange={handleUserInput}
+                            value={ userInput ? userInput : '' } />
+                        <span
+                            className={`form-error-icon ${ userInput === null ? 'hidden' : userInput && userInput.length > 0 ? 'hidden' : ''}`}>
+                            <Tooltip
+                                TransitionComponent={Zoom}
+                                sx={{
+                                    position: "absolute",
+                                    top: "14px",
+                                    right: "8px"
+                                }}
+                                title={<span
+                                            className="form-tooltip" 
+                                            style={{ display: "block", width: "150px", fontSize: "14px", padding: "8px", wordBreak: "break-word" }}>
+                                                Folder names should be between 1 and 256 characters long.
+                                        </span>}
+                                placement="top"
+                                describeChild
+                                arrow>
+                                <ErrorIcon />
+                            </Tooltip>
+                        </span>
                     </div>
                 </div>
                 <div className="modal-box modal-box-footer">
                     <div className="footer-buttons-container">
-                        <button className="footer-button">Cancel</button>
-                        <button className="footer-button disabled-button" disabled="true">Create</button>
+                        <button className="footer-button" onClick={handleCloseModal}>Cancel</button>
+                        <button
+                            className={`footer-button ${ userInput && userInput.length > 0 ? '' : 'disabled-button' }`}
+                            disabled={ userInput && userInput.length > 0  ? false : true }>
+                                Create
+                        </button>
                     </div>
                 </div>
             </div>
@@ -162,13 +217,15 @@ const CreateNewFolderModal = () => {
 }
 
 const CreateApp = (props) => {
+    const [hiddenModal, setHiddenModal] = useState(true);
+
     return(
         <>
             <TopNavBar />
             <div className="content-container">
-                <Header />
+                <Header setHiddenModal={setHiddenModal} />
                 <FirstWebsiteSection />
-                <CreateNewFolderModal />
+                <CreateNewFolderModal hiddenModal={hiddenModal} setHiddenModal={setHiddenModal} />
             </div>
         </>
     )

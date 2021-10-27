@@ -424,18 +424,18 @@ input {
     align-items: center;
 }
 
-.body-form-input-container input {
+.body-form-input-container .form-input {
     width: 100%;
     padding: 9px 14px;
     border: 1px solid #C8E3FB;
     border-radius: 5px;
     font-size: 16px;
 }
-.body-form-input-container input:hover {
+.body-form-input-container .form-input:hover {
     background-color: #ECF7FE;
 }
 
-.body-form-input-container input:focus {
+.body-form-input-container .form-input:focus {
     background-color: #FFFFFF;
     border: 1px solid #5299E5;
     box-shadow: 0px 0px 0px 3px rgba(181, 220, 249, 0.75);
@@ -443,10 +443,19 @@ input {
     -moz-box-shadow: 0px 0px 0px 3px rgba(181, 220, 249, 0.75);
 }
 
+.body-form-input-container .form-error {
+    border: 1px solid red;
+}
+
+.body-form-input-container .form-error:focus {
+    background-color: #FFFFFF;
+    border: 1px solid red;
+    box-shadow: 0px 0px 0px 3px rgba(239, 196, 194, 0.75);
+    -webkit-box-shadow: 0px 0px 0px 3px rgba(239, 196, 194, 0.75);
+    -moz-box-shadow: 0px 0px 0px 3px rgba(239, 196, 194, 0.75);
+}
+
 .body-form-input-container .form-error-icon {
-    position: absolute;
-    top: 14px;
-    right: 8px;
     color: #DE6358;
 }
 
