@@ -49,11 +49,29 @@ const TopNavBar = () => {
             <div className="top-nav-bar top-nav-bar-user-nav">
                 <div className="user-nav">
                     <span className="text hidden">Inbox</span>
-                    <span className="icon"><ChatBubbleIcon /></span>
+                    <span className="icon">
+                        <Tooltip
+                            TransitionComponent={Zoom}
+                            title={<span style={{ display: "block", padding: "3px", fontSize: "12px" }}>Inbox</span>}
+                            placement="top"
+                            describeChild
+                            arrow>
+                                <ChatBubbleIcon />
+                        </Tooltip>
+                    </span>
                 </div>
                 <div className="user-nav">
                     <span className="text hidden">Notifications</span>
-                    <span className="icon"><NotificationsIcon /></span>
+                    <span className="icon">
+                        <Tooltip
+                            TransitionComponent={Zoom}
+                            title={<span style={{ display: "block", padding: "3px", fontSize: "12px" }}>Notifications</span>}
+                            placement="top"
+                            describeChild
+                            arrow>
+                                <NotificationsIcon />
+                        </Tooltip>
+                    </span>
                 </div>
                 <div className="vertical-divider"></div>
                 <div className="user-nav">
