@@ -6,8 +6,10 @@ import {
     ChatBubbleOutlineOutlined as ChatBubbleIcon,
     NotificationsNoneOutlined as NotificationsIcon,
     AddOutlined as AddOutlinedIcon,
-    CreateNewFolderOutlined as CreateNewFolderOutlinedIcon
-}from '@mui/icons-material';
+    CreateNewFolderOutlined as CreateNewFolderOutlinedIcon,
+    CloseOutlined as CloseOutlinedIcon,
+    Error as ErrorIcon
+} from '@mui/icons-material';
 
 import "./CreateApp.css";
 
@@ -131,6 +133,34 @@ const FirstWebsiteSection = () => {
     );
 }
 
+const CreateNewFolderModal = () => {
+    return(
+        <div className="create-new-folder-modal-container">
+            <div className="create-new-folder-modal-box">
+                <div className="modal-box modal-box-header">
+                    <span className="header-title">Create New Folder</span>
+                    <button className="header-close-button"><CloseOutlinedIcon /></button>
+                </div>
+                <div className="modal-box modal-box-body">
+                    <div className="body-form-label-container">
+                        <label className="form-label">Name your folder, then move any app to this folder via Actions.</label>
+                    </div>
+                    <div className="body-form-input-container">
+                        <input classname="form-input" type="text" maxlength="300" placeholder="e.g. In Progress" />
+                        <span className="form-error-icon hidden"><ErrorIcon /></span>
+                    </div>
+                </div>
+                <div className="modal-box modal-box-footer">
+                    <div className="footer-buttons-container">
+                        <button className="footer-button">Cancel</button>
+                        <button className="footer-button disabled-button" disabled="true">Create</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+}
+
 const CreateApp = (props) => {
     return(
         <>
@@ -138,6 +168,7 @@ const CreateApp = (props) => {
             <div className="content-container">
                 <Header />
                 <FirstWebsiteSection />
+                <CreateNewFolderModal />
             </div>
         </>
     )
