@@ -205,7 +205,7 @@ const CreateNewFolderModal = (props) => {
                     <div className="footer-buttons-container">
                         <button className="footer-button" onClick={handleCloseModal}>Cancel</button>
                         <button
-                            className={`footer-button ${ userInput && userInput.length > 0 ? '' : 'disabled-button' }`}
+                            className={`footer-button ${ userInput && userInput.length > 0 ? 'footer-main-button' : 'disabled-button' }`}
                             disabled={ userInput && userInput.length > 0  ? false : true }>
                                 Create
                         </button>
