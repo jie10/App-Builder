@@ -62,12 +62,14 @@ input {
 }
 
 .top-nav-bar-site-nav div.site-nav {
+    position: relative;
     display: flex;
     flex-flow: row nowrap;
     justify-content: center;
     align-items: center;
     padding: 9px 12px;
     font-size: 14px;
+    color: #000000;
     cursor: pointer;
     -webkit-user-select: none;  /* Chrome all / Safari all */
     -moz-user-select: none;     /* Firefox all */
@@ -76,6 +78,21 @@ input {
 }
 
 .top-nav-bar-site-nav div.site-nav:hover {
+    color: #3899EC;
+    fill: #3899EC;
+}
+
+.top-nav-bar-site-nav div.site-nav a {
+    text-decoration: none;
+}
+
+.top-nav-bar-site-nav div.site-nav a:visited,
+.top-nav-bar-site-nav div.site-nav a:active,
+.top-nav-bar-site-nav div.site-nav a:focus {
+    color: #000000;
+}
+
+.top-nav-bar-site-nav div.site-nav a:hover {
     color: #3899EC;
     fill: #3899EC;
 }

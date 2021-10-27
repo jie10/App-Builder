@@ -43,7 +43,9 @@ const TopNavBar = () => {
                     <span className="icon"><KeyboardArrowDownIcon /></span>
                 </div>
                 <div className="site-nav">
-                    <span className="text">Hire a Professional</span>
+                    <span className="text">
+                        <a href="/" target="_blank">Hire a Professional</a>
+                    </span>
                 </div>
             </div>
             <div className="top-nav-bar top-nav-bar-user-nav">
