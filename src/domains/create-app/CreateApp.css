@@ -1,6 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap');
 
 /** 0 --- UTILITIES AND OTHER ADJUSTMENTS */
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     background-color: #F1F4F7;
     font-family: 'Lato', sans-serif;
@@ -22,8 +26,7 @@ input {
 
 /** 1 --- TOP NAVIGATION BAR */
 .top-nav-bar-container {
-    position: sticky;
-    position: -webkit-sticky;
+    position: relative;
     width: 100%;
     display: flex;
     flex-flow: row nowrap;
@@ -171,30 +174,37 @@ input {
 
 /** 2 --- HEADER */
 .jumbo-header-container {
-    padding: 36px 0;
+    position: sticky;
+    position: -webkit-sticky;
+    top: 0;
     width: 100%;
+    z-index: 1;
     background-color: #FFFFFF;
 }
 
 .jumbo-content-container {
     width: 80%;
+    padding: 36px 0;
     margin: 0 auto;
     display: flex;
     flex-flow: row nowrap;
     justify-content: space-between;
     align-items: center;
+    transition-duration: 0.2s;
 }
 
 .jumbo-content h1.jumbo-content-title {
     margin: 0 0 8px 0;
     font-weight: 700;
     font-size: 36px;
+    transition-duration: 0.2s;
 }
 
 .jumbo-content p.jumbo-content-subtitle {
     margin: 0;
     color: #20455e;
     font-size: 16px;
+    transition-duration: 0.2s;
 }
 
 .jumbo-content-buttons {
@@ -250,6 +260,20 @@ input {
     box-shadow: 0px 0px 0px 3px rgba(181, 220, 249, 0.75);
     -webkit-box-shadow: 0px 0px 0px 3px rgba(181, 220, 249, 0.75);
     -moz-box-shadow: 0px 0px 0px 3px rgba(181, 220, 249, 0.75);
+}
+
+.header-on-scroll .jumbo-content-container {
+    padding: 16px 0;
+}
+
+.header-on-scroll .jumbo-content .jumbo-content-title {
+    font-size: 16px;
+    font-weight: normal;
+    margin: 0;
+}
+
+.header-on-scroll .jumbo-content .jumbo-content-subtitle {
+    display: none;
 }
 
 
@@ -376,6 +400,7 @@ input {
     width: 100%;
     height: 100vh;
     background-color: rgba(100, 112, 123, 0.65);
+    z-index: 999;
 }
 
 .create-new-folder-modal-box {

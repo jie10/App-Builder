@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Divider, Grid, Tooltip, Zoom } from '@mui/material';
 
 import {
@@ -90,7 +90,7 @@ const TopNavBar = () => {
 }
 
 const Header = (props) => {
-    const { setHiddenModal } = props;
+    const { setHiddenModal, scrollValueFromTop } = props;
 
     const handleCreateNewFolderClick = (e) => {
         e.preventDefault();
@@ -98,7 +98,7 @@ const Header = (props) => {
     }
 
     return (
-        <div className="jumbo-header-container">
+        <div className={`jumbo-header-container ${scrollValueFromTop ? 'header-on-scroll' : ''}`}>
             <div className="jumbo-content-container">
                 <div className="jumbo-content">
                     <h1 className="jumbo-content-title">My Apps</h1>
@@ -238,12 +238,21 @@ const CreateNewFolderModal = (props) => {
 
 const CreateApp = (props) => {
     const [hiddenModal, setHiddenModal] = useState(true);
+    const [scrollValueFromTop, setScrollValueFromTop] = useState(false);
+
+    const handleOnScroll = (e) => {
+        if (e.target.firstChild.offsetHeight >= e.target.scrollTop ) {
+            setScrollValueFromTop(false);
+        } else {
+            setScrollValueFromTop(true)
+        }
+    }
 
     return(
         <>
             <TopNavBar />
-            <div className="content-container">
-                <Header setHiddenModal={setHiddenModal} />
+            <div className="content-container" onScroll={handleOnScroll}>
+                <Header setHiddenModal={setHiddenModal} scrollValueFromTop={scrollValueFromTop} />
                 <FirstWebsiteSection />
                 <CreateNewFolderModal hiddenModal={hiddenModal} setHiddenModal={setHiddenModal} />
             </div>
