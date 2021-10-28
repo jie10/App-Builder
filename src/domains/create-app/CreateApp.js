@@ -23,6 +23,7 @@ const sampleUser = {
 };
 
 const TopNavBar = () => {
+
     return (
         <div className="top-nav-bar-container">
             <div className="top-nav-bar top-nav-bar-site-nav">
@@ -31,21 +32,54 @@ const TopNavBar = () => {
                     <img className="site-logo" src={siteLogo} alt="logo" />
                 </a>
                 <div className="site-nav site-nav-main-link">
-                    <span className="text">My Sites</span>
-                    <span className="icon"><KeyboardArrowDownIcon /></span>
+                    <div className="item">
+                        <span className="text">My Sites</span>
+                        <span className="icon"><KeyboardArrowDownIcon /></span>
+                    </div>
+                    <div className="sites-list-items">
+                        <div className="pointer"></div>
+                        <div className="list-header">
+                            <span class="header-title">Apps Last Opened</span>
+                            <a className="header-link" href="/" target="_self">
+                                <span className="link-icon"><AddOutlinedIcon /></span>
+                                <span className="link-label">Create New App</span>
+                            </a>
+                        </div>
+                        <div className="list-content">
+                            <div className="no-results-container">
+                                <h3 className="no-results-title">No Apps Found</h3>
+                                <p className="no-results-description">You don't have any apps to show at the moment. Create a new one to see it here.</p>
+                            </div>
+                        </div>
+                        <div className="list-footer">
+                            <a className="footer-link" href="/" target="_self">Go to all Apps</a>
+                        </div>
+                    </div>
                 </div>
                 <div className="site-nav">
-                    <span className="text">Explore</span>
-                    <span className="icon"><KeyboardArrowDownIcon /></span>
+                    <div className="item">
+                        <span className="text">Explore</span>
+                        <span className="icon"><KeyboardArrowDownIcon /></span>
+                    </div>
+                    <div className="menu-list-items">
+                        <div className="pointer"></div>
+                        <a href="/" target="_self">{"Updates & Releases"}</a>
+                        <a href="/" target="_self">Inspiring Websites</a>
+                        <a href="/" target="_self">eCommerce School</a>
+                    </div>
                 </div>
                 <div className="site-nav">
-                    <span className="text">Help</span>
-                    <span className="icon"><KeyboardArrowDownIcon /></span>
+                    <div className="item">
+                        <span className="text">Help</span>
+                        <span className="icon"><KeyboardArrowDownIcon /></span>
+                    </div>
                 </div>
                 <div className="site-nav">
-                    <span className="text">
-                        <a href="/" target="_blank">Hire a Professional</a>
-                    </span>
+                    <div className="item">
+                        <span className="link-text">
+                            <a href="/" target="_blank">Hire a Professional</a>
+                        </span>
+                    </div>
                 </div>
             </div>
             <div className="top-nav-bar top-nav-bar-user-nav">
