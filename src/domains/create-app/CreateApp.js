@@ -33,7 +33,7 @@ const TopNavBar = () => {
                 </a>
                 <div className="site-nav site-nav-main-link">
                     <div className="item">
-                        <span className="text">My Sites</span>
+                        <span className="text">My Apps</span>
                         <span className="icon"><KeyboardArrowDownIcon /></span>
                     </div>
                     <div className="sites-list-items">
