@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useReducer } from 'react'
 import { Divider, Grid, Tooltip, Zoom } from '@mui/material';
 
 import {
@@ -16,6 +16,7 @@ import "./CreateApp.css";
 import siteLogo from "../../assets/logos/ceblogo.png";
 import sampleUserAvatar from "../../assets/images/sample-user-avatar.jpeg";
 import sampleCoverImage from "../../assets/images/sample-cover-image.png";
+import notifBellImage from "../../assets/images/notif-bell-image.png";
 
 const sampleUser = {
     username: "Tim Powell",
@@ -23,6 +24,24 @@ const sampleUser = {
 };
 
 const TopNavBar = () => {
+    const [openMyAppsMenu, setOpenMyAppsMenu] = useState(false);
+    const [openExploreMenu, setOpenExploreMenu] = useState(false);
+
+    const handleMenuClick = (e) => {
+        switch(e.target.id) {
+            case "my_apps_menu":
+                setOpenMyAppsMenu(!openMyAppsMenu);
+                setOpenExploreMenu(false);
+            break;
+            case "explore_menu":
+                setOpenExploreMenu(!openExploreMenu);
+                setOpenMyAppsMenu(false);
+            break;
+            default:
+                // do nothing
+            break;
+        }
+    }
 
     return (
         <div className="top-nav-bar-container">
@@ -32,14 +51,15 @@ const TopNavBar = () => {
                     <img className="site-logo" src={siteLogo} alt="logo" />
                 </a>
                 <div className="site-nav site-nav-main-link">
-                    <div className="item">
+                    <div className="item" onClick={handleMenuClick}>
+                        <span id="my_apps_menu" className="menu-clickable"></span>
                         <span className="text">My Apps</span>
                         <span className="icon"><KeyboardArrowDownIcon /></span>
                     </div>
-                    <div className="sites-list-items">
+                    <div className="sites-list-items" style={{display: openMyAppsMenu ? "flex" : "none"}}>
                         <div className="pointer"></div>
                         <div className="list-header">
-                            <span class="header-title">Apps Last Opened</span>
+                            <span className="header-title">Apps Last Opened</span>
                             <a className="header-link" href="/" target="_self">
                                 <span className="link-icon"><AddOutlinedIcon /></span>
                                 <span className="link-label">Create New App</span>
@@ -57,11 +77,12 @@ const TopNavBar = () => {
                     </div>
                 </div>
                 <div className="site-nav">
-                    <div className="item">
+                    <div className="item" onClick={handleMenuClick}>
+                        <span id="explore_menu" className="menu-clickable"></span>
                         <span className="text">Explore</span>
                         <span className="icon"><KeyboardArrowDownIcon /></span>
                     </div>
-                    <div className="menu-list-items">
+                    <div className="menu-list-items" style={{display: openExploreMenu ? "flex" : "none"}}>
                         <div className="pointer"></div>
                         <a href="/" target="_self">{"Updates & Releases"}</a>
                         <a href="/" target="_self">Inspiring Websites</a>
@@ -84,39 +105,60 @@ const TopNavBar = () => {
             </div>
             <div className="top-nav-bar top-nav-bar-user-nav">
                 <div className="user-nav">
-                    <span className="text hidden">Inbox</span>
-                    <span className="icon">
-                        <Tooltip
-                            TransitionComponent={Zoom}
-                            title={<span style={{ display: "block", padding: "3px", fontSize: "12px" }}>Inbox</span>}
-                            placement="top"
-                            describeChild
-                            arrow>
-                                <ChatBubbleIcon />
-                        </Tooltip>
-                    </span>
+                    <div className="item">
+                        <span className="text hidden">Inbox</span>
+                        <span className="icon">
+                            <Tooltip
+                                TransitionComponent={Zoom}
+                                title={<span style={{ display: "block", padding: "3px", fontSize: "12px" }}>Inbox</span>}
+                                placement="top"
+                                describeChild
+                                arrow>
+                                    <ChatBubbleIcon />
+                            </Tooltip>
+                        </span>
+                    </div>
                 </div>
                 <div className="user-nav">
-                    <span className="text hidden">Notifications</span>
-                    <span className="icon">
-                        <Tooltip
-                            TransitionComponent={Zoom}
-                            title={<span style={{ display: "block", padding: "3px", fontSize: "12px" }}>Notifications</span>}
-                            placement="top"
-                            describeChild
-                            arrow>
-                                <NotificationsIcon />
-                        </Tooltip>
-                    </span>
+                    <div className="item">
+                        <span className="text hidden">Notifications</span>
+                        <span className="icon">
+                            <Tooltip
+                                TransitionComponent={Zoom}
+                                title={<span style={{ display: "block", padding: "3px", fontSize: "12px" }}>Notifications</span>}
+                                placement="top"
+                                describeChild
+                                arrow>
+                                    <NotificationsIcon />
+                            </Tooltip>
+                        </span>
+                    </div>
+                    <div className="notif-list-items">
+                        <div className="pointer"></div>
+                        <div className="list-header">
+                            <span className="header-title">Notifications</span>
+                        </div>
+                        <div className="list-content">
+                            <div className="no-results-container">
+                                <div className="no-results-image">
+                                    <img src={notifBellImage} alt="notfication bell" />
+                                </div>
+                                <h3 className="no-results-title">Get Notified Here</h3>
+                                <p className="no-results-description">This is where you’ll see all your notifications from users, apps and more.</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div className="vertical-divider"></div>
                 <div className="user-nav">
-                    <div className="user-avatar-container">
-                        <div className="avatar-protector"></div>
-                        <img className="user-avatar" src={sampleUser.avatarImage} alt="user-avatar" />
+                    <div className="item">
+                        <div className="user-avatar-container">
+                            <div className="avatar-protector"></div>
+                            <img className="user-avatar" src={sampleUser.avatarImage} alt="user-avatar" />
+                        </div>
+                        <span className="user-name">{sampleUser.username}</span>
+                        <span className="icon user-nav-icon"><KeyboardArrowDownIcon /></span>
                     </div>
-                    <span className="user-name">{sampleUser.username}</span>
-                    <span className="icon user-nav-icon"><KeyboardArrowDownIcon /></span>
                 </div>
             </div>
         </div>
