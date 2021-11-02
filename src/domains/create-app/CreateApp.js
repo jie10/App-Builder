@@ -1,4 +1,4 @@
-import React, { useState, useReducer } from 'react'
+import React, { useState, useRef, useEffect  } from 'react'
 import { Divider, Grid, Tooltip, Zoom } from '@mui/material';
 
 import {
@@ -25,12 +25,33 @@ const sampleUser = {
 };
 
 const TopNavBar = () => {
+    const refMyAppsMenu = useRef(null);
+    const refExploreMenu = useRef(null);
+    const refInboxMenu = useRef(null);
+    const refNotifMenu = useRef(null);
+    const refAccountMenu = useRef(null);
     const [openMyAppsMenu, setOpenMyAppsMenu] = useState(false);
     const [openExploreMenu, setOpenExploreMenu] = useState(false);
     const [openInboxMenu, setOpenInboxMenu] = useState(false);
     const [openNotifMenu, setOpenNotifMenu] = useState(false);
     const [openAccountMenu, setOpenAccountMenu] = useState(false);
     const [hoverLanguagesList, setHoverLanguagesList] = useState(false);
+
+    const useOutsideClick = (ref, callback) => {
+      const handleClick = e => {
+        if (ref.current && !ref.current.contains(e.target)) {
+          callback();
+        }
+      };
+    
+      useEffect(() => {
+        document.addEventListener("click", handleClick);
+    
+        return () => {
+          document.removeEventListener("click", handleClick);
+        };
+      });
+    };
 
     const handleMenuClick = (e) => {
         switch(e.target.id) {
@@ -79,6 +100,26 @@ const TopNavBar = () => {
 
     const handleListOnBlur = (e) => setHoverLanguagesList(false);
 
+    useOutsideClick(refMyAppsMenu, () => {
+        if (openMyAppsMenu) setOpenMyAppsMenu(false);
+    });
+
+    useOutsideClick(refExploreMenu, () => {
+        if (openExploreMenu) setOpenExploreMenu(false);
+    });
+
+    useOutsideClick(refInboxMenu, () => {
+        if (openInboxMenu) setOpenInboxMenu(false);
+    });
+
+    useOutsideClick(refNotifMenu, () => {
+        if (openNotifMenu) setOpenNotifMenu(false);
+    });
+
+    useOutsideClick(refAccountMenu, () => {
+        if (openAccountMenu) setOpenAccountMenu(false);
+    });
+
     return (
         <div className="top-nav-bar-container">
             <div className="top-nav-bar top-nav-bar-site-nav">
@@ -92,7 +133,7 @@ const TopNavBar = () => {
                         <span className="text">My Apps</span>
                         <span className="icon"><KeyboardArrowDownIcon /></span>
                     </div>
-                    <div className="sites-list-items" style={{display: openMyAppsMenu ? "flex" : "none"}}>
+                    <div className="sites-list-items" ref={refMyAppsMenu} style={{display: openMyAppsMenu ? "flex" : "none"}}>
                         <div className="pointer"></div>
                         <div className="list-header">
                             <span className="header-title">Apps Last Opened</span>
@@ -118,7 +159,7 @@ const TopNavBar = () => {
                         <span className="text">Explore</span>
                         <span className="icon"><KeyboardArrowDownIcon /></span>
                     </div>
-                    <div className="menu-list-items" style={{display: openExploreMenu ? "flex" : "none"}}>
+                    <div className="menu-list-items" ref={refExploreMenu} style={{display: openExploreMenu ? "flex" : "none"}}>
                         <div className="pointer"></div>
                         <a href="/" target="_self">{"Updates & Releases"}</a>
                         <a href="/" target="_self">Inspiring Websites</a>
@@ -155,7 +196,7 @@ const TopNavBar = () => {
                             </Tooltip>
                         </span>
                     </div>
-                    <div className="inbox-list-items" style={{display: openInboxMenu ? "block" : "none"}}>
+                    <div className="inbox-list-items" ref={refInboxMenu} style={{display: openInboxMenu ? "block" : "none"}}>
                         <div className="pointer"></div>
                         <div className="list-header">
                             <span className="header-title">Inbox</span>
@@ -184,7 +225,7 @@ const TopNavBar = () => {
                             </Tooltip>
                         </span>
                     </div>
-                    <div className="notif-list-items" style={{display: openNotifMenu ? "block" : "none"}}>
+                    <div className="notif-list-items" ref={refNotifMenu} style={{display: openNotifMenu ? "block" : "none"}}>
                         <div className="pointer"></div>
                         <div className="list-header">
                             <span className="header-title">Notifications</span>
@@ -211,7 +252,7 @@ const TopNavBar = () => {
                         <span className="user-name">{sampleUser.username}</span>
                         <span className="icon user-nav-icon"><KeyboardArrowDownIcon /></span>
                     </div>
-                    <div className="account-list-items" style={{display: openAccountMenu ? "block" : "none"}}>
+                    <div className="account-list-items" ref={refAccountMenu} style={{display: openAccountMenu ? "block" : "none"}}>
                         <div className="pointer"></div>
                         <div className="list-header">
                             <div className="user-avatar-container">
