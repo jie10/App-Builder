@@ -30,6 +30,7 @@ const TopNavBar = () => {
     const [openInboxMenu, setOpenInboxMenu] = useState(false);
     const [openNotifMenu, setOpenNotifMenu] = useState(false);
     const [openAccountMenu, setOpenAccountMenu] = useState(false);
+    const [hoverLanguagesList, setHoverLanguagesList] = useState(false);
 
     const handleMenuClick = (e) => {
         switch(e.target.id) {
@@ -73,6 +74,10 @@ const TopNavBar = () => {
             break;
         }
     }
+
+    const handleListOnHover = (e) => setHoverLanguagesList(true);
+
+    const handleListOnBlur = (e) => setHoverLanguagesList(false);
 
     return (
         <div className="top-nav-bar-container">
@@ -233,13 +238,13 @@ const TopNavBar = () => {
                                 <a href="/" target="_self">Hire a Professional</a>
                             </div>
                         </div>
-                        <div className="list-footer">
-                            <div className="footer-link">
+                        <div className="list-footer" onMouseLeave={handleListOnBlur}>
+                            <div className="footer-link" onMouseEnter={handleListOnHover}>
                                 <span className="link-icon"><LanguageOutlinedIcon /></span>
                                 <span className="link-text">English</span>
                             </div>
                             <button className="footer-button">Log Out</button>
-                            <div className="list-global-languages">
+                            <div className="list-global-languages" style={{ display: hoverLanguagesList ? "block" : "none"}}>
                                 <div className="list-languages-container">
                                     <div className="language-list">
                                         <a href="/" target="_self">Čeština</a>
