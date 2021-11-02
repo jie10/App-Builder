@@ -40,6 +40,26 @@ const FooterSimple = (props) => {
                     src='/images/round_close_black_24dp.png' />
             </Grid>
         </Grid>
+        <div>
+            <div className="c-footer__copyright">
+                <div className="container">
+                    <div className="row">
+                        <div className="col-lg-8 d-none d-lg-block">
+                            <ul>
+                                <li className="ng-star-inserted"><a href="javascript:void(0);">Privacy and Cookie Policy</a></li>
+                                <li className="ng-star-inserted"><a href="javascript:void(0);">Website Terms of Use</a></li>
+                                <li className="ng-star-inserted"><a href="javascript:void(0);">Security</a></li>
+                                <li className="ng-star-inserted"><a href="javascript:void(0);">Accessibility</a></li>
+                                <li className="ng-star-inserted"><a href="javascript:void(0);">Site Map</a></li>
+                            </ul>
+                        </div>
+                        <div className="col-lg-4 text-center text-lg-right">
+                            <p>© Copyright 2021 Cebu Pacific</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         </div>
     )
 }

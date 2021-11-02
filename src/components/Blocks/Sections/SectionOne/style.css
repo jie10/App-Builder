@@ -1,0 +1,25 @@
+.buttoncontrols {
+    height: 24px;
+    width: 24px;
+    object-fit: 'cover';
+    padding: 4px;
+    opacity: 0.2;
+}
+.text-left {
+    text-align: left;
+}
+
+@media (min-width: 768px) {
+.justify-content-md-center {
+    justify-content: center!important;
+}
+}
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    
+}
+
+.col-md-5 {
+    flex: 0 0 41.666667%;
+}

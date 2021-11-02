@@ -36,3 +36,19 @@
     transform: rotate(360deg);
   }
 }
+
+
+.parallax-container{
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+}
+
+.parallax-container:before,
+.parallax-container:after {
+  display: table;
+  content: " ";
+}
+
+.parallax-container:after {
+  clear: both;
+}

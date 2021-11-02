@@ -10,12 +10,12 @@ import {
     getBlock
 } from '../../../../stores/actions'
 
-const HeaderSimple = (props) => {
+const GuideBanner = (props) => {
 
     const { _id, block, deleteBlock, moveUpBlock, moveDownBlock, getBlock } = props
 
     return(
-        <div className = 'cebapp-header-component ng-tns-c13-32 height-small background-yellow rounded-buttom ng-star-inserted'
+        <div className='cebapp-banner-component-guide ng-tns-c13-33 height-medium background-yellow ng-star-inserted' 
             style={{
             width: '100%',
             height: block.parameters.height,
@@ -41,11 +41,21 @@ const HeaderSimple = (props) => {
                     src='/images/round_close_black_24dp.png' />
             </Grid>
         </Grid>
-        <div className = 'banner-content container height-small'>
-            <span className = 'country text-blue'>
-                <p>{block.parameters.title}</p>
-                </span>
+        <div className="">
+            <div className="banner-content container height-medium">
+                <div className="content left design-b">
+                    <div className="content-wrap left">
+                        <span className="country text-blue">
+                            <h1><strong>{block.parameters.title}</strong></h1>
+                        </span>
+                        <span className="description text-blue">
+                            <p>{block.parameters.text}</p>
+                        </span>
+                    </div>
+                    <a className="o-btn fixed-size o-btn--primary-blue" href="{block.parameters.buttonLink}" target="_self">{block.parameters.button}</a>
+                </div>
             </div>
+        </div>
         </div>
     )
 }
@@ -61,4 +71,4 @@ export default connect(mapStateToProps, {
     moveUpBlock,
     moveDownBlock,
     getBlock
-})(HeaderSimple)
+})(GuideBanner)

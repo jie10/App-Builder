@@ -10,16 +10,15 @@ import {
     getBlock
 } from '../../../../stores/actions'
 
-const HeaderSimple = (props) => {
+const SectionTwoLeft = (props) => {
 
     const { _id, block, deleteBlock, moveUpBlock, moveDownBlock, getBlock } = props
 
     return(
-        <div className = 'cebapp-header-component ng-tns-c13-32 height-small background-yellow rounded-buttom ng-star-inserted'
-            style={{
+        <div style={{
             width: '100%',
             height: block.parameters.height,
-            backgroundColor: block.parameters.backgroundColor
+            backgroundColor: block.parameters.backgroundColor,
         }} onClick={() => getBlock(_id, block)}>
         <Grid container direction="row" justifyContent="flex-end" alignItems="center">
             <Grid item onClick={() => moveUpBlock(_id)}>
@@ -41,11 +40,21 @@ const HeaderSimple = (props) => {
                     src='/images/round_close_black_24dp.png' />
             </Grid>
         </Grid>
-        <div className = 'banner-content container height-small'>
-            <span className = 'country text-blue'>
-                <p>{block.parameters.title}</p>
-                </span>
+        <div className='c-about-landing__two-columns c-about-landing__two-columns--space'>
+            <div>
+                <img src={block.parameters.image}/>
             </div>
+            <div>
+                <div style={{padding: '24px 24px 0'}}>
+                    <h4 style={{
+                        fontSize: '1.5em',
+                        marginTop: '0'
+                    }}>{block.parameters.title}</h4>
+                    <p>{block.parameters.text}</p>
+                    <a class="o-btn o-btn--primary-blue" target="_self" href={block.parameters.url}> View more information </a>
+                </div>
+            </div>
+        </div>
         </div>
     )
 }
@@ -61,4 +70,4 @@ export default connect(mapStateToProps, {
     moveUpBlock,
     moveDownBlock,
     getBlock
-})(HeaderSimple)
+})(SectionTwoLeft)
