@@ -8,7 +8,8 @@ import {
     AddOutlined as AddOutlinedIcon,
     CreateNewFolderOutlined as CreateNewFolderOutlinedIcon,
     CloseOutlined as CloseOutlinedIcon,
-    Error as ErrorIcon
+    Error as ErrorIcon,
+    LanguageOutlined as LanguageOutlinedIcon
 } from '@mui/icons-material';
 
 import "./CreateApp.css";
@@ -159,6 +160,71 @@ const TopNavBar = () => {
                         <span className="user-name">{sampleUser.username}</span>
                         <span className="icon user-nav-icon"><KeyboardArrowDownIcon /></span>
                     </div>
+                    <div className="account-list-items">
+                        <div className="pointer"></div>
+                        <div className="list-header">
+                            <div className="user-avatar-container">
+                                <div className="avatar-protector"></div>
+                                <img className="user-avatar" src={sampleUser.avatarImage} alt="user-avatar" />
+                            </div>
+                            <span className="header-title">{sampleUser.username}</span>
+                        </div>
+                        <div className="list-content">
+                            <div className="list">
+                                <a href="/" target="_self">Account Settings</a>
+                            </div>
+                            <div className="list">
+                                <a href="/" target="_self">Domains</a>
+                                <a href="/" target="_self">Mailboxes</a>
+                                <a href="/" target="_self">Vouchers</a>
+                                <a href="/" target="_self">Billing History</a>
+                                <a href="/" target="_self">Premium Subscriptions</a>
+                                <a href="/" target="_self">Payment Methods</a>
+                            </div>
+                            <div className="list">
+                                <a href="/" target="_self">Create a New Site</a>
+                                <a href="/" target="_self">Help Center</a>
+                                <a href="/" target="_self">Hire a Professional</a>
+                            </div>
+                        </div>
+                        <div className="list-footer">
+                            <div className="footer-link">
+                                <span className="link-icon"><LanguageOutlinedIcon /></span>
+                                <span className="link-text">English</span>
+                            </div>
+                            <button className="footer-button">Log Out</button>
+                            <div className="list-global-languages">
+                                <div className="list-languages-container">
+                                    <div className="language-list">
+                                        <a href="/" target="_self">Čeština</a>
+                                        <a href="/" target="_self">Dansk</a>
+                                        <a href="/" target="_self">Deutsch</a>
+                                        <a href="/" target="_self">Español</a>
+                                        <a href="/" target="_self">Français</a>
+                                        <a href="/" target="_self">हिन्दी</a>
+                                        <a href="/" target="_self">Italiano</a>
+                                        <a href="/" target="_self">日本語</a>
+                                        <a href="/" target="_self">한국어</a>
+                                        <a href="/" target="_self">Nederlands</a>
+                                        <a href="/" target="_self">Bahasa Indonesia</a>
+                                    </div>
+                                    <div className="language-list">
+                                        <a href="/" target="_self">Norsk</a>
+                                        <a href="/" target="_self">Polski</a>
+                                        <a href="/" target="_self">Português</a>
+                                        <a href="/" target="_self">Русский</a>
+                                        <a href="/" target="_self">Svenska</a>
+                                        <a href="/" target="_self">ไทย</a>
+                                        <a href="/" target="_self">Türkçe</a>
+                                        <a href="/" target="_self">Українська</a>
+                                        <a href="/" target="_self">繁體中文</a>
+                                        <a href="/" target="_self">Tiếng Việt</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
                 </div>
             </div>
         </div>
