@@ -27,16 +27,46 @@ const sampleUser = {
 const TopNavBar = () => {
     const [openMyAppsMenu, setOpenMyAppsMenu] = useState(false);
     const [openExploreMenu, setOpenExploreMenu] = useState(false);
+    const [openInboxMenu, setOpenInboxMenu] = useState(false);
+    const [openNotifMenu, setOpenNotifMenu] = useState(false);
+    const [openAccountMenu, setOpenAccountMenu] = useState(false);
 
     const handleMenuClick = (e) => {
         switch(e.target.id) {
             case "my_apps_menu":
                 setOpenMyAppsMenu(!openMyAppsMenu);
                 setOpenExploreMenu(false);
+                setOpenInboxMenu(false);
+                setOpenNotifMenu(false);
+                setOpenAccountMenu(false);
             break;
             case "explore_menu":
                 setOpenExploreMenu(!openExploreMenu);
                 setOpenMyAppsMenu(false);
+                setOpenInboxMenu(false);
+                setOpenNotifMenu(false);
+                setOpenAccountMenu(false);
+            break;
+            case "inbox_menu":
+                setOpenInboxMenu(!openInboxMenu);
+                setOpenMyAppsMenu(false);
+                setOpenExploreMenu(false);
+                setOpenNotifMenu(false);
+                setOpenAccountMenu(false);
+            break;
+            case "notif_menu":
+                setOpenNotifMenu(!openNotifMenu);
+                setOpenMyAppsMenu(false);
+                setOpenExploreMenu(false);
+                setOpenInboxMenu(false);
+                setOpenAccountMenu(false);
+            break;
+            case "account_menu":
+                setOpenAccountMenu(!openAccountMenu);
+                setOpenMyAppsMenu(false);
+                setOpenExploreMenu(false);
+                setOpenInboxMenu(false);
+                setOpenNotifMenu(false);
             break;
             default:
                 // do nothing
@@ -106,7 +136,8 @@ const TopNavBar = () => {
             </div>
             <div className="top-nav-bar top-nav-bar-user-nav">
                 <div className="user-nav">
-                    <div className="item">
+                    <div className="item" onClick={handleMenuClick}>
+                        <span id="inbox_menu" className="menu-clickable"></span>
                         <span className="text hidden">Inbox</span>
                         <span className="icon">
                             <Tooltip
@@ -119,7 +150,7 @@ const TopNavBar = () => {
                             </Tooltip>
                         </span>
                     </div>
-                    <div className="inbox-list-items">
+                    <div className="inbox-list-items" style={{display: openInboxMenu ? "block" : "none"}}>
                         <div className="pointer"></div>
                         <div className="list-header">
                             <span className="header-title">Inbox</span>
@@ -134,7 +165,8 @@ const TopNavBar = () => {
                     </div>
                 </div>
                 <div className="user-nav">
-                    <div className="item">
+                    <div className="item" onClick={handleMenuClick}>
+                        <span id="notif_menu" className="menu-clickable"></span>
                         <span className="text hidden">Notifications</span>
                         <span className="icon">
                             <Tooltip
@@ -147,7 +179,7 @@ const TopNavBar = () => {
                             </Tooltip>
                         </span>
                     </div>
-                    <div className="notif-list-items">
+                    <div className="notif-list-items" style={{display: openNotifMenu ? "block" : "none"}}>
                         <div className="pointer"></div>
                         <div className="list-header">
                             <span className="header-title">Notifications</span>
@@ -165,7 +197,8 @@ const TopNavBar = () => {
                 </div>
                 <div className="vertical-divider"></div>
                 <div className="user-nav">
-                    <div className="item">
+                    <div className="item" onClick={handleMenuClick}>
+                        <span id="account_menu" className="menu-clickable"></span>
                         <div className="user-avatar-container">
                             <div className="avatar-protector"></div>
                             <img className="user-avatar" src={sampleUser.avatarImage} alt="user-avatar" />
@@ -173,7 +206,7 @@ const TopNavBar = () => {
                         <span className="user-name">{sampleUser.username}</span>
                         <span className="icon user-nav-icon"><KeyboardArrowDownIcon /></span>
                     </div>
-                    <div className="account-list-items">
+                    <div className="account-list-items" style={{display: openAccountMenu ? "block" : "none"}}>
                         <div className="pointer"></div>
                         <div className="list-header">
                             <div className="user-avatar-container">
