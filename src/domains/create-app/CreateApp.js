@@ -119,6 +119,19 @@ const TopNavBar = () => {
                             </Tooltip>
                         </span>
                     </div>
+                    <div className="inbox-list-items">
+                        <div className="pointer"></div>
+                        <div className="list-header">
+                            <span className="header-title">Inbox</span>
+                            <span className="header-action">Mark All as Read</span>
+                        </div>
+                        <div className="list-content">
+                            <div className="no-results-container">
+                                <h3 className="no-results-title">You’re Up to Date!</h3>
+                                <p className="no-results-description">The next time you or one of your contacts sends a message, it will show here.</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div className="user-nav">
                     <div className="item">

@@ -375,6 +375,101 @@ input {
     transform: scale(0.8);
 }
 
+.top-nav-bar-user-nav div.user-nav .inbox-list-items {
+    position: absolute;
+    top: 65px;
+    right: 240px;
+    width: 400px;
+    display: none;
+    padding: 8px 0;
+    background-color: #FFFFFF;
+    border-radius: 5px;
+    box-shadow: 0 0 17px 0 rgb(23 50 68 / 17%);
+    -webkit-box-shadow: 0 0 17px 0 rgb(23 50 68 / 17%);
+    -moz-box-shadow: 0 0 17px 0 rgb(23 50 68 / 17%);
+    -webkit-user-select: none;  /* Chrome all / Safari all */
+    -moz-user-select: none;     /* Firefox all */
+    -ms-user-select: none;      /* IE 10+ */
+    user-select: none;          /* Likely future */ 
+    z-index: 2;
+}
+
+.top-nav-bar-user-nav div.user-nav .inbox-list-items .pointer {
+    position: absolute;
+    top: -5px;
+    right: 50px;
+    height: 15px;
+    width: 15px;
+    content: " ";
+    background-color: #fff;
+    box-shadow: 3px 3px 3px 0 rgb(23 50 68 / 8%);
+    -webkit-box-shadow: 3px 3px 3px 0 rgb(23 50 68 / 8%);
+    -moz-box-shadow: 3px 3px 3px 0 rgb(23 50 68 / 8%);
+    transform: translateX(0) rotate(-135deg);
+    z-index: 2;
+}
+
+.inbox-list-items .list-header {
+    position: relative;
+    width: 100%;
+    padding: 23px 0 25px 0;
+    border-bottom: 1px solid #e1e1e1;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.inbox-list-items .list-header .header-title {
+    margin: 0 0 0 30px;
+    font-weight: 700;
+    font-size: 20px;
+    color: #20455e;
+}
+
+.inbox-list-items .list-header .header-action {
+    margin: 0 30px 0 0;
+    color: #3899EC;
+    font-size: 14px;
+    cursor: pointer;
+    transition-duration: 0.15s;
+}
+
+.inbox-list-items .list-header .header-action:hover {
+    color: #69B6EF;
+}
+
+.inbox-list-items .list-content {
+    height: 528px;
+    width: 100%;
+    overflow-y: hidden;
+}
+
+.inbox-list-items .list-content .no-results-container {
+    height: 180px;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+}
+
+.inbox-list-items .list-content .no-results-container h3.no-results-title {
+    margin: 0 0 8px 0;
+    font-weight: 700;
+    font-size: 16px;
+    text-align: center;
+}
+
+.inbox-list-items .list-content .no-results-container p.no-results-description {
+    margin: 0 auto;
+    width: 280px;
+    line-height: 1.25em;
+    font-weight: 300;
+    font-size: 14px;
+    color: #20455e;
+    text-align: center;
+    word-break: break-word;
+}
+
 .top-nav-bar-user-nav div.user-nav .notif-list-items {
     position: absolute;
     top: 65px;
