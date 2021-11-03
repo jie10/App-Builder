@@ -31,28 +31,12 @@ const ProgressStepper = (props) => {
     );
 }
 
-const CreateNewAppModal = (props) => {
-    const { hiddenCreateNewAppModal, setHiddenCreateNewAppModal } = props;
-
-    const initialStepper = { count: 1 };
-    const stepperReducer = (state, action) => {
-        switch (action.type) {
-            case 'increment':
-                return { count: state.count + 1 };
-            case 'decrement':
-                return { count: state.count - 1 };
-            case 'reset':
-                return initialStepper;
-            default:
-            throw new Error();
-        }
-    }
-    const [stepper, dispatchStepper] = useReducer(stepperReducer, initialStepper);
+const ModalFormPartOne = (props) => {
+    const { setHiddenCreateNewAppModal, category, setCategory, stepper, dispatchStepper } = props;
 
     const [inputFocus, setInputFocus] = useState(false);
     const [visibleSuggestionList, setVisibleSuggestionList] = useState(false);
     const [disableButton, setDisableButton] = useState(true);
-    const [category, setCategory] = useState(null);
 
     const checkCategory = (currentCategory) => appCategories.findIndex(category => category.toLowerCase() === currentCategory.toLowerCase()) > -1;
 
@@ -88,18 +72,6 @@ const CreateNewAppModal = (props) => {
                         { suggestionList }
                     </div>
                 </div>;
-    }
-
-    const handleBackButtonOnClick = () => {
-        if (stepper.count > 1 && stepper.count <= MAX_STEPS) {
-            dispatchStepper({type: 'decrement'});
-        } else {
-            dispatchStepper({type: 'reset'});
-            setHiddenCreateNewAppModal(true);
-            setCategory(null);
-            setInputFocus(false);
-            setDisableButton(true);
-        }
     }
 
     const handleInputOnClick = () => {
@@ -139,28 +111,63 @@ const CreateNewAppModal = (props) => {
     }, [category]);
 
     return (
+        <div className="modal-form modal-form-part-one">
+            <h1 className="header-title">What kind of application are you creating?</h1>
+            <div className="search-app-type-container">
+                <div className={`search-input-container ${inputFocus ? 'search-input-focus' : ''}`}>
+                    <div className="search-input-icon">
+                        <SearchIcon />
+                    </div>
+                    <input className="search-input-form"
+                        type="text"
+                        placeholder="Search for your applicaton type"
+                        value={ category ? category : '' }
+                        onClick={ handleInputOnClick }
+                        onChange={ handleInputOnChange }
+                        onBlur={ handleInputOnBlur } />
+                </div>
+                <button className="next-button" disabled={ disableButton } onClick={handleNextButton}>Next</button>
+            </div>
+            { showSuggestionList() }
+        </div>
+    );
+}
+
+const CreateNewAppModal = (props) => {
+    const { hiddenCreateNewAppModal, setHiddenCreateNewAppModal } = props;
+
+    const initialStepper = { count: 1 };
+    const stepperReducer = (state, action) => {
+        switch (action.type) {
+            case 'increment':
+                return { count: state.count + 1 };
+            case 'decrement':
+                return { count: state.count - 1 };
+            case 'reset':
+                return initialStepper;
+            default:
+            throw new Error();
+        }
+    }
+    const [stepper, dispatchStepper] = useReducer(stepperReducer, initialStepper);
+
+    const [category, setCategory] = useState(null);
+
+    const handleBackButtonOnClick = () => {
+        if (stepper.count > 1 && stepper.count <= MAX_STEPS) {
+            dispatchStepper({type: 'decrement'});
+        } else {
+            dispatchStepper({type: 'reset'});
+            setHiddenCreateNewAppModal(true);
+            setCategory(null);
+        }
+    }
+
+    return (
         <div className="create-new-app-modal-container" style={{ display: hiddenCreateNewAppModal ? 'none' : 'block'  }}>
             <div className="create-new-app-modal-box">
                 <ProgressStepper stepper={stepper} />
-                <div className="modal-form modal-form-part-one">
-                    <h1 className="header-title">What kind of application are you creating?</h1>
-                    <div className="search-app-type-container">
-                        <div className={`search-input-container ${inputFocus ? 'search-input-focus' : ''}`}>
-                            <div className="search-input-icon">
-                                <SearchIcon />
-                            </div>
-                            <input className="search-input-form"
-                                type="text"
-                                placeholder="Search for your applicaton type"
-                                value={ category ? category : '' }
-                                onClick={ handleInputOnClick }
-                                onChange={ handleInputOnChange }
-                                onBlur={ handleInputOnBlur } />
-                        </div>
-                        <button className="next-button" disabled={ disableButton } onClick={handleNextButton}>Next</button>
-                    </div>
-                    { showSuggestionList() }
-                </div>
+                <ModalFormPartOne setHiddenCreateNewAppModal={setHiddenCreateNewAppModal} stepper={stepper} dispatchStepper={dispatchStepper} category={category} setCategory={setCategory} />
                 <button className="back-button" onClick={ handleBackButtonOnClick }>Back</button>
             </div>
         </div>
