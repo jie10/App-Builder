@@ -11,16 +11,11 @@ import {
 
 import "./CreateApp.css";
 
+import { sampleUser } from '../../constants/sample-data'
 import CreateAppContent from './CreateAppContent';
 
 import siteLogo from "../../assets/logos/ceblogo.png";
-import sampleUserAvatar from "../../assets/images/sample-user-avatar.jpeg";
 import notifBellImage from "../../assets/images/notif-bell-image.png";
-
-const sampleUser = {
-    username: "Tim Powell",
-    avatarImage: sampleUserAvatar
-};
 
 const TopNavBar = () => {
     const refMyAppsMenu = useRef(null);
