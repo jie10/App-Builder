@@ -169,3 +169,56 @@
     background-color: #237AFF;
     color: #F6F7F9;
 }
+
+.modal-form-part-two {
+    text-align: center;
+}
+
+.modal-form-part-two h2 {
+    margin: 0 0 64px 0;
+    font-weight: normal;
+    font-size: 18px;
+}
+
+.modal-form-part-two .choose-options-container {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-evenly;
+}
+
+.modal-form-part-two .choose-options-container .options h3 {
+    font-size: 36px;
+    margin: 0 0 16px 0;
+}
+
+.modal-form-part-two .choose-options-container .options p {
+    font-size: 16px;
+    margin: 0 0 36px 0
+}
+
+.modal-form-part-two .choose-options-container .options button {
+    padding: 14px 48px;
+    border-radius: 30px;
+    border: none;
+    font-size: 14px;
+    background-color: #237AFF;
+    color: #FFFFFF;
+    cursor: pointer;
+    transition-duration: 0.2s;
+}
+
+.modal-form-part-two .choose-options-container .options button:hover {
+    background-color: #2D83FF;
+}
+
+.modal-form-part-two .choose-options-container .options-divider {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    padding: 0 48px;
+}
+
+.modal-form-part-two .choose-options-container .options-divider .text {
+    font-size: 24px;
+    font-weight: 700;
+}

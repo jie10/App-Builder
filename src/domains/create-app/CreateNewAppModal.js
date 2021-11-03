@@ -14,11 +14,11 @@ const ProgressStepper = (props) => {
 
     for (let i=1; i <= MAX_STEPS; i++) {
         if (i < stepper.count) {
-            steps.push(<div className="step done">{i}</div>)
+            steps.push(<div className="step done" key={i}>{i}</div>)
         } else if (i === stepper.count) {
-            steps.push(<div className="step current">{i}</div>)
+            steps.push(<div className="step current" key={i}>{i}</div>)
         } else {
-            steps.push(<div className="step">{i}</div>)
+            steps.push(<div className="step" key={i}>{i}</div>)
         }
     }
 
@@ -111,7 +111,7 @@ const ModalFormPartOne = (props) => {
     }, [category]);
 
     return (
-        <div className="modal-form modal-form-part-one">
+        <div className="modal-form modal-form-part-one" style={{ display: stepper.count === 1 ? 'block' : 'none' }}>
             <h1 className="header-title">What kind of application are you creating?</h1>
             <div className="search-app-type-container">
                 <div className={`search-input-container ${inputFocus ? 'search-input-focus' : ''}`}>
@@ -129,6 +129,53 @@ const ModalFormPartOne = (props) => {
                 <button className="next-button" disabled={ disableButton } onClick={handleNextButton}>Next</button>
             </div>
             { showSuggestionList() }
+        </div>
+    );
+}
+
+const ModalFormPartTwo = (props) => {
+    const { setHiddenCreateNewAppModal, stepper, dispatchStepper, buildMode, setBuildMode } = props;
+
+    const handleOptionOneOnClick = () => {
+        if (stepper.count >= 2 && stepper.count < MAX_STEPS) {
+            dispatchStepper({type: 'increment'});
+            setBuildMode('template');
+        } else {
+            dispatchStepper({type: 'reset'});
+            setHiddenCreateNewAppModal(true);
+            setBuildMode(null);
+        }
+    }
+
+    const handleOptionTwoOnClick = () => {
+        if (stepper.count >= 2 && stepper.count < MAX_STEPS) {
+            dispatchStepper({type: 'increment'});
+            setBuildMode('scratch');
+        } else {
+            dispatchStepper({type: 'reset'});
+            setHiddenCreateNewAppModal(true);
+            setBuildMode(null);
+        }
+    }
+
+    return (
+        <div className="modal-form modal-form-part-two" style={{ display: stepper.count === 2 ? 'block' : 'none' }}>
+            <h2>Choose how you want to create your application:</h2>
+            <div className="choose-options-container">
+                <div className="options option-one">
+                    <h3>Start with a Template</h3>
+                    <p>Create an application with a ready-made template to start with.</p>
+                    <button className="button-option-one" onClick={handleOptionOneOnClick}>Start Now</button>
+                </div>
+                <div className="options-divider">
+                    <span className="text">OR</span>
+                </div>
+                <div className="options option-two">
+                    <h3>Start from Scratch</h3>
+                    <p>Build from an empty canvas, let your creativity flow.</p>
+                    <button className="button-option-two" onClick={handleOptionTwoOnClick}>Start Now</button>
+                </div>
+            </div>
         </div>
     );
 }
@@ -152,6 +199,7 @@ const CreateNewAppModal = (props) => {
     const [stepper, dispatchStepper] = useReducer(stepperReducer, initialStepper);
 
     const [category, setCategory] = useState(null);
+    const [buildMode, setBuildMode] = useState(null);
 
     const handleBackButtonOnClick = () => {
         if (stepper.count > 1 && stepper.count <= MAX_STEPS) {
@@ -160,6 +208,7 @@ const CreateNewAppModal = (props) => {
             dispatchStepper({type: 'reset'});
             setHiddenCreateNewAppModal(true);
             setCategory(null);
+            setBuildMode(null);
         }
     }
 
@@ -168,6 +217,7 @@ const CreateNewAppModal = (props) => {
             <div className="create-new-app-modal-box">
                 <ProgressStepper stepper={stepper} />
                 <ModalFormPartOne setHiddenCreateNewAppModal={setHiddenCreateNewAppModal} stepper={stepper} dispatchStepper={dispatchStepper} category={category} setCategory={setCategory} />
+                <ModalFormPartTwo setHiddenCreateNewAppModal={setHiddenCreateNewAppModal} stepper={stepper} dispatchStepper={dispatchStepper} buildMode={buildMode} setBuildMode={setBuildMode} />
                 <button className="back-button" onClick={ handleBackButtonOnClick }>Back</button>
             </div>
         </div>
