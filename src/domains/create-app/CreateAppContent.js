@@ -10,13 +10,19 @@ import "./CreateAppContent.css";
 
 import sampleCoverImage from "../../assets/images/sample-cover-image.png";
 import CreateNewFolderModal from './CreateNewFolderModal';
+import CreateNewAppModal from './CreateNewAppModal';
 
 const Header = (props) => {
-    const { setHiddenModal, scrollValueFromTop } = props;
+    const { setHiddenCreateNewFolderModal, setHiddenCreateNewAppModal, scrollValueFromTop } = props;
 
     const handleCreateNewFolderClick = (e) => {
         e.preventDefault();
-        setHiddenModal(false);
+        setHiddenCreateNewFolderModal(false);
+    }
+
+    const handleCreateNewAppClick = (e) => {
+        e.preventDefault();
+        setHiddenCreateNewAppModal(false);
     }
 
     return (
@@ -31,7 +37,7 @@ const Header = (props) => {
                         <span className="button-icon"><CreateNewFolderOutlinedIcon /></span>
                         <span className="button-text">Create New Folder</span>
                     </button>
-                    <button className="jumbo-content-button jumbo-content-main-button">
+                    <button className="jumbo-content-button jumbo-content-main-button" onClick={handleCreateNewAppClick}>
                         <span className="button-icon"><AddOutlinedIcon /></span>
                         <span className="button-text">Create New App</span>
                     </button>
@@ -41,9 +47,16 @@ const Header = (props) => {
     );
 }
 
-const FirstWebsiteSection = () => {
+const FirstWebsiteSection = (props) => {
+    const { setHiddenCreateNewAppModal } = props;
+
     const styledGridContainer = { justifyContent: "center" };
     const styledDivider = { margin: "0 48px" };
+
+    const handleCreateNewAppClick = (e) => {
+        e.preventDefault();
+        setHiddenCreateNewAppModal(false);
+    }
 
     return(
         <div className="first-website-section-container">
@@ -54,7 +67,7 @@ const FirstWebsiteSection = () => {
                 <div className="cover-details-container">
                     <h2 className="cover-details-title">Create Your First App</h2>
                     <p className="cover-details-subtitle">You're on your way to creating your first working application.</p>
-                    <button className="cover-details-action-button">
+                    <button className="cover-details-action-button" onClick={ handleCreateNewAppClick }>
                         <span className="button-icon"><AddOutlinedIcon /></span>
                         <span className="button-text">Create New App</span>
                     </button>
@@ -83,7 +96,8 @@ const FirstWebsiteSection = () => {
 }
 
 const CreateAppContent = (props) => {
-    const [hiddenModal, setHiddenModal] = useState(true);
+    const [hiddenCreateNewFolderModal, setHiddenCreateNewFolderModal] = useState(true);
+    const [hiddenCreateNewAppModal, setHiddenCreateNewAppModal] = useState(true);
     const [scrollValueFromTop, setScrollValueFromTop] = useState(false);
 
     const handleOnScroll = (e) => {
@@ -96,9 +110,10 @@ const CreateAppContent = (props) => {
 
     return(
         <div className="content-container" onScroll={handleOnScroll}>
-            <Header setHiddenModal={setHiddenModal} scrollValueFromTop={scrollValueFromTop} />
-            <FirstWebsiteSection />
-            <CreateNewFolderModal hiddenModal={hiddenModal} setHiddenModal={setHiddenModal} />
+            <Header setHiddenCreateNewFolderModal={setHiddenCreateNewFolderModal} setHiddenCreateNewAppModal={setHiddenCreateNewAppModal} scrollValueFromTop={scrollValueFromTop} />
+            <FirstWebsiteSection setHiddenCreateNewAppModal={setHiddenCreateNewAppModal} />
+            <CreateNewFolderModal hiddenCreateNewFolderModal={hiddenCreateNewFolderModal} setHiddenCreateNewFolderModal={setHiddenCreateNewFolderModal} />
+            <CreateNewAppModal hiddenCreateNewAppModal={hiddenCreateNewAppModal} setHiddenCreateNewAppModal={setHiddenCreateNewAppModal}/>
         </div>
     )
 }

@@ -1,0 +1,138 @@
+/** CREATE NEW APP MODAL */
+.create-new-app-modal-container {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(100, 112, 123, 0.65);
+    z-index: 999;
+}
+
+.create-new-app-modal-box {
+    position: absolute;
+    height: 80%;
+    width: 80%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #F6F7F9;
+    border-radius: 8px;
+    overflow: hidden;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-form {
+    position: relative;
+}
+
+.create-new-app-modal-box .header-title {
+    margin: 0 0 36px 0;
+}
+
+.create-new-app-modal-box .search-app-type-container {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-evenly;
+}
+
+.search-app-type-container .search-input-container {
+    width: 380px;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    border-bottom: 3px solid #20303C;
+    margin: 0 24px 0 0;
+}
+
+.search-app-type-container .search-input-container:focus {
+    border-bottom: 3px solid #237AFF;
+    caret-color: #237AFF;
+}
+
+.search-app-type-container .search-input-focus {
+    border-bottom: 3px solid #237AFF;
+    caret-color: #237AFF;
+}
+
+.search-app-type-container .search-input-container .search-input-form {
+    padding: 8px;
+    border: none;
+    width: 100%;
+    background-color: transparent;
+    font-size: 24px;
+}
+
+.search-app-type-container .next-button {
+    padding: 0 30px;
+    border-radius: 20px;
+    border: none;
+    font-size: 16px;
+    background-color: #237AFF;
+    color: #FFFFFF;
+    cursor: pointer;
+    transition-duration: 0.2s;
+}
+
+.search-app-type-container .next-button:hover {
+    background-color: #2D83FF;
+}
+
+.search-app-type-container .next-button:disabled {
+    color: #000000;
+    background-color: #E1E2E6;
+    cursor: default;
+}
+
+.create-new-app-modal-box .type-suggestion-list {
+    margin: 8px 0 0 60px;
+    height: 250px;
+    width: 360px;
+    overflow-y: auto;
+}
+
+.create-new-app-modal-box .type-suggestion-list h3 {
+    font-size: 14px;
+    text-transform: uppercase;
+    color: #A3ABB0;
+}
+
+.create-new-app-modal-box .type-suggestion-list .list {
+    margin: 0 0 0 8px;
+    display: flex;
+    flex-flow: column nowrap;
+}
+
+.create-new-app-modal-box .type-suggestion-list .list .item {
+    width: fit-content;
+    margin: 0 0 16px 0;
+    font-size: 18px;
+}
+
+.create-new-app-modal-box .type-suggestion-list .list .item:hover {
+    color: #237AFF;
+    cursor: pointer;
+}
+
+.create-new-app-modal-box .back-button {
+    position: absolute;
+    bottom: 35px;
+    left: 40px;
+    border: none;
+    background-color: transparent;
+    padding: 0 0 8px 0;
+    color: #20303C;
+    border-bottom: 1px solid #20303C;
+    font-size: 16px;
+    cursor: pointer;
+    transition-duration: 0.2s;
+}
+
+.create-new-app-modal-box .back-button:hover {
+    color: #237AFF;
+    border-bottom: 1px solid #237AFF;
+}

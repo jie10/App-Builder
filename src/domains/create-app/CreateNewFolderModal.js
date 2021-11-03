@@ -10,14 +10,14 @@ import "./CreateNewFolderModal.css"
 
 
 const CreateNewFolderModal = (props) => {
-    const { hiddenModal, setHiddenModal } = props;
+    const { hiddenCreateNewFolderModal, setHiddenCreateNewFolderModal } = props;
 
     const [userInput, setUserInput] = useState(null);
 
     const handleCloseModal = (e) => {
         e.preventDefault();
         setUserInput(null);
-        setHiddenModal(true);
+        setHiddenCreateNewFolderModal(true);
     }
 
     const handleUserInput = (e) => {
@@ -26,7 +26,7 @@ const CreateNewFolderModal = (props) => {
     }
 
     return(
-        <div className={`create-new-folder-modal-container ${ hiddenModal === true ? 'hidden' : ''}`}>
+        <div className={`create-new-folder-modal-container ${ hiddenCreateNewFolderModal === true ? 'hidden' : ''}`}>
             <div className="create-new-folder-modal-box">
                 <div className="modal-box modal-box-header">
                     <span className="header-title">Create New Folder</span>
