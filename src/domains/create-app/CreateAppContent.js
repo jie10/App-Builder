@@ -1,5 +1,6 @@
-import React, { useState  } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Divider, Grid } from '@mui/material';
+import { useLocation } from "react-router-dom";
 
 import {
     AddOutlined as AddOutlinedIcon,
@@ -96,6 +97,8 @@ const FirstWebsiteSection = (props) => {
 }
 
 const CreateAppContent = (props) => {
+    let location = useLocation();
+
     const [hiddenCreateNewFolderModal, setHiddenCreateNewFolderModal] = useState(true);
     const [hiddenCreateNewAppModal, setHiddenCreateNewAppModal] = useState(true);
     const [scrollValueFromTop, setScrollValueFromTop] = useState(false);
@@ -107,6 +110,10 @@ const CreateAppContent = (props) => {
             setScrollValueFromTop(true)
         }
     }
+
+    useEffect(() => {
+        if (location.search.includes("create")) setHiddenCreateNewAppModal(false);
+    }, [location])
 
     return(
         <div className="content-container" onScroll={handleOnScroll}>

@@ -131,7 +131,7 @@ const TopNavBar = () => {
                         <div className="pointer"></div>
                         <div className="list-header">
                             <span className="header-title">Apps Last Opened</span>
-                            <a className="header-link" href={ currentURL } target="_self">
+                            <a className="header-link" href={ `${currentURL}?action=create` } target="_self">
                                 <span className="link-icon"><AddOutlinedIcon /></span>
                                 <span className="link-label">Create New App</span>
                             </a>
