@@ -134,7 +134,7 @@ const ModalFormPartOne = (props) => {
 }
 
 const ModalFormPartTwo = (props) => {
-    const { setHiddenCreateNewAppModal, stepper, dispatchStepper, buildMode, setBuildMode } = props;
+    const { setHiddenCreateNewAppModal, stepper, dispatchStepper, setBuildMode } = props;
 
     const handleOptionOneOnClick = () => {
         if (stepper.count >= 2 && stepper.count < MAX_STEPS) {
@@ -180,6 +180,28 @@ const ModalFormPartTwo = (props) => {
     );
 }
 
+const ModalFormPartThree = (props) => {
+    const { setHiddenCreateNewAppModal, stepper, dispatchStepper, setAppInfo } = props;
+
+    return (
+        <div className="modal-form modal-form-part-three" style={{ display: stepper.count === 3 ? 'block' : 'none' }}>
+            <h2>Describe your new application:</h2>
+            <div className="input-forms-container">
+                <div className="input-form">
+                    <input className="app-name-input-form" type="text" placeholder="Application Name" maxLength="50" />
+                </div>
+                <div className="input-form">
+                    <input className="url-link-input-form" type="text" placeholder="URL link" maxLength="50" />
+                </div>
+                <div className="input-form">
+                    <input className="short-description-input-form" type="text" placeholder="Short Description" maxLength="150" />
+                </div>
+            </div>
+            <button className="submit-app-button">Submit</button>
+        </div>
+    );
+}
+
 const CreateNewAppModal = (props) => {
     const { hiddenCreateNewAppModal, setHiddenCreateNewAppModal } = props;
 
@@ -200,6 +222,7 @@ const CreateNewAppModal = (props) => {
 
     const [category, setCategory] = useState(null);
     const [buildMode, setBuildMode] = useState(null);
+    const [appInfo, setAppInfo] = useState(null);
 
     const handleBackButtonOnClick = () => {
         if (stepper.count > 1 && stepper.count <= MAX_STEPS) {
@@ -217,7 +240,8 @@ const CreateNewAppModal = (props) => {
             <div className="create-new-app-modal-box">
                 <ProgressStepper stepper={stepper} />
                 <ModalFormPartOne setHiddenCreateNewAppModal={setHiddenCreateNewAppModal} stepper={stepper} dispatchStepper={dispatchStepper} category={category} setCategory={setCategory} />
-                <ModalFormPartTwo setHiddenCreateNewAppModal={setHiddenCreateNewAppModal} stepper={stepper} dispatchStepper={dispatchStepper} buildMode={buildMode} setBuildMode={setBuildMode} />
+                <ModalFormPartTwo setHiddenCreateNewAppModal={setHiddenCreateNewAppModal} stepper={stepper} dispatchStepper={dispatchStepper} setBuildMode={setBuildMode} />
+                <ModalFormPartThree setHiddenCreateNewAppModal={setHiddenCreateNewAppModal} stepper={stepper} dispatchStepper={dispatchStepper} setAppInfo={setAppInfo} />
                 <button className="back-button" onClick={ handleBackButtonOnClick }>Back</button>
             </div>
         </div>

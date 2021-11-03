@@ -222,3 +222,53 @@
     font-size: 24px;
     font-weight: 700;
 }
+
+.modal-form-part-three {
+    text-align: center;
+}
+
+.modal-form-part-three .input-forms-container {
+    margin: 36px 0;
+}
+
+.modal-form-part-three .input-forms-container .input-form {
+    width: 380px;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    border-bottom: 3px solid #20303C;
+    margin: 0 0 24px 0;
+}
+
+.modal-form-part-three .input-forms-container .input-form:focus {
+    border-bottom: 3px solid #237AFF;
+    caret-color: #237AFF;
+}
+
+.modal-form-part-three .input-forms-container .input-form-focus {
+    border-bottom: 3px solid #237AFF;
+    caret-color: #237AFF;
+}
+
+.modal-form-part-three .input-forms-container .input-form input {
+    padding: 8px;
+    border: none;
+    width: 100%;
+    background-color: transparent;
+    font-size: 24px;
+}
+
+.modal-form-part-three .submit-app-button {
+    padding: 14px 48px;
+    border-radius: 30px;
+    border: none;
+    font-size: 14px;
+    background-color: #237AFF;
+    color: #FFFFFF;
+    cursor: pointer;
+    transition-duration: 0.2s;
+}
+
+.modal-form-part-three .submit-app-button:hover {
+    background-color: #2D83FF;
+}
