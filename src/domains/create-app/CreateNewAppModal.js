@@ -34,20 +34,21 @@ const ProgressStepper = (props) => {
 const CreateNewAppModal = (props) => {
     const { hiddenCreateNewAppModal, setHiddenCreateNewAppModal } = props;
 
-    function stepperReducer(state, action) {
+    const initialStepper = { count: 1 };
+    const stepperReducer = (state, action) => {
         switch (action.type) {
             case 'increment':
-                return {count: state.count + 1};
+                return { count: state.count + 1 };
             case 'decrement':
-                return {count: state.count - 1};
+                return { count: state.count - 1 };
             case 'reset':
-                return {count: 1};
+                return initialStepper;
             default:
             throw new Error();
         }
     }
+    const [stepper, dispatchStepper] = useReducer(stepperReducer, initialStepper);
 
-    const [stepper, dispatchStepper] = useReducer(stepperReducer, { count: 1 });
     const [inputFocus, setInputFocus] = useState(false);
     const [visibleSuggestionList, setVisibleSuggestionList] = useState(false);
     const [disableButton, setDisableButton] = useState(true);
