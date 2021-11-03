@@ -16,6 +16,8 @@ import { sampleUser } from '../../constants/sample-data'
 import siteLogo from "../../assets/logos/ceblogo.png";
 import notifBellImage from "../../assets/images/notif-bell-image.png";
 
+const currentURL = window.location.pathname;
+
 const TopNavBar = () => {
     const refMyAppsMenu = useRef(null);
     const refExploreMenu = useRef(null);
@@ -115,7 +117,7 @@ const TopNavBar = () => {
     return (
         <div className="top-nav-bar-container">
             <div className="top-nav-bar top-nav-bar-site-nav">
-                <a className="site-logo-link" href={ window.location.pathname } target="_self">
+                <a className="site-logo-link" href={ currentURL } target="_self">
                     <div className="logo-protector"></div>
                     <img className="site-logo" src={siteLogo} alt="logo" />
                 </a>
@@ -129,7 +131,7 @@ const TopNavBar = () => {
                         <div className="pointer"></div>
                         <div className="list-header">
                             <span className="header-title">Apps Last Opened</span>
-                            <a className="header-link" href="/" target="_self">
+                            <a className="header-link" href={ currentURL } target="_self">
                                 <span className="link-icon"><AddOutlinedIcon /></span>
                                 <span className="link-label">Create New App</span>
                             </a>
@@ -141,7 +143,7 @@ const TopNavBar = () => {
                             </div>
                         </div>
                         <div className="list-footer">
-                            <a className="footer-link" href="/" target="_self">Go to all Apps</a>
+                            <a className="footer-link" href={ currentURL } target="_self">Go to all Apps</a>
                         </div>
                     </div>
                 </div>
@@ -153,9 +155,9 @@ const TopNavBar = () => {
                     </div>
                     <div className="menu-list-items" ref={refExploreMenu} style={{display: openExploreMenu ? "flex" : "none"}}>
                         <div className="pointer"></div>
-                        <a href="/" target="_self">{"Updates & Releases"}</a>
-                        <a href="/" target="_self">Inspiring Websites</a>
-                        <a href="/" target="_self">eCommerce School</a>
+                        <a href={ currentURL } target="_self">{"Updates & Releases"}</a>
+                        <a href={ currentURL } target="_self">Inspiring Websites</a>
+                        <a href={ currentURL } target="_self">eCommerce School</a>
                     </div>
                 </div>
                 <div className="site-nav">
@@ -167,7 +169,7 @@ const TopNavBar = () => {
                 <div className="site-nav">
                     <div className="item">
                         <span className="link-text">
-                            <a href="/" target="_blank">Hire a Professional</a>
+                            <a href={ currentURL } target="_blank">Hire a Professional</a>
                         </span>
                     </div>
                 </div>
@@ -255,20 +257,20 @@ const TopNavBar = () => {
                         </div>
                         <div className="list-content">
                             <div className="list">
-                                <a href="/" target="_self">Account Settings</a>
+                                <a href={ currentURL } target="_self">Account Settings</a>
                             </div>
                             <div className="list">
-                                <a href="/" target="_self">Domains</a>
-                                <a href="/" target="_self">Mailboxes</a>
-                                <a href="/" target="_self">Vouchers</a>
-                                <a href="/" target="_self">Billing History</a>
-                                <a href="/" target="_self">Premium Subscriptions</a>
-                                <a href="/" target="_self">Payment Methods</a>
+                                <a href={ currentURL } target="_self">Domains</a>
+                                <a href={ currentURL } target="_self">Mailboxes</a>
+                                <a href={ currentURL } target="_self">Vouchers</a>
+                                <a href={ currentURL } target="_self">Billing History</a>
+                                <a href={ currentURL } target="_self">Premium Subscriptions</a>
+                                <a href={ currentURL } target="_self">Payment Methods</a>
                             </div>
                             <div className="list">
-                                <a href="/" target="_self">Create a New Site</a>
-                                <a href="/" target="_self">Help Center</a>
-                                <a href="/" target="_self">Hire a Professional</a>
+                                <a href={ currentURL } target="_self">Create a New Site</a>
+                                <a href={ currentURL } target="_self">Help Center</a>
+                                <a href={ currentURL } target="_self">Hire a Professional</a>
                             </div>
                         </div>
                         <div className="list-footer" onMouseLeave={handleListOnBlur}>
@@ -280,29 +282,29 @@ const TopNavBar = () => {
                             <div className="list-global-languages" style={{ display: hoverLanguagesList ? "block" : "none"}}>
                                 <div className="list-languages-container">
                                     <div className="language-list">
-                                        <a href="/" target="_self">Čeština</a>
-                                        <a href="/" target="_self">Dansk</a>
-                                        <a href="/" target="_self">Deutsch</a>
-                                        <a href="/" target="_self">Español</a>
-                                        <a href="/" target="_self">Français</a>
-                                        <a href="/" target="_self">हिन्दी</a>
-                                        <a href="/" target="_self">Italiano</a>
-                                        <a href="/" target="_self">日本語</a>
-                                        <a href="/" target="_self">한국어</a>
-                                        <a href="/" target="_self">Nederlands</a>
-                                        <a href="/" target="_self">Bahasa Indonesia</a>
+                                        <a href={ currentURL } target="_self">Čeština</a>
+                                        <a href={ currentURL } target="_self">Dansk</a>
+                                        <a href={ currentURL } target="_self">Deutsch</a>
+                                        <a href={ currentURL } target="_self">Español</a>
+                                        <a href={ currentURL } target="_self">Français</a>
+                                        <a href={ currentURL } target="_self">हिन्दी</a>
+                                        <a href={ currentURL } target="_self">Italiano</a>
+                                        <a href={ currentURL } target="_self">日本語</a>
+                                        <a href={ currentURL } target="_self">한국어</a>
+                                        <a href={ currentURL } target="_self">Nederlands</a>
+                                        <a href={ currentURL } target="_self">Bahasa Indonesia</a>
                                     </div>
                                     <div className="language-list">
-                                        <a href="/" target="_self">Norsk</a>
-                                        <a href="/" target="_self">Polski</a>
-                                        <a href="/" target="_self">Português</a>
-                                        <a href="/" target="_self">Русский</a>
-                                        <a href="/" target="_self">Svenska</a>
-                                        <a href="/" target="_self">ไทย</a>
-                                        <a href="/" target="_self">Türkçe</a>
-                                        <a href="/" target="_self">Українська</a>
-                                        <a href="/" target="_self">繁體中文</a>
-                                        <a href="/" target="_self">Tiếng Việt</a>
+                                        <a href={ currentURL } target="_self">Norsk</a>
+                                        <a href={ currentURL } target="_self">Polski</a>
+                                        <a href={ currentURL } target="_self">Português</a>
+                                        <a href={ currentURL } target="_self">Русский</a>
+                                        <a href={ currentURL } target="_self">Svenska</a>
+                                        <a href={ currentURL } target="_self">ไทย</a>
+                                        <a href={ currentURL } target="_self">Türkçe</a>
+                                        <a href={ currentURL } target="_self">Українська</a>
+                                        <a href={ currentURL } target="_self">繁體中文</a>
+                                        <a href={ currentURL } target="_self">Tiếng Việt</a>
                                     </div>
                                 </div>
                             </div>
