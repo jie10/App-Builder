@@ -136,3 +136,36 @@
     color: #237AFF;
     border-bottom: 1px solid #237AFF;
 }
+
+.progress-stepper {
+    position: absolute;
+    width: 80%;
+    border: 1px solid #A3ABB0;
+    top: 50px;
+}
+
+.progress-stepper .steps {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.progress-stepper .steps .step {
+    background-color: #F6F7F9;
+    font-size: 24px;
+    font-weight: 700;
+    width: 100%;
+    padding: 8px 0;
+    text-align: center;
+}
+
+.progress-stepper .steps .current {
+    background-color: #A3ABB0;
+    color: #F6F7F9;
+}
+
+.progress-stepper .steps .done {
+    background-color: #237AFF;
+    color: #F6F7F9;
+}

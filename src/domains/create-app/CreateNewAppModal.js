@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useReducer } from 'react'
 
 import { Search as SearchIcon } from '@mui/icons-material';
 
@@ -6,9 +6,48 @@ import "./CreateNewAppModal.css"
 
 import { appCategories } from "../../constants/sample-data";
 
+const MAX_STEPS = 3;
+
+const ProgressStepper = (props) => {
+    const { stepper } = props;
+    let steps = [];
+
+    for (let i=1; i <= MAX_STEPS; i++) {
+        if (i < stepper.count) {
+            steps.push(<div className="step done">{i}</div>)
+        } else if (i === stepper.count) {
+            steps.push(<div className="step current">{i}</div>)
+        } else {
+            steps.push(<div className="step">{i}</div>)
+        }
+    }
+
+    return (
+        <div className="progress-stepper">
+            <div className="steps">
+                { steps }
+            </div>
+        </div>
+    );
+}
+
 const CreateNewAppModal = (props) => {
     const { hiddenCreateNewAppModal, setHiddenCreateNewAppModal } = props;
 
+    function stepperReducer(state, action) {
+        switch (action.type) {
+            case 'increment':
+                return {count: state.count + 1};
+            case 'decrement':
+                return {count: state.count - 1};
+            case 'reset':
+                return {count: 1};
+            default:
+            throw new Error();
+        }
+    }
+
+    const [stepper, dispatchStepper] = useReducer(stepperReducer, { count: 1 });
     const [inputFocus, setInputFocus] = useState(false);
     const [visibleSuggestionList, setVisibleSuggestionList] = useState(false);
     const [disableButton, setDisableButton] = useState(true);
@@ -51,11 +90,15 @@ const CreateNewAppModal = (props) => {
     }
 
     const handleBackButtonOnClick = () => {
-        setHiddenCreateNewAppModal(true);
-        setCategory(null);
-        setInputFocus(false);
-        setDisableButton(true);
-        
+        if (stepper.count > 1 && stepper.count <= MAX_STEPS) {
+            dispatchStepper({type: 'decrement'});
+        } else {
+            dispatchStepper({type: 'reset'});
+            setHiddenCreateNewAppModal(true);
+            setCategory(null);
+            setInputFocus(false);
+            setDisableButton(true);
+        }
     }
 
     const handleInputOnClick = () => {
@@ -77,6 +120,18 @@ const CreateNewAppModal = (props) => {
         setVisibleSuggestionList(false);
     }
 
+    const handleNextButton = () => {
+        if (stepper.count >= 1 && stepper.count < MAX_STEPS) {
+            dispatchStepper({type: 'increment'});
+        } else {
+            dispatchStepper({type: 'reset'});
+            setHiddenCreateNewAppModal(true);
+            setCategory(null);
+            setInputFocus(false);
+            setDisableButton(true);
+        }
+    }
+
     useEffect(() => {
         let status = category && checkCategory(category) === true ? false : true;
         setDisableButton(status);
@@ -85,7 +140,8 @@ const CreateNewAppModal = (props) => {
     return (
         <div className="create-new-app-modal-container" style={{ display: hiddenCreateNewAppModal ? 'none' : 'block'  }}>
             <div className="create-new-app-modal-box">
-                <div className="modal-form">
+                <ProgressStepper stepper={stepper} />
+                <div className="modal-form modal-form-part-one">
                     <h1 className="header-title">What kind of application are you creating?</h1>
                     <div className="search-app-type-container">
                         <div className={`search-input-container ${inputFocus ? 'search-input-focus' : ''}`}>
@@ -100,7 +156,7 @@ const CreateNewAppModal = (props) => {
                                 onChange={ handleInputOnChange }
                                 onBlur={ handleInputOnBlur } />
                         </div>
-                        <button className="next-button" disabled={ disableButton }>Next</button>
+                        <button className="next-button" disabled={ disableButton } onClick={handleNextButton}>Next</button>
                     </div>
                     { showSuggestionList() }
                 </div>
