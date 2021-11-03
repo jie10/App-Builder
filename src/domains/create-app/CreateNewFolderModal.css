@@ -1,0 +1,181 @@
+/** CREATE NEW FOLDER MODAL */
+.create-new-folder-modal-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(100, 112, 123, 0.65);
+    z-index: 999;
+}
+
+.create-new-folder-modal-box {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #FFFFFF;
+    width: 37.5rem;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.create-new-folder-modal-box .modal-box-header {
+    position: relative;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #5299E5;
+    padding: 16px 16px 16px 30px;
+}
+
+.modal-box-header span.header-title {
+    font-size: 20px;
+    font-weight: 400;
+    color: #FFFFFF;
+}
+
+.modal-box-header button.header-close-button {
+    height: 24px;
+    width: 24px;
+    background-color: rgba(69, 127, 188, 0.8);
+    border: 2px solid transparent;
+    border-radius: 50%;
+    padding: 12px;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition-duration: 0.2s;
+}
+
+.modal-box-header button.header-close-button:hover {
+    background-color: #4177B2;
+}
+
+.modal-box-header button.header-close-button:focus {
+    border: 2px solid #B7DFFD;
+}
+
+.modal-box-header button.header-close-button svg {
+    transform: scale(0.55);
+    color: #FFFFFF;
+}
+
+.create-new-folder-modal-box .modal-box-body {
+    padding: 40px 32px 30px 32px;
+}
+
+.modal-box-body .body-form-label-container {
+    width: 100%;
+    padding: 0;
+}
+
+.body-form-label-container label.form-label {
+    font-size: 16px;
+}
+
+.modal-box-body .body-form-input-container {
+    position: relative;
+    box-sizing: border-box;
+    width: 100%;
+    padding: 8px 0 0 0;
+    display: flex;
+    align-items: center;
+}
+
+.body-form-input-container .form-input {
+    width: 100%;
+    padding: 9px 14px;
+    border: 1px solid #C8E3FB;
+    border-radius: 5px;
+    font-size: 16px;
+}
+.body-form-input-container .form-input:hover {
+    background-color: #ECF7FE;
+}
+
+.body-form-input-container .form-input:focus {
+    background-color: #FFFFFF;
+    border: 1px solid #5299E5;
+    box-shadow: 0px 0px 0px 3px rgba(181, 220, 249, 0.75);
+    -webkit-box-shadow: 0px 0px 0px 3px rgba(181, 220, 249, 0.75);
+    -moz-box-shadow: 0px 0px 0px 3px rgba(181, 220, 249, 0.75);
+}
+
+.body-form-input-container .form-error {
+    border: 1px solid red;
+}
+
+.body-form-input-container .form-error:focus {
+    background-color: #FFFFFF;
+    border: 1px solid red;
+    box-shadow: 0px 0px 0px 3px rgba(239, 196, 194, 0.75);
+    -webkit-box-shadow: 0px 0px 0px 3px rgba(239, 196, 194, 0.75);
+    -moz-box-shadow: 0px 0px 0px 3px rgba(239, 196, 194, 0.75);
+}
+
+.body-form-input-container .form-error-icon {
+    color: #DE6358;
+}
+
+.create-new-folder-modal-box .modal-box-footer {
+    background-color: #FFFFFF;
+    padding: 8px 16px 28px 0;
+}
+
+.modal-box-footer .footer-buttons-container {
+    display: flex;
+    justify-content: flex-end;
+    padding: 0 12px 0 0;
+}
+
+.footer-buttons-container .footer-button {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-evenly;
+    align-items: center;
+    margin: 0 0 0 14px;
+    padding: 6px 18px;
+    border-radius: 20px;
+    cursor: pointer;
+    background-color: transparent;
+    border: 1px solid #5299E5;
+    color: #5299E5;
+    font-size: 14px;
+    transition-duration: 0.2s;
+}
+
+.footer-buttons-container .footer-button:hover {
+    background-color: #69B6EF;
+    border: 1px solid #69B6EF;
+    color: #FFFFFF;
+}   
+
+.footer-buttons-container .footer-button:active {
+    background-color: #5299E5;
+    border: 1px solid #5299E5;
+    color: #FFFFFF;
+}
+
+.footer-buttons-container .footer-button:focus {
+    border: 1px solid #5299E5;
+    box-shadow: 0px 0px 0px 3px rgba(181, 220, 249, 0.75);
+    -webkit-box-shadow: 0px 0px 0px 3px rgba(181, 220, 249, 0.75);
+    -moz-box-shadow: 0px 0px 0px 3px rgba(181, 220, 249, 0.75);
+}
+
+.footer-buttons-container .disabled-button,
+.footer-buttons-container .disabled-button:hover {
+    background-color: #BABFC4;
+    border-color: #BABFC4;
+    color: #FFFFFF;
+    cursor: default;
+}
+
+.footer-buttons-container .footer-main-button {
+    background-color: #5299E5;
+    color: #FFFFFF;
+}
