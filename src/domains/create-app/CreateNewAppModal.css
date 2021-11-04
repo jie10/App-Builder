@@ -285,3 +285,32 @@
     background-color: #E1E2E6;
     cursor: default;
 }
+
+.modal-form-success h2 {
+    margin: 0 0 24px 0;
+   text-align: center;
+   font-size: 24px;
+}
+
+.modal-form-success .form-buttons {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-evenly;
+}
+
+.modal-form-success .form-buttons a,
+.modal-form-success .form-buttons a:visited {
+    padding: 14px 24px;
+    border-radius: 30px;
+    border: none;
+    font-size: 14px;
+    background-color: #237AFF;
+    color: #FFFFFF;
+    cursor: pointer;
+    text-decoration: none;
+    transition-duration: 0.2s;
+}
+
+.modal-form-success .form-buttons a:hover {
+    background-color: #2D83FF;
+}

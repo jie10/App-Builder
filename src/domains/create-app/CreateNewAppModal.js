@@ -260,7 +260,6 @@ const ModalFormPartThree = (props) => {
     const handleSubmitOnClick = () => {
         if (stepper.count === MAX_STEPS) {
             dispatchStepper({type: 'increment'});
-            setHiddenCreateNewAppModal(true);
             setInputAppNameFocus(false);
             setInputShortDescFocus(false);
             setInputAppNameLength(0);
@@ -319,6 +318,20 @@ const ModalFormPartThree = (props) => {
     );
 }
 
+const ModalFormSuccess = (props) => {
+    const { stepper} = props;
+
+    return (
+        <div className="modal-form modal-form-success" style={{ display: stepper.count > 3 ? 'block' : 'none' }}>
+            <h2>New App has been created successfully!</h2>
+            <div className="form-buttons">
+                <a href="/" target="_self">Edit New App</a>
+                <a href="/" target="_self">Go to Dashboard</a>
+            </div>
+        </div>
+    );
+}
+
 const CreateNewAppModal = (props) => {
     const { hiddenCreateNewAppModal, setHiddenCreateNewAppModal } = props;
 
@@ -359,6 +372,7 @@ const CreateNewAppModal = (props) => {
                 <ModalFormPartOne setHiddenCreateNewAppModal={setHiddenCreateNewAppModal} stepper={stepper} dispatchStepper={dispatchStepper} category={category} setCategory={setCategory} />
                 <ModalFormPartTwo setHiddenCreateNewAppModal={setHiddenCreateNewAppModal} stepper={stepper} dispatchStepper={dispatchStepper} setBuildMode={setBuildMode} />
                 <ModalFormPartThree setHiddenCreateNewAppModal={setHiddenCreateNewAppModal} stepper={stepper} dispatchStepper={dispatchStepper} appInfo={appInfo} setAppInfo={setAppInfo} />
+                <ModalFormSuccess setHiddenCreateNewAppModal={setHiddenCreateNewAppModal} stepper={stepper} dispatchStepper={dispatchStepper} />
                 <button className="back-button" onClick={ handleBackButtonOnClick }>Back</button>
             </div>
         </div>
