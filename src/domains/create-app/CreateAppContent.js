@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Divider, Grid } from '@mui/material';
 import { useLocation } from "react-router-dom";
+import Loader from "react-loader-spinner";
 
 import {
     AddOutlined as AddOutlinedIcon,
@@ -96,9 +97,25 @@ const FirstWebsiteSection = (props) => {
     );
 }
 
+const ContentLoader = () => {
+    return (
+        <div className="content-loader">
+            <Loader
+                type="Oval"
+                color="#00BFFF"
+                height={50}
+                width={80}
+            />
+            <span class="text">Loading your apps</span>
+            <span class="text">Please wait...</span>
+        </div>
+    );
+}
+
 const CreateAppContent = (props) => {
     let location = useLocation();
 
+    const [loadingContent, setLoadingContent] = useState(false);
     const [hiddenCreateNewFolderModal, setHiddenCreateNewFolderModal] = useState(true);
     const [hiddenCreateNewAppModal, setHiddenCreateNewAppModal] = useState(true);
     const [scrollValueFromTop, setScrollValueFromTop] = useState(false);
@@ -113,12 +130,23 @@ const CreateAppContent = (props) => {
 
     useEffect(() => {
         if (location.search.includes("create")) setHiddenCreateNewAppModal(false);
+
+        const timer = setTimeout(() => {
+            setLoadingContent(true);
+          }, 1000);
+
+        return () => clearTimeout(timer);
+
     }, [location])
 
     return(
         <div className="content-container" onScroll={handleOnScroll}>
             <Header setHiddenCreateNewFolderModal={setHiddenCreateNewFolderModal} setHiddenCreateNewAppModal={setHiddenCreateNewAppModal} scrollValueFromTop={scrollValueFromTop} />
-            <FirstWebsiteSection setHiddenCreateNewAppModal={setHiddenCreateNewAppModal} />
+            {
+                loadingContent ? 
+                    <FirstWebsiteSection 
+                        setHiddenCreateNewAppModal={setHiddenCreateNewAppModal} /> : <ContentLoader />
+            }
             <CreateNewFolderModal hiddenCreateNewFolderModal={hiddenCreateNewFolderModal} setHiddenCreateNewFolderModal={setHiddenCreateNewFolderModal} />
             <CreateNewAppModal hiddenCreateNewAppModal={hiddenCreateNewAppModal} setHiddenCreateNewAppModal={setHiddenCreateNewAppModal}/>
         </div>
