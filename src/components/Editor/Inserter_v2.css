@@ -136,7 +136,12 @@
     left: calc(25% + 16px);
     background-color: #ffffff;
     border: 1px solid #F0F0F0;
+    z-index: 3;
+}
 
+.component-preview-image-container {
+    height: 250px;
+    width: 300px;
 }
 
 .component-preview-image-container img {

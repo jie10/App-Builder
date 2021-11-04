@@ -71,7 +71,9 @@ import {
             PriceCheck as PriceCheckIcon,
             DynamicForm as DynamicFormIcon,
             AddBusinessOutlined as AddBusinessOutlinedIcon,
-            Close as CloseIcon
+            Close as CloseIcon,
+            ViewCarouselOutlined as ViewCarouselOutlinedIcon,
+            DashboardOutlined as DashboardOutlinedIcon
         } from '@mui/icons-material';
 
 import "./Inserter_v2.css";
@@ -82,6 +84,15 @@ import listPreviewImage from '../../assets/images/list-preview.png';
 import paragraphPreviewImage from '../../assets/images/paragraph-preview.png';
 import quotePreviewImage from '../../assets/images/quote-preview.png';
 import tablePreviewImage from '../../assets/images/table-preview.png';
+import accordionPreviewImage from '../../assets/images/accordion-preview.PNG';
+import breadcrumbsPreviewImage from '../../assets/images/breadcrumbs-preview.PNG';
+import cardsPreviewImage from '../../assets/images/cards-preview.PNG';
+import footerPreviewImage from '../../assets/images/footer-preview.PNG';
+import headerPreviewImage from '../../assets/images/header-preview.PNG';
+import imagePreviewImage from '../../assets/images/image-preview.PNG';
+import guideBannerPreviewImage from '../../assets/images/guide-banner-preview.PNG';
+import imageTextPreviewImage from '../../assets/images/image-text-preview.PNG';
+import imageTextButtonPreviewImage from '../../assets/images/image-text-button-preview.PNG';
 
 import {
     sendBlocks
@@ -89,6 +100,196 @@ import {
 import { Button } from '@mui/material';
 
 const componentsList = {
+    "Default": [
+        {
+            "_id": 1,
+            "name": "image_left_with_text_button",
+            "text": "Image (Left) with Text & Button",
+            "icon": <ImageIcon />,
+            "block_type": "SECTION_TWO_LEFT",
+            "block_parameters": {
+                backgroundColor: '#FFFFF',
+                height: 'auto',
+                title: 'Title',
+                text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent quis sapien quis lectus elementum laoreet sed sit amet velit. Praesent nec enim est. Nulla blandit bibendum ipsum non gravida. Nam placerat purus quis lacinia consequat. Donec magna dolor, dictum ut tortor auctor, pulvinar ultricies turpis. Sed vulputate nunc sit amet iaculis placerat. Morbi non risus vel ex iaculis bibendum. Cras sit amet eleifend nisi, at mattis tortor. Nunc id ornare nunc. Donec porttitor euismod magna eu fermentum.',
+                image: 'https://cdn.media.amplience.net/i/cebupacificair/Our-Story-About?w=800&amp;sm=c&amp;scaleFit=poi&amp;poi={$this.metadata.pointOfInterest.x},{$this.metadata.pointOfInterest.y},{$this.metadata.pointOfInterest.w},{$this.metadata.pointOfInterest.h}',
+                url: '/pages/about/our-story/our-fleet'
+            },
+            "preview_description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+            "preview_image": imageTextButtonPreviewImage
+        },
+        {
+            "_id": 2,
+            "name": "image_right_with_text_button",
+            "text": "Image (Right) with Text & Button",
+            "icon": <ImageIcon />,
+            "block_type": "SECTION_TWO_RIGHT",
+            "block_parameters": {
+                backgroundColor: '#FFFFF',
+                height: 'auto',
+                title: 'Title',
+                text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent quis sapien quis lectus elementum laoreet sed sit amet velit. Praesent nec enim est. Nulla blandit bibendum ipsum non gravida. Nam placerat purus quis lacinia consequat. Donec magna dolor, dictum ut tortor auctor, pulvinar ultricies turpis. Sed vulputate nunc sit amet iaculis placerat. Morbi non risus vel ex iaculis bibendum. Cras sit amet eleifend nisi, at mattis tortor. Nunc id ornare nunc. Donec porttitor euismod magna eu fermentum.',
+                image: 'https://cdn.media.amplience.net/i/cebupacificair/Our-Story-About?w=800&amp;sm=c&amp;scaleFit=poi&amp;poi={$this.metadata.pointOfInterest.x},{$this.metadata.pointOfInterest.y},{$this.metadata.pointOfInterest.w},{$this.metadata.pointOfInterest.h}',
+                url: '/pages/about/our-story/our-fleet'
+            },
+            "preview_description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+            "preview_image": noPreviewAvailableImage
+        },
+        {
+            "_id": 3,
+            "name": "image_with_text_only",
+            "text": "Image with Text only",
+            "icon": <ImageIcon />,
+            "block_type": "SECTION_ONE",
+            "block_parameters": {
+                backgroundColor: '#FFFFF',
+                height: 'auto',
+                title: 'Title',
+                text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent quis sapien quis lectus elementum laoreet sed sit amet velit. Praesent nec enim est. Nulla blandit bibendum ipsum non gravida. Nam placerat purus quis lacinia consequat. Donec magna dolor, dictum ut tortor auctor, pulvinar ultricies turpis. Sed vulputate nunc sit amet iaculis placerat. Morbi non risus vel ex iaculis bibendum. Cras sit amet eleifend nisi, at mattis tortor. Nunc id ornare nunc. Donec porttitor euismod magna eu fermentum.',
+                image: 'https://cdn.media.amplience.net/i/cebupacificair/Safety measures for contactless flights?w=undefined&amp;h=undefined&amp;sm=c&amp;scaleFit=poi&amp;poi={$this.metadata.pointOfInterest.x},{$this.metadata.pointOfInterest.y},{$this.metadata.pointOfInterest.w},{$this.metadata.pointOfInterest.h}'
+            },
+            "preview_description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+            "preview_image": imageTextPreviewImage
+        },
+        {
+            "_id": 4,
+            "name": "image",
+            "text": "Image",
+            "icon": <ImageIcon />,
+            "block_type": "IMAGE_SECTION",
+            "block_parameters": {
+                backgroundColor: '#FFFFF',
+                height: 'auto',
+                image: 'https://cdn.media.amplience.net/i/cebupacificair/Safety measures for contactless flights?w=undefined&amp;h=undefined&amp;sm=c&amp;scaleFit=poi&amp;poi={$this.metadata.pointOfInterest.x},{$this.metadata.pointOfInterest.y},{$this.metadata.pointOfInterest.w},{$this.metadata.pointOfInterest.h}',
+                alignment: 'center'
+            },
+            "preview_description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+            "preview_image": imagePreviewImage
+        },
+        {
+            "_id": 5,
+            "name": "header",
+            "text": "Header",
+            "icon": <TableChartOutlinedIcon />,
+            "block_type": "HEADER",
+            "block_parameters": {
+                backgroundColor: '#fbe700',
+                height: '160px',
+                title: 'Header'
+            },
+            "preview_description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+            "preview_image": headerPreviewImage
+        },
+        {
+            "_id": 6,
+            "name": "guide_banner",
+            "text": "Guide Banner",
+            "icon": <BookmarkIcon />,
+            "block_type": "GUIDE_BANNER",
+            "block_parameters": {
+                backgroundColor: '#FFFFF',
+                height: 'auto',
+                title: 'Looking for more destinations?',
+                text: 'We have more destinations to choose from!',
+                button: 'View all destinations',
+                buttonLink: 'https://www.cebupacificair.com/'
+            },
+            "preview_description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+            "preview_image": guideBannerPreviewImage
+        },
+        {
+            "_id": 7,
+            "name": "footer",
+            "text": "Footer",
+            "icon": <TableChartOutlinedIcon />,
+            "block_type": "FOOTER",
+            "block_parameters": {
+                backgroundColor: '#fbe700',
+                height: 'auto'
+            },
+            "preview_description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+            "preview_image": footerPreviewImage
+        },
+        {
+            "_id": 8,
+            "name": "cards",
+            "text": "Cards",
+            "icon": <DashboardOutlinedIcon />,
+            "block_type": "CARDS",
+            "block_parameters": {
+                backgroundColor: '#FFFFFF',
+                height: 'auto',
+                card1Title : 'Corporate Profile',
+                card1Image : 'https://cdn.media.amplience.net/i/cebupacificair/Corp-Prof?w=600&amp;sm=c&amp;scaleFit=poi&amp;poi={$this.metadata.pointOfInterest.x},{$this.metadata.pointOfInterest.y},{$this.metadata.pointOfInterest.w},{$this.metadata.pointOfInterest.h}',
+                card2Title : 'Corporate Governance',
+                card2Image : 'https://cdn.media.amplience.net/i/cebupacificair/Corp-Gov?w=600&amp;sm=c&amp;scaleFit=poi&amp;poi={$this.metadata.pointOfInterest.x},{$this.metadata.pointOfInterest.y},{$this.metadata.pointOfInterest.w},{$this.metadata.pointOfInterest.h}',
+                card3Title : 'Corporate Disclosures',
+                card3Image : 'https://cdn.media.amplience.net/i/cebupacificair/Corp-Disclosure?w=600&amp;sm=c&amp;scaleFit=poi&amp;poi={$this.metadata.pointOfInterest.x},{$this.metadata.pointOfInterest.y},{$this.metadata.pointOfInterest.w},{$this.metadata.pointOfInterest.h}'
+            },
+            "preview_description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+            "preview_image": cardsPreviewImage
+        },
+        {
+            "_id": 9,
+            "name": "breadcrumbs",
+            "text": "Breadcrumbs",
+            "icon": <FormatQuoteOutlinedIcon />,
+            "block_type": "BREADCRUMBS",
+            "block_parameters": {
+                backgroundColor: '#FFFFFF',
+                height: 'auto',
+                homepageName: 'Home',
+                homepagePath: '/homepage',
+                parentcategoryName: 'About',
+                parentcategoryPath: '/about',
+                currentpostName: 'Our Story',
+                currentpostPath: '/pages/about/our-story',
+            },
+            "preview_description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+            "preview_image": breadcrumbsPreviewImage
+        },
+        {
+            "_id": 10,
+            "name": "accordion",
+            "text": "Accordion",
+            "icon": <ViewCarouselOutlinedIcon />,
+            "block_type": "ACCORDION",
+            "block_parameters": {
+                backgroundColor: '#FFFFFF',
+                height: 'auto',
+                title: 'About Cebu Pacific',
+                content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent quis sapien quis lectus elementum laoreet sed sit amet velit. Praesent nec enim est. Nulla blandit bibendum ipsum non gravida. Nam placerat purus quis lacinia consequat. Donec magna dolor, dictum ut tortor auctor, pulvinar ultricies turpis. Sed vulputate nunc sit amet iaculis placerat. Morbi non risus vel ex iaculis bibendum. Cras sit amet eleifend nisi, at mattis tortor. Nunc id ornare nunc. Donec porttitor euismod magna eu fermentum.'
+            },
+            "preview_description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+            "preview_image": accordionPreviewImage
+        },
+        {
+            "_id": 11,
+            "name": "block_separator",
+            "text": "Block Separator",
+            "icon": <TableChartOutlinedIcon />,
+            "block_type": "BLOCKSEPERATOR",
+            "block_parameters": {
+                backgroundColor: '#F7F7F7',
+                height: '40px'
+            },
+            "preview_description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+            "preview_image": noPreviewAvailableImage
+        },
+        {
+            "_id": 12,
+            "name": "sidebar",
+            "text": "Sidebar",
+            "icon": <TableChartOutlinedIcon />,
+            "block_type": "SIDEBAR",
+            "block_parameters": {
+                backgroundColor: '#F4D03F',
+                height: '40px'
+            },
+            "preview_description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+            "preview_image": noPreviewAvailableImage
+        }
+    ],
     "Text": [
         {
             "_id": 1,

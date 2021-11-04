@@ -9,7 +9,7 @@ import {
 import Grid from '@mui/material/Grid'
 import Header from './Header'
 import Canvas from './Canvas'
-import Inserter from './Inserter'
+import Inserter from './Inserter_v2'
 import Settings from './Settings'
 
 const Editor = (props) => {
