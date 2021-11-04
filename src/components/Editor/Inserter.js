@@ -37,7 +37,7 @@ const Inserter = (props) => {
             </ListSubheader>
             }>
             <ListItemButton onClick={() => sendBlocks({type: "HEADER", parameters: {
-                backgroundColor: '#F4D03F',
+                backgroundColor: '#fbe700',
                 height: '160px',
                 title: 'Header'
             }})}>
@@ -73,16 +73,149 @@ const Inserter = (props) => {
                         </ListItemIcon>
                         <ListItemText primary="Carousel" />
                     </ListItemButton>
+                    <ListItemButton sx={{ pl: 4 }} onClick={() => sendBlocks({type: "SECTION_ONE", parameters: {
+                        backgroundColor: '#FFFFF',
+                        height: 'auto',
+                        title: 'Title',
+                        text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent quis sapien quis lectus elementum laoreet sed sit amet velit. Praesent nec enim est. Nulla blandit bibendum ipsum non gravida. Nam placerat purus quis lacinia consequat. Donec magna dolor, dictum ut tortor auctor, pulvinar ultricies turpis. Sed vulputate nunc sit amet iaculis placerat. Morbi non risus vel ex iaculis bibendum. Cras sit amet eleifend nisi, at mattis tortor. Nunc id ornare nunc. Donec porttitor euismod magna eu fermentum.',
+                        image: 'https://cdn.media.amplience.net/i/cebupacificair/Safety measures for contactless flights?w=undefined&amp;h=undefined&amp;sm=c&amp;scaleFit=poi&amp;poi={$this.metadata.pointOfInterest.x},{$this.metadata.pointOfInterest.y},{$this.metadata.pointOfInterest.w},{$this.metadata.pointOfInterest.h}'
+                    }})}>
+                        <ListItemIcon>
+                            <SendIcon />
+                        </ListItemIcon>
+                            <ListItemText primary="Section One" />
+                    </ListItemButton>
+                    <ListItemButton sx={{ pl: 4 }} onClick={() => sendBlocks({type: "SECTION_TWO_LEFT", parameters: {
+                        backgroundColor: '#FFFFF',
+                        height: 'auto',
+                        title: 'Title',
+                        text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent quis sapien quis lectus elementum laoreet sed sit amet velit. Praesent nec enim est. Nulla blandit bibendum ipsum non gravida. Nam placerat purus quis lacinia consequat. Donec magna dolor, dictum ut tortor auctor, pulvinar ultricies turpis. Sed vulputate nunc sit amet iaculis placerat. Morbi non risus vel ex iaculis bibendum. Cras sit amet eleifend nisi, at mattis tortor. Nunc id ornare nunc. Donec porttitor euismod magna eu fermentum.',
+                        image: 'https://cdn.media.amplience.net/i/cebupacificair/Our-Story-About?w=800&amp;sm=c&amp;scaleFit=poi&amp;poi={$this.metadata.pointOfInterest.x},{$this.metadata.pointOfInterest.y},{$this.metadata.pointOfInterest.w},{$this.metadata.pointOfInterest.h}',
+                        url: '/pages/about/our-story/our-fleet'
+                    }})}>
+                        <ListItemIcon>
+                            <SendIcon />
+                        </ListItemIcon>
+                            <ListItemText primary="Section Two Left" />
+                    </ListItemButton>
+                    <ListItemButton sx={{ pl: 4 }} onClick={() => sendBlocks({type: "SECTION_TWO_RIGHT", parameters: {
+                        backgroundColor: '#FFFFF',
+                        height: 'auto',
+                        title: 'Title',
+                        text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent quis sapien quis lectus elementum laoreet sed sit amet velit. Praesent nec enim est. Nulla blandit bibendum ipsum non gravida. Nam placerat purus quis lacinia consequat. Donec magna dolor, dictum ut tortor auctor, pulvinar ultricies turpis. Sed vulputate nunc sit amet iaculis placerat. Morbi non risus vel ex iaculis bibendum. Cras sit amet eleifend nisi, at mattis tortor. Nunc id ornare nunc. Donec porttitor euismod magna eu fermentum.',
+                        image: 'https://cdn.media.amplience.net/i/cebupacificair/Our-Story-About?w=800&amp;sm=c&amp;scaleFit=poi&amp;poi={$this.metadata.pointOfInterest.x},{$this.metadata.pointOfInterest.y},{$this.metadata.pointOfInterest.w},{$this.metadata.pointOfInterest.h}',
+                        url: '/pages/about/our-story/our-fleet'
+                    }})}>
+                        <ListItemIcon>
+                            <SendIcon />
+                        </ListItemIcon>
+                            <ListItemText primary="Section Two Right" />
+                    </ListItemButton>
+                    <ListItemButton sx={{ pl: 4 }} onClick={() => sendBlocks({type: "IMAGE_SECTION", parameters: {
+                        backgroundColor: '#FFFFF',
+                        height: 'auto',
+                        image: 'https://cdn.media.amplience.net/i/cebupacificair/Safety measures for contactless flights?w=undefined&amp;h=undefined&amp;sm=c&amp;scaleFit=poi&amp;poi={$this.metadata.pointOfInterest.x},{$this.metadata.pointOfInterest.y},{$this.metadata.pointOfInterest.w},{$this.metadata.pointOfInterest.h}',
+                        alignment: 'center'
+                    }})}>
+                        <ListItemIcon>
+                            <SendIcon />
+                        </ListItemIcon>
+                            <ListItemText primary="Image" />
+                    </ListItemButton>
                 </List>
             </Collapse>
+            <ListItemButton onClick={handleClick}>
+                <ListItemIcon>
+                    <InboxIcon />
+                </ListItemIcon>
+                <ListItemText primary="Banners" />
+                {open ? <ExpandLess /> : <ExpandMore />}
+            </ListItemButton>
+            <Collapse in={open} timeout="auto" unmountOnExit>
+                <List component="div" disablePadding>
+                    
+                    <ListItemButton sx={{ pl: 4 }} onClick={() => sendBlocks({type: "GUIDE_BANNER", parameters: {
+                        backgroundColor: '#FFFFF',
+                        height: 'auto',
+                        title: 'Looking for more destinations?',
+                        text: 'We have more destinations to choose from!',
+                        button: 'View all destinations',
+                        buttonLink: 'https://www.cebupacificair.com/'
+                    }})}>
+                        <ListItemIcon>
+                            <SendIcon />
+                        </ListItemIcon>
+                            <ListItemText primary="Guide Banner" />
+                    </ListItemButton>
+                </List>
+            </Collapse>
+            <ListItemButton onClick={() => sendBlocks({type: "BREADCRUMBS", parameters: {
+                backgroundColor: '#FFFFFF',
+                height: 'auto',
+                homepageName: 'Home',
+                homepagePath: '/homepage',
+                parentcategoryName: 'About',
+                parentcategoryPath: '/about',
+                currentpostName: 'Our Story',
+                currentpostPath: '/pages/about/our-story',
+            }})}>
+                <ListItemIcon>
+                    <DraftsIcon />
+                </ListItemIcon>
+                <ListItemText primary="Breadcrumbs" />
+            </ListItemButton>
             <ListItemButton onClick={() => sendBlocks({type: "FOOTER", parameters: {
+                backgroundColor: '#fbe700',
+                height: 'auto'
+            }})}>
+                <ListItemIcon>
+                    <DraftsIcon />
+                </ListItemIcon>
+                <ListItemText primary="Footer" />
+            </ListItemButton>
+            <ListItemButton onClick={() => sendBlocks({type: "BLOCKSEPERATOR", parameters: {
+                backgroundColor: '#F7F7F7',
+                height: '40px'
+            }})}>
+                <ListItemIcon>
+                    <DraftsIcon />
+                </ListItemIcon>
+                <ListItemText primary="Block Seperator" />
+            </ListItemButton>
+            <ListItemButton onClick={() => sendBlocks({type: "CARDS", parameters: {
+                backgroundColor: '#FFFFFF',
+                height: 'auto',
+                card1Title : 'Corporate Profile',
+                card1Image : 'https://cdn.media.amplience.net/i/cebupacificair/Corp-Prof?w=600&amp;sm=c&amp;scaleFit=poi&amp;poi={$this.metadata.pointOfInterest.x},{$this.metadata.pointOfInterest.y},{$this.metadata.pointOfInterest.w},{$this.metadata.pointOfInterest.h}',
+                card2Title : 'Corporate Governance',
+                card2Image : 'https://cdn.media.amplience.net/i/cebupacificair/Corp-Gov?w=600&amp;sm=c&amp;scaleFit=poi&amp;poi={$this.metadata.pointOfInterest.x},{$this.metadata.pointOfInterest.y},{$this.metadata.pointOfInterest.w},{$this.metadata.pointOfInterest.h}',
+                card3Title : 'Corporate Disclosures',
+                card3Image : 'https://cdn.media.amplience.net/i/cebupacificair/Corp-Disclosure?w=600&amp;sm=c&amp;scaleFit=poi&amp;poi={$this.metadata.pointOfInterest.x},{$this.metadata.pointOfInterest.y},{$this.metadata.pointOfInterest.w},{$this.metadata.pointOfInterest.h}'
+            }})}>
+                <ListItemIcon>
+                    <DraftsIcon />
+                </ListItemIcon>
+                <ListItemText primary="Cards" />
+            </ListItemButton>
+            <ListItemButton onClick={() => sendBlocks({type: "ACCORDION", parameters: {
+                backgroundColor: '#FFFFFF',
+                height: 'auto',
+                title: 'About Cebu Pacific',
+                content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent quis sapien quis lectus elementum laoreet sed sit amet velit. Praesent nec enim est. Nulla blandit bibendum ipsum non gravida. Nam placerat purus quis lacinia consequat. Donec magna dolor, dictum ut tortor auctor, pulvinar ultricies turpis. Sed vulputate nunc sit amet iaculis placerat. Morbi non risus vel ex iaculis bibendum. Cras sit amet eleifend nisi, at mattis tortor. Nunc id ornare nunc. Donec porttitor euismod magna eu fermentum.'
+            }})}>
+                <ListItemIcon>
+                    <DraftsIcon />
+                </ListItemIcon>
+                <ListItemText primary="Accordion" />
+            </ListItemButton>
+            <ListItemButton onClick={() => sendBlocks({type: "SIDEBAR", parameters: {
                 backgroundColor: '#F4D03F',
                 height: '40px'
             }})}>
                 <ListItemIcon>
                     <DraftsIcon />
                 </ListItemIcon>
-                <ListItemText primary="Footer" />
+                <ListItemText primary="Sidebar" />
             </ListItemButton>
             <ListItemButton onClick={() => sendBlocks({type: "SECTION", parameters: {
                 backgroundColor: '#F4D03F',

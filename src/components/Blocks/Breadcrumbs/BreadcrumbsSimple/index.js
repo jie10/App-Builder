@@ -10,13 +10,12 @@ import {
     getBlock
 } from '../../../../stores/actions'
 
-const HeaderSimple = (props) => {
+const Breadcrumbs = (props) => {
 
     const { _id, block, deleteBlock, moveUpBlock, moveDownBlock, getBlock } = props
 
     return(
-        <div className = 'cebapp-header-component ng-tns-c13-32 height-small background-yellow rounded-buttom ng-star-inserted'
-            style={{
+        <div style={{
             width: '100%',
             height: block.parameters.height,
             backgroundColor: block.parameters.backgroundColor
@@ -41,11 +40,15 @@ const HeaderSimple = (props) => {
                     src='/images/round_close_black_24dp.png' />
             </Grid>
         </Grid>
-        <div className = 'banner-content container height-small'>
-            <span className = 'country text-blue'>
-                <p>{block.parameters.title}</p>
-                </span>
+        <div className="c-breadcrumbs">
+            <div className="container">
+                <div className="breadcrumbs">
+                    <a href={block.parameters.homepagePath}>{block.parameters.homepageName}</a>
+                    <a href={block.parameters.parentcategoryPath}>{block.parameters.parentcategoryName}</a>
+                    <a href={block.parameters.currentpostPath}>{block.parameters.currentpostName}</a>
+                </div>
             </div>
+        </div>
         </div>
     )
 }
@@ -61,4 +64,4 @@ export default connect(mapStateToProps, {
     moveUpBlock,
     moveDownBlock,
     getBlock
-})(HeaderSimple)
+})(Breadcrumbs)

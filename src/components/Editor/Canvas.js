@@ -8,6 +8,16 @@ import {
 // import all blocks - should be put in another class
 import HeaderSimple from '../Blocks/Headers/HeaderSimple'
 import FooterSimple from '../Blocks/Footers/FooterSimple'
+import SectionOne from '../Blocks/Sections/SectionOne'
+import SectionTwoLeft from '../Blocks/Sections/SectionTwoLeft'
+import SectionTwoRight from '../Blocks/Sections/SectionTwoRight'
+import ImageSection from '../Blocks/Sections/Image'
+import Breadcrumbs from '../Blocks/Breadcrumbs/BreadcrumbsSimple'
+import GuideBanner from '../Blocks/Banner/GuideBanner'
+import Cards from '../Blocks/Cards/Cards'
+import Accordion from '../Blocks/Sections/Accordion'
+import BlockSeperator from '../Blocks/BlockSeperator/BlockSeperator'
+import Sidebar from '../Blocks/Sidebar/Sidebar'
 
 class Canvas extends Component {
     constructor(props){
@@ -32,6 +42,26 @@ class Canvas extends Component {
                             return <div key={key}>SECTION SSO</div>
                         case 'SECTION_CARDS':
                             return <div key={key}>SECTION CARDS</div>
+                        case 'SECTION_ONE':
+                            return <SectionOne key={key} _id={key} block={block} />
+                        case 'SECTION_TWO_LEFT':
+                            return <SectionTwoLeft key={key} _id={key} block={block} />   
+                        case 'SECTION_TWO_RIGHT':
+                            return <SectionTwoRight key={key} _id={key} block={block} />
+                        case 'IMAGE_SECTION':
+                            return <ImageSection key={key} _id={key} block={block} />  
+                        case 'BREADCRUMBS':
+                            return <Breadcrumbs key={key} _id={key} block={block} /> 
+                        case 'GUIDE_BANNER':
+                            return <GuideBanner key={key} _id={key} block={block} />
+                        case 'CARDS':
+                            return <Cards key={key} _id={key} block={block} />   
+                        case 'ACCORDION':
+                            return <Accordion key={key} _id={key} block={block} />     
+                        case 'BLOCKSEPERATOR':
+                            return <BlockSeperator key={key} _id={key} block={block} />
+                        case 'SIDEBAR':
+                            return <Sidebar key={key} _id={key} block={block} /> 
                         case 'FOOTER':
                             return <FooterSimple key={key} _id={key} block={block} />
                         default:

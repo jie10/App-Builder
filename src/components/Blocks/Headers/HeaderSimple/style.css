@@ -5,3 +5,64 @@
     padding: 4px;
     opacity: 0.2;
 }
+
+
+.cebapp-header-component.height-small, .cebapp-header-component.height-small figure img {
+    height: 139px;
+}
+
+.cebapp-header-component.background-yellow {
+    background-color: #fbe700;
+}
+.cebapp-header-component.rounded-buttom {
+    border-bottom-left-radius: 50% 10%;
+    border-bottom-right-radius: 50% 10%;
+    overflow: hidden;
+}
+.cebapp-header-component {
+    position: relative;
+    margin-bottom: 40px;
+    height: 323px;
+}
+.cebapp-header-component span.text-blue {
+    color: #0060a7;
+}
+.cebapp-header-component span.country {
+    font-weight: 700;
+    line-height: 150%;
+    letter-spacing: .0025em;
+}
+.cebapp-header-component span.country p {
+    margin: 0;
+}
+.cebapp-header-component .container {
+    max-width: 1056px;
+}
+.cebapp-header-component.height-small .container {
+    top: 0;
+}
+.cebapp-header-component .container.height-small {
+    height: 139px;
+    top: 0;
+    padding-top: 0;
+    display: flex;
+    align-items: center;
+}
+@media only screen and (min-width: 767px) {
+.cebapp-header-component .container {
+    left: 49%;
+}
+}
+.cebapp-header-component .container {
+    width: 100%;
+    position: absolute;
+    top: 32px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+@media only screen and (min-width: 767px) {
+    .cebapp-header-component span.country {
+        font-size: 41px;
+        line-height: 61px;
+    }
+}

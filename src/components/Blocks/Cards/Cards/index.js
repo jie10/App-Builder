@@ -10,13 +10,13 @@ import {
     getBlock
 } from '../../../../stores/actions'
 
-const HeaderSimple = (props) => {
+const Cards = (props) => {
 
     const { _id, block, deleteBlock, moveUpBlock, moveDownBlock, getBlock } = props
 
     return(
-        <div className = 'cebapp-header-component ng-tns-c13-32 height-small background-yellow rounded-buttom ng-star-inserted'
-            style={{
+        <div id='page-content-wrapper'>
+        <div style={{
             width: '100%',
             height: block.parameters.height,
             backgroundColor: block.parameters.backgroundColor
@@ -41,11 +41,27 @@ const HeaderSimple = (props) => {
                     src='/images/round_close_black_24dp.png' />
             </Grid>
         </Grid>
-        <div className = 'banner-content container height-small'>
-            <span className = 'country text-blue'>
-                <p>{block.parameters.title}</p>
-                </span>
-            </div>
+        <div className="c-explore__threecards--row">
+            <a className="c-explore__threecards--item ng-star-inserted" href="#">
+                <h6 className="title">{block.parameters.card1Title}</h6>
+                <figure>
+                    <img alt="" src={block.parameters.card1Image}/>
+                </figure>
+            </a>
+            <a className="c-explore__threecards--item ng-star-inserted" target="_self" href="/pages/about/corporate-governance/corporate-governance-manual?nohf=true&amp;header=Corporate%20Governance">
+                <h6 className="title">{block.parameters.card2Title}</h6>
+                <figure>
+                    <img alt="" src={block.parameters.card2Image}/>
+                </figure>
+            </a>
+            <a className="c-explore__threecards--item ng-star-inserted" target="_self" href="/pages/about/corporate-disclosure/sec-filing?nohf=true&amp;header=Corporate%20Disclosures">
+                <h6 className="title">{block.parameters.card2Title}</h6>
+                <figure>
+                    <img alt="" src={block.parameters.card2Image}/>
+                </figure>
+            </a>
+        </div>
+        </div>
         </div>
     )
 }
@@ -61,4 +77,6 @@ export default connect(mapStateToProps, {
     moveUpBlock,
     moveDownBlock,
     getBlock
-})(HeaderSimple)
+})(Cards)
+
+

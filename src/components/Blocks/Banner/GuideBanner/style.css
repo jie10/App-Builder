@@ -1,0 +1,76 @@
+.buttoncontrols {
+    height: 24px;
+    width: 24px;
+    object-fit: 'cover';
+    padding: 4px;
+    opacity: 0.2;
+}
+
+
+.cebapp-banner-component-guide .container.height-medium {
+    height: 323px;
+    top: 0;
+    padding-top: 0;
+    display: flex;
+    align-items: center;
+}
+.cebapp-banner-component-guide .container .content.design-b {
+    flex-flow: row;
+    justify-content: space-between;
+}
+.cebapp-banner-component-guide .container .content.left, .cebapp-banner-component-guide .container .content.right {
+    align-items: flex-start;
+    text-align: left;
+}
+.cebapp-banner-component-guide .container .content {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+.cebapp-banner-component-guide .container .content.design-b .content-wrap {
+    align-items: flex-start;
+    text-align: left;
+}
+
+.cebapp-banner-component-guide .container .content .content-wrap.left {
+    align-items: flex-start;
+}
+.cebapp-banner-component-guide .container .content .content-wrap {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+.cebapp-banner-component-guide .container .content.design-a, .cebapp-banner-component-guide .container .content.design-b, .cebapp-banner-component-guide .container .content.design-c {
+    display: block;
+    align-items: center;
+}
+.cebapp-banner-component-guide.background-yellow {
+    background-color: #fbe700;
+}
+.cebapp-banner-component-guide span.text-blue {
+    color: #0060a7;
+}
+.cebapp-banner-component-guide .container {
+    max-width: 1056px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+
+@media only screen and (min-width: 767px) {
+    .cebapp-banner-component-guide .container .content.design-a, .cebapp-banner-component-guide .container .content.design-b, .cebapp-banner-component-guide .container .content.design-c {
+        display: flex;
+    }
+    .cebapp-banner-component-guide .container .content span.country {
+        font-size: 41px;
+        line-height: 61px;
+    }
+    .cebapp-banner-component-guide .container .content span.country h1 {
+        font-size: 41px;
+        margin: 0;
+    }
+}

@@ -1,0 +1,50 @@
+.dynamic-accordion {
+    /*margin-top: 32px;*/
+    margin-bottom: 40px;
+}
+.dynamic-accordion .container {
+    padding: 15px 24px 16px;
+    max-width: 100%;
+    background: #fff;
+    box-shadow: 0 4px 23px rgb(0 0 0 / 10%);
+}
+.dynamic-accordion__item {
+    border-bottom: 1px solid #e2e2e2;
+    margin-bottom: 22px;
+    cursor: pointer;
+    position: relative;
+}
+
+
+.dynamic-accordion__item .drop {
+    width: 24px;
+    height: 24px;
+    background-image: url(https://www.cebupacificair.com/assets/images/icon-arrow_expand_blue.svg);
+    position: absolute;
+    top: 0;
+    right: 0;
+    transition: transform .3s ease;
+}
+.dynamic-accordion__item.open .drop {
+    transform: rotate(-180deg);
+    transition: transform .3s ease;
+}
+.dynamic-accordion__item .content {
+    display: none;
+}
+.dynamic-accordion__item.open .content {
+    display: block;
+}
+
+@media only screen and (min-width: 767px){
+    .dynamic-accordion {
+        margin-bottom: 30px;
+    }
+    .dynamic-accordion .container {
+        padding: 40px 64px 24px;
+        border-radius: 12px;
+    }
+    .dynamic-accordion__item {
+        margin-bottom: 30px;
+    }
+}
