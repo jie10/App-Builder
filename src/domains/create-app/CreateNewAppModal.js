@@ -32,8 +32,9 @@ const ProgressStepper = (props) => {
 }
 
 const ModalFormPartOne = (props) => {
-    const { setHiddenCreateNewAppModal, category, setCategory, setAppInfo, stepper, dispatchStepper } = props;
+    const { setHiddenCreateNewAppModal, setAppInfo, stepper, dispatchStepper } = props;
 
+    const [category, setCategory] = useState(null);
     const [inputFocus, setInputFocus] = useState(false);
     const [visibleSuggestionList, setVisibleSuggestionList] = useState(false);
     const [disableButton, setDisableButton] = useState(true);
@@ -189,7 +190,7 @@ const ModalFormPartTwo = (props) => {
 }
 
 const ModalFormPartThree = (props) => {
-    const { setHiddenCreateNewAppModal, stepper, dispatchStepper, appInfo, setAppInfo } = props;
+    const { setHiddenCreateNewAppModal, stepper, dispatchStepper, appInfo, setAppInfo, setCreateSuccess } = props;
 
     const [appName, setAppName] = useState(null);
     const [shortDesc, setShortDec] = useState(null);
@@ -251,6 +252,7 @@ const ModalFormPartThree = (props) => {
             setInputShortDescLength(0);
             setDisableButton(true);
             setAppInfo({...appInfo, ...{appName, shortDesc}});
+            setCreateSuccess(true);
         } else {
             dispatchStepper({type: 'reset'});
             setHiddenCreateNewAppModal(true);
@@ -353,18 +355,18 @@ const CreateNewAppModal = (props) => {
     }
     const [stepper, dispatchStepper] = useReducer(stepperReducer, initialStepper);
 
-    const [category, setCategory] = useState(null);
     const [appInfo, setAppInfo] = useState(null);
+    const [createSuccess, setCreateSuccess] = useState(false);
 
     const handleBackButtonOnClick = () => {
         if (stepper.count > 1 && stepper.count <= MAX_STEPS) {
             dispatchStepper({type: 'decrement'});
         } else {
+            if (createSuccess) window.location.href = "/account/apps";
+
             dispatchStepper({type: 'reset'});
             setHiddenCreateNewAppModal(true);
-            setCategory(null);
             setAppInfo(null);
-            window.location.reload();
         }
     }
 
@@ -372,9 +374,9 @@ const CreateNewAppModal = (props) => {
         <div className="create-new-app-modal-container" style={{ display: hiddenCreateNewAppModal ? 'none' : 'block'  }}>
             <div className="create-new-app-modal-box">
                 <ProgressStepper stepper={stepper} />
-                <ModalFormPartOne setHiddenCreateNewAppModal={setHiddenCreateNewAppModal} stepper={stepper} dispatchStepper={dispatchStepper} category={category} setCategory={setCategory} setAppInfo={setAppInfo} />
+                <ModalFormPartOne setHiddenCreateNewAppModal={setHiddenCreateNewAppModal} stepper={stepper} dispatchStepper={dispatchStepper} setAppInfo={setAppInfo} />
                 <ModalFormPartTwo setHiddenCreateNewAppModal={setHiddenCreateNewAppModal} stepper={stepper} dispatchStepper={dispatchStepper} appInfo={appInfo} setAppInfo={setAppInfo} />
-                <ModalFormPartThree setHiddenCreateNewAppModal={setHiddenCreateNewAppModal} stepper={stepper} dispatchStepper={dispatchStepper} appInfo={appInfo} setAppInfo={setAppInfo} />
+                <ModalFormPartThree setHiddenCreateNewAppModal={setHiddenCreateNewAppModal} stepper={stepper} dispatchStepper={dispatchStepper} appInfo={appInfo} setAppInfo={setAppInfo} setCreateSuccess={setCreateSuccess} />
                 <ModalFormSuccess setHiddenCreateNewAppModal={setHiddenCreateNewAppModal} stepper={stepper} dispatchStepper={dispatchStepper} />
                 <button className="back-button" onClick={ handleBackButtonOnClick }>Back</button>
             </div>
