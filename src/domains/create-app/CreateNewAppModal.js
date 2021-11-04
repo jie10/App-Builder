@@ -5,6 +5,7 @@ import { Search as SearchIcon } from '@mui/icons-material';
 import "./CreateNewAppModal.css"
 
 import { appCategories } from "../../constants/sample-data";
+import { createNew } from "./AppList";
 
 const MAX_STEPS = 3;
 
@@ -251,7 +252,7 @@ const ModalFormPartThree = (props) => {
             setInputAppNameLength(0);
             setInputShortDescLength(0);
             setDisableButton(true);
-            setAppInfo({...appInfo, ...{appName, shortDesc}});
+            createNew({...appInfo, ...{appName, shortDesc}});
             setCreateSuccess(true);
         } else {
             dispatchStepper({type: 'reset'});
