@@ -1,6 +1,6 @@
-import React, { useState, useEffect, useReducer } from 'react'
+import React, { useState, useEffect, useReducer } from 'react';
 
-import { FastRewind, Search as SearchIcon } from '@mui/icons-material';
+import { Search as SearchIcon } from '@mui/icons-material';
 
 import "./CreateNewAppModal.css"
 
@@ -32,7 +32,7 @@ const ProgressStepper = (props) => {
 }
 
 const ModalFormPartOne = (props) => {
-    const { setHiddenCreateNewAppModal, category, setCategory, stepper, dispatchStepper } = props;
+    const { setHiddenCreateNewAppModal, category, setCategory, setAppInfo, stepper, dispatchStepper } = props;
 
     const [inputFocus, setInputFocus] = useState(false);
     const [visibleSuggestionList, setVisibleSuggestionList] = useState(false);
@@ -96,10 +96,12 @@ const ModalFormPartOne = (props) => {
     const handleNextButton = () => {
         if (stepper.count >= 1 && stepper.count < MAX_STEPS) {
             dispatchStepper({type: 'increment'});
+            setAppInfo({category})
         } else {
             dispatchStepper({type: 'reset'});
             setHiddenCreateNewAppModal(true);
             setCategory(null);
+            setAppInfo(null);
             setInputFocus(false);
             setDisableButton(true);
         }
@@ -134,27 +136,33 @@ const ModalFormPartOne = (props) => {
 }
 
 const ModalFormPartTwo = (props) => {
-    const { setHiddenCreateNewAppModal, stepper, dispatchStepper, setBuildMode } = props;
+    const { setHiddenCreateNewAppModal, stepper, dispatchStepper, appInfo, setAppInfo } = props;
 
-    const handleOptionOneOnClick = () => {
+    const handleOptionOneOnClick = (e) => {
+        e.preventDefault();
+
         if (stepper.count >= 2 && stepper.count < MAX_STEPS) {
+            let buildMode = { buildMode: 'template' };
             dispatchStepper({type: 'increment'});
-            setBuildMode('template');
+            setAppInfo({...appInfo, ...buildMode});
         } else {
             dispatchStepper({type: 'reset'});
             setHiddenCreateNewAppModal(true);
-            setBuildMode(null);
+            setAppInfo(null);
         }
     }
 
-    const handleOptionTwoOnClick = () => {
+    const handleOptionTwoOnClick = (e) => {
+        e.preventDefault();
+
         if (stepper.count >= 2 && stepper.count < MAX_STEPS) {
+            let buildMode = { buildMode: 'scratch' };
             dispatchStepper({type: 'increment'});
-            setBuildMode('scratch');
+            setAppInfo({...appInfo, ...buildMode});
         } else {
             dispatchStepper({type: 'reset'});
             setHiddenCreateNewAppModal(true);
-            setBuildMode(null);
+            setAppInfo(null);
         }
     }
 
@@ -183,25 +191,13 @@ const ModalFormPartTwo = (props) => {
 const ModalFormPartThree = (props) => {
     const { setHiddenCreateNewAppModal, stepper, dispatchStepper, appInfo, setAppInfo } = props;
 
+    const [appName, setAppName] = useState(null);
+    const [shortDesc, setShortDec] = useState(null);
     const [inputAppNameFocus, setInputAppNameFocus] = useState(false);
     const [inputShortDescFocus, setInputShortDescFocus] = useState(false);
     const [inputAppNameLength, setInputAppNameLength] = useState(0);
     const [inputShortDescLength, setInputShortDescLength] = useState(0);
     const [disableButton, setDisableButton] = useState(true);
-
-    const checkValidation = (appInfo) => {
-        const MAX_APP_NAME_LENGTH = 5;
-        const MAX_SHORT_DESC_LENGTH = 5;
-
-        if (appInfo) {
-            let validAppName = inputAppNameLength >= MAX_APP_NAME_LENGTH;
-            let validShortDesc = inputShortDescLength >= MAX_SHORT_DESC_LENGTH;
-    
-            return validAppName && validShortDesc ? true : false;
-        } else {
-            return false;
-        }
-    }
 
     const handleInputOnClick = (e) => {
         switch (e.target.name) {
@@ -219,16 +215,14 @@ const ModalFormPartThree = (props) => {
     const handleInputOnChange = (e) => {
         switch (e.target.name) {
             case "app_name":
-                let appName = {appName: e.target.value};
                 setInputAppNameFocus(true);
                 setInputAppNameLength(e.target.value.length);
-                setAppInfo(Object.assign({}, appInfo, appName));
+                setAppName(e.target.value);
             break;
             case "short_description":
-                let shortDesc = {shortDesc: e.target.value};
                 setInputShortDescFocus(true);
                 setInputShortDescLength(e.target.value.length);
-                setAppInfo(Object.assign({}, appInfo, shortDesc));
+                setShortDec(e.target.value);
             break;
             default:
             break;
@@ -248,15 +242,6 @@ const ModalFormPartThree = (props) => {
         }
     }
 
-    useEffect(() => {
-        if (appInfo && checkValidation(appInfo)) {
-            setDisableButton(false);
-        } else {
-            setDisableButton(true);
-        }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [appInfo]);
-
     const handleSubmitOnClick = () => {
         if (stepper.count === MAX_STEPS) {
             dispatchStepper({type: 'increment'});
@@ -265,7 +250,7 @@ const ModalFormPartThree = (props) => {
             setInputAppNameLength(0);
             setInputShortDescLength(0);
             setDisableButton(true);
-            setAppInfo(null);
+            setAppInfo({...appInfo, ...{appName, shortDesc}});
         } else {
             dispatchStepper({type: 'reset'});
             setHiddenCreateNewAppModal(true);
@@ -278,6 +263,24 @@ const ModalFormPartThree = (props) => {
         }
     }
 
+    useEffect(() => {
+        const checkValidation = () => {
+            const MAX_APP_NAME_LENGTH = 5;
+            const MAX_SHORT_DESC_LENGTH = 5;
+    
+            let validAppName = inputAppNameLength >= MAX_APP_NAME_LENGTH;
+            let validShortDesc = inputShortDescLength >= MAX_SHORT_DESC_LENGTH;
+    
+            return validAppName && validShortDesc ? true : false;
+        }
+
+        if (appName && shortDesc && checkValidation()) {
+            setDisableButton(false);
+        } else {
+            setDisableButton(true);
+        }
+    }, [appName, inputAppNameLength, inputShortDescLength, shortDesc]);
+
     return (
         <div className="modal-form modal-form-part-three" style={{ display: stepper.count === 3 ? 'block' : 'none' }}>
             <h2>Describe your new application:</h2>
@@ -289,7 +292,7 @@ const ModalFormPartThree = (props) => {
                             placeholder="Application Name"
                             maxLength="50"
                             autoComplete="off"
-                            value={appInfo ? appInfo.appName : ''}
+                            value={appName ? appName : ''}
                             onClick={handleInputOnClick}
                             onChange={handleInputOnChange}
                             onBlur={handleInputOnBlur} />
@@ -302,7 +305,7 @@ const ModalFormPartThree = (props) => {
                             placeholder="Short Description"
                             maxLength="150"
                             autoComplete="off"
-                            value={appInfo ? appInfo.shortDesc : ''}
+                            value={shortDesc ? shortDesc : ''}
                             onClick={handleInputOnClick}
                             onChange={handleInputOnChange}
                             onBlur={handleInputOnBlur} />
@@ -351,7 +354,6 @@ const CreateNewAppModal = (props) => {
     const [stepper, dispatchStepper] = useReducer(stepperReducer, initialStepper);
 
     const [category, setCategory] = useState(null);
-    const [buildMode, setBuildMode] = useState(null);
     const [appInfo, setAppInfo] = useState(null);
 
     const handleBackButtonOnClick = () => {
@@ -361,7 +363,8 @@ const CreateNewAppModal = (props) => {
             dispatchStepper({type: 'reset'});
             setHiddenCreateNewAppModal(true);
             setCategory(null);
-            setBuildMode(null);
+            setAppInfo(null);
+            window.location.reload();
         }
     }
 
@@ -369,8 +372,8 @@ const CreateNewAppModal = (props) => {
         <div className="create-new-app-modal-container" style={{ display: hiddenCreateNewAppModal ? 'none' : 'block'  }}>
             <div className="create-new-app-modal-box">
                 <ProgressStepper stepper={stepper} />
-                <ModalFormPartOne setHiddenCreateNewAppModal={setHiddenCreateNewAppModal} stepper={stepper} dispatchStepper={dispatchStepper} category={category} setCategory={setCategory} />
-                <ModalFormPartTwo setHiddenCreateNewAppModal={setHiddenCreateNewAppModal} stepper={stepper} dispatchStepper={dispatchStepper} setBuildMode={setBuildMode} />
+                <ModalFormPartOne setHiddenCreateNewAppModal={setHiddenCreateNewAppModal} stepper={stepper} dispatchStepper={dispatchStepper} category={category} setCategory={setCategory} setAppInfo={setAppInfo} />
+                <ModalFormPartTwo setHiddenCreateNewAppModal={setHiddenCreateNewAppModal} stepper={stepper} dispatchStepper={dispatchStepper} appInfo={appInfo} setAppInfo={setAppInfo} />
                 <ModalFormPartThree setHiddenCreateNewAppModal={setHiddenCreateNewAppModal} stepper={stepper} dispatchStepper={dispatchStepper} appInfo={appInfo} setAppInfo={setAppInfo} />
                 <ModalFormSuccess setHiddenCreateNewAppModal={setHiddenCreateNewAppModal} stepper={stepper} dispatchStepper={dispatchStepper} />
                 <button className="back-button" onClick={ handleBackButtonOnClick }>Back</button>
