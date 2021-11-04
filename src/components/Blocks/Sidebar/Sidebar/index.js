@@ -15,7 +15,7 @@ const Sidebar = (props) => {
     const { _id, block, deleteBlock, moveUpBlock, moveDownBlock, getBlock } = props
 
     return(
-        <div id="sidebar-wrapper" className="sidebar">
+        <div >
         <div style={{
             width: '100%',
             height: block.parameters.height,

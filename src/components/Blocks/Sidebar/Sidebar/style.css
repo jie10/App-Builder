@@ -35,3 +35,45 @@
         position: relative;
     }
 }
+
+
+.c-baggage__sidebar {
+    flex-basis: 100%;
+    width: 100%;
+}
+.c-baggage__sidebar h6 {
+    font-family: "Source Sans Pro",sans-serif;
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 150%;
+    letter-spacing: .015em;
+    text-transform: uppercase;
+    color: #0060a7;
+    margin-bottom: 8px;
+}
+.c-baggage__sidebar .list .item a {
+    padding: 10
+px
+ 0;
+}
+.c-baggage__sidebar .list .item a {
+    border-bottom: 1px solid #cae2e7;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 150%;
+    letter-spacing: .005em;
+    color: #333;
+    display: block;
+    text-decoration: none;
+}
+
+@media only screen and (min-width: 767px) {
+    .c-baggage__sidebar {
+        max-width: 240px;
+        flex-basis: 18%;
+    }
+    .c-baggage__sidebar .list .item a {
+        max-width: 181px;
+    }
+}
+

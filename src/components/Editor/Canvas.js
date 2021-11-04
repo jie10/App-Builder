@@ -32,7 +32,7 @@ class Canvas extends Component {
         const { blocks } = this.props
         return(
             <Fragment>
-                <div id="wrapper" style={{padding: '4em'}}>
+                <div style={{padding: '4em'}}>
                 { blocks && Object.keys(blocks).map(key => {
                     var block = blocks[key]
                     switch(block.type){
