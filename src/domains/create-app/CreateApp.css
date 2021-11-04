@@ -1,0 +1,32 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap');
+
+/** 0 --- UTILITIES AND OTHER ADJUSTMENTS */
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: #F1F4F7;
+    font-family: 'Lato', sans-serif;
+    -webkit-user-select: none;  /* Chrome all / Safari all */
+    -moz-user-select: none;     /* Firefox all */
+    -ms-user-select: none;      /* IE 10+ */
+    user-select: none;          /* Likely future */ 
+}
+
+button,
+input {
+    outline: none;
+}
+
+.vertical-divider {
+    height: 1.5rem;
+    border-left: 0.5px solid #e1e1e1;
+    margin: 0 16px;
+    -webkit-user-select: none;  /* Chrome all / Safari all */
+    -moz-user-select: none;     /* Firefox all */
+    -ms-user-select: none;      /* IE 10+ */
+    user-select: none;          /* Likely future */ 
+}
+
+.hidden { display: none; }
