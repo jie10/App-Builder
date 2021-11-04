@@ -240,6 +240,13 @@
     margin: 0 0 24px 0;
 }
 
+.modal-form-part-three .input-length {
+    width: 75px;
+    font-weight: 700;
+    font-size: 14px;
+    text-align: center;
+}
+
 .modal-form-part-three .input-forms-container .input-form:focus {
     border-bottom: 3px solid #237AFF;
     caret-color: #237AFF;
@@ -271,4 +278,10 @@
 
 .modal-form-part-three .submit-app-button:hover {
     background-color: #2D83FF;
+}
+
+.modal-form-part-three .submit-app-button:disabled {
+    color: #000000;
+    background-color: #E1E2E6;
+    cursor: default;
 }

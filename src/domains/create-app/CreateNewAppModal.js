@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useReducer } from 'react'
 
-import { Search as SearchIcon } from '@mui/icons-material';
+import { FastRewind, Search as SearchIcon } from '@mui/icons-material';
 
 import "./CreateNewAppModal.css"
 
@@ -181,23 +181,140 @@ const ModalFormPartTwo = (props) => {
 }
 
 const ModalFormPartThree = (props) => {
-    const { setHiddenCreateNewAppModal, stepper, dispatchStepper, setAppInfo } = props;
+    const { setHiddenCreateNewAppModal, stepper, dispatchStepper, appInfo, setAppInfo } = props;
+
+    const [inputAppNameFocus, setInputAppNameFocus] = useState(false);
+    const [inputShortDescFocus, setInputShortDescFocus] = useState(false);
+    const [inputAppNameLength, setInputAppNameLength] = useState(0);
+    const [inputShortDescLength, setInputShortDescLength] = useState(0);
+    const [disableButton, setDisableButton] = useState(true);
+
+    const checkValidation = (appInfo) => {
+        const MAX_APP_NAME_LENGTH = 5;
+        const MAX_SHORT_DESC_LENGTH = 5;
+
+        if (appInfo) {
+            let validAppName = inputAppNameLength >= MAX_APP_NAME_LENGTH;
+            let validShortDesc = inputShortDescLength >= MAX_SHORT_DESC_LENGTH;
+    
+            return validAppName && validShortDesc ? true : false;
+        } else {
+            return false;
+        }
+    }
+
+    const handleInputOnClick = (e) => {
+        switch (e.target.name) {
+            case "app_name":
+                setInputAppNameFocus(true);
+            break;
+            case "short_description":
+                setInputShortDescFocus(true);
+            break;
+            default:
+            break;
+        }
+    }
+
+    const handleInputOnChange = (e) => {
+        switch (e.target.name) {
+            case "app_name":
+                let appName = {appName: e.target.value};
+                setInputAppNameFocus(true);
+                setInputAppNameLength(e.target.value.length);
+                setAppInfo(Object.assign({}, appInfo, appName));
+            break;
+            case "short_description":
+                let shortDesc = {shortDesc: e.target.value};
+                setInputShortDescFocus(true);
+                setInputShortDescLength(e.target.value.length);
+                setAppInfo(Object.assign({}, appInfo, shortDesc));
+            break;
+            default:
+            break;
+        }
+    }
+
+    const handleInputOnBlur = (e) => {
+        switch (e.target.name) {
+            case "app_name":
+                setInputAppNameFocus(false);
+            break;
+            case "short_description":
+                setInputShortDescFocus(false);
+            break;
+            default:
+            break;
+        }
+    }
+
+    useEffect(() => {
+        if (appInfo && checkValidation(appInfo)) {
+            setDisableButton(false);
+        } else {
+            setDisableButton(true);
+        }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [appInfo]);
+
+    const handleSubmitOnClick = () => {
+        if (stepper.count === MAX_STEPS) {
+            dispatchStepper({type: 'increment'});
+            setHiddenCreateNewAppModal(true);
+            setInputAppNameFocus(false);
+            setInputShortDescFocus(false);
+            setInputAppNameLength(0);
+            setInputShortDescLength(0);
+            setDisableButton(true);
+            setAppInfo(null);
+        } else {
+            dispatchStepper({type: 'reset'});
+            setHiddenCreateNewAppModal(true);
+            setInputAppNameFocus(false);
+            setInputShortDescFocus(false);
+            setInputAppNameLength(0);
+            setInputShortDescLength(0);
+            setDisableButton(true);
+            setAppInfo(null);
+        }
+    }
 
     return (
         <div className="modal-form modal-form-part-three" style={{ display: stepper.count === 3 ? 'block' : 'none' }}>
             <h2>Describe your new application:</h2>
             <div className="input-forms-container">
-                <div className="input-form">
-                    <input className="app-name-input-form" type="text" placeholder="Application Name" maxLength="50" />
+                <div className={`input-form ${ inputAppNameFocus ? 'input-form-focus' : '' }`}>
+                    <input className="app-name-input-form"
+                            name="app_name"
+                            type="text"
+                            placeholder="Application Name"
+                            maxLength="50"
+                            autoComplete="off"
+                            value={appInfo ? appInfo.appName : ''}
+                            onClick={handleInputOnClick}
+                            onChange={handleInputOnChange}
+                            onBlur={handleInputOnBlur} />
+                    <span className="input-length">{inputAppNameLength} / 50</span>
                 </div>
-                <div className="input-form">
-                    <input className="url-link-input-form" type="text" placeholder="URL link" maxLength="50" />
-                </div>
-                <div className="input-form">
-                    <input className="short-description-input-form" type="text" placeholder="Short Description" maxLength="150" />
+                <div className={`input-form ${ inputShortDescFocus ? 'input-form-focus' : '' }`}>
+                    <input className="short-description-input-form"
+                            name="short_description"
+                            type="text"
+                            placeholder="Short Description"
+                            maxLength="150"
+                            autoComplete="off"
+                            value={appInfo ? appInfo.shortDesc : ''}
+                            onClick={handleInputOnClick}
+                            onChange={handleInputOnChange}
+                            onBlur={handleInputOnBlur} />
+                    <span className="input-length">{inputShortDescLength} / 150</span>
                 </div>
             </div>
-            <button className="submit-app-button">Submit</button>
+            <button className="submit-app-button"
+                    disabled={ disableButton }
+                    onClick={handleSubmitOnClick}>
+                Submit
+            </button>
         </div>
     );
 }
@@ -241,7 +358,7 @@ const CreateNewAppModal = (props) => {
                 <ProgressStepper stepper={stepper} />
                 <ModalFormPartOne setHiddenCreateNewAppModal={setHiddenCreateNewAppModal} stepper={stepper} dispatchStepper={dispatchStepper} category={category} setCategory={setCategory} />
                 <ModalFormPartTwo setHiddenCreateNewAppModal={setHiddenCreateNewAppModal} stepper={stepper} dispatchStepper={dispatchStepper} setBuildMode={setBuildMode} />
-                <ModalFormPartThree setHiddenCreateNewAppModal={setHiddenCreateNewAppModal} stepper={stepper} dispatchStepper={dispatchStepper} setAppInfo={setAppInfo} />
+                <ModalFormPartThree setHiddenCreateNewAppModal={setHiddenCreateNewAppModal} stepper={stepper} dispatchStepper={dispatchStepper} appInfo={appInfo} setAppInfo={setAppInfo} />
                 <button className="back-button" onClick={ handleBackButtonOnClick }>Back</button>
             </div>
         </div>
