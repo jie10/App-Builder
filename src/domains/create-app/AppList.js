@@ -2,6 +2,8 @@ import { generateUniqId, generateTimestamp } from "../../utils/helpers/generate"
 import { encodeToURL } from "../../utils/helpers/url";
 import { parseObject, unparseObject } from "../../utils/helpers/json";
 
+import noPreviewAvailableImage from '../../assets/images/no-preview-available.png';
+import defaultTemplateImage from '../../assets/images/default-template.png';
 
 let list = parseObject(localStorage.getItem("apps_list"));
 
@@ -13,8 +15,12 @@ export const createNew = (data) => {
     data._id = generateUniqId();
 
     data.appURL = `${encodeToURL(data.appName)}-${data._id}`;
-    
+
     data.createdTimestamp = generateTimestamp();
+
+    data.publishStatus = "Not Published";
+
+    data.themePreview = data.buildMode === "template" ? defaultTemplateImage : noPreviewAvailableImage ;
 
     let newList = list ? list.concat(data) : [ data ];
 

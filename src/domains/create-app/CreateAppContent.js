@@ -1,16 +1,28 @@
 import React, { useState, useEffect } from 'react'
-import { Divider, Grid } from '@mui/material';
+import {
+    Divider,
+    Grid,
+    Tooltip
+} from '@mui/material';
 import { useLocation } from "react-router-dom";
 import Loader from "react-loader-spinner";
 
 import {
     AddOutlined as AddOutlinedIcon,
-    CreateNewFolderOutlined as CreateNewFolderOutlinedIcon
+    CreateNewFolderOutlined as CreateNewFolderOutlinedIcon,
+    SearchOutlined as SearchOutlinedIcon,
+    GridViewOutlined as GridViewOutlinedIcon,
+    ViewListOutlined as ViewListOutlinedIcon,
+    CloseOutlined as CloseOutlinedIcon
 } from '@mui/icons-material';
 
 import "./CreateAppContent.css";
 
+import { findAll } from './AppList';
+
 import sampleCoverImage from "../../assets/images/sample-cover-image.png";
+import noPreviewAvailableImage from '../../assets/images/no-preview-available.png';
+
 import CreateNewFolderModal from './CreateNewFolderModal';
 import CreateNewAppModal from './CreateNewAppModal';
 
@@ -97,6 +109,78 @@ const FirstWebsiteSection = (props) => {
     );
 }
 
+const AppsListSection = (props) => {
+    const { appsList } = props;
+    const styledDivider = { margin: "0 36px" };
+
+    const loadApps = () => {
+        if (appsList && appsList.length > 0) {
+            return appsList.map((app, i) => {
+                return <Grid key={i} item xs={12} md={6} lg={3}>
+                            <div className="card card-app-container">
+                                <div className="preview">
+                                    <img src={app.themePreview} alt="app preview" />
+                                </div>
+                                <div className="details">
+                                    <h3 className="app-name">{app.appName}</h3>
+                                    <p className="publish-status">{app.publishStatus}</p>
+                                </div>
+                            </div>
+                        </Grid>;
+            })
+        } else {
+            return '';
+        }
+    }
+
+    return (
+        <div className="app-list-container">
+            <div className="list-header">
+                <div className="load-content-buttons-container">
+                    <button className="load-content-button">All Sites</button>
+                </div>
+                <div className="navigate-content-container">
+                    <div className="search-app-container">
+                        <div className="search-app-icon">
+                            <SearchOutlinedIcon />
+                        </div>
+                        <input className="search-app-input" type="text" placeholder="Search for an app..." maxLength="250" />
+                        <div className="search-clear-icon hidden">
+                            <CloseOutlinedIcon />
+                        </div>
+                    </div>
+                    <Divider orientation="vertical" flexItem sx={styledDivider} />
+                    <div className="view-content-type-container">
+                        <Tooltip
+                                title={<span style={{ display: "block", padding: "8px", fontSize: "14px" }}>Grid View</span>}
+                                placement="top"
+                                describeChild
+                                arrow>
+                                    <button className="content-type-button content-type-button-active">
+                                        <GridViewOutlinedIcon />
+                                    </button>
+                        </Tooltip>
+                        <Tooltip
+                                title={<span style={{ display: "block", padding: "8px", fontSize: "14px" }}>List View</span>}
+                                placement="top"
+                                describeChild
+                                arrow>
+                                    <button className="content-type-button">
+                                        <ViewListOutlinedIcon />
+                                    </button>
+                        </Tooltip>
+                    </div>
+                </div>
+            </div>
+            <div className="list-content">
+                <Grid container spacing={5}>
+                    { loadApps() }
+                </Grid>
+            </div>
+        </div>
+    );
+}
+
 const ContentLoader = () => {
     return (
         <div className="content-loader">
@@ -106,8 +190,8 @@ const ContentLoader = () => {
                 height={50}
                 width={80}
             />
-            <span class="text">Loading your apps</span>
-            <span class="text">Please wait...</span>
+            <span className="text">Loading your apps</span>
+            <span className="text">Please wait...</span>
         </div>
     );
 }
@@ -119,6 +203,18 @@ const CreateAppContent = (props) => {
     const [hiddenCreateNewFolderModal, setHiddenCreateNewFolderModal] = useState(true);
     const [hiddenCreateNewAppModal, setHiddenCreateNewAppModal] = useState(true);
     const [scrollValueFromTop, setScrollValueFromTop] = useState(false);
+
+    const loadContent = () => {
+        let appsList = findAll();
+
+        if (loadingContent && appsList.length > 0) {
+            return <AppsListSection appsList={appsList} />
+        } if (loadingContent && appsList.length < 1) {
+            return <FirstWebsiteSection setHiddenCreateNewAppModal={setHiddenCreateNewAppModal} />
+        } else {
+            return <ContentLoader />;
+        }
+    }
 
     const handleOnScroll = (e) => {
         if (e.target.firstChild.offsetHeight >= e.target.scrollTop ) {
@@ -139,14 +235,10 @@ const CreateAppContent = (props) => {
 
     }, [location])
 
-    return(
+    return (
         <div className="content-container" onScroll={handleOnScroll}>
             <Header setHiddenCreateNewFolderModal={setHiddenCreateNewFolderModal} setHiddenCreateNewAppModal={setHiddenCreateNewAppModal} scrollValueFromTop={scrollValueFromTop} />
-            {
-                loadingContent ? 
-                    <FirstWebsiteSection 
-                        setHiddenCreateNewAppModal={setHiddenCreateNewAppModal} /> : <ContentLoader />
-            }
+            { loadContent() }
             <CreateNewFolderModal hiddenCreateNewFolderModal={hiddenCreateNewFolderModal} setHiddenCreateNewFolderModal={setHiddenCreateNewFolderModal} />
             <CreateNewAppModal hiddenCreateNewAppModal={hiddenCreateNewAppModal} setHiddenCreateNewAppModal={setHiddenCreateNewAppModal}/>
         </div>
