@@ -110,6 +110,10 @@ const FirstWebsiteSection = (props) => {
 
 const AppsListSection = (props) => {
     const { appsList, setLoadingContent, showGridView, setShowGridView } = props;
+
+    const [searchKeyword, setSearchKeyword] = useState(null);
+    const [showSearchClear, setShowSearchClear] = useState(false);
+
     const styledDivider = { margin: "0 36px" };
 
     const loadApps = () => {
@@ -132,6 +136,18 @@ const AppsListSection = (props) => {
         }
     }
 
+    const handleSearchInputOnChange = (e) => {
+        let keyword = e.target.value;
+
+        setSearchKeyword(keyword)
+        setShowSearchClear(keyword && keyword.length > 0 ? true : false);
+    }
+
+    const handeSearchClearOnClick = () => {
+        setSearchKeyword(null);
+        setShowSearchClear(false);
+    }
+
     const handleLoadContentOnClick = () => setLoadingContent(false);
 
     const handleGridViewOnClick = () => setShowGridView(true);
@@ -152,9 +168,16 @@ const AppsListSection = (props) => {
                         <div className="search-app-icon">
                             <SearchOutlinedIcon />
                         </div>
-                        <input className="search-app-input" type="text" placeholder="Search for an app..." maxLength="250" />
-                        <div className="search-clear-icon hidden">
-                            <CloseOutlinedIcon />
+                        <input className="search-app-input"
+                                type="text"
+                                placeholder="Search for an app..."
+                                maxLength="250"
+                                value={searchKeyword ? searchKeyword : ''}
+                                autoFocus={true}
+                                onChange={handleSearchInputOnChange} />
+                        <div className={`search-clear-icon ${!showSearchClear ? 'hidden' : ''}`}
+                            onClick={handeSearchClearOnClick}>
+                                <CloseOutlinedIcon />
                         </div>
                     </div>
                     <Divider orientation="vertical" flexItem sx={styledDivider} />
