@@ -21,7 +21,6 @@ import "./CreateAppContent.css";
 import { findAll } from './AppList';
 
 import sampleCoverImage from "../../assets/images/sample-cover-image.png";
-import noPreviewAvailableImage from '../../assets/images/no-preview-available.png';
 
 import CreateNewFolderModal from './CreateNewFolderModal';
 import CreateNewAppModal from './CreateNewAppModal';
@@ -113,6 +112,8 @@ const AppsListSection = (props) => {
     const { appsList } = props;
     const styledDivider = { margin: "0 36px" };
 
+    const [ showGridView, setShowGridView ] = useState(true);
+
     const loadApps = () => {
         if (appsList && appsList.length > 0) {
             return appsList.map((app, i) => {
@@ -132,6 +133,10 @@ const AppsListSection = (props) => {
             return '';
         }
     }
+
+    const handleGridViewOnClick = () => setShowGridView(true);
+
+    const handleListViewOnClick = () => setShowGridView(false);
 
     return (
         <div className="app-list-container">
@@ -156,7 +161,10 @@ const AppsListSection = (props) => {
                                 placement="top"
                                 describeChild
                                 arrow>
-                                    <button className="content-type-button content-type-button-active">
+                                    <button
+                                        className={`content-type-button ${showGridView ? 'content-type-button-active' : ''}`}
+                                        id="grid_view_button"
+                                        onClick={handleGridViewOnClick}>
                                         <GridViewOutlinedIcon />
                                     </button>
                         </Tooltip>
@@ -165,18 +173,22 @@ const AppsListSection = (props) => {
                                 placement="top"
                                 describeChild
                                 arrow>
-                                    <button className="content-type-button">
+                                    <button
+                                        className={`content-type-button ${!showGridView ? 'content-type-button-active' : ''}`}
+                                        id="list_view_button"
+                                        onClick={handleListViewOnClick}>
                                         <ViewListOutlinedIcon />
                                     </button>
                         </Tooltip>
                     </div>
                 </div>
             </div>
-            <div className="list-content">
+            <div className={`list-content grid-view ${!showGridView ? 'hidden' : ''}`}>
                 <Grid container spacing={5}>
                     { loadApps() }
                 </Grid>
             </div>
+            <div className={`list-content list-view ${showGridView ? 'hidden' : ''}`}></div>
         </div>
     );
 }
