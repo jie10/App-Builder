@@ -4,7 +4,7 @@ import { Search as SearchIcon } from '@mui/icons-material';
 
 import "./CreateNewAppModal.css"
 
-import { appCategories } from "../../constants/sample-data";
+import { appCategories } from "../../utils/constants/dataMart";
 import { createNew } from "./AppList";
 
 const MAX_STEPS = 3;

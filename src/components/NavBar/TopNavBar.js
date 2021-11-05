@@ -11,7 +11,7 @@ import {
 
 import "./TopNavBar.css";
 
-import { sampleUser } from '../../constants/sample-data'
+import { sampleUser } from "../../utils/constants/dataMart";
 
 import siteLogo from "../../assets/logos/ceblogo.png";
 import notifBellImage from "../../assets/images/notif-bell-image.png";
