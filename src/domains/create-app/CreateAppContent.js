@@ -109,10 +109,8 @@ const FirstWebsiteSection = (props) => {
 }
 
 const AppsListSection = (props) => {
-    const { appsList } = props;
+    const { appsList, setLoadingContent, showGridView, setShowGridView } = props;
     const styledDivider = { margin: "0 36px" };
-
-    const [ showGridView, setShowGridView ] = useState(true);
 
     const loadApps = () => {
         if (appsList && appsList.length > 0) {
@@ -134,6 +132,8 @@ const AppsListSection = (props) => {
         }
     }
 
+    const handleLoadContentOnClick = () => setLoadingContent(false);
+
     const handleGridViewOnClick = () => setShowGridView(true);
 
     const handleListViewOnClick = () => setShowGridView(false);
@@ -142,7 +142,10 @@ const AppsListSection = (props) => {
         <div className="app-list-container">
             <div className="list-header">
                 <div className="load-content-buttons-container">
-                    <button className="load-content-button">All Sites</button>
+                    <button className="load-content-button"
+                        onClick={handleLoadContentOnClick}>
+                            All Apps
+                    </button>
                 </div>
                 <div className="navigate-content-container">
                     <div className="search-app-container">
@@ -156,30 +159,18 @@ const AppsListSection = (props) => {
                     </div>
                     <Divider orientation="vertical" flexItem sx={styledDivider} />
                     <div className="view-content-type-container">
-                        <Tooltip
-                                title={<span style={{ display: "block", padding: "8px", fontSize: "14px" }}>Grid View</span>}
-                                placement="top"
-                                describeChild
-                                arrow>
-                                    <button
-                                        className={`content-type-button ${showGridView ? 'content-type-button-active' : ''}`}
-                                        id="grid_view_button"
-                                        onClick={handleGridViewOnClick}>
-                                        <GridViewOutlinedIcon />
-                                    </button>
-                        </Tooltip>
-                        <Tooltip
-                                title={<span style={{ display: "block", padding: "8px", fontSize: "14px" }}>List View</span>}
-                                placement="top"
-                                describeChild
-                                arrow>
-                                    <button
-                                        className={`content-type-button ${!showGridView ? 'content-type-button-active' : ''}`}
-                                        id="list_view_button"
-                                        onClick={handleListViewOnClick}>
-                                        <ViewListOutlinedIcon />
-                                    </button>
-                        </Tooltip>
+                        <button
+                            className={`content-type-button ${showGridView ? 'content-type-button-active' : ''}`}
+                            id="grid_view_button"
+                            onClick={handleGridViewOnClick}>
+                                <GridViewOutlinedIcon />
+                        </button>
+                        <button
+                            className={`content-type-button ${!showGridView ? 'content-type-button-active' : ''}`}
+                            id="list_view_button"
+                            onClick={handleListViewOnClick}>
+                            <ViewListOutlinedIcon />
+                        </button>
                     </div>
                 </div>
             </div>
@@ -212,15 +203,17 @@ const CreateAppContent = (props) => {
     let location = useLocation();
 
     const [loadingContent, setLoadingContent] = useState(false);
+    const [ showGridView, setShowGridView ] = useState(true);
     const [hiddenCreateNewFolderModal, setHiddenCreateNewFolderModal] = useState(true);
     const [hiddenCreateNewAppModal, setHiddenCreateNewAppModal] = useState(true);
     const [scrollValueFromTop, setScrollValueFromTop] = useState(false);
 
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     const loadContent = () => {
         let appsList = findAll();
 
         if (loadingContent && appsList.length > 0) {
-            return <AppsListSection appsList={appsList} />
+            return <AppsListSection appsList={appsList} setLoadingContent={setLoadingContent} showGridView={showGridView} setShowGridView={setShowGridView}/>
         } if (loadingContent && appsList.length < 1) {
             return <FirstWebsiteSection setHiddenCreateNewAppModal={setHiddenCreateNewAppModal} />
         } else {
@@ -245,7 +238,7 @@ const CreateAppContent = (props) => {
 
         return () => clearTimeout(timer);
 
-    }, [location])
+    }, [location, loadContent])
 
     return (
         <div className="content-container" onScroll={handleOnScroll}>
