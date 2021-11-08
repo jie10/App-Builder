@@ -121,7 +121,7 @@ const AppsListSection = (props) => {
             return appsList.map((app, i) => {
                 return <Grid key={i} item xs={12} md={6} lg={3}>
                             <div className="card card-app-container">
-                                <div className="preview">
+                                <div className="preview" onClick={() => window.location.href = `/dashboard/apps/${app.appURL}`}>
                                     <img src={app.themePreview} alt="app preview" />
                                 </div>
                                 <div className="details">

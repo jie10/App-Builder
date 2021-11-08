@@ -8,6 +8,7 @@ import Layout from '../Layout'
 
 import Editor from '../Editor'
 import CreateApp from '../../domains/create-app/CreateApp';
+import AppDashboard from '../../domains/app-dashboard/AppDashboard';
 
 export default class extends Component {
   state = {
@@ -29,6 +30,7 @@ export default class extends Component {
           <Switch>
             <Route exact path="/" render={() => <Editor />} />
             <Route exact path="/account/apps" render={() => <CreateApp />} />
+            <Route path="/dashboard/apps/:id" render={() => <AppDashboard />} />
           </Switch>
         </BrowserRouter>
       </ThemeProvider>
