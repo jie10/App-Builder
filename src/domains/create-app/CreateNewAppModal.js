@@ -144,7 +144,7 @@ const ModalFormPartTwo = (props) => {
         e.preventDefault();
 
         if (stepper.count >= 2 && stepper.count < MAX_STEPS) {
-            let buildMode = { buildMode: 'template' };
+            let buildMode = { buildMode: 'default_template' };
             dispatchStepper({type: 'increment'});
             setAppInfo({...appInfo, ...buildMode});
         } else {

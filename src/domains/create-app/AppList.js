@@ -14,13 +14,13 @@ export const findOne = (key) => list && list.length > 0 ? list.filter(item => it
 export const createNew = (data) => {
     data._id = generateUniqId();
 
-    data.appURL = `${encodeToURL(data.appName)}-${data._id}`;
+    data.appURL = data._id;
 
     data.createdTimestamp = generateTimestamp();
 
     data.publishStatus = "Not Published";
 
-    data.themePreview = data.buildMode === "template" ? defaultTemplateImage : noPreviewAvailableImage ;
+    data.themePreview = data.buildMode === "default_template" ? defaultTemplateImage : noPreviewAvailableImage ;
 
     let newList = list ? list.concat(data) : [ data ];
 
