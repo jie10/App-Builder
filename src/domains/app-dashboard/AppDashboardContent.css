@@ -1,0 +1,13 @@
+.app-dashboard-content-container {
+    display: flex;
+    flex-flow: row nowrap;
+}
+
+.app-dashboard-content-container .main-content {
+    width: 55%;
+    margin: 0 auto;
+}
+
+.app-dashboard-content-container .main-content-minimize {
+    width: 80%;
+}

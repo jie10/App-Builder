@@ -1,0 +1,97 @@
+.app-side-bar-container {
+    position: fixed;
+    width: 270px;
+    height: calc(100vh - 50px);
+    background-color: #131720;
+}
+
+.app-side-bar-container .side-nav-menu .menu-item,
+.app-side-bar-container .side-nav-menu .menu-item:visited {
+    display: flex;
+    flex-flow: row nowrap;
+    padding: 8px;
+    border-left: 5px solid transparent;
+    color: #FFFFFF;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.app-side-bar-container .side-nav-menu .menu-item:hover {
+    color: #00B9EB;
+    border-left: 5px solid #00B9EB;
+}
+
+.app-side-bar-container .menu-item-active {
+    border-left: 5px solid #FFFFFF;
+    background-color: #0073AA;
+}
+
+.app-side-bar-container .menu-item-active .menu-item {
+    padding: 8px 8px 8px 4px;
+}
+
+.app-side-bar-container .menu-item-active .menu-item:hover {
+    border-left: 5px solid transparent;
+    color: #FFFFFF;
+}
+
+.app-side-bar-container .side-nav-menu .menu-item .nav-icon {
+    width: fit-content;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    margin: 0 8px 0 0;
+    transform: scale(0.8);
+}
+
+.app-side-bar-container .side-nav-menu .menu-item .nav-text {
+    width: 100%;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 14px;
+}
+
+.app-side-bar-container .side-nav-menu .menu-item .nav-text .plan-type {
+    margin: 0 8px 0 0;
+}
+
+.app-side-bar-minimize {
+    width: 48px;
+}
+
+.app-side-bar-minimize .side-nav-menu .menu-item .nav-text {
+    display: none;
+}
+
+.main-header-container {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    padding: 16px 8px;
+    text-decoration: none;
+}
+
+.main-header-container .app-details-icon {
+    width: fit-content;
+    display: flex;
+    margin: 0 8px 0 0;
+    padding: 4px;
+    background-color: #C3C4C7;
+    color: #FFFFFF;
+}
+
+.main-header-container .app-details-icon svg {
+    transform: scale(0.8);
+}
+
+.main-header-container .app-details-name {
+    display: block;
+    font-size: 18px;
+    color: #FFFFFF;
+}
+
+.main-header-container .app-details-name-hidden {
+    display: none;
+}
