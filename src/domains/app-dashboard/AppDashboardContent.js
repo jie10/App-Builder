@@ -3,11 +3,16 @@ import React, { useState }  from 'react'
 import "./AppDashboardContent.css";
 
 import AppSideBar from '../../components/SideBar/AppSideBar';
+import { MyHome } from './AppDashboardPages';
 
 const MainContent = (props) => {
     const { menuOnCollapse } = props;
 
-    return <div className={`main-content ${menuOnCollapse ? 'main-content-minimize' : ''}`}></div>;
+    const currentURL = window.location.pathname.split('/').slice(0, -1).join("/");
+
+    return <div className={`main-content ${menuOnCollapse ? 'main-content-minimize' : ''}`}>
+                <MyHome currentURL={currentURL} />
+            </div>;
 }
 
 const AppDashboardContent = () => {
