@@ -15,3 +15,18 @@ export const MyHome = (props) => {
         </div>
     );
 }
+
+export const Pages = (props) => {
+    const { currentURL } = props;
+
+    return (
+        <div className="pages-container">
+            <div className="header-container">
+                <div className="header-title">
+                    <h1>Pages</h1>
+                    <p>Create, edit, and manage the pages on your site. <a href="/support/pages" target="_blank">Learn more</a>.</p>
+                </div>
+            </div>
+        </div>
+    );
+}

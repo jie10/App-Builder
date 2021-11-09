@@ -52,3 +52,37 @@
 .my-home-container .header-container .header-link:hover {
     border: 1px solid #3c434a;
 }
+
+.pages-container {
+    width: 100%;
+    padding: 50px 0;
+    background-color: #FFFFFF;
+}
+
+.pages-container .header-container {
+    width: 60%;
+    margin: auto;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-start;
+}
+
+.pages-container .header-container .header-title h1 {
+    margin: 0 0 8px 0;
+    font-size: 18px;
+}
+
+.pages-container .header-container .header-title p {
+    margin: 0;
+    font-size: 14px;
+}
+
+.pages-container .header-container .header-title a,
+.pages-container .header-container .header-title a:visited {
+    text-decoration: none;
+    color: #06A0DB;
+}
+
+.pages-container .header-container .header-title a:hover {
+    color: #044b7a;
+}
