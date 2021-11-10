@@ -123,9 +123,12 @@ const AppsListSection = (props) => {
                                 <div className="preview" onClick={() => window.location.href = `/dashboard/${app.appURL}/home`}>
                                     <img src={app.themePreview} alt="app preview" />
                                 </div>
-                                <div className="details">
-                                    <h3 className="app-name">{app.appName}</h3>
-                                    <p className="publish-status">{app.isPublished ? "Pubished" : "Not Published"}</p>
+                                <div className="details-container">
+                                    <div className="details">
+                                        <h3 className="app-name">{app.appName}</h3>
+                                        <p className="publish-status">{app.isPublished ? "Pubished" : "Not Published"}</p>
+                                    </div>
+                                    <a className="preview-link" href={`/dashboard/${app.appURL}/preview`} target="_self">Preview</a>
                                 </div>
                             </div>
                         </Grid>;
