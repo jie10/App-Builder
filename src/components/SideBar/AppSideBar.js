@@ -18,6 +18,8 @@ import {
 
 import "./AppSideBar.css";
 
+import { findOne } from '../../api/AppList';
+
 const MainHeader = (props) => {
     const { menuOnCollapse, previewURL } = props;
     const [highlightAppIcon, setHighlightAppIcon] = useState(false);
@@ -26,12 +28,19 @@ const MainHeader = (props) => {
 
     const highlightOnBlur = () => setHighlightAppIcon(false);
 
+    const loadAppName = () => {
+        let currentId = previewURL.split('/').slice(-2)[0];
+        let currentApp = findOne(currentId);
+
+        return currentApp ? currentApp.appName : '';
+    }
+
     return (
-        <a className="main-header-container" href={previewURL} onMouseEnter={highlightOnHover} onMouseLeave={highlightOnBlur}>
+        <a className="main-header-container" href={previewURL} onMouseEnter={highlightOnHover} onMouseLeave={highlightOnBlur} title={loadAppName()}>
             <span className={`app-details-icon ${highlightAppIcon ? 'app-details-icon-highlight' : ''}`}>
                 {highlightAppIcon ? <HomeIcon/> : <PublicIcon/>}
             </span>
-            <span className={`app-details-name ${menuOnCollapse ? 'app-details-name-hidden' : ''}`}>App Name</span>
+            <span className={`app-details-name ${menuOnCollapse ? 'app-details-name-hidden' : ''}`}>{ loadAppName() }</span>
         </a>
     );
 }

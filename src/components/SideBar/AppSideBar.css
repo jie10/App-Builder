@@ -93,8 +93,12 @@
 
 .main-header-container .app-details-name {
     display: block;
+    width: 200px; 
     font-size: 18px;
     color: #FFFFFF;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis; 
 }
 
 .main-header-container .app-details-name-hidden {

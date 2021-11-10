@@ -10,7 +10,7 @@ let list = parseObject(localStorage.getItem("apps_list"));
 
 export const findAll = () => list && list.length > 0 ? list : [];
 
-export const findOne = (key) => list && list.length > 0 ? list.filter(item => item === key)[0] : [];
+export const findOne = (key) => list && list.length > 0 ? list.filter(item => item._id === key)[0] : null;
 
 export const createNew = (data) => {
     data._id = generateUniqId();
