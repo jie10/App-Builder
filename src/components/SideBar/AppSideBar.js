@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import {
     KeyboardArrowLeftOutlined as KeyboardArrowLeftOutlinedIcon,
@@ -20,11 +20,16 @@ import "./AppSideBar.css";
 
 const MainHeader = (props) => {
     const { menuOnCollapse, previewURL } = props;
+    const [highlightAppIcon, setHighlightAppIcon] = useState(false);
+
+    const highlightOnHover = () => setHighlightAppIcon(true);
+
+    const highlightOnBlur = () => setHighlightAppIcon(false);
 
     return (
-        <a className="main-header-container" href={previewURL}>
-            <span className="app-details-icon">
-                <PublicIcon/>
+        <a className="main-header-container" href={previewURL} onMouseEnter={highlightOnHover} onMouseLeave={highlightOnBlur}>
+            <span className={`app-details-icon ${highlightAppIcon ? 'app-details-icon-highlight' : ''}`}>
+                {highlightAppIcon ? <HomeIcon/> : <PublicIcon/>}
             </span>
             <span className={`app-details-name ${menuOnCollapse ? 'app-details-name-hidden' : ''}`}>App Name</span>
         </a>
