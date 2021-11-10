@@ -252,8 +252,9 @@ const ModalFormPartThree = (props) => {
             setInputAppNameLength(0);
             setInputShortDescLength(0);
             setDisableButton(true);
-            let newAppId = createNew({...appInfo, ...{appName, shortDesc}});
-            appInfo.newAppId = newAppId;
+            let newApp = createNew({...appInfo, ...{appName, shortDesc}});
+            appInfo.newAppId = newApp.appId;
+            appInfo.defaultPageId = newApp.defaultPageId;
             setCreateSuccess(true);
         } else {
             dispatchStepper({type: 'reset'});
@@ -332,7 +333,7 @@ const ModalFormSuccess = (props) => {
         <div className="modal-form modal-form-success" style={{ display: stepper.count > 3 ? 'block' : 'none' }}>
             <h2>New App has been created successfully!</h2>
             <div className="form-buttons">
-                <a href={`/editor/${appInfo.newAppId}/page`} target="_self">Edit New App</a>
+                <a href={`/editor/${appInfo.newAppId}/page/${appInfo.defaultPageId}`} target="_self">Edit New App</a>
                 <a href={`/dashboard/${appInfo.newAppId}/home`} target="_self">Go to Dashboard</a>
             </div>
         </div>

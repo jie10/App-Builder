@@ -21,13 +21,22 @@ export const createNew = (data) => {
 
     data.themePreview = data.buildMode === "default_template" ? defaultTemplateImage : noPreviewAvailableImage ;
 
-    data.pages = [];
+    data.pages = [
+        {
+            _id: generateUniqId(),
+            pageName: "index",
+            pageStatus: "draft",
+            createdTimestamp: generateTimestamp(),
+            components: [],
+            sortId: 1
+        }
+    ];
 
     let newList = list ? list.concat(data) : [ data ];
 
     localStorage.setItem("apps_list", unparseObject(newList));
 
-    return data._id;
+    return { appId: data._id, defaultPageId: data.pages[0]._id };
 }
 
 export const removeOne = (key) => {
