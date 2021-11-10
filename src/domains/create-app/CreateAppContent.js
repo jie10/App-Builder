@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import {
     Divider,
-    Grid,
-    Tooltip
+    Grid
 } from '@mui/material';
 import { useLocation } from "react-router-dom";
 import Loader from "react-loader-spinner";
@@ -126,7 +125,7 @@ const AppsListSection = (props) => {
                                 </div>
                                 <div className="details">
                                     <h3 className="app-name">{app.appName}</h3>
-                                    <p className="publish-status">{app.publishStatus}</p>
+                                    <p className="publish-status">{app.isPublished ? "Pubished" : "Not Published"}</p>
                                 </div>
                             </div>
                         </Grid>;

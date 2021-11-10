@@ -252,7 +252,8 @@ const ModalFormPartThree = (props) => {
             setInputAppNameLength(0);
             setInputShortDescLength(0);
             setDisableButton(true);
-            createNew({...appInfo, ...{appName, shortDesc}});
+            let newAppId = createNew({...appInfo, ...{appName, shortDesc}});
+            appInfo.newAppId = newAppId;
             setCreateSuccess(true);
         } else {
             dispatchStepper({type: 'reset'});
@@ -325,14 +326,14 @@ const ModalFormPartThree = (props) => {
 }
 
 const ModalFormSuccess = (props) => {
-    const { stepper} = props;
+    const { stepper, appInfo } = props;
 
     return (
         <div className="modal-form modal-form-success" style={{ display: stepper.count > 3 ? 'block' : 'none' }}>
             <h2>New App has been created successfully!</h2>
             <div className="form-buttons">
-                <a href="/" target="_self">Edit New App</a>
-                <a href="/" target="_self">Go to Dashboard</a>
+                <a href={`/editor/${appInfo.newAppId}/page`} target="_self">Edit New App</a>
+                <a href={`/dashboard/${appInfo.newAppId}/home`} target="_self">Go to Dashboard</a>
             </div>
         </div>
     );
@@ -378,7 +379,7 @@ const CreateNewAppModal = (props) => {
                 <ModalFormPartOne setHiddenCreateNewAppModal={setHiddenCreateNewAppModal} stepper={stepper} dispatchStepper={dispatchStepper} setAppInfo={setAppInfo} />
                 <ModalFormPartTwo setHiddenCreateNewAppModal={setHiddenCreateNewAppModal} stepper={stepper} dispatchStepper={dispatchStepper} appInfo={appInfo} setAppInfo={setAppInfo} />
                 <ModalFormPartThree setHiddenCreateNewAppModal={setHiddenCreateNewAppModal} stepper={stepper} dispatchStepper={dispatchStepper} appInfo={appInfo} setAppInfo={setAppInfo} setCreateSuccess={setCreateSuccess} />
-                <ModalFormSuccess setHiddenCreateNewAppModal={setHiddenCreateNewAppModal} stepper={stepper} dispatchStepper={dispatchStepper} />
+                { appInfo ? <ModalFormSuccess stepper={stepper} dispatchStepper={dispatchStepper} appInfo={appInfo} /> : '' } 
                 <button className="back-button" onClick={ handleBackButtonOnClick }>Back</button>
             </div>
         </div>

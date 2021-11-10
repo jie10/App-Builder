@@ -1,5 +1,4 @@
 import { generateUniqId, generateTimestamp } from "../../utils/helpers/generate";
-import { encodeToURL } from "../../utils/helpers/url";
 import { parseObject, unparseObject } from "../../utils/helpers/json";
 
 import noPreviewAvailableImage from '../../assets/images/no-preview-available.png';
@@ -18,13 +17,17 @@ export const createNew = (data) => {
 
     data.createdTimestamp = generateTimestamp();
 
-    data.publishStatus = "Not Published";
+    data.isPublished = false;
 
     data.themePreview = data.buildMode === "default_template" ? defaultTemplateImage : noPreviewAvailableImage ;
+
+    data.pages = [];
 
     let newList = list ? list.concat(data) : [ data ];
 
     localStorage.setItem("apps_list", unparseObject(newList));
+
+    return data._id;
 }
 
 export const removeOne = (key) => {
