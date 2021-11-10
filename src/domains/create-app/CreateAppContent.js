@@ -17,7 +17,7 @@ import {
 
 import "./CreateAppContent.css";
 
-import { findAll } from './AppList';
+import { findAll } from '../../api/AppList';
 
 import sampleCoverImage from "../../assets/images/sample-cover-image.png";
 

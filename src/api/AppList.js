@@ -1,8 +1,10 @@
-import { generateUniqId, generateTimestamp } from "../../utils/helpers/generate";
-import { parseObject, unparseObject } from "../../utils/helpers/json";
+import { generateUniqId, generateTimestamp } from "../utils/helpers/generate";
+import { parseObject, unparseObject } from "../utils/helpers/json";
 
-import noPreviewAvailableImage from '../../assets/images/no-preview-available.png';
-import defaultTemplateImage from '../../assets/images/default-template.png';
+import noPreviewAvailableImage from '../assets/images/no-preview-available.png';
+import defaultTemplateImage from '../assets/images/default-template.png';
+
+/** TODO - TRANSFORM TO API IN FUTURE IMPROVEMENT: DATA TEMPORARILY STORED IN LOCAL STORAGE */
 
 let list = parseObject(localStorage.getItem("apps_list"));
 
