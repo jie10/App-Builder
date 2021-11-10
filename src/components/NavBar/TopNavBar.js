@@ -166,7 +166,7 @@ const TopNavBar = () => {
                             { loadApps() }
                         </div>
                         <div className="list-footer">
-                            <a className="footer-link" href={ currentURL } target="_self">Go to all Apps</a>
+                            <a className="footer-link" href="/account/apps" target="_self">Go to all Apps</a>
                         </div>
                     </div>
                 </div>
