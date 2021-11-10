@@ -130,6 +130,45 @@
     user-select: none;          /* Likely future */ 
 }
 
+.top-nav-bar-site-nav div.site-nav .sites-list-items .apps-list-container {
+    width: 100%;
+    padding: 0 0 12px 0;
+}
+
+.top-nav-bar-site-nav div.site-nav .sites-list-items .apps-list-container .app-container,
+.top-nav-bar-site-nav div.site-nav .sites-list-items .apps-list-container .app-container:visited {
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+    padding: 12px 24px;
+    text-decoration: none;
+}
+
+.top-nav-bar-site-nav div.site-nav .sites-list-items .apps-list-container .app-container:hover {
+    background-color: #EAF7FF;
+    cursor: pointer;
+}
+
+.top-nav-bar-site-nav div.site-nav .sites-list-items .apps-list-container .app-container .app-preview-image {
+    width: 65px;
+    height: 36px;
+    border: 1px solid rgba(22,45,61,.12);
+    border-radius: 4px;
+    box-sizing: border-box;
+    overflow: hidden;
+    margin: 0 12px 0 0;
+}
+
+.top-nav-bar-site-nav div.site-nav .sites-list-items .apps-list-container .app-container .app-preview-image img {
+    max-width: 100%;
+}
+
+.top-nav-bar-site-nav div.site-nav .sites-list-items .apps-list-container .app-container .app-name {
+    color: #000000;
+    font-weight: 300;
+    font-size: 14px;
+}
+
 .top-nav-bar-site-nav .sites-list-items .pointer {
     top: -4px;
     left: 25%;

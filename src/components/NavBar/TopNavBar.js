@@ -11,6 +11,8 @@ import {
 
 import "./TopNavBar.css";
 
+import { findAll } from '../../api/AppList';
+
 import { sampleUser } from "../../utils/constants/dataMart";
 
 import siteLogo from "../../assets/logos/ceblogo.png";
@@ -114,6 +116,30 @@ const TopNavBar = () => {
         if (openAccountMenu) setOpenAccountMenu(false);
     });
 
+    const loadApps = () => {
+        let appsList = findAll();
+
+        if (appsList && appsList.length > 0) {
+            return <div className="apps-list-container">
+                        {
+                            appsList.map((app, i) => {
+                                return <a key={i} className="app-container" href={`/dashboard/${app.appURL}/home`} target="_self">
+                                            <span className="app-preview-image">
+                                                <img src={app.themePreview} alt="preview" />
+                                            </span>
+                                            <span className="app-name">{app.appName}</span>
+                                        </a>;
+                            })
+                        }
+                    </div>;
+        } else {
+            return <div className="no-results-container">
+                        <h3 className="no-results-title">No Apps Found</h3>
+                        <p className="no-results-description">You don't have any apps to show at the moment. Create a new one to see it here.</p>
+                    </div>;
+        }
+    }
+
     return (
         <div className="top-nav-bar-container">
             <div className="top-nav-bar top-nav-bar-site-nav">
@@ -137,10 +163,7 @@ const TopNavBar = () => {
                             </a>
                         </div>
                         <div className="list-content">
-                            <div className="no-results-container">
-                                <h3 className="no-results-title">No Apps Found</h3>
-                                <p className="no-results-description">You don't have any apps to show at the moment. Create a new one to see it here.</p>
-                            </div>
+                            { loadApps() }
                         </div>
                         <div className="list-footer">
                             <a className="footer-link" href={ currentURL } target="_self">Go to all Apps</a>
@@ -169,7 +192,7 @@ const TopNavBar = () => {
                 <div className="site-nav">
                     <div className="item">
                         <span className="link-text">
-                            <a href={ currentURL } target="_blank">Hire a Professional</a>
+                            <a href={ currentURL } target="_blank" rel="noreferrer">Hire a Professional</a>
                         </span>
                     </div>
                 </div>
