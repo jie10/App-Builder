@@ -34,7 +34,7 @@ const AppDashboardContent = () => {
 
     return (
         <div className="app-dashboard-content-container">
-            <AppSideBar menuOnCollapse={menuOnCollapse} setMenuOnCollapse={setMenuOnCollapse} />
+            <AppSideBar menuOnCollapse={menuOnCollapse} setMenuOnCollapse={setMenuOnCollapse} pageName={page} />
             <MainContent menuOnCollapse={menuOnCollapse} pageName={page} />
         </div>
     );
