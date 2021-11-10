@@ -137,8 +137,8 @@ const AppSideBar = (props) => {
     return (
         <div className={`app-side-bar-container ${menuOnCollapse ? 'app-side-bar-minimize' : ''}`}>
             <MainHeader menuOnCollapse={menuOnCollapse} previewURL={`${currentURL}/preview`} />
-            { navMenuItems.map(item => {
-                return <div className={`side-nav-menu ${pageName === item.pageName ? 'menu-item-active' : ''}`}>
+            { navMenuItems.map((item, i) => {
+                return <div key={i} className={`side-nav-menu ${pageName === item.pageName ? 'menu-item-active' : ''}`}>
                             <a className="menu-item" href={item.href}>
                                 <span className="nav-icon">
                                     {item.icon}
