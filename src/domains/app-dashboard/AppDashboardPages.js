@@ -1,10 +1,15 @@
 import React, { useState } from 'react';
 
 import {
-    Search as SearchIcon
+    Search as SearchIcon,
+    AccessTime as AccessTimeIcon,
+    MoreHoriz as MoreHorizIcon
 } from '@mui/icons-material';
 
 import "./AppDashboardPages.css";
+
+import { convertTimestampToDateTime, convertTimestampFromNow } from '../../utils/helpers/convert';
+import { findOne } from '../../api/AppList';
 
 import  { ReactComponent as IllustrationPagesImage }from "../../assets/svgs/illustration-pages.svg";
 
@@ -24,8 +29,47 @@ export const MyHome = (props) => {
     );
 }
 
+const PagesList = (props) => {
+    const { currentAppId, pages } = props;
+    const [toggleMoreMenu, setToggleMoreMenu] = useState(false);
+
+    const moreMenuOnClick = () => setToggleMoreMenu(!toggleMoreMenu);
+
+    return <div className="pages-list">
+                <div className="pages-list-header">
+                    <h2>Pages</h2>
+                    <a className="create-page-button"
+                        href={`/editor/${currentAppId}/page/new`}
+                        target="_blank"
+                        rel="noreferrer">
+                            Add new page
+                    </a>
+                </div>
+                <div className="pages-list-content">
+                    { pages.map((page, i) => 
+                        <div key={i} className="content-details">
+                            <a className="page-name"
+                                href={`/editor/${currentAppId}/page/${page._id}`}
+                                title={`Edit ${page.pageTitle}`}
+                                target="_self">
+                                    {page.pageTitle}
+                            </a>
+                            <span className="time-created" title={convertTimestampToDateTime(page.updatedTimestamp)}>
+                                <AccessTimeIcon/>
+                                {convertTimestampFromNow(page.updatedTimestamp)}
+                            </span>
+                        </div>)
+                    }
+                    <button className={`more-menu-button ${toggleMoreMenu ? 'more-vertical-menu-button' : ''}`}
+                            onClick={moreMenuOnClick}>
+                        <MoreHorizIcon/>
+                    </button>
+                </div>
+            </div>;
+}
+
 const PublishedPages = (props) => {
-    const { currentAppId } = props;
+    const { currentAppId, pages } = props;
 
     const noPagesFound = <div className="no-pages-found-container">
                             <div className="details-image">
@@ -44,12 +88,12 @@ const PublishedPages = (props) => {
                         </div>;
 
     return <div className="pages-list-container published-pages">
-                { noPagesFound }
+                { pages.length > 0 ? <PagesList currentAppId={currentAppId} pages={pages} /> : noPagesFound }
             </div>;
 }
 
 const DraftPages = (props) => {
-    const { currentAppId } = props;
+    const { currentAppId, pages } = props;
 
     const noPagesFound = <div className="no-pages-found-container">
                             <div className="details-image">
@@ -68,12 +112,12 @@ const DraftPages = (props) => {
                         </div>;
 
     return <div className="pages-list-container draft-pages">
-                { noPagesFound }
+                { pages.length > 0 ? <PagesList currentAppId={currentAppId} pages={pages} /> : noPagesFound }
             </div>;
 }
 
 const ScheduledPages = (props) => {
-    const { currentAppId } = props;
+    const { currentAppId, pages } = props;
 
     const noPagesFound = <div className="no-pages-found-container">
                             <div className="details-image">
@@ -92,12 +136,12 @@ const ScheduledPages = (props) => {
                         </div>;
 
     return <div className="pages-list-container scheduled-pages">
-                { noPagesFound }
+                { pages.length > 0 ? <PagesList currentAppId={currentAppId} pages={pages} /> : noPagesFound }
             </div>;
 }
 
 const TrashedPages = (props) => {
-    const { currentAppId } = props;
+    const { currentAppId, pages } = props;
 
     const noPagesFound = <div className="no-pages-found-container">
                             <div className="details-image">
@@ -110,7 +154,7 @@ const TrashedPages = (props) => {
                         </div>;
 
     return <div className="pages-list-container trashed-pages">
-                { noPagesFound }
+                { pages.length > 0 ? <PagesList currentAppId={currentAppId} pages={pages} /> : noPagesFound }
             </div>;
 }
 
@@ -163,15 +207,22 @@ export const Pages = (props) => {
     }
 
     const loadSelectedPage = () => {
+        const currentApp = findOne(currentAppId);
+        let pages = currentApp ? currentApp.pages : [];
+
         switch (pageSelected) {
             case "published_pages_tab":
-                return <PublishedPages currentAppId={currentAppId} />;
+                pages = pages.length > 0 ? pages.filter(page => page.pageStatus === "published") : pages;
+                return <PublishedPages currentAppId={currentAppId} pages={pages} />;
             case "draft_pages_tab":
-                return <DraftPages currentAppId={currentAppId} />;
+                pages = pages.length > 0 ? pages.filter(page => page.pageStatus === "draft") : pages;
+                return <DraftPages currentAppId={currentAppId} pages={pages} />;
             case "scheduled_pages_tab":
-                return <ScheduledPages currentAppId={currentAppId} />;
+                pages = pages.length > 0 ? pages.filter(page => page.pageStatus === "scheduled") : pages;
+                return <ScheduledPages currentAppId={currentAppId} pages={pages} />;
             case "trashed_pages_tab":
-                return <TrashedPages currentAppId={currentAppId} />;
+                pages = pages.length > 0 ? pages.filter(page => page.pageStatus === "trashed") : pages;
+                return <TrashedPages currentAppId={currentAppId} pages={pages} />;
             default:
                 return <></>;
         }
@@ -215,6 +266,7 @@ export const Pages = (props) => {
                 </div>
             </div>
             { loadSelectedPage() }
+            <div className="list-end-indicator"></div>
         </div>
     );
 }

@@ -27,8 +27,10 @@ export const createNew = (data) => {
         {
             _id: generateUniqId(),
             pageName: "index",
+            pageTitle: "Untitled",
             pageStatus: "draft",
             createdTimestamp: generateTimestamp(),
+            updatedTimestamp: generateTimestamp(),
             components: [],
             sortId: 1
         }
