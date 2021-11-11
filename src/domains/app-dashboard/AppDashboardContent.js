@@ -17,7 +17,7 @@ const MainContent = (props) => {
             case "home":
                 return <MyHome currentURL={currentURL} />;
             case "pages":
-                return <Pages currentURL={currentURL} />;
+                return <Pages currentAppId={currentURL.split('/').slice(-1)[0]} />;
             default:
             break;
         }
