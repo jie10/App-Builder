@@ -73,6 +73,7 @@
 }
 
 .pages-tab-container {
+    position: relative;
     width: 60%;
     margin: 24px auto;
     display: flex;
@@ -130,9 +131,95 @@
 .pages-tab-container .search-container {
     display: flex;
     align-items: center;
-    padding: 8px;
+    color: #3C434A;
+}
+
+.pages-tab-container .search-wide-container {
+    box-sizing: border-box;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+    background-color: #FFFFFF;
+}
+
+.pages-tab-container .search-navigation-icon {
+    width: 50px;
+    text-align: center;
+    color: #0675C4;
+}
+
+.pages-tab-container .close-navigation-icon {
+    display: none;
+    width: 50px;
+    text-align: center;
+    cursor: pointer;
+    color: #3C434A;
+}
+
+.pages-tab-container .search-navigation-icon svg:hover {
     color: #3C434A;
     cursor: pointer;
+}
+
+.pages-tab-container .search-page-list-input {
+    display: none;
+    width: 100%;
+    height: 55px;
+    padding: 0 50px;
+    border: 1px solid #c3c4c7;
+    font-size: 16px;
+    background-color: #FFFFFF;
+}
+
+.pages-tab-container .search-page-list-input:focus {
+    border: 1px solid #C8E3FB;
+    box-shadow: 0 0 0 3px #91caf2;
+    -webkit-box-shadow: 0 0 0 3px #91caf2;
+    -moz-box-shadow: 0 0 0 3px #91caf2;
+}
+
+.pages-tab-container .search-wide-container .search-navigation-icon {
+    position: absolute;
+    left: 0;
+    color: #3C434A;
+}
+
+.pages-tab-container .search-wide-container .close-navigation-icon {
+    display: block;
+    position: absolute;
+    right: 0;
+}
+
+.pages-tab-container .search-wide-container .search-page-list-input {
+    display: block;
+}
+
+.pages-list-container .no-page-results-found-container {
+    width: 60%;
+    margin: 0 auto;
+    display: flex;
+    flex-flow: row;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.pages-list-container .no-page-results-found-container .details-image {
+    margin: 0 12px 0 0;
+    padding: 0;
+    width: 75px;
+    height: 75px;
+    text-align: center;
+}
+
+.pages-list-container .no-page-results-found-container .details-image svg {
+    transform: scale(0.8);
+}
+
+.pages-list-container .no-page-results-found-container .details-text {
+    text-align: center;
 }
 
 .pages-list-container .no-pages-found-container {

@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import {
     Search as SearchIcon,
     AccessTime as AccessTimeIcon,
-    MoreHoriz as MoreHorizIcon
+    MoreHoriz as MoreHorizIcon,
+    Close as CloseIcon
 } from '@mui/icons-material';
 
 import "./AppDashboardPages.css";
@@ -35,37 +36,40 @@ const PagesList = (props) => {
 
     const moreMenuOnClick = () => setToggleMoreMenu(!toggleMoreMenu);
 
-    return <div className="pages-list">
-                <div className="pages-list-header">
-                    <h2>Pages</h2>
-                    <a className="create-page-button"
-                        href={`/editor/${currentAppId}/page/new`}
-                        target="_blank"
-                        rel="noreferrer">
-                            Add new page
-                    </a>
+    return <>
+                <div className="pages-list">
+                    <div className="pages-list-header">
+                        <h2>Pages</h2>
+                        <a className="create-page-button"
+                            href={`/editor/${currentAppId}/page/new`}
+                            target="_blank"
+                            rel="noreferrer">
+                                Add new page
+                        </a>
+                    </div>
+                    <div className="pages-list-content">
+                        { pages.map((page, i) => 
+                            <div key={i} className="content-details">
+                                <a className="page-name"
+                                    href={`/editor/${currentAppId}/page/${page._id}`}
+                                    title={`Edit ${page.pageTitle}`}
+                                    target="_self">
+                                        {page.pageTitle}
+                                </a>
+                                <span className="time-created" title={convertTimestampToDateTime(page.updatedTimestamp)}>
+                                    <AccessTimeIcon/>
+                                    {convertTimestampFromNow(page.updatedTimestamp)}
+                                </span>
+                            </div>)
+                        }
+                        <button className={`more-menu-button ${toggleMoreMenu ? 'more-vertical-menu-button' : ''}`}
+                                onClick={moreMenuOnClick}>
+                            <MoreHorizIcon/>
+                        </button>
+                    </div>
                 </div>
-                <div className="pages-list-content">
-                    { pages.map((page, i) => 
-                        <div key={i} className="content-details">
-                            <a className="page-name"
-                                href={`/editor/${currentAppId}/page/${page._id}`}
-                                title={`Edit ${page.pageTitle}`}
-                                target="_self">
-                                    {page.pageTitle}
-                            </a>
-                            <span className="time-created" title={convertTimestampToDateTime(page.updatedTimestamp)}>
-                                <AccessTimeIcon/>
-                                {convertTimestampFromNow(page.updatedTimestamp)}
-                            </span>
-                        </div>)
-                    }
-                    <button className={`more-menu-button ${toggleMoreMenu ? 'more-vertical-menu-button' : ''}`}
-                            onClick={moreMenuOnClick}>
-                        <MoreHorizIcon/>
-                    </button>
-                </div>
-            </div>;
+                <div className="list-end-indicator"></div>
+            </>;
 }
 
 const PublishedPages = (props) => {
@@ -158,6 +162,23 @@ const TrashedPages = (props) => {
             </div>;
 }
 
+const SearchResultPages = (props) => {
+    const { currentAppId, pages, searchKeyword } = props;
+
+    const noPagesFound = <div className="no-page-results-found-container">
+                            <div className="details-image">
+                                <IllustrationPagesImage />
+                            </div>
+                            <span className="details-text">
+                                No pages match your search for {searchKeyword}.
+                            </span>
+                        </div>;
+
+    return <div className="pages-list-container trashed-pages">
+                { pages.length > 0 ? <PagesList currentAppId={currentAppId} pages={pages} /> : noPagesFound }
+            </div>;
+}
+
 export const Pages = (props) => {
     const { currentAppId } = props;
 
@@ -166,6 +187,8 @@ export const Pages = (props) => {
     const [scheduledTabActive, setScheduledTabActive] = useState(false);
     const [trashedTabActive, setTrashedTabActive] = useState(false);
     const [pageSelected, setPageSelected] = useState("published_pages_tab");
+    const [toggleSearchBar, setToggleSearchBar] = useState(false);
+    const [searchKeyword, setSearchKeyword] = useState(null);
 
     const handleTabOnClick = (e) => {
         let tabClicked = e.target.id;
@@ -206,26 +229,56 @@ export const Pages = (props) => {
         }
     }
 
+    const handleSearchBarShowOnClick = () => setToggleSearchBar(true);
+
+    const handleSearchBarHideOnClick = () => {
+        setSearchKeyword(null);
+        setToggleSearchBar(false);
+    }
+
+    const handleSearchInputOnChange = (e) => {
+        let keyword = e.target.value;
+
+        if (keyword.length > 0) {
+            setSearchKeyword(keyword);
+        } else {
+            setSearchKeyword(null);
+            setToggleSearchBar(false);
+        }
+    } 
+
     const loadSelectedPage = () => {
         const currentApp = findOne(currentAppId);
         let pages = currentApp ? currentApp.pages : [];
 
-        switch (pageSelected) {
-            case "published_pages_tab":
-                pages = pages.length > 0 ? pages.filter(page => page.pageStatus === "published") : pages;
-                return <PublishedPages currentAppId={currentAppId} pages={pages} />;
-            case "draft_pages_tab":
-                pages = pages.length > 0 ? pages.filter(page => page.pageStatus === "draft") : pages;
-                return <DraftPages currentAppId={currentAppId} pages={pages} />;
-            case "scheduled_pages_tab":
-                pages = pages.length > 0 ? pages.filter(page => page.pageStatus === "scheduled") : pages;
-                return <ScheduledPages currentAppId={currentAppId} pages={pages} />;
-            case "trashed_pages_tab":
-                pages = pages.length > 0 ? pages.filter(page => page.pageStatus === "trashed") : pages;
-                return <TrashedPages currentAppId={currentAppId} pages={pages} />;
-            default:
-                return <></>;
+        let filterList = (pageType) => pages.filter(page => page.pageStatus === pageType);
+
+        if (searchKeyword && searchKeyword.length > 0) {
+            pages = pages.filter(page => {
+                const searchCriteria = new RegExp(`${searchKeyword}`, 'gi');
+                return searchCriteria.test(page.pageTitle) === true;
+            });
+
+            return <SearchResultPages currentAppId={currentAppId} pages={pages} searchKeyword={searchKeyword} />;
+        } else {
+            switch (pageSelected) {
+                case "published_pages_tab":
+                    pages = pages.length > 0 ? filterList("published") : pages;
+                    return <PublishedPages currentAppId={currentAppId} pages={pages} />;
+                case "draft_pages_tab":
+                    pages = pages.length > 0 ? filterList("draft") : pages;
+                    return <DraftPages currentAppId={currentAppId} pages={pages} />;
+                case "scheduled_pages_tab":
+                    pages = pages.length > 0 ? filterList("scheduled") : pages;
+                    return <ScheduledPages currentAppId={currentAppId} pages={pages} />;
+                case "trashed_pages_tab":
+                    pages = pages.length > 0 ? filterList("trashed") : pages;
+                    return <TrashedPages currentAppId={currentAppId} pages={pages} />;
+                default:
+                    return <></>;
+            }
         }
+        
     }
 
     return (
@@ -259,14 +312,22 @@ export const Pages = (props) => {
                         <span className="badge-pages-count">0</span>
                     </div>
                 </div>
-                <div className="search-container">
-                    <div className="search-navigation-icon">
+                <div className={`search-container ${toggleSearchBar ? 'search-wide-container' : ''}`}>
+                    <div className="search-navigation-icon" onClick={handleSearchBarShowOnClick}>
                         <SearchIcon/>
+                    </div>
+                    <input className="search-page-list-input"
+                            type="text"
+                            placeholder="Search pages..."
+                            value={searchKeyword ? searchKeyword : ''}
+                            autoFocus
+                            onChange={handleSearchInputOnChange} />
+                    <div className="close-navigation-icon" onClick={handleSearchBarHideOnClick}>
+                        <CloseIcon/>
                     </div>
                 </div>
             </div>
             { loadSelectedPage() }
-            <div className="list-end-indicator"></div>
         </div>
     );
 }
