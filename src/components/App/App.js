@@ -30,7 +30,7 @@ export default class extends Component {
           <Switch>
             <Route exact path="/" render={() => <Editor />} />
             <Route exact path="/account/apps" render={() => <CreateApp />} />
-            <Route path="/dashboard/:id/:page" render={() => <AppDashboard />} />
+            <Route path="/dashboard/:id/:page/:sub_page?" render={() => <AppDashboard />} />
           </Switch>
         </BrowserRouter>
       </ThemeProvider>

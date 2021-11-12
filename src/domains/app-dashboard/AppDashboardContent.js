@@ -30,12 +30,12 @@ const MainContent = (props) => {
 
 const AppDashboardContent = () => {
     const [menuOnCollapse, setMenuOnCollapse] = useState(false);
-    const { page } = useParams();
+    const { id, page, sub_page } = useParams();
 
     return (
         <div className="app-dashboard-content-container">
-            <AppSideBar menuOnCollapse={menuOnCollapse} setMenuOnCollapse={setMenuOnCollapse} pageName={page} />
-            <MainContent menuOnCollapse={menuOnCollapse} pageName={page} />
+            <AppSideBar menuOnCollapse={menuOnCollapse} setMenuOnCollapse={setMenuOnCollapse} pageName={page} subPageName={sub_page} currentAppId={id} />
+            <MainContent menuOnCollapse={menuOnCollapse} pageName={page} subPageName={sub_page} />
         </div>
     );
 }
