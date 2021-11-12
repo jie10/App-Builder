@@ -305,6 +305,7 @@
 }
 
 .pages-list-container .pages-list .pages-list-content {
+    position: relative;
     display: flex;
     flex-flow: row;
     justify-content: space-between;
@@ -346,6 +347,81 @@
 
 .pages-list-container .pages-list .pages-list-content .more-menu-button svg {
     transition: transform .15s cubic-bezier(.175,.885,.32,1.275);
+}
+
+.pages-list-container .pages-list .pages-list-content .more-menu-list {
+    position: absolute;
+    top: 65px;
+    right: 15px;
+    width: 200px;
+    display: none;
+    flex-flow: column;
+    background-color: #FFFFFF;
+    border: 1px solid #c3c4c7;
+    padding: 4px 0;
+    box-shadow: 0 2px 5px rgb(0 0 0 / 10%), 0 0 56px rgb(0 0 0 / 8%);
+    -webkit-box-shadow: 0 2px 5px rgb(0 0 0 / 10%), 0 0 56px rgb(0 0 0 / 8%);
+    -moz-box-shadow: 0 2px 5px rgb(0 0 0 / 10%), 0 0 56px rgb(0 0 0 / 8%);
+    -webkit-user-select: none;  /* Chrome all / Safari all */
+    -moz-user-select: none;     /* Firefox all */
+    -ms-user-select: none;      /* IE 10+ */
+    user-select: none;          /* Likely future */
+    z-index: 2;
+}
+
+.pages-list-container .pages-list .pages-list-content .show-list {
+    display: flex;
+}
+
+.pages-list-container .pages-list .pages-list-content .more-menu-list .pointer {
+    position: absolute;
+    top: -8px;
+    right: 18px;
+    height: 12px;
+    width: 12px;
+    content: " ";
+    background-color: #FFFFFF;
+    border-right: 1px solid #c3c4c7;
+    border-bottom: 1px solid #c3c4c7;
+    transform: translateX(0) rotate(-135deg);
+    z-index: 1;
+}
+
+.pages-list-container .pages-list .pages-list-content .more-menu-list .more-menu-item {
+    background-color: transparent;
+    border: none;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    color: #646970;
+    padding: 4px 16px;
+    z-index: 3;
+}
+
+.pages-list-container .pages-list .pages-list-content .more-menu-list .more-menu-item:hover {
+    background-color: #0073AA;
+    color: #FFFFFF
+}
+
+.pages-list-container .pages-list .pages-list-content .more-menu-list .more-menu-item .more-menu-item-icon {
+    transform: scale(0.8);
+    margin: 0 4px 0 0;
+}
+
+.pages-list-container .pages-list .pages-list-content .more-menu-list .more-menu-item .more-menu-item-text {
+    font-size: 14px;
+}
+
+.pages-list-container .pages-list .pages-list-content .show-list .more-menu-item:last-child {
+    margin: 8px 0 0 0;
+    border-top: 1px solid #c3c4c7;
+}
+
+.pages-list-container .pages-list .pages-list-content .more-menu-list .page-type {
+    border-top: 1px solid #F6F7F7;
+    padding: 8px 16px;
+    color: #646970;
+    font-size: 14px;
 }
 
 .pages-container .list-end-indicator {

@@ -1,10 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useRef } from 'react';
 
 import {
     Search as SearchIcon,
     AccessTime as AccessTimeIcon,
     MoreHoriz as MoreHorizIcon,
-    Close as CloseIcon
+    Close as CloseIcon,
+    CreateOutlined as CreateOutlinedIcon,
+    CheckOutlined as CheckOutlinedIcon,
+    RemoveRedEyeOutlined as RemoveRedEyeOutlinedIcon,
+    InsertLinkOutlined as InsertLinkOutlinedIcon,
+    ContentCopyOutlined as ContentCopyOutlinedIcon,
+    Delete as DeleteIcon
 } from '@mui/icons-material';
 
 import "./AppDashboardPages.css";
@@ -31,10 +37,33 @@ export const MyHome = (props) => {
 }
 
 const PagesList = (props) => {
-    const { currentAppId, pages } = props;
+    const { currentAppId, pageType, pages } = props;
     const [toggleMoreMenu, setToggleMoreMenu] = useState(false);
+    const buttonRef = useRef([]);
+    const pageRef = useRef([]);
 
-    const moreMenuOnClick = () => setToggleMoreMenu(!toggleMoreMenu);
+    const moreMenuOnClick = (e) => {
+        setToggleMoreMenu(!toggleMoreMenu);
+
+        let currentIndex = pageRef.current.findIndex(page => page.id.split('_').slice(-1)[0] === e.currentTarget.id.split('_').slice(-1)[0])
+
+        if (!e.currentTarget.classList.contains('more-vertical-menu-button')) {
+            e.currentTarget.classList.add('more-vertical-menu-button');
+            pageRef.current[currentIndex].classList.add('show-list');
+            for (let i = currentIndex; i < pageRef.current.length; i++) {
+                if (i !== currentIndex) {
+                    pageRef.current[i].classList.remove('show-list');
+                    buttonRef.current[i].classList.remove('more-vertical-menu-button');
+                }
+            }
+        } else {
+            e.currentTarget.classList.remove('more-vertical-menu-button');
+            for (let i = currentIndex; i < pageRef.current.length; i++) {
+                pageRef.current[i].classList.remove('show-list');
+                    buttonRef.current[i].classList.remove('more-vertical-menu-button');
+            }
+        }
+    }
 
     return <>
                 <div className="pages-list">
@@ -47,9 +76,9 @@ const PagesList = (props) => {
                                 Add new page
                         </a>
                     </div>
-                    <div className="pages-list-content">
-                        { pages.map((page, i) => 
-                            <div key={i} className="content-details">
+                    { pages.map((page, i) => 
+                        <div key={i} className="pages-list-content">
+                            <div className="content-details">
                                 <a className="page-name"
                                     href={`/editor/${currentAppId}/page/${page._id}`}
                                     title={`Edit ${page.pageTitle}`}
@@ -60,13 +89,71 @@ const PagesList = (props) => {
                                     <AccessTimeIcon/>
                                     {convertTimestampFromNow(page.updatedTimestamp)}
                                 </span>
-                            </div>)
-                        }
-                        <button className={`more-menu-button ${toggleMoreMenu ? 'more-vertical-menu-button' : ''}`}
-                                onClick={moreMenuOnClick}>
-                            <MoreHorizIcon/>
-                        </button>
-                    </div>
+                            </div>
+                            <button className="more-menu-button"
+                                    id={`more-menu-button_${page._id}`}
+                                    ref={el => buttonRef.current[i] = el}
+                                    onClick={moreMenuOnClick}>
+                                <MoreHorizIcon/>
+                            </button>
+                            <div className="more-menu-list"
+                                id={`more-menu-list_${page._id}`}
+                                ref={el => pageRef.current[i] = el}>
+                                <div className="pointer"></div>
+                                <button className="more-menu-item">
+                                    <span className="more-menu-item-icon">
+                                        <CreateOutlinedIcon/>
+                                    </span>
+                                    <span className="more-menu-item-text">
+                                        Edit
+                                    </span>
+                                </button>
+                                <button className="more-menu-item">
+                                    <span className="more-menu-item-icon">
+                                        <CheckOutlinedIcon/>
+                                    </span>
+                                    <span className="more-menu-item-text">
+                                        Publish
+                                    </span>
+                                </button>
+                                <button className="more-menu-item">
+                                    <span className="more-menu-item-icon">
+                                        <RemoveRedEyeOutlinedIcon/>
+                                    </span>
+                                    <span className="more-menu-item-text">
+                                        Preview
+                                    </span>
+                                </button>
+                                <button className="more-menu-item">
+                                    <span className="more-menu-item-icon">
+                                        <InsertLinkOutlinedIcon/>
+                                    </span>
+                                    <span className="more-menu-item-text">
+                                        Copy page
+                                    </span>
+                                </button>
+                                <button className="more-menu-item">
+                                    <span className="more-menu-item-icon">
+                                        <ContentCopyOutlinedIcon/>
+                                    </span>
+                                    <span className="more-menu-item-text">
+                                        Copy link
+                                    </span>
+                                </button>
+                                <button className="more-menu-item">
+                                    <span className="more-menu-item-icon">
+                                        <DeleteIcon/>
+                                    </span>
+                                    <span className="more-menu-item-text">
+                                        Trash
+                                    </span>
+                                </button>
+                                <div className="page-type">
+                                    {pageType}
+                                </div>
+                            </div>
+                        </div>)
+                    }
                 </div>
                 <div className="list-end-indicator"></div>
             </>;
@@ -92,7 +179,7 @@ const PublishedPages = (props) => {
                         </div>;
 
     return <div className="pages-list-container published-pages">
-                { pages.length > 0 ? <PagesList currentAppId={currentAppId} pages={pages} /> : noPagesFound }
+                { pages.length > 0 ? <PagesList currentAppId={currentAppId} pageType={"Published"} pages={pages} /> : noPagesFound }
             </div>;
 }
 
@@ -116,7 +203,7 @@ const DraftPages = (props) => {
                         </div>;
 
     return <div className="pages-list-container draft-pages">
-                { pages.length > 0 ? <PagesList currentAppId={currentAppId} pages={pages} /> : noPagesFound }
+                { pages.length > 0 ? <PagesList currentAppId={currentAppId} pageType={"Draft"} pages={pages} /> : noPagesFound }
             </div>;
 }
 
@@ -140,7 +227,7 @@ const ScheduledPages = (props) => {
                         </div>;
 
     return <div className="pages-list-container scheduled-pages">
-                { pages.length > 0 ? <PagesList currentAppId={currentAppId} pages={pages} /> : noPagesFound }
+                { pages.length > 0 ? <PagesList currentAppId={currentAppId} pageType={"Scheduled"} pages={pages} /> : noPagesFound }
             </div>;
 }
 
@@ -158,7 +245,7 @@ const TrashedPages = (props) => {
                         </div>;
 
     return <div className="pages-list-container trashed-pages">
-                { pages.length > 0 ? <PagesList currentAppId={currentAppId} pages={pages} /> : noPagesFound }
+                { pages.length > 0 ? <PagesList currentAppId={currentAppId} pageType={"Trashed"} pages={pages} /> : noPagesFound }
             </div>;
 }
 
@@ -175,7 +262,7 @@ const SearchResultPages = (props) => {
                         </div>;
 
     return <div className="pages-list-container trashed-pages">
-                { pages.length > 0 ? <PagesList currentAppId={currentAppId} pages={pages} /> : noPagesFound }
+                { pages.length > 0 ? <PagesList currentAppId={currentAppId} pageType={"Draft"} pages={pages} /> : noPagesFound }
             </div>;
 }
 
