@@ -12,13 +12,15 @@ import {
     ContentCopyOutlined as ContentCopyOutlinedIcon,
     Delete as DeleteIcon,
     Restore as RestoreIcon,
-    BarChart as BarChartIcon
+    BarChart as BarChartIcon,
+    Info as InfoIcon
 } from '@mui/icons-material';
 
 import "./AppDashboardPages.css";
 
 import { capitalizeWord, convertTimestampToDateTime, convertTimestampFromNow } from '../../utils/helpers/convert';
 import { useOutsideClick } from '../../utils/helpers/hooks';
+import { delay } from '../../utils/helpers/timing';
 import { findOne } from '../../api/AppList';
 
 import  { ReactComponent as IllustrationPagesImage }from "../../assets/svgs/illustration-pages.svg";
@@ -40,7 +42,7 @@ export const MyHome = (props) => {
 }
 
 const PagesList = (props) => {
-    const { currentAppId, pages } = props;
+    const { currentAppId, pages, setShowPopupCopy } = props;
     const buttonRef = useRef([]);
     const pageRef = useRef([]);
     const currentButtonRef = useRef(null);
@@ -82,104 +84,98 @@ const PagesList = (props) => {
         window.location.href = `/dashboard/${currentAppId}/preview?page=${currentPageId}`;
     }
 
+    const viewPageOnClick = (e) => {
+        const currentPageId = e.currentTarget.parentElement.id.split('_').slice(-1)[0];
+        window.location.href = `/${currentAppId}/${currentPageId}`;
+    }
+
+    const copyLinkOnClick = (e) => {
+        const currentPageId = e.currentTarget.parentElement.id.split('_').slice(-1)[0];
+        navigator.clipboard.writeText(`${window.location.protocol}//${window.location.hostname}:${window.location.port}/dashboard/${currentAppId}/preview?page=${currentPageId}`);
+        setShowPopupCopy(true);
+        delay(() => setShowPopupCopy(false), 2000);
+    }
+
+    const copyPublishedLinkOnClick = (e) => {
+        const currentPageId = e.currentTarget.parentElement.id.split('_').slice(-1)[0];
+        navigator.clipboard.writeText(`${window.location.protocol}//${window.location.hostname}:${window.location.port}/${currentAppId}/${currentPageId}`);
+        setShowPopupCopy(true);
+        delay(() => setShowPopupCopy(false), 2000);
+    }
+
     useOutsideClick(currentButtonRef, () => {
         currentButtonRef.current.classList.remove('more-vertical-menu-button');
         currentPageRef.current.classList.remove('show-list');
     });
 
     const loadMoreMenuList = (pageType) => {
-        switch(pageType.toLowerCase()) {
-            case "published":
-                return <>
-                    <button className="more-menu-item"
-                            onClick={editPageOnClick}>
-                        <span className="more-menu-item-icon">
-                            <CreateOutlinedIcon/>
-                        </span>
-                        <span className="more-menu-item-text">
-                            Edit
-                        </span>
-                    </button>
-                    <button className="more-menu-item"
-                            onClick={previewPageOnClick}>
-                        <span className="more-menu-item-icon">
-                            <RemoveRedEyeOutlinedIcon/>
-                        </span>
-                        <span className="more-menu-item-text">
-                            View Page
-                        </span>
-                    </button>
-                    <button className="more-menu-item">
-                        <span className="more-menu-item-icon">
-                            <BarChartIcon/>
-                        </span>
-                        <span className="more-menu-item-text">
-                            Stats
-                        </span>
-                    </button>
-                    <button className="more-menu-item">
-                        <span className="more-menu-item-icon">
-                            <InsertLinkOutlinedIcon/>
-                        </span>
-                        <span className="more-menu-item-text">
-                            Copy page
-                        </span>
-                    </button>
-                    <button className="more-menu-item">
-                        <span className="more-menu-item-icon">
-                            <ContentCopyOutlinedIcon/>
-                        </span>
-                        <span className="more-menu-item-text">
-                            Copy link
-                        </span>
-                    </button>
-                    <button className="more-menu-item">
-                        <span className="more-menu-item-icon">
-                            <DeleteIcon/>
-                        </span>
-                        <span className="more-menu-item-text">
-                            Trash
-                        </span>
-                    </button>
-                </>;
-            case "draft":
-            case "scheduled":
-            return <>
-                    <button className="more-menu-item"
-                            onClick={editPageOnClick}>
-                        <span className="more-menu-item-icon">
-                            <CreateOutlinedIcon/>
-                        </span>
-                        <span className="more-menu-item-text">
-                            Edit
-                        </span>
-                    </button>
-                    <button className="more-menu-item">
-                        <span className="more-menu-item-icon">
-                            <CheckOutlinedIcon/>
-                        </span>
-                        <span className="more-menu-item-text">
-                            Publish
-                        </span>
-                    </button>
-                    <button className="more-menu-item"
-                            onClick={previewPageOnClick}>
-                        <span className="more-menu-item-icon">
-                            <RemoveRedEyeOutlinedIcon/>
-                        </span>
-                        <span className="more-menu-item-text">
-                            Preview
-                        </span>
-                    </button>
-                    <button className="more-menu-item">
-                        <span className="more-menu-item-icon">
-                            <InsertLinkOutlinedIcon/>
-                        </span>
-                        <span className="more-menu-item-text">
-                            Copy page
-                        </span>
-                    </button>
-                    <button className="more-menu-item">
+        let page = pageType.toLowerCase();
+        return <>
+                    {
+                        page !== "trashed" ? 
+                            <button className="more-menu-item"
+                                    onClick={editPageOnClick}>
+                                <span className="more-menu-item-icon">
+                                    <CreateOutlinedIcon/>
+                                </span>
+                                <span className="more-menu-item-text">
+                                    Edit
+                                </span>
+                            </button> : ''
+                    }
+                    {
+                        page === "draft" || page === "scheduled" ? 
+                            <>
+                                <button className="more-menu-item">
+                                    <span className="more-menu-item-icon">
+                                        <CheckOutlinedIcon/>
+                                    </span>
+                                    <span className="more-menu-item-text">
+                                        Publish
+                                    </span>
+                                </button>
+                                <button className="more-menu-item"
+                                        onClick={previewPageOnClick}>
+                                    <span className="more-menu-item-icon">
+                                        <RemoveRedEyeOutlinedIcon/>
+                                    </span>
+                                    <span className="more-menu-item-text">
+                                        Preview
+                                    </span>
+                                </button>
+                            </> : page === "published" ? 
+                            <>
+                                <button className="more-menu-item"
+                                        onClick={viewPageOnClick}>
+                                    <span className="more-menu-item-icon">
+                                        <RemoveRedEyeOutlinedIcon/>
+                                    </span>
+                                    <span className="more-menu-item-text">
+                                        View Page
+                                    </span>
+                                </button>
+                                <button className="more-menu-item">
+                                    <span className="more-menu-item-icon">
+                                        <BarChartIcon/>
+                                    </span>
+                                    <span className="more-menu-item-text">
+                                        Stats
+                                    </span>
+                                </button>
+                            </> : ''
+                    }
+                    {
+                        page !== "trashed" ?
+                            <button className="more-menu-item">
+                                <span className="more-menu-item-icon">
+                                    <InsertLinkOutlinedIcon/>
+                                </span>
+                                <span className="more-menu-item-text">
+                                    Copy page
+                                </span>
+                            </button> : ''
+                    }
+                    <button className="more-menu-item" onClick={page === "published" ? copyPublishedLinkOnClick : copyLinkOnClick}>
                         <span className="more-menu-item-icon">
                             <ContentCopyOutlinedIcon/>
                         </span>
@@ -187,45 +183,35 @@ const PagesList = (props) => {
                             Copy link
                         </span>
                     </button>
-                    <button className="more-menu-item">
-                        <span className="more-menu-item-icon">
-                            <DeleteIcon/>
-                        </span>
-                        <span className="more-menu-item-text">
-                            Trash
-                        </span>
-                    </button>
+                    {
+                        page === "trashed" ? 
+                        <>
+                            <button className="more-menu-item">
+                                <span className="more-menu-item-icon">
+                                    <RestoreIcon/>
+                                </span>
+                                <span className="more-menu-item-text">
+                                    Restore
+                                </span>
+                            </button>
+                            <button className="more-menu-item delete">
+                                <span className="more-menu-item-icon">
+                                    <DeleteIcon/>
+                                </span>
+                                <span className="more-menu-item-text">
+                                    Delete
+                                </span>
+                            </button>
+                        </> : <button className="more-menu-item">
+                                <span className="more-menu-item-icon">
+                                    <DeleteIcon/>
+                                </span>
+                                <span className="more-menu-item-text">
+                                    Trash
+                                </span>
+                            </button>
+                    }
                 </>;
-            case "trashed":
-                return <>
-                    <button className="more-menu-item">
-                        <span className="more-menu-item-icon">
-                            <ContentCopyOutlinedIcon/>
-                        </span>
-                        <span className="more-menu-item-text">
-                            Copy link
-                        </span>
-                    </button>
-                    <button className="more-menu-item">
-                        <span className="more-menu-item-icon">
-                            <RestoreIcon/>
-                        </span>
-                        <span className="more-menu-item-text">
-                            Restore
-                        </span>
-                    </button>
-                    <button className="more-menu-item delete">
-                        <span className="more-menu-item-icon">
-                            <DeleteIcon/>
-                        </span>
-                        <span className="more-menu-item-text">
-                            Delete
-                        </span>
-                    </button>
-                </>;
-            default:
-            break;
-        }
     }
 
     return <>
@@ -276,7 +262,7 @@ const PagesList = (props) => {
 }
 
 const PublishedPages = (props) => {
-    const { currentAppId, pages } = props;
+    const { currentAppId, pages, setShowPopupCopy } = props;
 
     const noPagesFound = <div className="no-pages-found-container">
                             <div className="details-image">
@@ -295,12 +281,12 @@ const PublishedPages = (props) => {
                         </div>;
 
     return <div className="pages-list-container published-pages">
-                { pages.length > 0 ? <PagesList currentAppId={currentAppId} pageType={"Published"} pages={pages} /> : noPagesFound }
+                { pages.length > 0 ? <PagesList currentAppId={currentAppId} pages={pages} setShowPopupCopy={setShowPopupCopy} /> : noPagesFound }
             </div>;
 }
 
 const DraftPages = (props) => {
-    const { currentAppId, pages } = props;
+    const { currentAppId, pages, setShowPopupCopy } = props;
 
     const noPagesFound = <div className="no-pages-found-container">
                             <div className="details-image">
@@ -319,12 +305,12 @@ const DraftPages = (props) => {
                         </div>;
 
     return <div className="pages-list-container draft-pages">
-                { pages.length > 0 ? <PagesList currentAppId={currentAppId} pageType={"Draft"} pages={pages} /> : noPagesFound }
+                { pages.length > 0 ? <PagesList currentAppId={currentAppId} pages={pages} setShowPopupCopy={setShowPopupCopy} /> : noPagesFound }
             </div>;
 }
 
 const ScheduledPages = (props) => {
-    const { currentAppId, pages } = props;
+    const { currentAppId, pages, setShowPopupCopy } = props;
 
     const noPagesFound = <div className="no-pages-found-container">
                             <div className="details-image">
@@ -343,12 +329,12 @@ const ScheduledPages = (props) => {
                         </div>;
 
     return <div className="pages-list-container scheduled-pages">
-                { pages.length > 0 ? <PagesList currentAppId={currentAppId} pageType={"Scheduled"} pages={pages} /> : noPagesFound }
+                { pages.length > 0 ? <PagesList currentAppId={currentAppId} pages={pages} setShowPopupCopy={setShowPopupCopy} /> : noPagesFound }
             </div>;
 }
 
 const TrashedPages = (props) => {
-    const { currentAppId, pages } = props;
+    const { currentAppId, pages, setShowPopupCopy } = props;
 
     const noPagesFound = <div className="no-pages-found-container">
                             <div className="details-image">
@@ -361,12 +347,12 @@ const TrashedPages = (props) => {
                         </div>;
 
     return <div className="pages-list-container trashed-pages">
-                { pages.length > 0 ? <PagesList currentAppId={currentAppId} pageType={"Trashed"} pages={pages} /> : noPagesFound }
+                { pages.length > 0 ? <PagesList currentAppId={currentAppId} pages={pages} setShowPopupCopy={setShowPopupCopy} /> : noPagesFound }
             </div>;
 }
 
 const SearchResultPages = (props) => {
-    const { currentAppId, pages, searchKeyword } = props;
+    const { currentAppId, pages, searchKeyword, setShowPopupCopy } = props;
 
     const noPagesFound = <div className="no-page-results-found-container">
                             <div className="details-image">
@@ -378,7 +364,7 @@ const SearchResultPages = (props) => {
                         </div>;
 
     return <div className="pages-list-container trashed-pages">
-                { pages.length > 0 ? <PagesList currentAppId={currentAppId} pageType={"Search"} pages={pages} /> : noPagesFound }
+                { pages.length > 0 ? <PagesList currentAppId={currentAppId} pages={pages} setShowPopupCopy={setShowPopupCopy} /> : noPagesFound }
             </div>;
 }
 
@@ -392,6 +378,7 @@ export const Pages = (props) => {
     const [pageSelected, setPageSelected] = useState("published_pages_tab");
     const [toggleSearchBar, setToggleSearchBar] = useState(false);
     const [searchKeyword, setSearchKeyword] = useState(null);
+    const [showPopupCopy, setShowPopupCopy] = useState(false);
 
     const handleTabOnClick = (e) => {
         let tabClicked = e.target.id;
@@ -448,7 +435,9 @@ export const Pages = (props) => {
             setSearchKeyword(null);
             setToggleSearchBar(false);
         }
-    } 
+    }
+
+    const handleClosePopupCopyOnClick = () => setShowPopupCopy(false);
 
     const loadSelectedPage = () => {
         const currentApp = findOne(currentAppId);
@@ -462,21 +451,21 @@ export const Pages = (props) => {
                 return searchCriteria.test(page.pageTitle) === true;
             });
 
-            return <SearchResultPages currentAppId={currentAppId} pages={pages} searchKeyword={searchKeyword} />;
+            return <SearchResultPages currentAppId={currentAppId} pages={pages} searchKeyword={searchKeyword} setShowPopupCopy={setShowPopupCopy} />;
         } else {
             switch (pageSelected) {
                 case "published_pages_tab":
                     pages = pages.length > 0 ? filterList("published") : pages;
-                    return <PublishedPages currentAppId={currentAppId} pages={pages} />;
+                    return <PublishedPages currentAppId={currentAppId} pages={pages} setShowPopupCopy={setShowPopupCopy} />;
                 case "draft_pages_tab":
                     pages = pages.length > 0 ? filterList("draft") : pages;
-                    return <DraftPages currentAppId={currentAppId} pages={pages} />;
+                    return <DraftPages currentAppId={currentAppId} pages={pages} setShowPopupCopy={setShowPopupCopy} />;
                 case "scheduled_pages_tab":
                     pages = pages.length > 0 ? filterList("scheduled") : pages;
-                    return <ScheduledPages currentAppId={currentAppId} pages={pages} />;
+                    return <ScheduledPages currentAppId={currentAppId} pages={pages} setShowPopupCopy={setShowPopupCopy} />;
                 case "trashed_pages_tab":
                     pages = pages.length > 0 ? filterList("trashed") : pages;
-                    return <TrashedPages currentAppId={currentAppId} pages={pages} />;
+                    return <TrashedPages currentAppId={currentAppId} pages={pages} setShowPopupCopy={setShowPopupCopy} />;
                 default:
                     return <></>;
             }
@@ -486,6 +475,16 @@ export const Pages = (props) => {
 
     return (
         <div className="pages-container">
+            <div className={`popup-message-copy-link ${!showPopupCopy ? 'popup-message-copy-link-hidden' : ''}`}
+                onClick={handleClosePopupCopyOnClick}>
+                <span className="icon">
+                    <InfoIcon/>
+                </span>
+                <span className="text">Link copied to clipboard.</span>
+                <span className="close-button">
+                    <CloseIcon/>
+                </span>
+            </div>
             <div className="header-container">
                 <div className="header-title">
                     <h1>Pages</h1>

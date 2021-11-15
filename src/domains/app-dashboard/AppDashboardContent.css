@@ -7,8 +7,10 @@
 .app-dashboard-content-container .main-content {
     width: 100%;
     margin: 0;
+    padding: 50px 0 0 0;
 }
 
 .app-dashboard-content-container .main-content-minimize {
-    margin: 0 0 0 48px;
+    margin: 0 auto;
+    width: 80%;
 }
