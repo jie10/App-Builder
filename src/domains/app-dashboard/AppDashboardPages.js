@@ -78,6 +78,18 @@ const PagesList = (props) => {
         window.location.href = `/editor/${currentAppId}/page/${currentPageId}`;
     }
 
+    const viewStatsOnClick = (e) => {
+        const currentPageId = e.currentTarget.parentElement.id.split('_').slice(-1)[0];
+
+        window.location.href = `/dashboard/${currentAppId}/stats?page=${currentPageId}`;
+    }
+
+    const copyPageOnClick = (e) => {
+        const currentPageId = e.currentTarget.parentElement.id.split('_').slice(-1)[0];
+
+        window.location.href = `/editor/${currentAppId}/page/new?copy=${currentPageId}`;
+    }
+
     const previewPageOnClick = (e) => {
         const currentPageId = e.currentTarget.parentElement.id.split('_').slice(-1)[0];
 
@@ -154,7 +166,7 @@ const PagesList = (props) => {
                                         View Page
                                     </span>
                                 </button>
-                                <button className="more-menu-item">
+                                <button className="more-menu-item" onClick={viewStatsOnClick}>
                                     <span className="more-menu-item-icon">
                                         <BarChartIcon/>
                                     </span>
@@ -166,7 +178,7 @@ const PagesList = (props) => {
                     }
                     {
                         page !== "trashed" ?
-                            <button className="more-menu-item">
+                            <button className="more-menu-item" onClick={copyPageOnClick}>
                                 <span className="more-menu-item-icon">
                                     <InsertLinkOutlinedIcon/>
                                 </span>
