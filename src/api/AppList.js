@@ -44,7 +44,45 @@ export const createNew = (data) => {
 }
 
 export const removeOne = (key) => {
-    let newList = list && list.length > 0 ? list.filter(item => item !== key)[0] : [];
+    let newList = list && list.length > 0 ? list.filter(item => item._id !== key) : [];
 
     localStorage.setItem("apps_list", unparseObject(newList));
+}
+
+export const updatePageByStatus = (newPageStatus, appId, pageId) => {
+    let currentApp = findOne(appId);
+
+    if (currentApp && currentApp.pages) {
+        let updatedApp = currentApp.pages.map(page => {
+            if (page._id === pageId) {
+                page.pageStatus = newPageStatus;
+            }
+
+            return page;
+        });
+
+        currentApp.pages = updatedApp;
+
+        let newList = list.map(item => {
+            return updatedApp._id === item._id ? currentApp : item;
+        });
+
+        localStorage.setItem("apps_list", unparseObject(newList));
+    }
+}
+
+export const removePage = (appId, pageId) => {
+    let currentApp = findOne(appId);
+
+    if (currentApp && currentApp.pages) {
+        let updatedApp = currentApp.pages.filter(page => page._id !== pageId);
+
+        currentApp.pages = updatedApp;
+
+        let newList = list.map(item => {
+            return updatedApp._id === item._id ? currentApp : item;
+        });
+
+        localStorage.setItem("apps_list", unparseObject(newList));
+    }
 }

@@ -21,7 +21,7 @@ import "./AppDashboardPages.css";
 import { capitalizeWord, convertTimestampToDateTime, convertTimestampFromNow } from '../../utils/helpers/convert';
 import { useOutsideClick } from '../../utils/helpers/hooks';
 import { delay } from '../../utils/helpers/timing';
-import { findOne } from '../../api/AppList';
+import { findOne, removePage, updatePageByStatus } from '../../api/AppList';
 
 import  { ReactComponent as IllustrationPagesImage }from "../../assets/svgs/illustration-pages.svg";
 
@@ -115,6 +115,20 @@ const PagesList = (props) => {
         delay(() => setShowPopupCopy(false), 2000);
     }
 
+    const trashCurrentPageOnClick = (e) => {
+        const currentPageId = e.currentTarget.parentElement.id.split('_').slice(-1)[0];
+
+        delay(() => updatePageByStatus("trashed", currentAppId, currentPageId), 2000);
+    }
+
+    const deleteCurrentPageOnClick = (e) => {
+        const currentPageId = e.currentTarget.parentElement.id.split('_').slice(-1)[0];
+
+        if (window.confirm("Delete this page permanently?")) {
+            delay(() => removePage(currentAppId, currentPageId), 2000);
+        }
+    }
+
     useOutsideClick(currentButtonRef, () => {
         currentButtonRef.current.classList.remove('more-vertical-menu-button');
         currentPageRef.current.classList.remove('show-list');
@@ -206,7 +220,7 @@ const PagesList = (props) => {
                                     Restore
                                 </span>
                             </button>
-                            <button className="more-menu-item delete">
+                            <button className="more-menu-item delete" onClick={deleteCurrentPageOnClick}>
                                 <span className="more-menu-item-icon">
                                     <DeleteIcon/>
                                 </span>
@@ -214,7 +228,7 @@ const PagesList = (props) => {
                                     Delete
                                 </span>
                             </button>
-                        </> : <button className="more-menu-item">
+                        </> : <button className="more-menu-item" onClick={trashCurrentPageOnClick}>
                                 <span className="more-menu-item-icon">
                                     <DeleteIcon/>
                                 </span>
