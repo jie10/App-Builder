@@ -4,12 +4,12 @@ export const convertTimestampFromNow = (unixTimestamp) => {
     let setDate = convertTimestampToDateTime(unixTimestamp);
     let nowTimeStamp = new Date();
 
-    let years = nowTimeStamp.getFullYear() - setDate.getFullYear();
-    let months = nowTimeStamp.getMonth() - setDate.getMonth();
-    let days = nowTimeStamp.getDay() - setDate.getDay();
-    let hours = nowTimeStamp.getHours() - setDate.getHours();
-    let minutes = nowTimeStamp.getMinutes() - setDate.getMinutes();
-    let seconds = nowTimeStamp.getSeconds() - setDate.getSeconds();
+    let years = Math.abs(nowTimeStamp.getFullYear() - setDate.getFullYear());
+    let months = Math.abs(nowTimeStamp.getMonth() - setDate.getMonth());
+    let days = Math.abs(nowTimeStamp.getDay() - setDate.getDay());
+    let hours = Math.abs(nowTimeStamp.getHours() - setDate.getHours());
+    let minutes = Math.abs(nowTimeStamp.getMinutes() - setDate.getMinutes());
+    let seconds = Math.abs(nowTimeStamp.getSeconds() - setDate.getSeconds());
 
     if (years > 0) {
         return `${years > 1 ? `${years} years` : "A year"} ago`;
