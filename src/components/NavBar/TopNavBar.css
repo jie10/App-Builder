@@ -1,6 +1,6 @@
 /** TOP NAVIGATION BAR */
 .top-nav-bar-container {
-    position: relative;
+    position: fixed;
     width: 100%;
     display: flex;
     flex-flow: row nowrap;
@@ -10,6 +10,7 @@
     box-shadow: 1px 1.5px 6px 1px rgba(225,225,225,0.75);
     -webkit-box-shadow: 1px 1.5px 6px 1px rgba(225,225,225,0.75);
     -moz-box-shadow: 1px 1.5px 6px 1px rgba(225,225,225,0.75);
+    z-index: 999;
 }
 
 .top-nav-bar-site-nav {
