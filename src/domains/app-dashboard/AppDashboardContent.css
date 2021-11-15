@@ -1,11 +1,12 @@
 .app-dashboard-content-container {
+    position: relative;
     display: flex;
     flex-flow: row nowrap;
 }
 
 .app-dashboard-content-container .main-content {
     width: 100%;
-    margin: 0 0 0 270px;
+    margin: 0;
 }
 
 .app-dashboard-content-container .main-content-minimize {
