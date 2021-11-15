@@ -10,12 +10,14 @@ import {
     RemoveRedEyeOutlined as RemoveRedEyeOutlinedIcon,
     InsertLinkOutlined as InsertLinkOutlinedIcon,
     ContentCopyOutlined as ContentCopyOutlinedIcon,
-    Delete as DeleteIcon
+    Delete as DeleteIcon,
+    Restore as RestoreIcon,
+    BarChart as BarChartIcon
 } from '@mui/icons-material';
 
 import "./AppDashboardPages.css";
 
-import { convertTimestampToDateTime, convertTimestampFromNow } from '../../utils/helpers/convert';
+import { capitalizeWord, convertTimestampToDateTime, convertTimestampFromNow } from '../../utils/helpers/convert';
 import { useOutsideClick } from '../../utils/helpers/hooks';
 import { findOne } from '../../api/AppList';
 
@@ -38,7 +40,7 @@ export const MyHome = (props) => {
 }
 
 const PagesList = (props) => {
-    const { currentAppId, pageType, pages } = props;
+    const { currentAppId, pages } = props;
     const buttonRef = useRef([]);
     const pageRef = useRef([]);
     const currentButtonRef = useRef(null);
@@ -85,6 +87,147 @@ const PagesList = (props) => {
         currentPageRef.current.classList.remove('show-list');
     });
 
+    const loadMoreMenuList = (pageType) => {
+        switch(pageType.toLowerCase()) {
+            case "published":
+                return <>
+                    <button className="more-menu-item"
+                            onClick={editPageOnClick}>
+                        <span className="more-menu-item-icon">
+                            <CreateOutlinedIcon/>
+                        </span>
+                        <span className="more-menu-item-text">
+                            Edit
+                        </span>
+                    </button>
+                    <button className="more-menu-item"
+                            onClick={previewPageOnClick}>
+                        <span className="more-menu-item-icon">
+                            <RemoveRedEyeOutlinedIcon/>
+                        </span>
+                        <span className="more-menu-item-text">
+                            View Page
+                        </span>
+                    </button>
+                    <button className="more-menu-item">
+                        <span className="more-menu-item-icon">
+                            <BarChartIcon/>
+                        </span>
+                        <span className="more-menu-item-text">
+                            Stats
+                        </span>
+                    </button>
+                    <button className="more-menu-item">
+                        <span className="more-menu-item-icon">
+                            <InsertLinkOutlinedIcon/>
+                        </span>
+                        <span className="more-menu-item-text">
+                            Copy page
+                        </span>
+                    </button>
+                    <button className="more-menu-item">
+                        <span className="more-menu-item-icon">
+                            <ContentCopyOutlinedIcon/>
+                        </span>
+                        <span className="more-menu-item-text">
+                            Copy link
+                        </span>
+                    </button>
+                    <button className="more-menu-item">
+                        <span className="more-menu-item-icon">
+                            <DeleteIcon/>
+                        </span>
+                        <span className="more-menu-item-text">
+                            Trash
+                        </span>
+                    </button>
+                </>;
+            case "draft":
+            case "scheduled":
+            return <>
+                    <button className="more-menu-item"
+                            onClick={editPageOnClick}>
+                        <span className="more-menu-item-icon">
+                            <CreateOutlinedIcon/>
+                        </span>
+                        <span className="more-menu-item-text">
+                            Edit
+                        </span>
+                    </button>
+                    <button className="more-menu-item">
+                        <span className="more-menu-item-icon">
+                            <CheckOutlinedIcon/>
+                        </span>
+                        <span className="more-menu-item-text">
+                            Publish
+                        </span>
+                    </button>
+                    <button className="more-menu-item"
+                            onClick={previewPageOnClick}>
+                        <span className="more-menu-item-icon">
+                            <RemoveRedEyeOutlinedIcon/>
+                        </span>
+                        <span className="more-menu-item-text">
+                            Preview
+                        </span>
+                    </button>
+                    <button className="more-menu-item">
+                        <span className="more-menu-item-icon">
+                            <InsertLinkOutlinedIcon/>
+                        </span>
+                        <span className="more-menu-item-text">
+                            Copy page
+                        </span>
+                    </button>
+                    <button className="more-menu-item">
+                        <span className="more-menu-item-icon">
+                            <ContentCopyOutlinedIcon/>
+                        </span>
+                        <span className="more-menu-item-text">
+                            Copy link
+                        </span>
+                    </button>
+                    <button className="more-menu-item">
+                        <span className="more-menu-item-icon">
+                            <DeleteIcon/>
+                        </span>
+                        <span className="more-menu-item-text">
+                            Trash
+                        </span>
+                    </button>
+                </>;
+            case "trashed":
+                return <>
+                    <button className="more-menu-item">
+                        <span className="more-menu-item-icon">
+                            <ContentCopyOutlinedIcon/>
+                        </span>
+                        <span className="more-menu-item-text">
+                            Copy link
+                        </span>
+                    </button>
+                    <button className="more-menu-item">
+                        <span className="more-menu-item-icon">
+                            <RestoreIcon/>
+                        </span>
+                        <span className="more-menu-item-text">
+                            Restore
+                        </span>
+                    </button>
+                    <button className="more-menu-item delete">
+                        <span className="more-menu-item-icon">
+                            <DeleteIcon/>
+                        </span>
+                        <span className="more-menu-item-text">
+                            Delete
+                        </span>
+                    </button>
+                </>;
+            default:
+            break;
+        }
+    }
+
     return <>
                 <div className="pages-list">
                     <div className="pages-list-header">
@@ -120,58 +263,9 @@ const PagesList = (props) => {
                                 id={`more-menu-list_${page._id}`}
                                 ref={el => pageRef.current[i] = el}>
                                 <div className="pointer"></div>
-                                <button className="more-menu-item"
-                                        onClick={editPageOnClick}>
-                                    <span className="more-menu-item-icon">
-                                        <CreateOutlinedIcon/>
-                                    </span>
-                                    <span className="more-menu-item-text">
-                                        Edit
-                                    </span>
-                                </button>
-                                <button className="more-menu-item">
-                                    <span className="more-menu-item-icon">
-                                        <CheckOutlinedIcon/>
-                                    </span>
-                                    <span className="more-menu-item-text">
-                                        Publish
-                                    </span>
-                                </button>
-                                <button className="more-menu-item"
-                                        onClick={previewPageOnClick}>
-                                    <span className="more-menu-item-icon">
-                                        <RemoveRedEyeOutlinedIcon/>
-                                    </span>
-                                    <span className="more-menu-item-text">
-                                        Preview
-                                    </span>
-                                </button>
-                                <button className="more-menu-item">
-                                    <span className="more-menu-item-icon">
-                                        <InsertLinkOutlinedIcon/>
-                                    </span>
-                                    <span className="more-menu-item-text">
-                                        Copy page
-                                    </span>
-                                </button>
-                                <button className="more-menu-item">
-                                    <span className="more-menu-item-icon">
-                                        <ContentCopyOutlinedIcon/>
-                                    </span>
-                                    <span className="more-menu-item-text">
-                                        Copy link
-                                    </span>
-                                </button>
-                                <button className="more-menu-item">
-                                    <span className="more-menu-item-icon">
-                                        <DeleteIcon/>
-                                    </span>
-                                    <span className="more-menu-item-text">
-                                        Trash
-                                    </span>
-                                </button>
+                                { loadMoreMenuList(page.pageStatus) }
                                 <div className="page-type">
-                                    {pageType}
+                                    {capitalizeWord(page.pageStatus)}
                                 </div>
                             </div>
                         </div>)
@@ -284,7 +378,7 @@ const SearchResultPages = (props) => {
                         </div>;
 
     return <div className="pages-list-container trashed-pages">
-                { pages.length > 0 ? <PagesList currentAppId={currentAppId} pageType={"Draft"} pages={pages} /> : noPagesFound }
+                { pages.length > 0 ? <PagesList currentAppId={currentAppId} pageType={"Search"} pages={pages} /> : noPagesFound }
             </div>;
 }
 

@@ -417,6 +417,10 @@
     border-top: 1px solid #c3c4c7;
 }
 
+.pages-list-container .pages-list .pages-list-content .more-menu-list .delete:hover {
+    background-color: #D63638;
+}
+
 .pages-list-container .pages-list .pages-list-content .more-menu-list .page-type {
     border-top: 1px solid #F6F7F7;
     padding: 8px 16px;
