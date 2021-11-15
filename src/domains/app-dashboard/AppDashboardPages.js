@@ -16,6 +16,7 @@ import {
 import "./AppDashboardPages.css";
 
 import { convertTimestampToDateTime, convertTimestampFromNow } from '../../utils/helpers/convert';
+import { useOutsideClick } from '../../utils/helpers/hooks';
 import { findOne } from '../../api/AppList';
 
 import  { ReactComponent as IllustrationPagesImage }from "../../assets/svgs/illustration-pages.svg";
@@ -38,14 +39,16 @@ export const MyHome = (props) => {
 
 const PagesList = (props) => {
     const { currentAppId, pageType, pages } = props;
-    const [toggleMoreMenu, setToggleMoreMenu] = useState(false);
     const buttonRef = useRef([]);
     const pageRef = useRef([]);
+    const currentButtonRef = useRef(null);
+    const currentPageRef = useRef(null);
 
     const moreMenuOnClick = (e) => {
-        setToggleMoreMenu(!toggleMoreMenu);
-
         let currentIndex = pageRef.current.findIndex(page => page.id.split('_').slice(-1)[0] === e.currentTarget.id.split('_').slice(-1)[0])
+
+        currentButtonRef.current = buttonRef.current[currentIndex];
+        currentPageRef.current = pageRef.current[currentIndex];
 
         if (!e.currentTarget.classList.contains('more-vertical-menu-button')) {
             e.currentTarget.classList.add('more-vertical-menu-button');
@@ -64,6 +67,23 @@ const PagesList = (props) => {
             }
         }
     }
+
+    const editPageOnClick = (e) => {
+        const currentPageId = e.currentTarget.parentElement.id.split('_').slice(-1)[0];
+
+        window.location.href = `/editor/${currentAppId}/page/${currentPageId}`;
+    }
+
+    const previewPageOnClick = (e) => {
+        const currentPageId = e.currentTarget.parentElement.id.split('_').slice(-1)[0];
+
+        window.location.href = `/dashboard/${currentAppId}/preview?page=${currentPageId}`;
+    }
+
+    useOutsideClick(currentButtonRef, () => {
+        currentButtonRef.current.classList.remove('more-vertical-menu-button');
+        currentPageRef.current.classList.remove('show-list');
+    });
 
     return <>
                 <div className="pages-list">
@@ -100,7 +120,8 @@ const PagesList = (props) => {
                                 id={`more-menu-list_${page._id}`}
                                 ref={el => pageRef.current[i] = el}>
                                 <div className="pointer"></div>
-                                <button className="more-menu-item">
+                                <button className="more-menu-item"
+                                        onClick={editPageOnClick}>
                                     <span className="more-menu-item-icon">
                                         <CreateOutlinedIcon/>
                                     </span>
@@ -116,7 +137,8 @@ const PagesList = (props) => {
                                         Publish
                                     </span>
                                 </button>
-                                <button className="more-menu-item">
+                                <button className="more-menu-item"
+                                        onClick={previewPageOnClick}>
                                     <span className="more-menu-item-icon">
                                         <RemoveRedEyeOutlinedIcon/>
                                     </span>
