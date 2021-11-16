@@ -292,113 +292,6 @@ const PagesList = (props) => {
             </>;
 }
 
-const PublishedPages = (props) => {
-    const { currentAppId, pages, setShowPopupCopy } = props;
-
-    const noPagesFound = <div className="no-pages-found-container">
-                            <div className="details-image">
-                                <IllustrationPagesImage />
-                            </div>
-                            <div className="details-text">
-                                <h2>You haven't published any pages yet.</h2>
-                                <p>Would you like to publish your first page?</p>
-                            </div>
-                            <a className="start-page-button"
-                                href={`/editor/${currentAppId}/page/new`}
-                                target="_blank"
-                                rel="noreferrer">
-                                    Start a page
-                            </a>
-                        </div>;
-
-    return <div className="pages-list-container published-pages">
-                { pages.length > 0 ? <PagesList currentAppId={currentAppId} pages={pages} setShowPopupCopy={setShowPopupCopy} /> : noPagesFound }
-            </div>;
-}
-
-const DraftPages = (props) => {
-    const { currentAppId, pages, setShowPopupCopy } = props;
-
-    const noPagesFound = <div className="no-pages-found-container">
-                            <div className="details-image">
-                                <IllustrationPagesImage />
-                            </div>
-                            <div className="details-text">
-                                <h2>You don't have any drafts.</h2>
-                                <p>Would you like to create one?</p>
-                            </div>
-                            <a className="start-page-button"
-                                href={`/editor/${currentAppId}/page/new`}
-                                target="_blank"
-                                rel="noreferrer">
-                                    Start a page
-                            </a>
-                        </div>;
-
-    return <div className="pages-list-container draft-pages">
-                { pages.length > 0 ? <PagesList currentAppId={currentAppId} pages={pages} setShowPopupCopy={setShowPopupCopy} /> : noPagesFound }
-            </div>;
-}
-
-const ScheduledPages = (props) => {
-    const { currentAppId, pages, setShowPopupCopy } = props;
-
-    const noPagesFound = <div className="no-pages-found-container">
-                            <div className="details-image">
-                                <IllustrationPagesImage />
-                            </div>
-                            <div className="details-text">
-                                <h2>You don't have any scheduled pages yet.</h2>
-                                <p>Would you like to create one?</p>
-                            </div>
-                            <a className="start-page-button"
-                                href={`/editor/${currentAppId}/page/new`}
-                                target="_blank"
-                                rel="noreferrer">
-                                    Start a page
-                            </a>
-                        </div>;
-
-    return <div className="pages-list-container scheduled-pages">
-                { pages.length > 0 ? <PagesList currentAppId={currentAppId} pages={pages} setShowPopupCopy={setShowPopupCopy} /> : noPagesFound }
-            </div>;
-}
-
-const TrashedPages = (props) => {
-    const { currentAppId, pages, setShowPopupCopy } = props;
-
-    const noPagesFound = <div className="no-pages-found-container">
-                            <div className="details-image">
-                                <IllustrationPagesImage />
-                            </div>
-                            <div className="details-text">
-                                <h2>You don't have any pages in your trash folder.</h2>
-                                <p>Everything you write is solid gold.</p>
-                            </div>
-                        </div>;
-
-    return <div className="pages-list-container trashed-pages">
-                { pages.length > 0 ? <PagesList currentAppId={currentAppId} pages={pages} setShowPopupCopy={setShowPopupCopy} /> : noPagesFound }
-            </div>;
-}
-
-const SearchResultPages = (props) => {
-    const { currentAppId, pages, searchKeyword, setShowPopupCopy } = props;
-
-    const noPagesFound = <div className="no-page-results-found-container">
-                            <div className="details-image">
-                                <IllustrationPagesImage />
-                            </div>
-                            <span className="details-text">
-                                No pages match your search for {searchKeyword}.
-                            </span>
-                        </div>;
-
-    return <div className="pages-list-container trashed-pages">
-                { pages.length > 0 ? <PagesList currentAppId={currentAppId} pages={pages} setShowPopupCopy={setShowPopupCopy} /> : noPagesFound }
-            </div>;
-}
-
 export const Pages = (props) => {
     const { currentAppId } = props;
 
@@ -476,27 +369,103 @@ export const Pages = (props) => {
 
         let filterList = (pageType) => pages.filter(page => page.pageStatus === pageType);
 
+        const showNoResultsFound  = (detailsText) => <div className="no-page-results-found-container">
+                                                        <div className="details-image">
+                                                            <IllustrationPagesImage />
+                                                        </div>
+                                                        <span className="details-text">
+                                                            { detailsText }
+                                                        </span>
+                                                    </div>;
+
+        const noPagesFound = (detailsText, actionButton) => <div className="no-pages-found-container">
+                                <div className="details-image">
+                                    <IllustrationPagesImage />
+                                </div>
+                                <div className="details-text">
+                                    {detailsText}
+                                </div>
+                                {actionButton}
+                            </div>;
+
+
         if (searchKeyword && searchKeyword.length > 0) {
             pages = pages.filter(page => {
                 const searchCriteria = new RegExp(`${searchKeyword}`, 'gi');
                 return searchCriteria.test(page.pageTitle) === true;
             });
 
-            return <SearchResultPages currentAppId={currentAppId} pages={pages} searchKeyword={searchKeyword} setShowPopupCopy={setShowPopupCopy} />;
+            return <div className="pages-list-container trashed-pages">
+                    { pages.length > 0 ? <PagesList
+                                            currentAppId={currentAppId}
+                                            pages={pages}
+                                            setShowPopupCopy={setShowPopupCopy} /> : showNoResultsFound(`No pages match your search for ${searchKeyword}.`) }
+                    </div>;
         } else {
             switch (pageSelected) {
                 case "published_pages_tab":
                     pages = pages.length > 0 ? filterList("published") : pages;
-                    return <PublishedPages currentAppId={currentAppId} pages={pages} setShowPopupCopy={setShowPopupCopy} />;
+                    return <div className="pages-list-container published-pages">
+                    { pages.length > 0 ? <PagesList
+                                            currentAppId={currentAppId}
+                                            pages={pages}
+                                            setShowPopupCopy={setShowPopupCopy} /> :
+                                            noPagesFound(<>
+                                                            <h2>You haven't published any pages yet.</h2>
+                                                            <p>Would you like to publish your first page?</p>
+                                                        </>, <a className="start-page-button"
+                                                                href={`/editor/${currentAppId}/page/new`}
+                                                                target="_blank"
+                                                                rel="noreferrer">
+                                                                    Start a page
+                                                            </a>) }
+                </div>;
                 case "draft_pages_tab":
                     pages = pages.length > 0 ? filterList("draft") : pages;
-                    return <DraftPages currentAppId={currentAppId} pages={pages} setShowPopupCopy={setShowPopupCopy} />;
+                    return <div className="pages-list-container draft-pages">
+                            { pages.length > 0 ? <PagesList
+                                                    currentAppId={currentAppId}
+                                                    pages={pages}
+                                                    setShowPopupCopy={setShowPopupCopy} /> :
+                                                    noPagesFound(<>
+                                                                    <h2>You don't have any drafts.</h2>
+                                                                    <p>Would you like to create one?</p>
+                                                                </>, <a className="start-page-button"
+                                                                        href={`/editor/${currentAppId}/page/new`}
+                                                                        target="_blank"
+                                                                        rel="noreferrer">
+                                                                            Start a page
+                                                                    </a>) }
+                            </div>;
                 case "scheduled_pages_tab":
                     pages = pages.length > 0 ? filterList("scheduled") : pages;
-                    return <ScheduledPages currentAppId={currentAppId} pages={pages} setShowPopupCopy={setShowPopupCopy} />;
+                    return <div className="pages-list-container scheduled-pages">
+                             { pages.length > 0 ? <PagesList
+                                                    currentAppId={currentAppId}
+                                                    pages={pages}
+                                                    setShowPopupCopy={setShowPopupCopy} /> :
+                                                    noPagesFound(<>
+                                                                    <h2>You don't have any scheduled pages yet.</h2>
+                                                                    <p>Would you like to create one?</p>
+                                                                </>, <a className="start-page-button"
+                                                                        href={`/editor/${currentAppId}/page/new`}
+                                                                        target="_blank"
+                                                                        rel="noreferrer">
+                                                                            Start a page
+                                                                    </a>) }
+                            </div>;
                 case "trashed_pages_tab":
                     pages = pages.length > 0 ? filterList("trashed") : pages;
-                    return <TrashedPages currentAppId={currentAppId} pages={pages} setShowPopupCopy={setShowPopupCopy} />;
+                    return <div className="pages-list-container trashed-pages">
+                                { pages.length > 0 ? <PagesList
+                                                        currentAppId={currentAppId}
+                                                        pages={pages}
+                                                        setShowPopupCopy={setShowPopupCopy} /> :
+                                                        noPagesFound(<>
+                                                                        <h2>You don't have any pages in your trash folder.</h2>
+                                                                        <p>Everything you write is solid gold.</p>
+                                                                    </>, null) }
+                            </div>;
                 default:
                     return <></>;
             }
