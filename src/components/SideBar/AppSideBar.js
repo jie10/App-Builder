@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 
 import {
     KeyboardArrowLeftOutlined as KeyboardArrowLeftOutlinedIcon,
@@ -45,6 +45,9 @@ const MainHeader = (props) => {
 
 const AppSideBar = (props) => {
     const { menuOnCollapse, setMenuOnCollapse, pageName, subPageName, currentAppId } = props;
+    const menuItemRef = useRef([]);
+    const currentButtonRef = useRef(null);
+    const currentMenuItemRef = useRef(null);
 
     const navMenuItems = [
         {
@@ -241,14 +244,60 @@ const AppSideBar = (props) => {
         }
     ];
 
-    const handleMenuOnCollapse = () => setMenuOnCollapse(!menuOnCollapse);
+    const handleMenuOnCollapse = () => {
+        const filtered = menuItemRef.current.filter(String);
+
+        setMenuOnCollapse(!menuOnCollapse);
+
+        filtered.forEach((item, i) => {
+            item.style.display = "none";
+        });
+    }
+
+    const handleMenuItemOnHover = (e) => {
+        const currentId = e.currentTarget.id.split('_').slice(-1)[0];
+        const filtered = menuItemRef.current.filter(String);
+        let currentIndex = menuItemRef.current.filter(String).findIndex(item => item.id.split('_').slice(-1)[0] === currentId);
+
+        if (currentIndex > -1) {
+            currentButtonRef.current = e.currentTarget;
+            currentMenuItemRef.current = filtered[currentIndex];
+            currentMenuItemRef.current.style.display = "block";
+            currentButtonRef.current.classList.add('active-menu-item');
+            menuItemRef.current.filter(String).forEach((item, i) => {
+                if (i !== currentIndex) item.style.display = "none";
+            });
+        } else {
+            if(currentMenuItemRef.current) currentMenuItemRef.current.style.display = "none";
+            currentButtonRef.current && currentButtonRef.current.classList.remove('active-menu-item');
+            menuItemRef.current.filter(String).forEach((item, i) => {
+                if (i !== currentIndex) item.style.display = "none";
+            });
+        }
+    }
+
+    const handleCollapseMenuOnHover = () => {
+        if(currentMenuItemRef.current) currentMenuItemRef.current.style.display = "none";
+        currentButtonRef.current && currentButtonRef.current.classList.remove('active-menu-item');
+    }
+
+    useEffect(() => {
+        currentMenuItemRef.current && currentMenuItemRef.current.addEventListener("mouseleave", (e) => {
+            currentMenuItemRef.current.style.display = "none";
+            currentButtonRef.current && currentButtonRef.current.classList.remove('active-menu-item');
+        });
+      });
 
     return (
         <div className={`app-side-bar-container ${menuOnCollapse ? 'app-side-bar-minimize' : ''}`}>
             <MainHeader menuOnCollapse={menuOnCollapse} currentAppId={currentAppId} />
             { navMenuItems.map((item, i) => {
                 return <>
-                            <div key={i} className={`side-nav-menu ${pageName === item.pageName ? 'menu-item-active' : ''}`}>
+                            <div key={i}
+                                 id={`side-nav-menu_${item.pageName}`}
+                                 className={`side-nav-menu ${pageName === item.pageName ? 'menu-item-active' : ''}`}
+                                 onMouseOver={pageName !== item.pageName ? handleMenuItemOnHover : null}>
+                                { pageName === item.pageName ? <div className="pointer"></div> : null }
                                 <a className="menu-item" href={item.href}>
                                     <span className="nav-icon">
                                         {item.icon}
@@ -260,6 +309,23 @@ const AppSideBar = (props) => {
                                     </span>
                                 </a>
                             </div>
+                            {
+                                pageName !== item.pageName && item.subPages && item.subPages.length > 0 ?
+                                    <div className="side-nav-menu-hover"
+                                        ref={el => menuItemRef.current[i] = el}
+                                        id={`side-nav-menu-hover_${item.pageName}`}>
+                                        <div className="pointer"></div>
+                                        {
+                                            item.subPages.map((subItem, i) => {
+                                                return <div key={i} className="hoverable-sub-menu">
+                                                    <a className="menu-item" href={subItem.href}>
+                                                        {subItem.text}
+                                                    </a>
+                                                </div>
+                                            })
+                                        }
+                                    </div>: null
+                            }
                             { (pageName === item.pageName || item.subPages.some(subItem => subItem.pageName === pageName)) && (item.subPages && item.subPages.length > 0) ? 
                                 item.subPages.map((subItem, i) => 
                                         <div key={i} className={`side-nav-sub-menu ${subPageName === subItem.subPageName || pageName === subItem.subPageName ? 'side-nav-sub-menu-active' : ''}`}>
@@ -267,11 +333,11 @@ const AppSideBar = (props) => {
                                                 {subItem.text}
                                             </a>
                                         </div>)
-                                : '' }
+                                : null }
                         </>
             }) }
             <div className={`side-nav-menu`}>
-                <div className="menu-item" onClick={handleMenuOnCollapse}>
+                <div className="menu-item" onClick={handleMenuOnCollapse} onMouseOver={handleCollapseMenuOnHover}>
                     <span className="nav-icon">
                         {menuOnCollapse ? <KeyboardArrowRightOutlinedIcon/> : <KeyboardArrowLeftOutlinedIcon/>}
                     </span>
