@@ -55,7 +55,30 @@ export const updatePageByStatus = (newPageStatus, appId, pageId) => {
     if (currentApp && currentApp.pages) {
         let updatedApp = currentApp.pages.map(page => {
             if (page._id === pageId) {
+                page.previousPageStatus = page.pageStatus;
                 page.pageStatus = newPageStatus;
+            }
+
+            return page;
+        });
+
+        currentApp.pages = updatedApp;
+
+        let newList = list.map(item => {
+            return updatedApp._id === item._id ? currentApp : item;
+        });
+
+        localStorage.setItem("apps_list", unparseObject(newList));
+    }
+}
+
+export const restorePageByStatus = (appId, pageId) => {
+    let currentApp = findOne(appId);
+
+    if (currentApp && currentApp.pages) {
+        let updatedApp = currentApp.pages.map(page => {
+            if (page._id === pageId) {
+                page.pageStatus = page.previousPageStatus ? page.previousPageStatus : "draft";
             }
 
             return page;

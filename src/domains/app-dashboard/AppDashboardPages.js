@@ -21,7 +21,7 @@ import "./AppDashboardPages.css";
 import { capitalizeWord, convertTimestampToDateTime, convertTimestampFromNow } from '../../utils/helpers/convert';
 import { useOutsideClick } from '../../utils/helpers/hooks';
 import { delay } from '../../utils/helpers/timing';
-import { findOne, removePage, updatePageByStatus } from '../../api/AppList';
+import { findOne, removePage, updatePageByStatus, restorePageByStatus } from '../../api/AppList';
 
 import  { ReactComponent as IllustrationPagesImage }from "../../assets/svgs/illustration-pages.svg";
 
@@ -121,6 +121,11 @@ const PagesList = (props) => {
         delay(() => updatePageByStatus("trashed", currentAppId, currentPageId), 2000);
     }
 
+    const restoreCurrentPageOnClick = (e) => {
+        const currentPageId = e.currentTarget.parentElement.id.split('_').slice(-1)[0];
+        delay(() => restorePageByStatus(currentAppId, currentPageId), 2000);
+    }
+
     const deleteCurrentPageOnClick = (e) => {
         const currentPageId = e.currentTarget.parentElement.id.split('_').slice(-1)[0];
 
@@ -212,7 +217,7 @@ const PagesList = (props) => {
                     {
                         page === "trashed" ? 
                         <>
-                            <button className="more-menu-item">
+                            <button className="more-menu-item" onClick={restoreCurrentPageOnClick}>
                                 <span className="more-menu-item-icon">
                                     <RestoreIcon/>
                                 </span>
