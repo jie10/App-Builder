@@ -8,6 +8,8 @@ import defaultTemplateImage from '../assets/images/default-template.png';
 
 let list = parseObject(localStorage.getItem("apps_list"));
 
+const filterPagesByStatus = (pages, pageStatus) => pages.filter(page => page.pageStatus === pageStatus.toLowerCase());
+
 export const findAll = () => list && list.length > 0 ? list : [];
 
 export const findOne = (key) => list && list.length > 0 ? list.filter(item => item._id === key)[0] : null;
@@ -47,6 +49,21 @@ export const removeOne = (key) => {
     let newList = list && list.length > 0 ? list.filter(item => item._id !== key) : [];
 
     localStorage.setItem("apps_list", unparseObject(newList));
+}
+
+export const countAllPages = (appId) => {
+    let currentApp = findOne(appId);
+
+    if (currentApp && currentApp.pages) {
+        return {
+            count: {
+                published: filterPagesByStatus(currentApp.pages, "published").length,
+                draft: filterPagesByStatus(currentApp.pages, "draft").length,
+                scheduled: filterPagesByStatus(currentApp.pages, "scheduled").length,
+                trashed: filterPagesByStatus(currentApp.pages, "trashed").length
+            }
+        }
+    }
 }
 
 export const updatePageByStatus = (newPageStatus, appId, pageId) => {

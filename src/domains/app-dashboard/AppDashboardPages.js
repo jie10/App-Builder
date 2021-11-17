@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 
 import {
     Search as SearchIcon,
@@ -21,7 +21,7 @@ import "./AppDashboardPages.css";
 import { capitalizeWord, convertTimestampToDateTime, convertTimestampFromNow } from '../../utils/helpers/convert';
 import { useOutsideClick } from '../../utils/helpers/hooks';
 import { delay } from '../../utils/helpers/timing';
-import { findOne, removePage, updatePageByStatus, restorePageByStatus } from '../../api/AppList';
+import { countAllPages, findOne, removePage, updatePageByStatus, restorePageByStatus } from '../../api/AppList';
 
 import  { ReactComponent as IllustrationPagesImage }from "../../assets/svgs/illustration-pages.svg";
 
@@ -42,7 +42,7 @@ export const MyHome = (props) => {
 }
 
 const PagesList = (props) => {
-    const { currentAppId, pages, setShowPopupCopy } = props;
+    const { currentAppId, pages, setShowPopupCopy, setReloadPages } = props;
     const buttonRef = useRef([]);
     const pageRef = useRef([]);
     const currentButtonRef = useRef(null);
@@ -54,20 +54,24 @@ const PagesList = (props) => {
         currentButtonRef.current = buttonRef.current[currentIndex];
         currentPageRef.current = pageRef.current[currentIndex];
 
-        if (!e.currentTarget.classList.contains('more-vertical-menu-button')) {
-            e.currentTarget.classList.add('more-vertical-menu-button');
-            pageRef.current[currentIndex].classList.add('show-list');
+        if (currentButtonRef.current.classList.contains('more-vertical-menu-button')) {
+            currentButtonRef.current.classList.remove('more-vertical-menu-button');
+
             for (let i = currentIndex; i < pageRef.current.length; i++) {
-                if (i !== currentIndex) {
+                if (pageRef.current[i] && buttonRef.current[i]) {
                     pageRef.current[i].classList.remove('show-list');
                     buttonRef.current[i].classList.remove('more-vertical-menu-button');
                 }
             }
         } else {
-            e.currentTarget.classList.remove('more-vertical-menu-button');
+            currentButtonRef.current.classList.add('more-vertical-menu-button');
+            pageRef.current[currentIndex].classList.add('show-list');
+
             for (let i = currentIndex; i < pageRef.current.length; i++) {
-                pageRef.current[i].classList.remove('show-list');
+                if (pageRef.current[i] && i !== currentIndex) {
+                    pageRef.current[i].classList.remove('show-list');
                     buttonRef.current[i].classList.remove('more-vertical-menu-button');
+                }
             }
         }
     }
@@ -118,19 +122,29 @@ const PagesList = (props) => {
     const trashCurrentPageOnClick = (e) => {
         const currentPageId = e.currentTarget.parentElement.id.split('_').slice(-1)[0];
 
-        delay(() => updatePageByStatus("trashed", currentAppId, currentPageId), 2000);
+        delay(() => {
+            updatePageByStatus("trashed", currentAppId, currentPageId);
+            setReloadPages(true);
+        }, 2000);
     }
 
     const restoreCurrentPageOnClick = (e) => {
         const currentPageId = e.currentTarget.parentElement.id.split('_').slice(-1)[0];
-        delay(() => restorePageByStatus(currentAppId, currentPageId), 2000);
+
+        delay(() => {
+            restorePageByStatus(currentAppId, currentPageId);
+            setReloadPages(true);
+        }, 2000);
     }
 
     const deleteCurrentPageOnClick = (e) => {
         const currentPageId = e.currentTarget.parentElement.id.split('_').slice(-1)[0];
 
         if (window.confirm("Delete this page permanently?")) {
-            delay(() => removePage(currentAppId, currentPageId), 2000);
+            delay(() => {
+                removePage(currentAppId, currentPageId);
+                setReloadPages(true);
+            }, 2000);
         }
     }
 
@@ -303,6 +317,8 @@ export const Pages = (props) => {
     const [toggleSearchBar, setToggleSearchBar] = useState(false);
     const [searchKeyword, setSearchKeyword] = useState(null);
     const [showPopupCopy, setShowPopupCopy] = useState(false);
+    const [pagesCount, setPagesCount] = useState(countAllPages(currentAppId));
+    const [reloadPages, setReloadPages] = useState(false);
 
     const handleTabOnClick = (e) => {
         let tabClicked = e.target.id;
@@ -399,7 +415,8 @@ export const Pages = (props) => {
                     { pages.length > 0 ? <PagesList
                                             currentAppId={currentAppId}
                                             pages={pages}
-                                            setShowPopupCopy={setShowPopupCopy} /> : showNoResultsFound(`No pages match your search for ${searchKeyword}.`) }
+                                            setShowPopupCopy={setShowPopupCopy}
+                                            setPagesCount={setPagesCount} /> : showNoResultsFound(`No pages match your search for ${searchKeyword}.`) }
                     </div>;
         } else {
             switch (pageSelected) {
@@ -409,7 +426,9 @@ export const Pages = (props) => {
                     { pages.length > 0 ? <PagesList
                                             currentAppId={currentAppId}
                                             pages={pages}
-                                            setShowPopupCopy={setShowPopupCopy} /> :
+                                            setShowPopupCopy={setShowPopupCopy}
+                                            setReloadPages={setReloadPages}
+                                            setPagesCount={setPagesCount} /> :
                                             noPagesFound(<>
                                                             <h2>You haven't published any pages yet.</h2>
                                                             <p>Would you like to publish your first page?</p>
@@ -426,7 +445,9 @@ export const Pages = (props) => {
                             { pages.length > 0 ? <PagesList
                                                     currentAppId={currentAppId}
                                                     pages={pages}
-                                                    setShowPopupCopy={setShowPopupCopy} /> :
+                                                    setShowPopupCopy={setShowPopupCopy}
+                                                    setReloadPages={setReloadPages}
+                                                    setPagesCount={setPagesCount} /> :
                                                     noPagesFound(<>
                                                                     <h2>You don't have any drafts.</h2>
                                                                     <p>Would you like to create one?</p>
@@ -443,7 +464,9 @@ export const Pages = (props) => {
                              { pages.length > 0 ? <PagesList
                                                     currentAppId={currentAppId}
                                                     pages={pages}
-                                                    setShowPopupCopy={setShowPopupCopy} /> :
+                                                    setShowPopupCopy={setShowPopupCopy}
+                                                    setReloadPages={setReloadPages}
+                                                    setPagesCount={setPagesCount} /> :
                                                     noPagesFound(<>
                                                                     <h2>You don't have any scheduled pages yet.</h2>
                                                                     <p>Would you like to create one?</p>
@@ -460,7 +483,9 @@ export const Pages = (props) => {
                                 { pages.length > 0 ? <PagesList
                                                         currentAppId={currentAppId}
                                                         pages={pages}
-                                                        setShowPopupCopy={setShowPopupCopy} /> :
+                                                        setShowPopupCopy={setShowPopupCopy}
+                                                        setReloadPages={setReloadPages}
+                                                        setPagesCount={setPagesCount} /> :
                                                         noPagesFound(<>
                                                                         <h2>You don't have any pages in your trash folder.</h2>
                                                                         <p>Everything you write is solid gold.</p>
@@ -472,6 +497,15 @@ export const Pages = (props) => {
         }
         
     }
+
+    useEffect(() => {
+        if (reloadPages) {
+            setPagesCount(countAllPages(currentAppId));
+            setReloadPages(false);
+        }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [reloadPages]);
 
     return (
         <div className="pages-container">
@@ -496,22 +530,30 @@ export const Pages = (props) => {
                     <div className={`tab ${publishedTabActive ? 'tab-active' : ''}`} onClick={handleTabOnClick}>
                         <div className="tab-clicker" id="published_pages_tab"></div>
                         <span className="tab-text">Published</span>
-                        <span className="badge-pages-count">0</span>
+                        <span className="badge-pages-count">
+                            { pagesCount && pagesCount.count.published ? pagesCount.count.published : 0 }
+                        </span>
                     </div>
                     <div className={`tab ${draftTabActive ? 'tab-active' : ''}`} onClick={handleTabOnClick}>
                         <div className="tab-clicker" id="draft_pages_tab"></div>
                         <span className="tab-text">Drafts</span>
-                        <span className="badge-pages-count">0</span>
+                        <span className="badge-pages-count">
+                            { pagesCount && pagesCount.count.draft ? pagesCount.count.draft : 0 }
+                        </span>
                     </div>
                     <div className={`tab ${scheduledTabActive ? 'tab-active' : ''}`}  onClick={handleTabOnClick}>
                         <div className="tab-clicker" id="scheduled_pages_tab"></div>
                         <span className="tab-text">Scheduled</span>
-                        <span className="badge-pages-count">0</span>
+                        <span className="badge-pages-count">
+                            { pagesCount && pagesCount.count.scheduled ? pagesCount.count.scheduled : 0 }
+                        </span>
                     </div>
                     <div className={`tab ${trashedTabActive ? 'tab-active' : ''}`}  onClick={handleTabOnClick}>
                         <div className="tab-clicker" id="trashed_pages_tab"></div>
                         <span className="tab-text">Trashed</span>
-                        <span className="badge-pages-count">0</span>
+                        <span className="badge-pages-count">
+                            { pagesCount && pagesCount.count.trashed ? pagesCount.count.trashed : 0 }
+                        </span>
                     </div>
                 </div>
                 <div className={`search-container ${toggleSearchBar ? 'search-wide-container' : ''}`}>
