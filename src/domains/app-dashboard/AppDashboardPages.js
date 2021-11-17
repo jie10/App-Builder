@@ -122,28 +122,34 @@ const PagesList = (props) => {
     const trashCurrentPageOnClick = (e) => {
         const currentPageId = e.currentTarget.parentElement.id.split('_').slice(-1)[0];
 
+        disablePageRow();
+
         delay(() => {
             updatePageByStatus("trashed", currentAppId, currentPageId);
-            setReloadPages(true);
+            enablePageRow();
         }, 2000);
     }
 
     const restoreCurrentPageOnClick = (e) => {
         const currentPageId = e.currentTarget.parentElement.id.split('_').slice(-1)[0];
 
+        disablePageRow();
+
         delay(() => {
             restorePageByStatus(currentAppId, currentPageId);
-            setReloadPages(true);
+            enablePageRow();
         }, 2000);
     }
 
     const deleteCurrentPageOnClick = (e) => {
         const currentPageId = e.currentTarget.parentElement.id.split('_').slice(-1)[0];
 
+        disablePageRow();
+
         if (window.confirm("Delete this page permanently?")) {
             delay(() => {
                 removePage(currentAppId, currentPageId);
-                setReloadPages(true);
+                enablePageRow();
             }, 2000);
         }
     }
@@ -152,6 +158,18 @@ const PagesList = (props) => {
         currentButtonRef.current.classList.remove('more-vertical-menu-button');
         currentPageRef.current.classList.remove('show-list');
     });
+
+    const enablePageRow = () => {
+        setReloadPages(true);
+        currentButtonRef.current.style.display = "block";
+        currentPageRef.current.parentElement.classList.remove('unclickable-page-row');
+    }
+
+    const disablePageRow = () => {
+        setReloadPages(false);
+        currentButtonRef.current.style.display = "none";
+        currentPageRef.current.parentElement.classList.add('unclickable-page-row');
+    }
 
     const loadMoreMenuList = (pageType) => {
         let page = pageType.toLowerCase();
@@ -416,6 +434,7 @@ export const Pages = (props) => {
                                             currentAppId={currentAppId}
                                             pages={pages}
                                             setShowPopupCopy={setShowPopupCopy}
+                                            setReloadPages={setReloadPages}
                                             setPagesCount={setPagesCount} /> : showNoResultsFound(`No pages match your search for ${searchKeyword}.`) }
                     </div>;
         } else {
@@ -484,6 +503,7 @@ export const Pages = (props) => {
                                                         currentAppId={currentAppId}
                                                         pages={pages}
                                                         setShowPopupCopy={setShowPopupCopy}
+
                                                         setReloadPages={setReloadPages}
                                                         setPagesCount={setPagesCount} /> :
                                                         noPagesFound(<>
@@ -501,7 +521,7 @@ export const Pages = (props) => {
     useEffect(() => {
         if (reloadPages) {
             setPagesCount(countAllPages(currentAppId));
-            setReloadPages(false);
+            setReloadPages(true);
         }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps

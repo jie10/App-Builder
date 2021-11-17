@@ -389,6 +389,10 @@
     z-index: 1;
 }
 
+.pages-list-container .pages-list .unclickable-page-row {
+    background-color: #F8F9F9;
+}
+
 .pages-list-container .pages-list .pages-list-content .more-menu-list .more-menu-item {
     background-color: transparent;
     border: none;
