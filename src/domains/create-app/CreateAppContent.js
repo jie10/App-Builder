@@ -125,7 +125,7 @@ const AppsListSection = (props) => {
                                 </div>
                                 <div className="details-container">
                                     <div className="details">
-                                        <h3 className="app-name">{app.appName}</h3>
+                                        <h3 className="app-name" title={app.appName}>{app.appName}</h3>
                                         <p className="publish-status">{app.isPublished ? "Pubished" : "Not Published"}</p>
                                     </div>
                                     <a className="preview-link" href={`/dashboard/${app.appURL}/preview`} target="_self">Preview</a>

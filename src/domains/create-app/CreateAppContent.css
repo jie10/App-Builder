@@ -11,7 +11,7 @@
 
 .jumbo-content-container {
     width: 80%;
-    padding: 36px 0;
+    padding: 86px 0 36px 0;
     margin: 0 auto;
     display: flex;
     flex-flow: row nowrap;
@@ -90,7 +90,7 @@
 }
 
 .header-on-scroll .jumbo-content-container {
-    padding: 16px 0;
+    padding: 66px 0 16px 0;
 }
 
 .header-on-scroll .jumbo-content .jumbo-content-title {
@@ -390,6 +390,10 @@
 
 .app-list-container .list-content .card-app-container .details-container .details .app-name {
     margin: 0 0 8px 0;
+    width: 150px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis; 
 }
 
 .app-list-container .list-content .card-app-container .details-container .details .publish-status {
