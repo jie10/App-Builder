@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
+import ReactDOMServer from 'react-dom/server';
 
 import {
     Search as SearchIcon,
@@ -47,6 +48,24 @@ const PagesList = (props) => {
     const pageRef = useRef([]);
     const currentButtonRef = useRef(null);
     const currentPageRef = useRef(null);
+
+    const pageActionStatus = {
+        restore: {
+            icon: <RestoreIcon/>,
+            text: "Restoring...",
+            bgColor: "#DBAF01"
+        },
+        trash: {
+            icon: <DeleteIcon/>,
+            text: "Trashing...",
+            bgColor: "#E55054"
+        },
+        delete: {
+            icon: <DeleteIcon/>,
+            text: "Deleting...",
+            bgColor: "#E55054"
+        }
+    };
 
     const moreMenuOnClick = (e) => {
         let currentIndex = pageRef.current.findIndex(page => page.id.split('_').slice(-1)[0] === e.currentTarget.id.split('_').slice(-1)[0])
@@ -122,7 +141,7 @@ const PagesList = (props) => {
     const trashCurrentPageOnClick = (e) => {
         const currentPageId = e.currentTarget.parentElement.id.split('_').slice(-1)[0];
 
-        disablePageRow();
+        disablePageRow("trash");
 
         delay(() => {
             updatePageByStatus("trashed", currentAppId, currentPageId);
@@ -133,7 +152,7 @@ const PagesList = (props) => {
     const restoreCurrentPageOnClick = (e) => {
         const currentPageId = e.currentTarget.parentElement.id.split('_').slice(-1)[0];
 
-        disablePageRow();
+        disablePageRow("restore");
 
         delay(() => {
             restorePageByStatus(currentAppId, currentPageId);
@@ -144,7 +163,7 @@ const PagesList = (props) => {
     const deleteCurrentPageOnClick = (e) => {
         const currentPageId = e.currentTarget.parentElement.id.split('_').slice(-1)[0];
 
-        disablePageRow();
+        disablePageRow("delete");
 
         if (window.confirm("Delete this page permanently?")) {
             delay(() => {
@@ -160,15 +179,35 @@ const PagesList = (props) => {
     });
 
     const enablePageRow = () => {
+        let parentElement = currentButtonRef.current.parentElement.children[1];
+        let textHolder = parentElement.children[1];
+
         setReloadPages(true);
-        currentButtonRef.current.style.display = "block";
+
+        parentElement.style.display = "none";
+        textHolder.innerHTML = "";
+
         currentPageRef.current.parentElement.classList.remove('unclickable-page-row');
+        currentButtonRef.current.style.display = "block";
     }
 
-    const disablePageRow = () => {
+
+    const disablePageRow = (action) => {
+        let actionStatus = pageActionStatus[action];
+        let parentElement = currentButtonRef.current.parentElement.children[1];
+        let textHolder = parentElement.children[1];
+        let iconHolder = parentElement.children[0];
+        let icon = iconHolder.children[0];
+
         setReloadPages(false);
-        currentButtonRef.current.style.display = "none";
+
+        icon.innerHTML = ReactDOMServer.renderToString(actionStatus.icon);
+        parentElement.style.display = "flex";
+        textHolder.innerHTML = actionStatus.text;
+        iconHolder.style.backgroundColor = actionStatus.bgColor;
+
         currentPageRef.current.parentElement.classList.add('unclickable-page-row');
+        currentButtonRef.current.style.display = "none";
     }
 
     const loadMoreMenuList = (pageType) => {
@@ -301,6 +340,12 @@ const PagesList = (props) => {
                                     <AccessTimeIcon/>
                                     {convertTimestampFromNow(page.updatedTimestamp)}
                                 </span>
+                            </div>
+                            <div className="action-page-status">
+                                <span className="icon">
+                                    <CheckOutlinedIcon/>
+                                </span>
+                                <span className="text">Page restored.</span>
                             </div>
                             <button className="more-menu-button"
                                     id={`more-menu-button_${page._id}`}
