@@ -5,6 +5,7 @@ import { Search as SearchIcon } from '@mui/icons-material';
 import "./CreateNewAppModal.css"
 
 import { appCategories } from "../../utils/constants/dataMart";
+import { useQuery } from "../../utils/helpers/hooks";
 import { createNew } from "../../api/AppList";
 
 const MAX_STEPS = 3;
@@ -342,6 +343,7 @@ const ModalFormSuccess = (props) => {
 
 const CreateNewAppModal = (props) => {
     const { hiddenCreateNewAppModal, setHiddenCreateNewAppModal } = props;
+    let query = useQuery();
 
     const initialStepper = { count: 1 };
     const stepperReducer = (state, action) => {
@@ -361,15 +363,20 @@ const CreateNewAppModal = (props) => {
     const [appInfo, setAppInfo] = useState(null);
     const [createSuccess, setCreateSuccess] = useState(false);
 
-    const handleBackButtonOnClick = () => {
-        if (stepper.count > 1 && stepper.count <= MAX_STEPS) {
+    const handleBackButtonOnClick = (e) => {
+        let action = query.get("action");
+
+        e.preventDefault();
+
+        if ((action && stepper.count <= 1) || (createSuccess && stepper.count >= MAX_STEPS)) {
+            window.location.href = "/account/apps";
+        } else if (stepper.count > 1 && stepper.count <= MAX_STEPS) {
             dispatchStepper({type: 'decrement'});
         } else {
-            if (createSuccess) window.location.href = "/account/apps";
-
+            setAppInfo(null);
             dispatchStepper({type: 'reset'});
             setHiddenCreateNewAppModal(true);
-            setAppInfo(null);
+            
         }
     }
 
