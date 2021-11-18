@@ -1,5 +1,6 @@
 import uniqid from "uniqid";
+import moment from "moment";
 
 export const generateUniqId = () => uniqid();
 
-export const generateTimestamp = () => +new Date();
+export const generateTimestamp = () => moment().utc();

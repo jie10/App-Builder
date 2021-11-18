@@ -1,4 +1,4 @@
-const moment = require('moment');
+import moment from "moment";
 
 /** STRING CONVERSIONS */
 export const capitalizeWord = (word) => word.slice(0, 1).toUpperCase() + word.slice(1).toLowerCase();
