@@ -1,4 +1,5 @@
-import { useEffect } from 'react';
+import { useEffect, useMemo } from 'react';
+import { useLocation } from "react-router-dom";
 
 export const useOutsideClick = (ref, callback) => {
     const handleClick = e => {
@@ -14,4 +15,10 @@ export const useOutsideClick = (ref, callback) => {
         document.removeEventListener("click", handleClick);
       };
     });
+  };
+
+export const useQuery = () => {
+    const { search } = useLocation();
+  
+    return useMemo(() => new URLSearchParams(search), [search]);
   };
