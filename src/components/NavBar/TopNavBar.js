@@ -120,7 +120,7 @@ const TopNavBar = () => {
         let appsList = findAll();
 
         if (appsList && appsList.length > 0) {
-            return <div className="apps-list-container">
+            return <div className={`apps-list-container ${ appsList.length > 4 ? 'apps-list-scrolled-container' : '' }`}>
                         {
                             appsList.map((app, i) => {
                                 return <a key={i} className="app-container" href={`/dashboard/${app.appURL}/home`} target="_self">

@@ -134,6 +134,11 @@
 .top-nav-bar-site-nav div.site-nav .sites-list-items .apps-list-container {
     width: 100%;
     padding: 0 0 12px 0;
+    overflow-y: auto;
+}
+
+.top-nav-bar-site-nav div.site-nav .sites-list-items .apps-list-scrolled-container {
+    height: 250px;
 }
 
 .top-nav-bar-site-nav div.site-nav .sites-list-items .apps-list-container .app-container,
