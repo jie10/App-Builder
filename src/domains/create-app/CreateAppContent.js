@@ -118,7 +118,7 @@ const AppsListSection = (props) => {
     const loadApps = () => {
         if (appsList && appsList.length > 0) {
             return appsList.map((app, i) => {
-                return <Grid key={i} item xs={12} md={6} lg={3}>
+                return <Grid key={i} item xs={12} md={4} lg={3}>
                             <div className="card card-app-container">
                                 <div className="preview" onClick={() => window.location.href = `/dashboard/${app.appURL}/home`}>
                                     <img src={app.themePreview} alt="app preview" />

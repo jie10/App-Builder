@@ -107,7 +107,7 @@
 /** 2 --- FIRST WEBSITE SECTION */
 .content-container {
     position: relative;
-    height: 100%;
+    height: 100vh;
     width: 100%;
     overflow-y: scroll;
 }
@@ -231,7 +231,7 @@
     flex-flow: row nowrap;
     justify-content: space-between;
     align-items: center;
-    padding: 24px 0;
+    padding: 8px 0 16px 0;
 }
 
 .app-list-container .list-header .load-content-buttons-container {
