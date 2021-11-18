@@ -107,7 +107,7 @@
 /** 2 --- FIRST WEBSITE SECTION */
 .content-container {
     position: relative;
-    height: calc(100vh - 50px);
+    height: 100%;
     width: 100%;
     overflow-y: scroll;
 }
@@ -349,7 +349,6 @@
 }
 
 .app-list-container .list-content .card {
-    border: 1px solid transparent;
     border-radius: 8px;
     width: 100%;
     overflow: hidden;
@@ -370,18 +369,18 @@
 }
 
 .app-list-container .list-content .card-app-container .preview {
-    height: 200px;
+    height: 150px;
     width: 100%;
     cursor: pointer;
 }
 
 .app-list-container .list-content .card-app-container .preview img {
-    max-height: 100%;
+    height: 100%;
     width: 100%;
 }
 
 .app-list-container .list-content .card-app-container .details-container {
-    padding: 24px;
+    padding: 14px 16px;
     display: flex;
     flex-flow: row;
     justify-content: space-between;
@@ -389,8 +388,9 @@
 }
 
 .app-list-container .list-content .card-app-container .details-container .details .app-name {
-    margin: 0 0 8px 0;
-    width: 150px;
+    margin: 0 0 4px 0;
+    width: 110px;
+    font-size: 16px;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis; 
@@ -398,6 +398,7 @@
 
 .app-list-container .list-content .card-app-container .details-container .details .publish-status {
     margin: 0;
+    font-size: 12px;
 }
 
 .app-list-container .list-content .card-app-container .details-container .preview-link,
@@ -405,7 +406,8 @@
     text-decoration: none;
     background-color: transparent;
     border: 1px solid #5299E5;
-    padding: 8px 14px;
+    padding: 6px 12px;
+    font-size: 14px;
     color: #5299E5;
     transition-duration: 0.2s;
 }
