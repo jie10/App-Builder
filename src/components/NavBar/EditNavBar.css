@@ -43,12 +43,14 @@
 }
 
 .edit-nav-bar .edit-nav-bar-menus .page-button {
+    display: flex;
     margin: 0;
     outline: none;
     cursor: pointer;
     align-self: center;
     background-color: transparent;
     border: 1px solid transparent;
+    padding: 4px;
     color: #1E1E1E;
 }
 
@@ -101,6 +103,13 @@
 .edit-nav-bar .edit-nav-bar-menus .toggle-inserter:hover {
     background-color: #1E1E1E;
     border: 1px solid #1E1E1E;
+}
+
+.edit-nav-bar .edit-nav-bar-menus .toggle-list-view,
+.edit-nav-bar .edit-nav-bar-menus .toggle-list-view:hover {
+    background-color: #1E1E1E;
+    border: 1px solid #1E1E1E;
+    color: #FFFFFF;
 }
 
 .edit-nav-bar .edit-nav-bar-menus .disabled-button,

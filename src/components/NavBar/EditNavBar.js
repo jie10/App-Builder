@@ -19,9 +19,11 @@ const currentURL = window.location.pathname;
 const EditNavBar = () => {
     const [toggleInserter, setToggleInserter] = useState(false);
     const [toggleSettings, setToggleSettings] = useState(false);
+    const [toggleListView, setToggleListView] = useState(false);
 
     const handleToggleInserter = () => setToggleInserter(!toggleInserter);
     const handleToggleSettings = () => setToggleSettings(!toggleSettings);
+    const handleToggleListView = () => setToggleListView(!toggleListView);
 
     return(
         <div className="edit-nav-bar-container">
@@ -50,7 +52,8 @@ const EditNavBar = () => {
                     <button className="page-button page-edit-button">
                         <InfoOutlinedIcon/>
                     </button>
-                    <button className="page-button page-edit-button">
+                    <button className={`page-button page-edit-button ${toggleListView ? 'toggle-list-view' : ''}`}
+                        onClick={handleToggleListView}>
                         <ListOutlinedIcon/>
                     </button>
                 </div>
