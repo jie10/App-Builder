@@ -1,0 +1,148 @@
+/** TOP NAVIGATION BAR */
+.edit-nav-bar-container {
+    position: fixed;
+    width: 100%;
+    display: flex;
+    flex-flow: row nowrap;
+    background-color: #FFFFFF;
+    border-bottom: 1px solid #E0E0E0;
+    z-index: 999;
+}
+
+.site-logo-container .site-logo-link {
+    position: relative;
+    display: block;
+    max-width: 5em;
+    padding: 8px;
+}
+
+.site-logo-container img.site-logo {
+    width: 100%;
+}
+
+.site-logo-container .logo-protector {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+.edit-nav-bar {
+    width: 100%;
+    margin: 0 8px;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.edit-nav-bar .edit-nav-bar-menus {
+    display: flex;
+}
+
+.edit-nav-bar .edit-nav-bar-menus .page-button {
+    margin: 0;
+    outline: none;
+    cursor: pointer;
+    align-self: center;
+    background-color: transparent;
+    border: 1px solid transparent;
+    color: #1E1E1E;
+}
+
+.edit-nav-bar .edit-nav-bar-menus .page-button:nth-child(2) {
+    margin: 0 0 0 6px;
+}
+
+.edit-nav-bar .edit-nav-bar-menus .page-button svg {
+    transform: scale(0.8);
+}
+
+.edit-nav-bar .edit-nav-bar-menus .page-button:focus {
+    border: 1px solid #007CBA;
+    border-radius: 3px;
+}
+
+.edit-nav-bar .edit-nav-bar-menus .page-button:hover {
+    color: #007CBA;
+}
+
+.edit-nav-bar .edit-nav-bar-menus .add-component-button {
+    border-radius: 3px;
+    padding: 4px;
+    background-color: #007CBA;
+    color: #FFFFFF;
+    display: flex;
+}
+
+.edit-nav-bar .edit-nav-bar-menus .add-component-button svg {
+    transition: transform .2s cubic-bezier(.165,.84,.44,1);
+    -o-transition: transform .2s cubic-bezier(.165,.84,.44,1);
+    -moz-transition: transform .2s cubic-bezier(.165,.84,.44,1);
+    -webkit-transition: transform .2s cubic-bezier(.165,.84,.44,1);
+}
+
+.edit-nav-bar .edit-nav-bar-menus .add-component-button:hover {
+    background-color: #006BA1;
+    color: #FFFFFF;
+}
+
+.edit-nav-bar .edit-nav-bar-menus .toggle-inserter {
+    background-color: #1E1E1E;
+}
+
+.edit-nav-bar .edit-nav-bar-menus .toggle-inserter svg {
+    transform: scale(0.8);
+    transform: rotate(45deg);
+}
+
+.edit-nav-bar .edit-nav-bar-menus .toggle-inserter:hover {
+    background-color: #1E1E1E;
+    border: 1px solid #1E1E1E;
+}
+
+.edit-nav-bar .edit-nav-bar-menus .disabled-button,
+.edit-nav-bar .edit-nav-bar-menus .disabled-button:hover {
+    color: #CDCDCD;
+    cursor: default;
+}
+
+.edit-nav-bar .edit-nav-bar-menus .page-status-button {
+    margin: 0 4px;
+    font-size: 13px;
+    border: 1px solid transparent;
+    padding: 8px 12px;
+    color: #1E1E1E;
+}
+
+.edit-nav-bar .edit-nav-bar-menus .page-status-button:hover {
+    border: 1px solid #007CBA;
+    border-radius: 3px;
+    color: #007CBA;
+}
+
+.edit-nav-bar .edit-nav-bar-menus .publish-page-button {
+    border-radius: 3px;
+    background-color: #007CBA;
+    color: #FFFFFF;
+    display: flex;
+}
+
+.edit-nav-bar .edit-nav-bar-menus .publish-page-button:hover {
+    background-color: #006BA1;
+    color: #FFFFFF;
+}
+
+.edit-nav-bar .edit-nav-bar-menus .page-settings-button {
+    display: flex;
+    padding: 4px;
+    margin: 0 0 0 14px;
+}
+
+.edit-nav-bar .edit-nav-bar-menus .toggle-settings,
+.edit-nav-bar .edit-nav-bar-menus .toggle-settings:hover {
+    background-color: #1E1E1E;
+    color: #FFFFFF;
+}
