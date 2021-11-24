@@ -1,6 +1,9 @@
 /** TOP NAVIGATION BAR */
 .edit-nav-bar-container {
     position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
     width: 100%;
     display: flex;
     flex-flow: row nowrap;

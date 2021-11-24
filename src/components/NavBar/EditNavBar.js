@@ -16,13 +16,23 @@ import siteLogo from "../../assets/logos/ceblogo.png";
 
 const currentURL = window.location.pathname;
 
-const EditNavBar = () => {
-    const [toggleInserter, setToggleInserter] = useState(false);
-    const [toggleSettings, setToggleSettings] = useState(false);
+const EditNavBar = (props) => {
+    const { toggleInserter, toggleSettings } = props;
+
+    const [toggleShowInserter, setToggleShowInserter] = useState(false);
+    const [toggleShowSettings, setToggleShowSettings] = useState(false);
     const [toggleListView, setToggleListView] = useState(false);
 
-    const handleToggleInserter = () => setToggleInserter(!toggleInserter);
-    const handleToggleSettings = () => setToggleSettings(!toggleSettings);
+    const handleToggleShowInserter = () => {
+        setToggleShowInserter(!toggleShowInserter);
+        toggleInserter();
+    };
+
+    const handleToggleShowSettings = () => {
+        setToggleShowSettings(!toggleShowSettings);
+        toggleSettings();
+    };
+
     const handleToggleListView = () => setToggleListView(!toggleListView);
 
     return(
@@ -36,8 +46,8 @@ const EditNavBar = () => {
             <div className="edit-nav-bar">
                 <div className="edit-nav-bar-menus">
                     <button
-                        className={`page-button add-component-button ${toggleInserter ? 'toggle-inserter' : ''}`}
-                        onClick={handleToggleInserter}>
+                        className={`page-button add-component-button ${toggleShowInserter ? 'toggle-inserter' : ''}`}
+                        onClick={handleToggleShowInserter}>
                         <AddIcon/>
                     </button>
                     <button className="page-button page-edit-button">
@@ -68,8 +78,8 @@ const EditNavBar = () => {
                         Publish
                     </button>
                     <button
-                        className={`page-button page-settings-button ${toggleSettings ? 'toggle-settings' : ''}`}
-                        onClick={handleToggleSettings}>
+                        className={`page-button page-settings-button ${toggleShowSettings ? 'toggle-settings' : ''}`}
+                        onClick={handleToggleShowSettings}>
                         <SettingsIcon/>
                     </button>
                 </div>
