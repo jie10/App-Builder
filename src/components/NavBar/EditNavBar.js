@@ -1,4 +1,6 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
+import { useParams } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 import {
     Add as AddIcon,
@@ -12,12 +14,20 @@ import {
 
 import "./EditNavBar.css";
 
+import { createNewPage } from "../../api/AppList";
+
+import {
+    getBlocks
+} from '../../stores/actions'
+
 import siteLogo from "../../assets/logos/ceblogo.png";
 
 const currentURL = window.location.pathname;
 
 const EditNavBar = (props) => {
-    const { toggleInserter, toggleSettings } = props;
+    const { toggleInserter, toggleSettings, blocks } = props;
+
+    const { id, page_id } = useParams();
 
     const [toggleShowInserter, setToggleShowInserter] = useState(false);
     const [toggleShowSettings, setToggleShowSettings] = useState(false);
@@ -34,6 +44,24 @@ const EditNavBar = (props) => {
     };
 
     const handleToggleListView = () => setToggleListView(!toggleListView);
+
+    const handleOnSavePage = (e) => {
+        e.preventDefault();
+
+        let components = Object.keys(blocks).map((block, i) => ({
+                _id: block,
+                settings: blocks[block],
+                sortId: i + 1
+            })
+        );
+        console.log(components)
+        if (page_id === "new") {
+            let newPageId = createNewPage(id, components);
+            window.location.href = newPageId ? `/editor/${id}/page/${newPageId}` : `/dashboard/${id}/home`;
+        } else {
+            // TODO - Update the page and save its current components
+        }
+    }
 
     return(
         <div className="edit-nav-bar-container">
@@ -68,8 +96,10 @@ const EditNavBar = (props) => {
                     </button>
                 </div>
                 <div className="edit-nav-bar-menus">
-                    <button className="page-button page-status-button">
-                        Save
+                    <button
+                        className="page-button page-status-button"
+                        onClick={handleOnSavePage}>
+                        Save Draft
                     </button>
                     <button className="page-button page-status-button">
                         Preview
@@ -88,4 +118,10 @@ const EditNavBar = (props) => {
     )
 }
 
-export default EditNavBar;
+const mapStateToProps = state => {
+    return {
+        blocks: state.blocks
+    }
+}
+
+export default connect(mapStateToProps, {getBlocks})(EditNavBar)

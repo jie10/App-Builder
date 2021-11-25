@@ -1,3 +1,5 @@
+import { v4 as uuidv4 } from 'uuid'
+
 import { generateUniqId, generateTimestamp } from "../utils/helpers/generate";
 import { parseObject, unparseObject } from "../utils/helpers/json";
 
@@ -33,7 +35,20 @@ export const createNew = (data) => {
             pageStatus: "draft",
             createdTimestamp: generateTimestamp(),
             updatedTimestamp: generateTimestamp(),
-            components: [],
+            components: [
+                {
+                    _id: uuidv4(),
+                    settings: {
+                        type: "HEADER",
+                        parameters: {
+                            backgroundColor:"#fbe700",
+                            height:"160px",
+                            title:"Untitled"
+                        }
+                   },
+                   sortId: 1
+                }
+            ],
             sortId: 1
         }
     ];
@@ -108,6 +123,35 @@ export const restorePageByStatus = (appId, pageId) => {
         });
 
         localStorage.setItem("apps_list", unparseObject(newList));
+    }
+}
+
+export const createNewPage = (appId, components) => {
+    let currentApp = findOne(appId);
+
+    if (currentApp && currentApp.pages) {
+        let updatedApp = [...currentApp.pages, {
+            _id: generateUniqId(),
+            pageName: "index",
+            pageTitle: "Untitled",
+            pageStatus: "draft",
+            createdTimestamp: generateTimestamp(),
+            updatedTimestamp: generateTimestamp(),
+            components: components,
+            sortId: currentApp.pages.length + 1
+        }];
+
+        currentApp.pages = updatedApp;
+
+        let newList = list.map(item => {
+            return updatedApp._id === item._id ? currentApp : item;
+        });
+
+        localStorage.setItem("apps_list", unparseObject(newList));
+
+        return updatedApp.slice(-1)[0]._id;
+    } else {
+        return '';
     }
 }
 
