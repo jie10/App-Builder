@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { connect } from 'react-redux';
 
@@ -14,7 +14,7 @@ import {
 
 import "./EditNavBar.css";
 
-import { createNewPage, updatePageByComponents } from "../../api/AppList";
+import { createNewPage, updatePageByComponents, findCurrentPage } from "../../api/AppList";
 
 import {
     getBlocks
@@ -32,6 +32,43 @@ const EditNavBar = (props) => {
     const [toggleShowInserter, setToggleShowInserter] = useState(false);
     const [toggleShowSettings, setToggleShowSettings] = useState(false);
     const [toggleListView, setToggleListView] = useState(false);
+    const [pageStatusUpdate, setPageStatusUpdate] = useState('draft');
+
+    const saveDraftPage = () => {
+        let components = Object.keys(blocks).map((block, i) => ({
+                _id: block,
+                settings: blocks[block],
+                sortId: i + 1
+            })
+        );
+
+        setPageStatusUpdate("draft");
+
+        if (page_id === "new") {
+            let newPageId = createNewPage(id, components, "draft");
+            window.location.href = newPageId ? `/editor/${id}/page/${newPageId}` : `/dashboard/${id}/home`;
+        } else {
+            updatePageByComponents(components, "draft", id, page_id);
+        }
+    }
+
+    const publishPage = () => {
+        let components = Object.keys(blocks).map((block, i) => ({
+                _id: block,
+                settings: blocks[block],
+                sortId: i + 1
+            })
+        );
+
+        setPageStatusUpdate("published");
+
+        if (page_id === "new") {
+            let newPageId = createNewPage(id, components, "published");
+            window.location.href = newPageId ? `/editor/${id}/page/${newPageId}` : `/dashboard/${id}/home`;
+        } else {
+            updatePageByComponents(components, "published", id, page_id);
+        }
+    }
 
     const handleToggleShowInserter = () => {
         setToggleShowInserter(!toggleShowInserter);
@@ -47,41 +84,35 @@ const EditNavBar = (props) => {
 
     const handleOnSaveDraftPage = (e) => {
         e.preventDefault();
+        saveDraftPage();
+    }
 
-        let components = Object.keys(blocks).map((block, i) => ({
-                _id: block,
-                settings: blocks[block],
-                sortId: i + 1
-            })
-        );
-
-        if (page_id === "new") {
-            let newPageId = createNewPage(id, components, "draft");
-            window.location.href = newPageId ? `/editor/${id}/page/${newPageId}` : `/dashboard/${id}/home`;
-        } else {
-            updatePageByComponents(components, "draft", id, page_id);
+    const handleSwitchPageToDraft = (e) => {
+        if (window.confirm("Are you sure you want to unpublish this post?")) {
+            saveDraftPage();
         }
+    }
+
+    const handleOnUpdatePage = (e) => {
+        e.preventDefault();
+        publishPage();
     }
 
     const handleOnPublishPage = (e) => {
         e.preventDefault();
-
-        let components = Object.keys(blocks).map((block, i) => ({
-                _id: block,
-                settings: blocks[block],
-                sortId: i + 1
-            })
-        );
-
-        if (page_id === "new") {
-            let newPageId = createNewPage(id, components, "published");
-            window.location.href = newPageId ? `/editor/${id}/page/${newPageId}` : `/dashboard/${id}/home`;
-        } else {
-            updatePageByComponents(components, "published", id, page_id);
-        }
+        publishPage();
     }
 
-    return(
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    useEffect(() => {
+        let currentPage = findCurrentPage(id, page_id);
+
+        if (currentPage) {
+            setPageStatusUpdate(currentPage.pageStatus === "published" ? "published" : "draft");
+        }
+    });
+
+    return (
         <div className="edit-nav-bar-container">
             <div className="site-logo-container">
                 <a className="site-logo-link" href={ currentURL } target="_self">
@@ -114,19 +145,34 @@ const EditNavBar = (props) => {
                     </button>
                 </div>
                 <div className="edit-nav-bar-menus">
-                    <button
-                        className="page-button page-status-button"
-                        onClick={handleOnSaveDraftPage}>
-                        Save Draft
-                    </button>
+                    {
+                        pageStatusUpdate === "published" ? 
+                            <button
+                                className="page-button page-status-button"
+                                onClick={handleSwitchPageToDraft}>
+                                Switch to Draft
+                            </button> : <button
+                                className="page-button page-status-button"
+                                onClick={handleOnSaveDraftPage}>
+                                Save Draft
+                            </button> 
+                    }
+                    
                     <button className="page-button page-status-button">
                         Preview
                     </button>
-                    <button
-                        className="page-button page-status-button publish-page-button"
-                        onClick={handleOnPublishPage}>
-                        Publish
-                    </button>
+                    { 
+                        pageStatusUpdate === "published" ?
+                            <button
+                                className="page-button page-status-button publish-page-button"
+                                onClick={handleOnUpdatePage}>
+                                Update
+                            </button> : <button
+                                className="page-button page-status-button publish-page-button"
+                                onClick={handleOnPublishPage}>
+                                Publish
+                            </button>
+                    }
                     <button
                         className={`page-button page-settings-button ${toggleShowSettings ? 'toggle-settings' : ''}`}
                         onClick={handleToggleShowSettings}>

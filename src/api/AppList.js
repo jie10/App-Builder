@@ -161,6 +161,11 @@ export const createNewPage = (appId, components, pageStatusUpdate) => {
     }
 }
 
+export const findCurrentPage = (appId, pageId) => {
+    let currentApp = findOne(appId);
+    return currentApp && currentApp.pages ? currentApp.pages.filter(page => page._id === pageId)[0] : null;
+}
+
 export const updatePageByComponents = (components, pageStatusUpdate, appId, pageId) => {
     let currentApp = findOne(appId);
 
