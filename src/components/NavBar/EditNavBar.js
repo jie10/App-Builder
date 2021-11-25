@@ -16,16 +16,14 @@ import "./EditNavBar.css";
 
 import { createNewPage, updatePageByComponents, findCurrentPage } from "../../api/AppList";
 
-import {
-    getBlocks
-} from '../../stores/actions'
+import { getBlocks, sendBlocks } from '../../stores/actions'
 
 import siteLogo from "../../assets/logos/ceblogo.png";
 
 const currentURL = window.location.pathname;
 
 const EditNavBar = (props) => {
-    const { toggleInserter, toggleSettings, blocks } = props;
+    const { toggleInserter, toggleSettings, blocks, sendBlocks } = props;
 
     const { id, page_id } = useParams();
 
@@ -70,6 +68,8 @@ const EditNavBar = (props) => {
         }
     }
 
+    const groupComponentsToBlocks = (components) => components.reduce((a, v) => ({ ...a, [v._id]: v.settings}), {});
+
     const handleToggleShowInserter = () => {
         setToggleShowInserter(!toggleShowInserter);
         toggleInserter();
@@ -103,14 +103,19 @@ const EditNavBar = (props) => {
         publishPage();
     }
 
-    // eslint-disable-next-line react-hooks/exhaustive-deps
     useEffect(() => {
         let currentPage = findCurrentPage(id, page_id);
 
         if (currentPage) {
             setPageStatusUpdate(currentPage.pageStatus === "published" ? "published" : "draft");
+            currentPage.components.forEach(component => {
+                let savedBlock = groupComponentsToBlocks([component]);
+                let saved = savedBlock[Object.keys(savedBlock)[0]];
+                sendBlocks(saved);
+            });
         }
-    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [sendBlocks]);
 
     return (
         <div className="edit-nav-bar-container">
@@ -190,4 +195,4 @@ const mapStateToProps = state => {
     }
 }
 
-export default connect(mapStateToProps, {getBlocks})(EditNavBar)
+export default connect(mapStateToProps, { getBlocks, sendBlocks })(EditNavBar)
