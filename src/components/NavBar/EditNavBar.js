@@ -14,7 +14,7 @@ import {
 
 import "./EditNavBar.css";
 
-import { createNewPage } from "../../api/AppList";
+import { createNewPage, updatePageByComponents } from "../../api/AppList";
 
 import {
     getBlocks
@@ -45,7 +45,7 @@ const EditNavBar = (props) => {
 
     const handleToggleListView = () => setToggleListView(!toggleListView);
 
-    const handleOnSavePage = (e) => {
+    const handleOnSaveDraftPage = (e) => {
         e.preventDefault();
 
         let components = Object.keys(blocks).map((block, i) => ({
@@ -54,12 +54,30 @@ const EditNavBar = (props) => {
                 sortId: i + 1
             })
         );
-        console.log(components)
+
         if (page_id === "new") {
-            let newPageId = createNewPage(id, components);
+            let newPageId = createNewPage(id, components, "draft");
             window.location.href = newPageId ? `/editor/${id}/page/${newPageId}` : `/dashboard/${id}/home`;
         } else {
-            // TODO - Update the page and save its current components
+            updatePageByComponents(components, "draft", id, page_id);
+        }
+    }
+
+    const handleOnPublishPage = (e) => {
+        e.preventDefault();
+
+        let components = Object.keys(blocks).map((block, i) => ({
+                _id: block,
+                settings: blocks[block],
+                sortId: i + 1
+            })
+        );
+
+        if (page_id === "new") {
+            let newPageId = createNewPage(id, components, "published");
+            window.location.href = newPageId ? `/editor/${id}/page/${newPageId}` : `/dashboard/${id}/home`;
+        } else {
+            updatePageByComponents(components, "published", id, page_id);
         }
     }
 
@@ -98,13 +116,15 @@ const EditNavBar = (props) => {
                 <div className="edit-nav-bar-menus">
                     <button
                         className="page-button page-status-button"
-                        onClick={handleOnSavePage}>
+                        onClick={handleOnSaveDraftPage}>
                         Save Draft
                     </button>
                     <button className="page-button page-status-button">
                         Preview
                     </button>
-                    <button className="page-button page-status-button publish-page-button">
+                    <button
+                        className="page-button page-status-button publish-page-button"
+                        onClick={handleOnPublishPage}>
                         Publish
                     </button>
                     <button

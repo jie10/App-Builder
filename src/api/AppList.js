@@ -12,6 +12,11 @@ let list = parseObject(localStorage.getItem("apps_list"));
 
 const filterPagesByStatus = (pages, pageStatus) => pages.filter(page => page.pageStatus === pageStatus.toLowerCase());
 
+const findHeaderTitle = (components) => {
+    let result = components.length > 0 ? components.filter(component => component.settings.type === "HEADER")[0] : null;
+    return result ? result.settings.parameters.title : "Untitled";
+}
+
 export const findAll = () => list && list.length > 0 ? list : [];
 
 export const findOne = (key) => list && list.length > 0 ? list.filter(item => item._id === key)[0] : null;
@@ -126,18 +131,19 @@ export const restorePageByStatus = (appId, pageId) => {
     }
 }
 
-export const createNewPage = (appId, components) => {
+export const createNewPage = (appId, components, pageStatusUpdate) => {
     let currentApp = findOne(appId);
 
     if (currentApp && currentApp.pages) {
         let updatedApp = [...currentApp.pages, {
             _id: generateUniqId(),
             pageName: "index",
-            pageTitle: "Untitled",
-            pageStatus: "draft",
+            pageTitle: findHeaderTitle(components),
+            pageStatus: pageStatusUpdate,
             createdTimestamp: generateTimestamp(),
             updatedTimestamp: generateTimestamp(),
             components: components,
+            isPublished: pageStatusUpdate === "published" ? true : false,
             sortId: currentApp.pages.length + 1
         }];
 
@@ -152,6 +158,33 @@ export const createNewPage = (appId, components) => {
         return updatedApp.slice(-1)[0]._id;
     } else {
         return '';
+    }
+}
+
+export const updatePageByComponents = (components, pageStatusUpdate, appId, pageId) => {
+    let currentApp = findOne(appId);
+
+    if (currentApp && currentApp.pages) {
+        let updatedApp = currentApp.pages.map(page => {
+            if (page._id === pageId) {
+                page.pageTitle = findHeaderTitle(components);
+                page.previousPageStatus = page.pageStatus;
+                page.pageStatus = pageStatusUpdate;
+                page.updatedTimestamp = generateTimestamp();
+                page.isPublished = pageStatusUpdate === "published" ? true : false;
+                page.components = components;
+            }
+
+            return page;
+        });
+
+        currentApp.pages = updatedApp;
+
+        let newList = list.map(item => {
+            return updatedApp._id === item._id ? currentApp : item;
+        });
+
+        localStorage.setItem("apps_list", unparseObject(newList));
     }
 }
 
