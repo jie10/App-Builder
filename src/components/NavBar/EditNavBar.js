@@ -40,6 +40,7 @@ const EditNavBar = (props) => {
     const [saveDraft, setSaveDraft] = useState(false);
     const [switchDraft, setSwitchDraft] = useState(false);
     const [updatePublishedPage, setUpdatePublishedPage] = useState(false);
+    const [savePublishedPage, setSavePublishedPage] = useState(false);
     const [openSnackBar, setOpenSnackBar] = useState(false);
     const [alertSeverity, setAlertSeverity] = useState("success");
     const [alertMessage, setAlertMessage] = useState('Saved.');
@@ -140,7 +141,16 @@ const EditNavBar = (props) => {
 
     const handleOnPublishPage = (e) => {
         e.preventDefault();
-        publishPage();
+
+        setSavePublishedPage(true);
+
+        delay(() => {
+            publishPage();
+            setSavePublishedPage(false);
+            setAlertSeverity("success");
+            setAlertMessage("Page published.");
+            setOpenSnackBar(true);
+        }, 2000);
     }
 
     const handleCloseSnackBar = (event, reason) => {
@@ -213,16 +223,16 @@ const EditNavBar = (props) => {
                                 disabled={switchDraft || updatePublishedPage}>
                                 Switch to Draft
                             </button> : <button
-                                className={`page-button page-status-button ${saveDraft ? 'disabled-draft-button' : ''}`}
+                                className={`page-button page-status-button ${saveDraft || savePublishedPage ? 'disabled-draft-button' : ''}`}
                                 onClick={handleOnSaveDraftPage}
-                                disabled={saveDraft}>
+                                disabled={saveDraft || savePublishedPage}>
                                 {saveDraft ? "Saving..." : "Save Draft"}
                             </button> 
                     }
                     
                     <button
-                        className={`page-button page-status-button ${saveDraft || switchDraft || updatePublishedPage ? 'disabled-preview-button' : ''}`}
-                        disabled={saveDraft || switchDraft || updatePublishedPage}>
+                        className={`page-button page-status-button ${saveDraft || switchDraft || updatePublishedPage || savePublishedPage ? 'disabled-preview-button' : ''}`}
+                        disabled={saveDraft || switchDraft || updatePublishedPage || savePublishedPage}>
                         Preview
                     </button>
                     { 
@@ -231,11 +241,11 @@ const EditNavBar = (props) => {
                                 className={`page-button page-status-button publish-page-button ${switchDraft || updatePublishedPage ? 'disabled-publish-button' : ''}`}
                                 onClick={handleOnUpdatePage}
                                 disabled={switchDraft || updatePublishedPage}>
-                                {switchDraft || updatePublishedPage ? 'Updating...' : 'Update'}
+                                {updatePublishedPage ? 'Updating...' : 'Update'}
                             </button> : <button
-                                className={`page-button page-status-button publish-page-button ${saveDraft ? 'disabled-publish-button' : ''}`}
+                                className={`page-button page-status-button publish-page-button ${saveDraft || savePublishedPage ? 'disabled-publish-button' : ''}`}
                                 onClick={handleOnPublishPage}
-                                disabled={saveDraft}>
+                                disabled={saveDraft || savePublishedPage}>
                                 Publish
                             </button>
                     }
