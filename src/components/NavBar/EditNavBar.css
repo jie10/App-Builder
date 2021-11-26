@@ -135,6 +135,39 @@
     color: #007CBA;
 }
 
+.edit-nav-bar .edit-nav-bar-menus .disabled-draft-button {
+    margin: 0 4px;
+    font-size: 13px;
+    border: 1px solid transparent;
+    padding: 8px 12px;
+    color: #868686;
+    cursor: default;
+}
+
+.edit-nav-bar .edit-nav-bar-menus .disabled-draft-button:hover {
+    border: 1px solid transparent;
+    border-radius: 3px;
+    color: #868686;
+    cursor: default;
+}
+
+.edit-nav-bar .edit-nav-bar-menus .disabled-preview-button {
+    margin: 0 4px;
+    font-size: 13px;
+    border: 1px solid transparent;
+    padding: 8px 12px;
+    color: #868686;
+    background-color: #EAEAEA;
+    cursor: default;
+}
+
+.edit-nav-bar .edit-nav-bar-menus .disabled-preview-button:hover {
+    border: 1px solid transparent;
+    border-radius: 3px;
+    color: #868686;
+    cursor: default;
+}
+
 .edit-nav-bar .edit-nav-bar-menus .publish-page-button {
     border-radius: 3px;
     background-color: #007CBA;
@@ -145,6 +178,24 @@
 .edit-nav-bar .edit-nav-bar-menus .publish-page-button:hover {
     background-color: #006BA1;
     color: #FFFFFF;
+}
+
+.edit-nav-bar .edit-nav-bar-menus .disabled-publish-button {
+    margin: 0 4px;
+    font-size: 13px;
+    border: 1px solid transparent;
+    padding: 8px 12px;
+    color: #3EA8D6;
+    background-color: #007CBA;
+    cursor: default;
+}
+
+.edit-nav-bar .edit-nav-bar-menus .disabled-publish-button:hover {
+    border: 1px solid transparent;
+    border-radius: 3px;
+    color: #3EA8D6;
+    background-color: #007CBA;
+    cursor: default;
 }
 
 .edit-nav-bar .edit-nav-bar-menus .page-settings-button {

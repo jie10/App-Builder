@@ -12,15 +12,22 @@ import {
     Settings as SettingsIcon
 } from '@mui/icons-material';
 
+import Snackbar from '@mui/material/Snackbar';
+import MuiAlert from '@mui/material/Alert';
+
 import "./EditNavBar.css";
 
 import { createNewPage, updatePageByComponents, findCurrentPage } from "../../api/AppList";
-
+import { delay } from '../../utils/helpers/timing';
 import { getBlocks, sendBlocks } from '../../stores/actions'
 
 import siteLogo from "../../assets/logos/ceblogo.png";
 
 const currentURL = window.location.pathname;
+
+const Alert = React.forwardRef(function Alert(props, ref) {
+    return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
 
 const EditNavBar = (props) => {
     const { toggleInserter, toggleSettings, blocks, sendBlocks } = props;
@@ -31,6 +38,8 @@ const EditNavBar = (props) => {
     const [toggleShowSettings, setToggleShowSettings] = useState(false);
     const [toggleListView, setToggleListView] = useState(false);
     const [pageStatusUpdate, setPageStatusUpdate] = useState('draft');
+    const [saveDraft, setSaveDraft] = useState(false);
+    const [openSnackBar, setOpenSnackBar] = useState(false);
 
     const saveDraftPage = () => {
         let components = Object.keys(blocks).map((block, i) => ({
@@ -84,7 +93,14 @@ const EditNavBar = (props) => {
 
     const handleOnSaveDraftPage = (e) => {
         e.preventDefault();
-        saveDraftPage();
+
+        setSaveDraft(true);
+
+        delay(() => {
+            saveDraftPage();
+            setSaveDraft(false);
+            setOpenSnackBar(true);
+        }, 2000);
     }
 
     const handleSwitchPageToDraft = (e) => {
@@ -102,6 +118,14 @@ const EditNavBar = (props) => {
         e.preventDefault();
         publishPage();
     }
+
+    const handleCloseSnackBar = (event, reason) => {
+        if (reason === 'clickaway') {
+            return;
+        }
+
+        setOpenSnackBar(false);
+    };
 
     useEffect(() => {
         let currentPage = findCurrentPage(id, page_id);
@@ -157,24 +181,29 @@ const EditNavBar = (props) => {
                                 onClick={handleSwitchPageToDraft}>
                                 Switch to Draft
                             </button> : <button
-                                className="page-button page-status-button"
-                                onClick={handleOnSaveDraftPage}>
-                                Save Draft
+                                className={`page-button page-status-button ${saveDraft ? 'disabled-draft-button' : ''}`}
+                                onClick={handleOnSaveDraftPage}
+                                disabled={saveDraft}>
+                                {saveDraft ? "Saving..." : "Save Draft"}
                             </button> 
                     }
                     
-                    <button className="page-button page-status-button">
+                    <button
+                        className={`page-button page-status-button ${saveDraft ? 'disabled-preview-button' : ''}`}
+                        disabled={saveDraft}>
                         Preview
                     </button>
                     { 
                         pageStatusUpdate === "published" ?
                             <button
-                                className="page-button page-status-button publish-page-button"
-                                onClick={handleOnUpdatePage}>
+                                className={`page-button page-status-button publish-page-button ${saveDraft ? 'disabled-publish-button' : ''}`}
+                                onClick={handleOnUpdatePage}
+                                disabled={saveDraft}>
                                 Update
                             </button> : <button
-                                className="page-button page-status-button publish-page-button"
-                                onClick={handleOnPublishPage}>
+                                className={`page-button page-status-button publish-page-button ${saveDraft ? 'disabled-publish-button' : ''}`}
+                                onClick={handleOnPublishPage}
+                                disabled={saveDraft}>
                                 Publish
                             </button>
                     }
@@ -185,6 +214,11 @@ const EditNavBar = (props) => {
                     </button>
                 </div>
             </div>
+            <Snackbar open={openSnackBar} autoHideDuration={3000} onClose={handleCloseSnackBar}>
+                <Alert onClose={handleCloseSnackBar} severity="success" sx={{ width: '100%' }}>
+                    Saved
+                </Alert>
+            </Snackbar>
         </div>
     )
 }
