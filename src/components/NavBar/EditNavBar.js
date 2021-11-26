@@ -12,8 +12,7 @@ import {
     Settings as SettingsIcon
 } from '@mui/icons-material';
 
-import Snackbar from '@mui/material/Snackbar';
-import MuiAlert from '@mui/material/Alert';
+import {Button, Snackbar, Alert as MuiAlert} from '@mui/material/';
 
 import "./EditNavBar.css";
 
@@ -40,6 +39,7 @@ const EditNavBar = (props) => {
     const [pageStatusUpdate, setPageStatusUpdate] = useState('draft');
     const [saveDraft, setSaveDraft] = useState(false);
     const [switchDraft, setSwitchDraft] = useState(false);
+    const [updatePublishedPage, setUpdatePublishedPage] = useState(false);
     const [openSnackBar, setOpenSnackBar] = useState(false);
     const [alertSeverity, setAlertSeverity] = useState("success");
     const [alertMessage, setAlertMessage] = useState('Saved.');
@@ -110,6 +110,8 @@ const EditNavBar = (props) => {
 
     const handleSwitchPageToDraft = (e) => {
         if (window.confirm("Are you sure you want to unpublish this post?")) {
+            e.preventDefault();
+
             setSwitchDraft(true);
 
             delay(() => {
@@ -124,7 +126,16 @@ const EditNavBar = (props) => {
 
     const handleOnUpdatePage = (e) => {
         e.preventDefault();
-        publishPage();
+
+        setUpdatePublishedPage(true);
+
+        delay(() => {
+            publishPage();
+            setUpdatePublishedPage(false);
+            setAlertSeverity("success");
+            setAlertMessage("Page updated.");
+            setOpenSnackBar(true);
+        }, 2000);
     }
 
     const handleOnPublishPage = (e) => {
@@ -139,6 +150,13 @@ const EditNavBar = (props) => {
 
         setOpenSnackBar(false);
     };
+
+    const publishAction = (
+        pageStatusUpdate === "published" ? 
+            <Button color="secondary" size="small" onClick={() => window.location.href = `/${id}/${page_id}`}>
+                View Page
+            </Button> : null
+    );
 
     useEffect(() => {
         let currentPage = findCurrentPage(id, page_id);
@@ -190,9 +208,9 @@ const EditNavBar = (props) => {
                     {
                         pageStatusUpdate === "published" ? 
                             <button
-                                className={`page-button page-status-button ${switchDraft ? 'disabled-draft-button' : ''}`}
+                                className={`page-button page-status-button ${switchDraft || updatePublishedPage ? 'disabled-draft-button' : ''}`}
                                 onClick={handleSwitchPageToDraft}
-                                disabled={switchDraft}>
+                                disabled={switchDraft || updatePublishedPage}>
                                 Switch to Draft
                             </button> : <button
                                 className={`page-button page-status-button ${saveDraft ? 'disabled-draft-button' : ''}`}
@@ -203,17 +221,17 @@ const EditNavBar = (props) => {
                     }
                     
                     <button
-                        className={`page-button page-status-button ${saveDraft || switchDraft ? 'disabled-preview-button' : ''}`}
-                        disabled={saveDraft || switchDraft}>
+                        className={`page-button page-status-button ${saveDraft || switchDraft || updatePublishedPage ? 'disabled-preview-button' : ''}`}
+                        disabled={saveDraft || switchDraft || updatePublishedPage}>
                         Preview
                     </button>
                     { 
                         pageStatusUpdate === "published" ?
                             <button
-                                className={`page-button page-status-button publish-page-button ${switchDraft ? 'disabled-publish-button' : ''}`}
+                                className={`page-button page-status-button publish-page-button ${switchDraft || updatePublishedPage ? 'disabled-publish-button' : ''}`}
                                 onClick={handleOnUpdatePage}
-                                disabled={switchDraft}>
-                                {switchDraft ? 'Updating...' : 'Update'}
+                                disabled={switchDraft || updatePublishedPage}>
+                                {switchDraft || updatePublishedPage ? 'Updating...' : 'Update'}
                             </button> : <button
                                 className={`page-button page-status-button publish-page-button ${saveDraft ? 'disabled-publish-button' : ''}`}
                                 onClick={handleOnPublishPage}
@@ -228,9 +246,9 @@ const EditNavBar = (props) => {
                     </button>
                 </div>
             </div>
-            <Snackbar open={openSnackBar} autoHideDuration={3000} onClose={handleCloseSnackBar}>
-                <Alert onClose={handleCloseSnackBar} severity={alertSeverity} sx={{ width: '100%' }}>
-                    { alertMessage }
+            <Snackbar open={openSnackBar} autoHideDuration={2000} onClose={handleCloseSnackBar}>
+                <Alert onClose={handleCloseSnackBar} severity={alertSeverity} sx={{ width: '100%' }} action={publishAction}>
+                    { alertMessage } 
                 </Alert>
             </Snackbar>
         </div>
