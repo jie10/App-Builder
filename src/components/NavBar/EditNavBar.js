@@ -39,7 +39,10 @@ const EditNavBar = (props) => {
     const [toggleListView, setToggleListView] = useState(false);
     const [pageStatusUpdate, setPageStatusUpdate] = useState('draft');
     const [saveDraft, setSaveDraft] = useState(false);
+    const [switchDraft, setSwitchDraft] = useState(false);
     const [openSnackBar, setOpenSnackBar] = useState(false);
+    const [alertSeverity, setAlertSeverity] = useState("success");
+    const [alertMessage, setAlertMessage] = useState('Saved.');
 
     const saveDraftPage = () => {
         let components = Object.keys(blocks).map((block, i) => ({
@@ -99,13 +102,23 @@ const EditNavBar = (props) => {
         delay(() => {
             saveDraftPage();
             setSaveDraft(false);
+            setAlertSeverity("success");
+            setAlertMessage("Saved.");
             setOpenSnackBar(true);
         }, 2000);
     }
 
     const handleSwitchPageToDraft = (e) => {
         if (window.confirm("Are you sure you want to unpublish this post?")) {
-            saveDraftPage();
+            setSwitchDraft(true);
+
+            delay(() => {
+                saveDraftPage();
+                setSwitchDraft(false);
+                setAlertSeverity("info");
+                setAlertMessage("Page reverted to draft.");
+                setOpenSnackBar(true);
+            }, 2000);
         }
     }
 
@@ -177,8 +190,9 @@ const EditNavBar = (props) => {
                     {
                         pageStatusUpdate === "published" ? 
                             <button
-                                className="page-button page-status-button"
-                                onClick={handleSwitchPageToDraft}>
+                                className={`page-button page-status-button ${switchDraft ? 'disabled-draft-button' : ''}`}
+                                onClick={handleSwitchPageToDraft}
+                                disabled={switchDraft}>
                                 Switch to Draft
                             </button> : <button
                                 className={`page-button page-status-button ${saveDraft ? 'disabled-draft-button' : ''}`}
@@ -189,17 +203,17 @@ const EditNavBar = (props) => {
                     }
                     
                     <button
-                        className={`page-button page-status-button ${saveDraft ? 'disabled-preview-button' : ''}`}
-                        disabled={saveDraft}>
+                        className={`page-button page-status-button ${saveDraft || switchDraft ? 'disabled-preview-button' : ''}`}
+                        disabled={saveDraft || switchDraft}>
                         Preview
                     </button>
                     { 
                         pageStatusUpdate === "published" ?
                             <button
-                                className={`page-button page-status-button publish-page-button ${saveDraft ? 'disabled-publish-button' : ''}`}
+                                className={`page-button page-status-button publish-page-button ${switchDraft ? 'disabled-publish-button' : ''}`}
                                 onClick={handleOnUpdatePage}
-                                disabled={saveDraft}>
-                                Update
+                                disabled={switchDraft}>
+                                {switchDraft ? 'Updating...' : 'Update'}
                             </button> : <button
                                 className={`page-button page-status-button publish-page-button ${saveDraft ? 'disabled-publish-button' : ''}`}
                                 onClick={handleOnPublishPage}
@@ -215,8 +229,8 @@ const EditNavBar = (props) => {
                 </div>
             </div>
             <Snackbar open={openSnackBar} autoHideDuration={3000} onClose={handleCloseSnackBar}>
-                <Alert onClose={handleCloseSnackBar} severity="success" sx={{ width: '100%' }}>
-                    Saved
+                <Alert onClose={handleCloseSnackBar} severity={alertSeverity} sx={{ width: '100%' }}>
+                    { alertMessage }
                 </Alert>
             </Snackbar>
         </div>
