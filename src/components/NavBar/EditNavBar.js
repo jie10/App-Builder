@@ -15,7 +15,7 @@ import {
     OpenInNew as OpenInNewIcon
 } from '@mui/icons-material';
 
-import {Grid, Button, Snackbar, Alert as MuiAlert} from '@mui/material/';
+import { Grid, Button, Snackbar, Alert as MuiAlert, CircularProgress } from '@mui/material/';
 
 import "./EditNavBar.css";
 
@@ -47,6 +47,7 @@ const EditNavBar = (props) => {
     const [toggleDetailsMenu, setToggleDetailssMenu] = useState(false);
     const [toggleListView, setToggleListView] = useState(false);
     const [togglePreviewMenu, setTogglePreviewMenu] = useState(false);
+    const [togglePublishMenu, setTogglePublishMenu] = useState(false);
     const [selectedToolMenu, setSelectedToolMenu] = useState('edit');
     const [selectedPreviewMenu, setSelectedPreviewMenu] = useState('desktop');
     const [pageStatusUpdate, setPageStatusUpdate] = useState('draft');
@@ -168,6 +169,10 @@ const EditNavBar = (props) => {
         }, 2000);
     }
 
+    const handleBeforePublishPage = () => setTogglePublishMenu(true);
+
+    const handleCancelBeforePublishPage = () => setTogglePublishMenu(false);
+
     const handleOnPublishPage = (e) => {
         e.preventDefault();
 
@@ -179,6 +184,7 @@ const EditNavBar = (props) => {
             setAlertSeverity("success");
             setAlertMessage("Page published.");
             setOpenSnackBar(true);
+            setTogglePublishMenu(false);
         }, 2000);
     }
 
@@ -289,9 +295,8 @@ const EditNavBar = (props) => {
                                 disabled={switchDraft || updatePublishedPage}>
                                 {updatePublishedPage ? 'Updating...' : 'Update'}
                             </button> : <button
-                                className={`page-button page-status-button publish-page-button ${saveDraft || savePublishedPage ? 'disabled-publish-button' : ''}`}
-                                onClick={handleOnPublishPage}
-                                disabled={saveDraft || savePublishedPage}>
+                                className="page-button page-status-button publish-page-button"
+                                onClick={handleBeforePublishPage}>
                                 Publish
                             </button>
                     }
@@ -411,6 +416,33 @@ const EditNavBar = (props) => {
                                 <OpenInNewIcon/>
                             </span>
                         </a>
+                    </div>
+                </div>
+                <div className={`editor-publish-container ${togglePublishMenu ? 'editor-publish-container-show' : ''}`}>
+                    <div className="publish-header">
+                        <div className="before-publish-buttons">
+                            <button
+                                className={`header-button ${savePublishedPage ? 'disabled-publish-button' : 'submit-button'}`}
+                                onClick={handleOnPublishPage}
+                                disabled={savePublishedPage}>
+                                {savePublishedPage ? 'Publishing...' : 'Publish'}
+                            </button>
+                            <button
+                                className={`header-button ${savePublishedPage ? 'disabled-cancel-publish-button' : ''}`}
+                                onClick={handleCancelBeforePublishPage}
+                                disabled={savePublishedPage}>
+                                    Cancel
+                            </button>
+                        </div>
+                    </div>
+                    <div className="publish-content">
+                        <div className={`before-publish-details ${savePublishedPage ? 'before-publish-details-hide' : ''}`}>
+                            <strong>Are you ready to publish?</strong>
+                            <p>Double-check your settings before publishing.</p>
+                        </div>
+                        <div className={`publish-loader ${savePublishedPage ? 'publish-loader-show' : ''}`}>
+                            <CircularProgress color="inherit" />
+                        </div>
                     </div>
                 </div>
             </div>
