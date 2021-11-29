@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useParams } from 'react-router-dom';
 import { connect } from 'react-redux';
 
@@ -9,7 +9,9 @@ import {
     Redo as RedoIcon,
     InfoOutlined as InfoOutlinedIcon,
     ListOutlined as ListOutlinedIcon,
-    Settings as SettingsIcon
+    Settings as SettingsIcon,
+    NearMeOutlined as NearMeOutlinedIcon,
+    Check as CheckIcon
 } from '@mui/icons-material';
 
 import {Button, Snackbar, Alert as MuiAlert} from '@mui/material/';
@@ -18,7 +20,8 @@ import "./EditNavBar.css";
 
 import { createNewPage, updatePageByComponents, findCurrentPage } from "../../api/AppList";
 import { delay } from '../../utils/helpers/timing';
-import { getBlocks, sendBlocks } from '../../stores/actions'
+import { getBlocks, sendBlocks } from '../../stores/actions';
+import { useOutsideClick } from '../../utils/helpers/hooks';
 
 import siteLogo from "../../assets/logos/ceblogo.png";
 
@@ -33,9 +36,13 @@ const EditNavBar = (props) => {
 
     const { id, page_id } = useParams();
 
+    const refToolsMenu = useRef(null);
+
     const [toggleShowInserter, setToggleShowInserter] = useState(false);
     const [toggleShowSettings, setToggleShowSettings] = useState(false);
+    const [toggleToolsMenu, setToggleToolsMenu] = useState(false);
     const [toggleListView, setToggleListView] = useState(false);
+    const [selectedToolMenu, setSelectedToolMenu] = useState('edit');
     const [pageStatusUpdate, setPageStatusUpdate] = useState('draft');
     const [saveDraft, setSaveDraft] = useState(false);
     const [switchDraft, setSwitchDraft] = useState(false);
@@ -92,6 +99,12 @@ const EditNavBar = (props) => {
         setToggleShowSettings(!toggleShowSettings);
         toggleSettings();
     };
+
+    const handleShowTools = () => setToggleToolsMenu(!toggleToolsMenu);
+
+    const handleSelectedEditTool = () => setSelectedToolMenu("edit");
+
+    const handleSelectedSelectTool = () => setSelectedToolMenu("select");
 
     const handleToggleListView = () => setToggleListView(!toggleListView);
 
@@ -168,6 +181,10 @@ const EditNavBar = (props) => {
             </Button> : null
     );
 
+    useOutsideClick(refToolsMenu, () => {
+        if (toggleToolsMenu) setToggleToolsMenu(false);
+    });
+
     useEffect(() => {
         let currentPage = findCurrentPage(id, page_id);
 
@@ -197,8 +214,10 @@ const EditNavBar = (props) => {
                         onClick={handleToggleShowInserter}>
                         <AddIcon/>
                     </button>
-                    <button className="page-button page-edit-button">
-                        <BorderColorIcon/>
+                    <button
+                        className={`page-button page-edit-button ${toggleToolsMenu ? 'page-edit-button-active' : ''}`}
+                        onClick={handleShowTools}>
+                        {selectedToolMenu === "edit" ? <BorderColorIcon/> : <NearMeOutlinedIcon/>}
                     </button>
                     <button className="page-button page-edit-button disabled-button" disabled={true}>
                         <UndoIcon/>
@@ -254,6 +273,43 @@ const EditNavBar = (props) => {
                         onClick={handleToggleShowSettings}>
                         <SettingsIcon/>
                     </button>
+                </div>
+            </div>
+            <div className="edit-popover">
+                <div
+                    className={`editor-tools-container ${toggleToolsMenu ? 'editor-tools-container-show' : ''}`}
+                    ref={refToolsMenu}>
+                    <div className="tools-menu-items">
+                        <button
+                            className={`tools-menu-item ${selectedToolMenu === "edit" ? 'tools-menu-item-active' : ''}`}
+                            onClick={handleSelectedEditTool}>
+                            <span className="icon">
+                                <BorderColorIcon/>
+                            </span>
+                            <span className="text">
+                                Edit
+                            </span>
+                            <span className={`is-checked ${selectedToolMenu === "edit" ? 'is-checked-active' : ''}`}>
+                                <CheckIcon/>
+                            </span>
+                        </button>
+                        <button 
+                            className={`tools-menu-item ${selectedToolMenu === "select" ? 'tools-menu-item-active' : ''}`}
+                            onClick={handleSelectedSelectTool}>
+                            <span className="icon">
+                                <NearMeOutlinedIcon/>
+                            </span>
+                            <span className="text">
+                                Select
+                            </span>
+                            <span className={`is-checked ${selectedToolMenu === "select" ? 'is-checked-active' : ''}`}>
+                                <CheckIcon/>
+                            </span>
+                        </button>
+                    </div>
+                    <div className="tools-menu-help">
+                        <p>Tools provide different interactions for selecting, navigating, and editing blocks. Toggle between select and edit by pressing Escape and Enter.</p>
+                    </div>
                 </div>
             </div>
             <Snackbar open={openSnackBar} autoHideDuration={2000} onClose={handleCloseSnackBar}>

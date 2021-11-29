@@ -135,6 +135,10 @@
     color: #007CBA;
 }
 
+.edit-nav-bar .edit-nav-bar-menus .page-edit-button-active {
+    color: #007CBA;
+}
+
 .edit-nav-bar .edit-nav-bar-menus .disabled-draft-button {
     margin: 0 4px;
     font-size: 13px;
@@ -208,4 +212,84 @@
 .edit-nav-bar .edit-nav-bar-menus .toggle-settings:hover {
     background-color: #1E1E1E;
     color: #FFFFFF;
+}
+
+.edit-popover {
+    width: 100%;
+    position: absolute;
+    top: 50px;
+    left: 0;
+    right: 0;
+}
+
+.edit-popover .editor-tools-container {
+    display: none;
+    position: absolute;
+    width: 280px;
+    left: 140px;
+    border: 1px solid #E0E0E0;
+    border-top: none;
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+}
+
+.edit-popover .editor-tools-container-show {
+    display: block;
+}
+
+.edit-popover .editor-tools-container .tools-menu-items {
+    padding: 8px;
+}
+
+.edit-popover .editor-tools-container .tools-menu-items button.tools-menu-item {
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+    width: 100%;
+    background-color: transparent;
+    border: 2px solid transparent;
+    padding: 8px;
+    cursor: pointer;
+}
+
+.edit-popover .editor-tools-container .tools-menu-items button.tools-menu-item-active {
+    border: 2px solid #007CBA;
+}
+
+.edit-popover .editor-tools-container .tools-menu-items button.tools-menu-item:hover {
+    color: #007CBA;
+}
+
+.edit-popover .editor-tools-container .tools-menu-items button.tools-menu-item .icon {
+    transform: scale(0.8);
+    flex-basis: 30px;
+    margin-right: 14px;
+    align-self: center;
+}
+
+.edit-popover .editor-tools-container .tools-menu-items button.tools-menu-item .text {
+    font-size: 12px;
+    text-align: justify;
+    flex-basis: 100%;
+}
+
+.edit-popover .editor-tools-container .tools-menu-items button.tools-menu-item .is-checked {
+    visibility: hidden;
+    transform: scale(0.8);
+    flex-basis: 30px;
+}
+
+.edit-popover .editor-tools-container .tools-menu-items button.tools-menu-item .is-checked-active {
+    visibility: visible;
+}
+
+.edit-popover .editor-tools-container .tools-menu-help {
+    padding: 16px;
+    border-top: 1px solid #E0E0E0;
+}
+
+.edit-popover .editor-tools-container .tools-menu-help p {
+    margin: 0;
+    font-size: 14px;
+    color: #858585;
 }
