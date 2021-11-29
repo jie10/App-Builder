@@ -332,3 +332,97 @@
     font-weight: 700;
     color: #4F4F4F;
 }
+
+.edit-popover .editor-preview-container {
+    display: none;
+    position: absolute;
+    width: 280px;
+    right: 130px;
+    border: 1px solid #E0E0E0;
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+    background-color: #FFFFFF;
+    z-index: 99;
+}
+
+.edit-popover .editor-preview-container-show {
+    display: block;
+}
+
+.edit-popover .editor-preview-container .preview-menu-items {
+    padding: 8px;
+}
+
+.edit-popover .editor-preview-container .preview-menu-items button.preview-menu-item {
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+    width: 100%;
+    background-color: transparent;
+    border: 2px solid transparent;
+    padding: 8px;
+    cursor: pointer;
+}
+
+.edit-popover .editor-preview-container .preview-menu-items button.preview-menu-item-active {
+    border: 2px solid #007CBA;
+}
+
+.edit-popover .editor-preview-container .preview-menu-items button.preview-menu-item:hover {
+    color: #007CBA;
+}
+
+.edit-popover .editor-preview-container .preview-menu-items button.preview-menu-item .icon {
+    transform: scale(0.8);
+    flex-basis: 30px;
+    margin-right: 14px;
+    align-self: center;
+}
+
+.edit-popover .editor-preview-container .preview-menu-items button.preview-menu-item .text {
+    font-size: 12px;
+    text-align: justify;
+    flex-basis: 100%;
+}
+
+.edit-popover .editor-preview-container .preview-menu-items button.preview-menu-item .is-checked {
+    visibility: hidden;
+    transform: scale(0.8);
+    flex-basis: 30px;
+}
+
+.edit-popover .editor-preview-container .preview-menu-items button.preview-menu-item .is-checked-active {
+    visibility: visible;
+}
+
+.edit-popover .editor-preview-container .preview-menu-links {
+    padding: 8px;
+    border-top: 1px solid #E0E0E0;
+    padding: 16px 8px;
+}
+
+.edit-popover .editor-preview-container .preview-menu-links .preview-menu-link,
+.edit-popover .editor-preview-container .preview-menu-links .preview-menu-link:visited,
+.edit-popover .editor-preview-container .preview-menu-links .preview-menu-link:active {
+    display: flex;
+    align-items: center;
+    padding: 0 8px;
+    text-decoration: none;
+    color: #4F4F4F;
+}
+
+.edit-popover .editor-preview-container .preview-menu-links .preview-menu-link:hover {
+    color: #007CBA;
+}
+
+.edit-popover .editor-preview-container .preview-menu-links .preview-menu-link .text {
+    font-size: 14px;
+    flex-basis: 100%;
+    text-align: justify;
+}
+
+.edit-popover .editor-preview-container .preview-menu-links .preview-menu-link .icon {
+    transform: scale(0.8);
+    flex-basis: 30px;
+    align-self: center;
+}

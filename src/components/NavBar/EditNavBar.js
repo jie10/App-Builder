@@ -11,7 +11,8 @@ import {
     ListOutlined as ListOutlinedIcon,
     Settings as SettingsIcon,
     NearMeOutlined as NearMeOutlinedIcon,
-    Check as CheckIcon
+    Check as CheckIcon,
+    OpenInNew as OpenInNewIcon
 } from '@mui/icons-material';
 
 import {Grid, Button, Snackbar, Alert as MuiAlert} from '@mui/material/';
@@ -38,13 +39,16 @@ const EditNavBar = (props) => {
 
     const refToolsMenu = useRef(null);
     const refDetailsMenu = useRef(null);
+    const refPreviewMenu = useRef(null);
 
     const [toggleShowInserter, setToggleShowInserter] = useState(false);
     const [toggleShowSettings, setToggleShowSettings] = useState(false);
     const [toggleToolsMenu, setToggleToolsMenu] = useState(false);
     const [toggleDetailsMenu, setToggleDetailssMenu] = useState(false);
     const [toggleListView, setToggleListView] = useState(false);
+    const [togglePreviewMenu, setTogglePreviewMenu] = useState(false);
     const [selectedToolMenu, setSelectedToolMenu] = useState('edit');
+    const [selectedPreviewMenu, setSelectedPreviewMenu] = useState('desktop');
     const [pageStatusUpdate, setPageStatusUpdate] = useState('draft');
     const [saveDraft, setSaveDraft] = useState(false);
     const [switchDraft, setSwitchDraft] = useState(false);
@@ -108,9 +112,17 @@ const EditNavBar = (props) => {
 
     const handleSelectedSelectTool = () => setSelectedToolMenu("select");
 
+    const handleSelectedDesktopPreview = () => setSelectedPreviewMenu("desktop");
+
+    const handleSelectedTabletPreview = () => setSelectedPreviewMenu("tablet");
+
+    const handleSelectedMobilePreview = () => setSelectedPreviewMenu("mobile");
+
     const handleShowDetails = () => setToggleDetailssMenu(!toggleDetailsMenu);
 
     const handleToggleListView = () => setToggleListView(!toggleListView);
+
+    const handleShowPreview = () => setTogglePreviewMenu(!togglePreviewMenu);
 
     const handleOnSaveDraftPage = (e) => {
         e.preventDefault();
@@ -193,6 +205,10 @@ const EditNavBar = (props) => {
         if (toggleDetailsMenu) setToggleDetailssMenu(false);
     });
 
+    useOutsideClick(refPreviewMenu, () => {
+        if (togglePreviewMenu) setTogglePreviewMenu(false);
+    });
+
     useEffect(() => {
         let currentPage = findCurrentPage(id, page_id);
 
@@ -261,7 +277,8 @@ const EditNavBar = (props) => {
                     
                     <button
                         className={`page-button page-status-button ${saveDraft || switchDraft || updatePublishedPage || savePublishedPage ? 'disabled-preview-button' : ''}`}
-                        disabled={saveDraft || switchDraft || updatePublishedPage || savePublishedPage}>
+                        disabled={saveDraft || switchDraft || updatePublishedPage || savePublishedPage}
+                        onClick={handleShowPreview}>
                         Preview
                     </button>
                     { 
@@ -345,6 +362,55 @@ const EditNavBar = (props) => {
                     </div>
                     <div className="tools-menu-help">
                         <p>Tools provide different interactions for selecting, navigating, and editing blocks. Toggle between select and edit by pressing Escape and Enter.</p>
+                    </div>
+                </div>
+                <div
+                    className={`editor-preview-container ${togglePreviewMenu ? 'editor-preview-container-show' : ''}`}
+                    ref={refPreviewMenu}>
+                    <div className="preview-menu-items">
+                        <button
+                            className={`preview-menu-item ${selectedPreviewMenu === "desktop" ? 'preview-menu-item-active' : ''}`}
+                            onClick={handleSelectedDesktopPreview}>
+                            <span className="text">
+                                Desktop
+                            </span>
+                            <span className={`is-checked ${selectedPreviewMenu === "desktop" ? 'is-checked-active' : ''}`}>
+                                <CheckIcon/>
+                            </span>
+                        </button>
+                        <button 
+                            className={`preview-menu-item ${selectedPreviewMenu === "tablet" ? 'preview-menu-item-active' : ''}`}
+                            onClick={handleSelectedTabletPreview}>
+                            <span className="text">
+                                Tablet
+                            </span>
+                            <span className={`is-checked ${selectedPreviewMenu === "tablet" ? 'is-checked-active' : ''}`}>
+                                <CheckIcon/>
+                            </span>
+                        </button>
+                        <button 
+                            className={`preview-menu-item ${selectedPreviewMenu === "mobile" ? 'preview-menu-item-active' : ''}`}
+                            onClick={handleSelectedMobilePreview}>
+                            <span className="text">
+                                Mobile
+                            </span>
+                            <span className={`is-checked ${selectedPreviewMenu === "mobile" ? 'is-checked-active' : ''}`}>
+                                <CheckIcon/>
+                            </span>
+                        </button>
+                    </div>
+                    <div className="preview-menu-links">
+                        <a href={pageStatusUpdate === "published" ? `/${id}/${page_id}` : `/dashboard/${id}/preview?page=${page_id}`}
+                            className="preview-menu-link"
+                            target="_blank"
+                            rel="noreferrer">
+                            <span className="text">
+                                Preview in new tab
+                            </span>
+                            <span className="icon">
+                                <OpenInNewIcon/>
+                            </span>
+                        </a>
                     </div>
                 </div>
             </div>
