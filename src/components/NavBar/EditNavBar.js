@@ -14,7 +14,7 @@ import {
     Check as CheckIcon
 } from '@mui/icons-material';
 
-import {Button, Snackbar, Alert as MuiAlert} from '@mui/material/';
+import {Grid, Button, Snackbar, Alert as MuiAlert} from '@mui/material/';
 
 import "./EditNavBar.css";
 
@@ -37,10 +37,12 @@ const EditNavBar = (props) => {
     const { id, page_id } = useParams();
 
     const refToolsMenu = useRef(null);
+    const refDetailsMenu = useRef(null);
 
     const [toggleShowInserter, setToggleShowInserter] = useState(false);
     const [toggleShowSettings, setToggleShowSettings] = useState(false);
     const [toggleToolsMenu, setToggleToolsMenu] = useState(false);
+    const [toggleDetailsMenu, setToggleDetailssMenu] = useState(false);
     const [toggleListView, setToggleListView] = useState(false);
     const [selectedToolMenu, setSelectedToolMenu] = useState('edit');
     const [pageStatusUpdate, setPageStatusUpdate] = useState('draft');
@@ -105,6 +107,8 @@ const EditNavBar = (props) => {
     const handleSelectedEditTool = () => setSelectedToolMenu("edit");
 
     const handleSelectedSelectTool = () => setSelectedToolMenu("select");
+
+    const handleShowDetails = () => setToggleDetailssMenu(!toggleDetailsMenu);
 
     const handleToggleListView = () => setToggleListView(!toggleListView);
 
@@ -185,6 +189,10 @@ const EditNavBar = (props) => {
         if (toggleToolsMenu) setToggleToolsMenu(false);
     });
 
+    useOutsideClick(refDetailsMenu, () => {
+        if (toggleDetailsMenu) setToggleDetailssMenu(false);
+    });
+
     useEffect(() => {
         let currentPage = findCurrentPage(id, page_id);
 
@@ -225,7 +233,9 @@ const EditNavBar = (props) => {
                     <button className="page-button page-edit-button disabled-button" disabled={true}>
                         <RedoIcon/>
                     </button>
-                    <button className="page-button page-edit-button">
+                    <button
+                        className={`page-button page-edit-button ${toggleDetailsMenu ? 'page-edit-button-active' : ''}`}
+                        onClick={handleShowDetails}>
                         <InfoOutlinedIcon/>
                     </button>
                     <button className={`page-button page-edit-button ${toggleListView ? 'toggle-list-view' : ''}`}
@@ -276,6 +286,32 @@ const EditNavBar = (props) => {
                 </div>
             </div>
             <div className="edit-popover">
+                <div
+                    className={`editor-details-container ${toggleDetailsMenu ? 'editor-details-container-show' : ''}`}
+                    ref={refDetailsMenu}>
+                    <Grid container>
+                        <Grid item xs={4} className="details-container">
+                            <span className="title">Characters</span>
+                            <span className="count">0</span>
+                        </Grid>
+                        <Grid item xs={4} className="details-container">
+                            <span className="title">Words</span>
+                            <span className="count">0</span>
+                        </Grid>
+                        <Grid item xs={4} className="details-container">
+                            <span className="title">Headings</span>
+                            <span className="count">0</span>
+                        </Grid>
+                        <Grid item xs={4} className="details-container">
+                            <span className="title">Paragraphs</span>
+                            <span className="count">0</span>
+                        </Grid>
+                        <Grid item xs={4} className="details-container">
+                            <span className="title">Blocks</span>
+                            <span className="count">0</span>
+                        </Grid>
+                    </Grid>
+                </div>
                 <div
                     className={`editor-tools-container ${toggleToolsMenu ? 'editor-tools-container-show' : ''}`}
                     ref={refToolsMenu}>

@@ -293,3 +293,38 @@
     font-size: 14px;
     color: #858585;
 }
+
+.edit-popover .editor-details-container {
+    display: none;
+    width: 380px;
+    position: absolute;
+    left: 100px;
+    border: 2px solid #E0E0E0;
+    padding: 8px 16px;
+}
+
+.edit-popover .editor-details-container-show {
+    display: block;
+    border: 2px solid #007CBA;
+}
+
+.edit-popover .editor-details-container .details-container {
+    padding: 8px 0;
+}
+
+.edit-popover .editor-details-container .details-container span {
+    display: block;
+}
+
+.edit-popover .editor-details-container .details-container span.title {
+    font-size: 13px;
+    color: #858585;
+    font-weight: 300;
+    padding-bottom: 4px;
+}
+
+.edit-popover .editor-details-container .details-container span.count {
+    font-size: 18px;
+    font-weight: 700;
+    color: #4F4F4F;
+}
