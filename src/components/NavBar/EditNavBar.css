@@ -439,7 +439,8 @@
 }
 
 .edit-popover .editor-publish-container-show {
-    display: block;
+    display: flex;
+    flex-flow: column;
 }
 
 .edit-popover .editor-publish-container .publish-header {
@@ -505,6 +506,7 @@
 .edit-popover .editor-publish-container .publish-content {
     position: relative;
     padding: 16px;
+    flex-basis: 100%;
 }
 
 .edit-popover .editor-publish-container .publish-content .before-publish-details-hide {
@@ -535,4 +537,8 @@
 
 .edit-popover .editor-publish-container .publish-content .publish-loader-show svg {
     display: block;
+}
+
+.edit-popover .editor-publish-container .publish-footer {
+    padding: 16px 0 80px 8px;
 }

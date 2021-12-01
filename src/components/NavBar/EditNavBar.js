@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useParams } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 import {
     Add as AddIcon,
@@ -15,7 +16,17 @@ import {
     OpenInNew as OpenInNewIcon
 } from '@mui/icons-material';
 
-import { Grid, Button, Snackbar, Alert as MuiAlert, CircularProgress } from '@mui/material/';
+import {
+            Grid,
+            Button,
+            Snackbar,
+            Alert as MuiAlert,
+            CircularProgress,
+            FormGroup,
+            FormControlLabel,
+            Checkbox,
+            Typography
+        } from '@mui/material/';
 
 import "./EditNavBar.css";
 
@@ -27,6 +38,23 @@ import { useOutsideClick } from '../../utils/helpers/hooks';
 import siteLogo from "../../assets/logos/ceblogo.png";
 
 const currentURL = window.location.pathname;
+
+const theme = createTheme({
+    components: {
+        MuiFormControlLabel: {
+            styleOverrides: {
+                root: {
+                    justifyContent: 'center'
+                }
+            }
+        },
+        MuiCheckbox: {
+            defaultProps: {
+                disableRipple: true
+            }
+        }
+    }
+});
 
 const Alert = React.forwardRef(function Alert(props, ref) {
     return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
@@ -308,143 +336,152 @@ const EditNavBar = (props) => {
                 </div>
             </div>
             <div className="edit-popover">
-                <div
-                    className={`editor-details-container ${toggleDetailsMenu ? 'editor-details-container-show' : ''}`}
-                    ref={refDetailsMenu}>
-                    <Grid container>
-                        <Grid item xs={4} className="details-container">
-                            <span className="title">Characters</span>
-                            <span className="count">0</span>
+                <ThemeProvider theme={theme}>
+                    <div
+                        className={`editor-details-container ${toggleDetailsMenu ? 'editor-details-container-show' : ''}`}
+                        ref={refDetailsMenu}>
+                        <Grid container>
+                            <Grid item xs={4} className="details-container">
+                                <span className="title">Characters</span>
+                                <span className="count">0</span>
+                            </Grid>
+                            <Grid item xs={4} className="details-container">
+                                <span className="title">Words</span>
+                                <span className="count">0</span>
+                            </Grid>
+                            <Grid item xs={4} className="details-container">
+                                <span className="title">Headings</span>
+                                <span className="count">0</span>
+                            </Grid>
+                            <Grid item xs={4} className="details-container">
+                                <span className="title">Paragraphs</span>
+                                <span className="count">0</span>
+                            </Grid>
+                            <Grid item xs={4} className="details-container">
+                                <span className="title">Blocks</span>
+                                <span className="count">0</span>
+                            </Grid>
                         </Grid>
-                        <Grid item xs={4} className="details-container">
-                            <span className="title">Words</span>
-                            <span className="count">0</span>
-                        </Grid>
-                        <Grid item xs={4} className="details-container">
-                            <span className="title">Headings</span>
-                            <span className="count">0</span>
-                        </Grid>
-                        <Grid item xs={4} className="details-container">
-                            <span className="title">Paragraphs</span>
-                            <span className="count">0</span>
-                        </Grid>
-                        <Grid item xs={4} className="details-container">
-                            <span className="title">Blocks</span>
-                            <span className="count">0</span>
-                        </Grid>
-                    </Grid>
-                </div>
-                <div
-                    className={`editor-tools-container ${toggleToolsMenu ? 'editor-tools-container-show' : ''}`}
-                    ref={refToolsMenu}>
-                    <div className="tools-menu-items">
-                        <button
-                            className={`tools-menu-item ${selectedToolMenu === "edit" ? 'tools-menu-item-active' : ''}`}
-                            onClick={handleSelectedEditTool}>
-                            <span className="icon">
-                                <BorderColorIcon/>
-                            </span>
-                            <span className="text">
-                                Edit
-                            </span>
-                            <span className={`is-checked ${selectedToolMenu === "edit" ? 'is-checked-active' : ''}`}>
-                                <CheckIcon/>
-                            </span>
-                        </button>
-                        <button 
-                            className={`tools-menu-item ${selectedToolMenu === "select" ? 'tools-menu-item-active' : ''}`}
-                            onClick={handleSelectedSelectTool}>
-                            <span className="icon">
-                                <NearMeOutlinedIcon/>
-                            </span>
-                            <span className="text">
-                                Select
-                            </span>
-                            <span className={`is-checked ${selectedToolMenu === "select" ? 'is-checked-active' : ''}`}>
-                                <CheckIcon/>
-                            </span>
-                        </button>
                     </div>
-                    <div className="tools-menu-help">
-                        <p>Tools provide different interactions for selecting, navigating, and editing blocks. Toggle between select and edit by pressing Escape and Enter.</p>
-                    </div>
-                </div>
-                <div
-                    className={`editor-preview-container ${togglePreviewMenu ? 'editor-preview-container-show' : ''}`}
-                    ref={refPreviewMenu}>
-                    <div className="preview-menu-items">
-                        <button
-                            className={`preview-menu-item ${selectedPreviewMenu === "desktop" ? 'preview-menu-item-active' : ''}`}
-                            onClick={handleSelectedDesktopPreview}>
-                            <span className="text">
-                                Desktop
-                            </span>
-                            <span className={`is-checked ${selectedPreviewMenu === "desktop" ? 'is-checked-active' : ''}`}>
-                                <CheckIcon/>
-                            </span>
-                        </button>
-                        <button 
-                            className={`preview-menu-item ${selectedPreviewMenu === "tablet" ? 'preview-menu-item-active' : ''}`}
-                            onClick={handleSelectedTabletPreview}>
-                            <span className="text">
-                                Tablet
-                            </span>
-                            <span className={`is-checked ${selectedPreviewMenu === "tablet" ? 'is-checked-active' : ''}`}>
-                                <CheckIcon/>
-                            </span>
-                        </button>
-                        <button 
-                            className={`preview-menu-item ${selectedPreviewMenu === "mobile" ? 'preview-menu-item-active' : ''}`}
-                            onClick={handleSelectedMobilePreview}>
-                            <span className="text">
-                                Mobile
-                            </span>
-                            <span className={`is-checked ${selectedPreviewMenu === "mobile" ? 'is-checked-active' : ''}`}>
-                                <CheckIcon/>
-                            </span>
-                        </button>
-                    </div>
-                    <div className="preview-menu-links">
-                        <a href={pageStatusUpdate === "published" ? `/${id}/${page_id}` : `/dashboard/${id}/preview?page=${page_id}`}
-                            className="preview-menu-link"
-                            target="_blank"
-                            rel="noreferrer">
-                            <span className="text">
-                                Preview in new tab
-                            </span>
-                            <span className="icon">
-                                <OpenInNewIcon/>
-                            </span>
-                        </a>
-                    </div>
-                </div>
-                <div className={`editor-publish-container ${togglePublishMenu ? 'editor-publish-container-show' : ''}`}>
-                    <div className="publish-header">
-                        <div className="before-publish-buttons">
+                    <div
+                        className={`editor-tools-container ${toggleToolsMenu ? 'editor-tools-container-show' : ''}`}
+                        ref={refToolsMenu}>
+                        <div className="tools-menu-items">
                             <button
-                                className={`header-button ${savePublishedPage ? 'disabled-publish-button' : 'submit-button'}`}
-                                onClick={handleOnPublishPage}
-                                disabled={savePublishedPage}>
-                                {savePublishedPage ? 'Publishing...' : 'Publish'}
+                                className={`tools-menu-item ${selectedToolMenu === "edit" ? 'tools-menu-item-active' : ''}`}
+                                onClick={handleSelectedEditTool}>
+                                <span className="icon">
+                                    <BorderColorIcon/>
+                                </span>
+                                <span className="text">
+                                    Edit
+                                </span>
+                                <span className={`is-checked ${selectedToolMenu === "edit" ? 'is-checked-active' : ''}`}>
+                                    <CheckIcon/>
+                                </span>
                             </button>
-                            <button
-                                className={`header-button ${savePublishedPage ? 'disabled-cancel-publish-button' : ''}`}
-                                onClick={handleCancelBeforePublishPage}
-                                disabled={savePublishedPage}>
-                                    Cancel
+                            <button 
+                                className={`tools-menu-item ${selectedToolMenu === "select" ? 'tools-menu-item-active' : ''}`}
+                                onClick={handleSelectedSelectTool}>
+                                <span className="icon">
+                                    <NearMeOutlinedIcon/>
+                                </span>
+                                <span className="text">
+                                    Select
+                                </span>
+                                <span className={`is-checked ${selectedToolMenu === "select" ? 'is-checked-active' : ''}`}>
+                                    <CheckIcon/>
+                                </span>
                             </button>
                         </div>
-                    </div>
-                    <div className="publish-content">
-                        <div className={`before-publish-details ${savePublishedPage ? 'before-publish-details-hide' : ''}`}>
-                            <strong>Are you ready to publish?</strong>
-                            <p>Double-check your settings before publishing.</p>
-                        </div>
-                        <div className={`publish-loader ${savePublishedPage ? 'publish-loader-show' : ''}`}>
-                            <CircularProgress color="inherit" />
+                        <div className="tools-menu-help">
+                            <p>Tools provide different interactions for selecting, navigating, and editing blocks. Toggle between select and edit by pressing Escape and Enter.</p>
                         </div>
                     </div>
-                </div>
+                    <div
+                        className={`editor-preview-container ${togglePreviewMenu ? 'editor-preview-container-show' : ''}`}
+                        ref={refPreviewMenu}>
+                        <div className="preview-menu-items">
+                            <button
+                                className={`preview-menu-item ${selectedPreviewMenu === "desktop" ? 'preview-menu-item-active' : ''}`}
+                                onClick={handleSelectedDesktopPreview}>
+                                <span className="text">
+                                    Desktop
+                                </span>
+                                <span className={`is-checked ${selectedPreviewMenu === "desktop" ? 'is-checked-active' : ''}`}>
+                                    <CheckIcon/>
+                                </span>
+                            </button>
+                            <button 
+                                className={`preview-menu-item ${selectedPreviewMenu === "tablet" ? 'preview-menu-item-active' : ''}`}
+                                onClick={handleSelectedTabletPreview}>
+                                <span className="text">
+                                    Tablet
+                                </span>
+                                <span className={`is-checked ${selectedPreviewMenu === "tablet" ? 'is-checked-active' : ''}`}>
+                                    <CheckIcon/>
+                                </span>
+                            </button>
+                            <button 
+                                className={`preview-menu-item ${selectedPreviewMenu === "mobile" ? 'preview-menu-item-active' : ''}`}
+                                onClick={handleSelectedMobilePreview}>
+                                <span className="text">
+                                    Mobile
+                                </span>
+                                <span className={`is-checked ${selectedPreviewMenu === "mobile" ? 'is-checked-active' : ''}`}>
+                                    <CheckIcon/>
+                                </span>
+                            </button>
+                        </div>
+                        <div className="preview-menu-links">
+                            <a href={pageStatusUpdate === "published" ? `/${id}/${page_id}` : `/dashboard/${id}/preview?page=${page_id}`}
+                                className="preview-menu-link"
+                                target="_blank"
+                                rel="noreferrer">
+                                <span className="text">
+                                    Preview in new tab
+                                </span>
+                                <span className="icon">
+                                    <OpenInNewIcon/>
+                                </span>
+                            </a>
+                        </div>
+                    </div>
+                    <div className={`editor-publish-container ${togglePublishMenu ? 'editor-publish-container-show' : ''}`}>
+                        <div className="publish-header">
+                            <div className="before-publish-buttons">
+                                <button
+                                    className={`header-button ${savePublishedPage ? 'disabled-publish-button' : 'submit-button'}`}
+                                    onClick={handleOnPublishPage}
+                                    disabled={savePublishedPage}>
+                                    {savePublishedPage ? 'Publishing...' : 'Publish'}
+                                </button>
+                                <button
+                                    className={`header-button ${savePublishedPage ? 'disabled-cancel-publish-button' : ''}`}
+                                    onClick={handleCancelBeforePublishPage}
+                                    disabled={savePublishedPage}>
+                                        Cancel
+                                </button>
+                            </div>
+                        </div>
+                        <div className="publish-content">
+                            <div className={`before-publish-details ${savePublishedPage ? 'before-publish-details-hide' : ''}`}>
+                                <strong>Are you ready to publish?</strong>
+                                <p>Double-check your settings before publishing.</p>
+                            </div>
+                            <div className={`publish-loader ${savePublishedPage ? 'publish-loader-show' : ''}`}>
+                                <CircularProgress color="inherit" />
+                            </div>
+                        </div>
+                        <div className="publish-footer">
+                            <FormGroup>
+                                <FormControlLabel sx={{fontSize: "14px"}}
+                                    control={<Checkbox style={{color: "#007CBA"}} defaultChecked />}
+                                    label={<Typography variant="p">Always show pre-publish checks.</Typography>} />
+                            </FormGroup>
+                        </div>
+                    </div>
+                </ThemeProvider>
             </div>
             <Snackbar open={openSnackBar} autoHideDuration={2000} onClose={handleCloseSnackBar}>
                 <Alert onClose={handleCloseSnackBar} severity={alertSeverity} sx={{ width: '100%' }} action={publishAction}>
