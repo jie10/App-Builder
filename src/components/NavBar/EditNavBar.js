@@ -13,7 +13,8 @@ import {
     Settings as SettingsIcon,
     NearMeOutlined as NearMeOutlinedIcon,
     Check as CheckIcon,
-    OpenInNew as OpenInNewIcon
+    OpenInNew as OpenInNewIcon,
+    KeyboardArrowDown as KeyboardArrowDownIcon
 } from '@mui/icons-material';
 
 import {
@@ -468,6 +469,40 @@ const EditNavBar = (props) => {
                             <div className={`before-publish-details ${savePublishedPage ? 'before-publish-details-hide' : ''}`}>
                                 <strong>Are you ready to publish?</strong>
                                 <p>Double-check your settings before publishing.</p>
+                                <div className="app-details">
+                                    <div className="logo">
+                                        <div className="logo-protector"></div>
+                                        <img className="app-logo" src={siteLogo} alt="logo" />
+                                    </div>
+                                    <div className="details">
+                                        <span className="title">App Title</span>
+                                        <span className="url">app.com</span>
+                                    </div>
+                                </div>
+                                <div className="app-settings">
+                                    <button className="setting-toggable">
+                                        <span className="block">
+                                            <span className="detail">
+                                                <span className="title">Visibility:</span>
+                                                <span className="value">Public</span>
+                                            </span>
+                                            <span className="icon">
+                                                <KeyboardArrowDownIcon/>
+                                            </span>
+                                        </span>
+                                    </button>
+                                    <button className="setting-toggable">
+                                        <spab className="block">
+                                            <span className="detail">
+                                                <span className="title">Publish:</span>
+                                                <span className="value">December 1, 2021 7:00am</span>
+                                            </span>
+                                            <span className="icon">
+                                                <KeyboardArrowDownIcon/>
+                                            </span>
+                                        </spab>
+                                    </button>
+                                </div>
                             </div>
                             <div className={`publish-loader ${savePublishedPage ? 'publish-loader-show' : ''}`}>
                                 <CircularProgress color="inherit" />
