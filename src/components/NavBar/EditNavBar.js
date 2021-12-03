@@ -14,7 +14,8 @@ import {
     NearMeOutlined as NearMeOutlinedIcon,
     Check as CheckIcon,
     OpenInNew as OpenInNewIcon,
-    KeyboardArrowDown as KeyboardArrowDownIcon
+    KeyboardArrowDown as KeyboardArrowDownIcon,
+    KeyboardArrowUp as KeyboardArrowUpIcon
 } from '@mui/icons-material';
 
 import {
@@ -26,7 +27,9 @@ import {
             FormGroup,
             FormControlLabel,
             Checkbox,
-            Typography
+            Typography,
+            RadioGroup,
+            Radio
         } from '@mui/material/';
 
 import "./EditNavBar.css";
@@ -53,6 +56,11 @@ const theme = createTheme({
             defaultProps: {
                 disableRipple: true
             }
+        },
+        MuiRadio: {
+            defaultProps: {
+                disableRipple: true
+            }            
         }
     }
 });
@@ -87,6 +95,8 @@ const EditNavBar = (props) => {
     const [openSnackBar, setOpenSnackBar] = useState(false);
     const [alertSeverity, setAlertSeverity] = useState("success");
     const [alertMessage, setAlertMessage] = useState('Saved.');
+    const [pageVisibility, setPageVisibility] = useState('public');
+    const [togglePageVisibility, setTogglePageVisibility] = useState(false);
 
     const saveDraftPage = () => {
         let components = Object.keys(blocks).map((block, i) => ({
@@ -201,6 +211,19 @@ const EditNavBar = (props) => {
     const handleBeforePublishPage = () => setTogglePublishMenu(true);
 
     const handleCancelBeforePublishPage = () => setTogglePublishMenu(false);
+
+    const handleChangeToPublicVisibility = () => setPageVisibility("public");
+
+    const handleChangeToPrivateVisibility = () => {
+        if (window.confirm("Would you like to privately publish this post now?")) {
+            setPageVisibility("private");
+            setAlertSeverity("info");
+            setAlertMessage("Page visibility is now private.");
+            setOpenSnackBar(true);
+        }
+    }
+
+    const handleTogglePageVisibility = () => setTogglePageVisibility(!togglePageVisibility);
 
     const handleOnPublishPage = (e) => {
         e.preventDefault();
@@ -480,17 +503,40 @@ const EditNavBar = (props) => {
                                     </div>
                                 </div>
                                 <div className="app-settings">
-                                    <button className="setting-toggable">
+                                    <button 
+                                        className="setting-toggable"
+                                        onClick={handleTogglePageVisibility}>
                                         <span className="block">
                                             <span className="detail">
                                                 <span className="title">Visibility:</span>
-                                                <span className="value">Public</span>
+                                                <span className="value">{ pageVisibility === "private" ? "Private" : "Public" }</span>
                                             </span>
                                             <span className="icon">
-                                                <KeyboardArrowDownIcon/>
+                                                {togglePageVisibility ? <KeyboardArrowUpIcon/> : <KeyboardArrowDownIcon/>}
                                             </span>
                                         </span>
                                     </button>
+                                    <div className={`visibility-list ${togglePageVisibility ? 'show-visibility-list' : ''}`}>
+                                        <RadioGroup
+                                            aria-label="page visibility"
+                                            defaultValue="public"
+                                            name="radio-buttons-group">
+                                                <FormControlLabel
+                                                    value="public"
+                                                    control={<Radio onClick={handleChangeToPublicVisibility} />}
+                                                    label={<Typography style={{textAlign: "left", margin: "24px 0 0 0"}} variant="p">
+                                                                <strong style={{margin: "0 0 8px 0"}}>Public</strong>
+                                                                <p style={{margin: 0, wordBreak: "break-word", width: "150px"}}>Visible to everyone.</p>
+                                                            </Typography>} />
+                                                <FormControlLabel
+                                                    value="private"
+                                                    control={<Radio onClick={handleChangeToPrivateVisibility} />}
+                                                    label={<Typography style={{textAlign: "left", margin: "24px 0 0 0"}} variant="p">
+                                                                <strong style={{margin: "0 0 8px 0"}}>Private</strong>
+                                                                <p style={{margin: 0, wordBreak: "break-word", width: "150px"}}>Only visible to site admins and editors.</p>
+                                                            </Typography>} />
+                                        </RadioGroup>
+                                    </div>
                                     <button className="setting-toggable">
                                         <spab className="block">
                                             <span className="detail">
