@@ -6,7 +6,7 @@
     left: 0;
     bottom: 0;
     padding: 50px 0 0 0;
-    height: 100vh;
+    height: calc(100vh - 50px);
     width: 270px;
     background-color: #23282D;
     z-index: 99;
@@ -174,7 +174,7 @@
 /** MINIMIZED SIDEBAR */
 .app-side-bar-minimize {
     width: 48px;
-    height: 100vh
+    height: calc(100vh - 50px);
 }
 
 .app-side-bar-minimize .side-nav-menu .menu-item .nav-text {

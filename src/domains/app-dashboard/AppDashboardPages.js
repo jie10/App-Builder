@@ -14,7 +14,11 @@ import {
     Delete as DeleteIcon,
     Restore as RestoreIcon,
     BarChart as BarChartIcon,
-    Info as InfoIcon
+    Info as InfoIcon,
+    DesktopWindows as DesktopWindowsIcon,
+    TabletAndroid as TabletAndroidIcon,
+    PhoneAndroid as PhoneAndroidIcon,
+    KeyboardArrowDown as KeyboardArrowDownIcon
 } from '@mui/icons-material';
 
 import "./AppDashboardPages.css";
@@ -26,6 +30,166 @@ import { countAllPages, findOne, removePage, updatePageByStatus, restorePageBySt
 
 import  { ReactComponent as IllustrationPagesImage }from "../../assets/svgs/illustration-pages.svg";
 
+export const AppPreview = (props) => {
+    const { currentAppId } = props;
+
+    const refClipboardInput = useRef(null);
+    const refPreviewMenu = useRef(null);
+
+    const [togglePreviewMenu, setTogglePreviewMenu] = useState(false);
+    const [selectedPreviewMenu, setSelectedPreviewMenu] = useState("desktop");
+    const [copiedClipboard, setCopiedClipboard] = useState(false);
+    const [showCopyButton, setShowCopyButton] = useState(false);
+
+    const selectPreviewType = () => {
+        if (selectedPreviewMenu === "tablet") {
+            return <>
+                <span className="icon">
+                    <TabletAndroidIcon/>
+                </span>
+                <span className="text">
+                    Tablet
+                </span>
+            </>;
+        } else if (selectedPreviewMenu === "mobile") {
+            return <>
+                <span className="icon">
+                    <PhoneAndroidIcon/>
+                </span>
+                <span className="text">
+                    Mobile
+                </span>
+            </>;
+        } else {
+            return <>
+                <span className="icon">
+                    <DesktopWindowsIcon/>
+                </span>
+                <span className="text">
+                    Desktop
+                </span>
+            </>;            
+        }
+    }
+
+    const handleTogglePreviewMenu = () => setTogglePreviewMenu(!togglePreviewMenu)
+    const handleSelectedDesktopPreview = () => {
+        setSelectedPreviewMenu("desktop");
+        setTogglePreviewMenu(false);
+    }
+    const handleSelectedTabletPreview = () => {
+        setSelectedPreviewMenu("tablet");
+        setTogglePreviewMenu(false);
+    }
+    const handleSelectedMobilePreview = () => {
+        setSelectedPreviewMenu("mobile");
+        setTogglePreviewMenu(false);
+    }
+
+    const selectClipboardInput = (e) => {
+        e.target.select();
+        e.target.setSelectionRange(0, 99999); /* For mobile devices */
+        refClipboardInput.current = e.target;
+    }
+
+    const copyClipboardInput = () => {
+        setCopiedClipboard(true);
+        refClipboardInput.current.select();
+        refClipboardInput.current.setSelectionRange(0, 99999); /* For mobile devices */
+        navigator.clipboard.writeText("https://cebupacificair-dev.apigee.net/ceb-poc-appbuilder/preview");
+
+        delay(() => {
+            setCopiedClipboard(false);
+        }, 1000);
+    }
+
+    const hoverClipboardInput = () => setShowCopyButton(true);
+
+    useOutsideClick(refClipboardInput, () => {
+        setShowCopyButton(false);
+
+        if (window.getSelection) window.getSelection().removeAllRanges();
+
+        if (copiedClipboard) setCopiedClipboard(false);
+    });
+
+    useOutsideClick(refPreviewMenu, () => {
+        setTogglePreviewMenu(false);
+    });
+    
+    return (
+        <div className="app-preview-container">
+            <div className="header-container">
+                <div className="header-control-panel">
+                    <div className="preview-dropdown">
+                        <button
+                            className="selected"
+                            onClick={handleTogglePreviewMenu}>
+                            { selectPreviewType() }
+                            <span className="icon">
+                                <KeyboardArrowDownIcon/>
+                            </span>
+                        </button>
+                        <div className={`preview-menu-items ${togglePreviewMenu ? 'preview-menu-items-show' : ''}`}
+                            ref={refPreviewMenu}>
+                            <button
+                                className={`preview-menu-item ${selectedPreviewMenu === "desktop" ? 'preview-menu-item-active' : ''}`}
+                                onClick={handleSelectedDesktopPreview}>
+                                <span className="icon">
+                                    <DesktopWindowsIcon/>
+                                </span>
+                                <span className="text">
+                                    Desktop
+                                </span>
+                            </button>
+                            <button 
+                                className={`preview-menu-item ${selectedPreviewMenu === "tablet" ? 'preview-menu-item-active' : ''}`}
+                                onClick={handleSelectedTabletPreview}>
+                                <span className="icon">
+                                    <TabletAndroidIcon/>
+                                </span>
+                                <span className="text">
+                                    Tablet
+                                </span>
+                            </button>
+                            <button 
+                                className={`preview-menu-item ${selectedPreviewMenu === "mobile" ? 'preview-menu-item-active' : ''}`}
+                                onClick={handleSelectedMobilePreview}>
+                                <span className="icon">
+                                    <PhoneAndroidIcon/>
+                                </span>
+                                <span className="text">
+                                    Mobile
+                                </span>
+                            </button>
+                        </div>
+                    </div>
+                    <div className="cipboard-input">
+                        <input
+                            type="text"
+                            ref={refClipboardInput}
+                            value={`${currentAppId}.appbuilder.com`}
+                            onClick={selectClipboardInput}
+                            onMouseOver={hoverClipboardInput}
+                            readOnly />
+                        <button
+                            className={showCopyButton ? `show-copy-button` : ''}
+                            onClick={copyClipboardInput}>
+                                {copiedClipboard ? "Copied" : "Copy"}
+                        </button>
+                    </div>
+                </div>
+                <div className="header-action-panel">
+                    <a className="header-link" href="https://cebupacificair-dev.apigee.net/ceb-poc-appbuilder/preview" target="_blank" rel="noreferrer">Visit App</a>
+                </div>
+            </div>
+            <div className={`content-container ${selectedPreviewMenu === "tablet" ? 'content-container-tablet' : selectedPreviewMenu === "mobile" ? 'content-container-mobile' : 'content-container-desktop'}`}>
+                <iframe src="https://cebupacificair-dev.apigee.net/ceb-poc-appbuilder/preview" title="app preview" />
+            </div>
+        </div>
+    );
+}
+
 export const MyHome = (props) => {
     const { currentURL } = props;
 
@@ -36,7 +200,7 @@ export const MyHome = (props) => {
                     <h1>My Home</h1>
                     <p>Your hub for posting, editing, and growing your app.</p>
                 </div>
-                <a className="header-link" href={currentURL} target="_blank" rel="noreferrer">Visit Site</a>
+                <a className="header-link" href={currentURL} target="_blank" rel="noreferrer">Visit App</a>
             </div>
         </div>
     );

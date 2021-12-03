@@ -5,15 +5,17 @@ import { useParams } from 'react-router-dom';
 import "./AppDashboardContent.css";
 
 import AppSideBar from '../../components/SideBar/AppSideBar';
-import { MyHome, Pages } from './AppDashboardPages';
+import { AppPreview, MyHome, Pages } from './AppDashboardPages';
 
 const MainContent = (props) => {
-    const { menuOnCollapse, pageName } = props;
+    const { menuOnCollapse, currentAppId, pageName } = props;
 
     const currentURL = window.location.pathname.split('/').slice(0, -1).join("/");
 
     const loadPage = () => {
         switch(pageName) {
+            case "preview":
+                return <AppPreview currentAppId={currentAppId} />;
             case "home":
                 return <MyHome currentURL={currentURL} />;
             case "pages":
@@ -35,7 +37,7 @@ const AppDashboardContent = () => {
     return (
         <div className="app-dashboard-content-container">
             <AppSideBar menuOnCollapse={menuOnCollapse} setMenuOnCollapse={setMenuOnCollapse} pageName={page} subPageName={sub_page} currentAppId={id} />
-            <MainContent menuOnCollapse={menuOnCollapse} pageName={page} subPageName={sub_page} />
+            <MainContent menuOnCollapse={menuOnCollapse} currentAppId={id} pageName={page} subPageName={sub_page} />
         </div>
     );
 }
