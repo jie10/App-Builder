@@ -1,0 +1,57 @@
+.c-city-guides-filter .container {
+    padding: 20px 0;
+}
+
+.c-city-guides-filter h2.title {
+   
+    font-weight: 700;
+    font-size: 25px;
+    line-height: 150%;
+    color: #333;
+    padding-top: 12px;
+    margin-bottom: 8px;
+    position: relative;
+    margin-top: 0;
+}
+
+.c-city-guides-filter p.description {
+   
+    font-size: 16px;
+    line-height: 150%;
+    letter-spacing: .005em;
+    color: #575757;
+    margin-bottom: 0;
+}
+.filter-destinations input {
+    padding-left: 40px!important;
+}
+.filter-destinations .plane-text {
+    position: absolute;
+    margin-top: -41px;
+    margin-left: 14px;
+}
+
+.o-form_input .dropdown-caret {
+    background-image: url(https://www.cebupacificair.com/assets/images/icon-caretdown_big.svg);
+    content: "";
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    right: 9px;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    top: 36px;
+    z-index: 1;
+    cursor: pointer;
+}
+
+@media (min-width: 576px) {
+    .col-sm-8 {
+        flex: 0 0 66.666667%;
+        max-width: 66.666667%;
+    }
+    .col-sm-4 {
+        flex: 0 0 33.333333%;
+        max-width: 33.333333%;
+    }
+}

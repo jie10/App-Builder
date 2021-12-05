@@ -1,0 +1,129 @@
+
+.c-search-for {
+    position: absolute;
+    width: 100%;
+    left: 0;
+    top: 80px;
+    margin-bottom: 17px;
+}
+.city-guides-search .c-search-for {
+    margin-top: 0;
+    position: relative;
+}
+.c-search-for .container {
+    padding-left: 24px;
+    padding-right: 24px;
+}
+.c-search-for__input {
+    align-items: flex-end;
+    background: #fff;
+    box-shadow: 0 4px 23px rgb(0 0 0 / 10%);
+    border-radius: 12px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 24px 16px;
+}
+
+.c-search-for__input .o-form_input {
+    flex-basis: 100%;
+    margin-bottom: 18px;
+}
+
+.container .o-form_input span.title {
+    display: inline-block;
+    margin-bottom: 3px;
+}
+.o-form_input span.title {
+    display: inline-block;
+    margin-bottom: 3px;
+}
+.o-form_input span {
+    font-family: "Source Sans Pro",sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 150%;
+    letter-spacing: .0025em;
+    color: #858585;
+    position: relative;
+    margin-bottom: 3px;
+}
+.o-form_input input[type=email], .o-form_input input[type=text] {
+    font-weight: 400;
+    background: #fff;
+    border: 1px solid #d1d1d1;
+    box-sizing: border-box;
+    border-radius: 4px;
+    font-family: FSAlbert;
+    font-size: 16px;
+    line-height: 150%;
+    letter-spacing: .005em;
+    color: #333;
+    padding: 12px;
+    margin-bottom: 6px;
+}
+
+.c-search-for__input .o-form_input .magnifiying-glass-click {
+    display: inline-block;
+    z-index: 2;
+    height: 22px;
+    width: 20px;
+    position: absolute;
+    right: 18px;
+    bottom: 14px;
+    font-size: 0;
+    cursor: pointer;
+}
+
+
+.c-search-for__input button {
+    flex-basis: 100%;
+    margin-bottom: 0;
+}
+
+input[type=email], input[type=text], select {
+    border: 1px solid #d1d1d1;
+    padding: 12px 16px;
+    width: 100%;
+    background: #fff;
+    border-radius: 0;
+    position: relative;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 150%;
+    display: flex;
+    align-items: center;
+    letter-spacing: .005em;
+    color: #575757;
+}
+
+@media only screen and (min-width: 767px) {
+    .c-search-for {
+        top: 135px;
+        margin-bottom: 40px;
+    }
+    .city-guides-search .c-search-for {
+        top: 0;
+        margin-bottom: 0;
+    }
+    .c-search-for .container {
+        padding-left: 0;
+        padding-right: 0;
+    }
+    .c-search-for__input {
+        padding: 32px;
+    }
+    .c-search-for__input .o-form_input {
+        flex-basis: calc(75% - 16px);
+        margin-bottom: 0;
+    }
+    .o-form_input span {
+        font-size: 14px;
+        margin-bottom: 0;
+    }
+    .c-search-for__input button {
+        flex-basis: calc(25% - 16px);
+        margin-bottom: 5px;
+    }
+}

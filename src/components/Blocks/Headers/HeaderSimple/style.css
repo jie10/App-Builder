@@ -48,10 +48,22 @@
     display: flex;
     align-items: center;
 }
+
+
+.cebapp-header-component figure img {
+    width: 100%;
+    height: 323px;
+    -o-object-fit: cover;
+    object-fit: cover;
+}
 @media only screen and (min-width: 767px) {
 .cebapp-header-component .container {
     left: 49%;
 }
+
+    .cebapp-header-component figure img {
+        height: 323px;
+    }
 }
 .cebapp-header-component .container {
     width: 100%;
