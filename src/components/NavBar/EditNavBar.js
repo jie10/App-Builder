@@ -79,6 +79,7 @@ const EditNavBar = (props) => {
     const refToolsMenu = useRef(null);
     const refDetailsMenu = useRef(null);
     const refPreviewMenu = useRef(null);
+    const refPublishMenu = useRef(null);
 
     const [toggleShowInserter, setToggleShowInserter] = useState(false);
     const [toggleShowSettings, setToggleShowSettings] = useState(false);
@@ -271,6 +272,10 @@ const EditNavBar = (props) => {
 
     useOutsideClick(refPreviewMenu, () => {
         if (togglePreviewMenu) setTogglePreviewMenu(false);
+    });
+
+    useOutsideClick(refPublishMenu, () => {
+        if (togglePublishMenu) setTogglePublishMenu(false);
     });
 
     useEffect(() => {
@@ -477,7 +482,9 @@ const EditNavBar = (props) => {
                             </a>
                         </div>
                     </div>
-                    <div className={`editor-publish-container ${togglePublishMenu ? 'editor-publish-container-show' : ''}`}>
+                    <div
+                        className={`editor-publish-container ${togglePublishMenu ? 'editor-publish-container-show' : ''}`}
+                        ref={refPublishMenu}>
                         <div className="publish-header">
                             <div className="before-publish-buttons">
                                 <button
