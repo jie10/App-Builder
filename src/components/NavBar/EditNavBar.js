@@ -30,12 +30,14 @@ import {
             Typography,
             RadioGroup,
             Radio
-        } from '@mui/material/';
+        } from '@mui/material';
 
 import "./EditNavBar.css";
 
+import DateTimePicker from '../../components/Form/DateTimePicker';
 import { createNewPage, updatePageByComponents, findCurrentPage } from "../../api/AppList";
 import { delay } from '../../utils/helpers/timing';
+import { convertTimestampToGeneralDateTime } from '../../utils/helpers/convert';
 import { getBlocks, sendBlocks } from '../../stores/actions';
 import { useOutsideClick } from '../../utils/helpers/hooks';
 
@@ -97,6 +99,8 @@ const EditNavBar = (props) => {
     const [alertMessage, setAlertMessage] = useState('Saved.');
     const [pageVisibility, setPageVisibility] = useState('public');
     const [togglePageVisibility, setTogglePageVisibility] = useState(false);
+    const [togglePagePublishDate, setTogglePagePublishDate] = useState(false);
+    const [publishDate, setPublishDate] = useState(null);
 
     const saveDraftPage = () => {
         let components = Object.keys(blocks).map((block, i) => ({
@@ -224,6 +228,8 @@ const EditNavBar = (props) => {
     }
 
     const handleTogglePageVisibility = () => setTogglePageVisibility(!togglePageVisibility);
+
+    const handleTogglePagePublishDate = () => setTogglePagePublishDate(!togglePagePublishDate);
 
     const handleOnPublishPage = (e) => {
         e.preventDefault();
@@ -537,17 +543,22 @@ const EditNavBar = (props) => {
                                                             </Typography>} />
                                         </RadioGroup>
                                     </div>
-                                    <button className="setting-toggable">
-                                        <spab className="block">
+                                    <button 
+                                        className="setting-toggable"
+                                        onClick={handleTogglePagePublishDate}>
+                                        <span className="block">
                                             <span className="detail">
                                                 <span className="title">Publish:</span>
-                                                <span className="value">December 1, 2021 7:00am</span>
+                                                <span className="value">{ convertTimestampToGeneralDateTime(publishDate) }</span>
                                             </span>
                                             <span className="icon">
-                                                <KeyboardArrowDownIcon/>
+                                                {togglePagePublishDate ? <KeyboardArrowUpIcon/> : <KeyboardArrowDownIcon/>}
                                             </span>
-                                        </spab>
+                                        </span>
                                     </button>
+                                    <div className={`publish-date-time-setter ${togglePagePublishDate ? 'show-publish-date-time-setter' : ''}`}>
+                                        <DateTimePicker setPublishDate={setPublishDate} />
+                                    </div>
                                 </div>
                             </div>
                             <div className={`publish-loader ${savePublishedPage ? 'publish-loader-show' : ''}`}>

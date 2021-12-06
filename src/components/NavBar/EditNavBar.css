@@ -629,6 +629,16 @@
     display: block;
 }
 
+.edit-popover .editor-publish-container .publish-content .before-publish-details .app-settings .publish-date-time-setter {
+    display: none;
+    padding: 24px 16px;
+    border-bottom: 1px solid #E0E0E0;
+}
+
+.edit-popover .editor-publish-container .publish-content .before-publish-details .app-settings .show-publish-date-time-setter {
+    display: block;
+}
+
 .edit-popover .editor-publish-container .publish-content .publish-loader {
     position: absolute;
     top: 100px;
