@@ -29,6 +29,7 @@ import { delay } from '../../utils/helpers/timing';
 import { countAllPages, findOne, removePage, updatePageByStatus, restorePageByStatus } from '../../api/AppList';
 
 import  { ReactComponent as IllustrationPagesImage }from "../../assets/svgs/illustration-pages.svg";
+import build from '@date-io/moment';
 
 export const AppPreview = (props) => {
     const { currentAppId } = props;
@@ -40,6 +41,7 @@ export const AppPreview = (props) => {
     const [selectedPreviewMenu, setSelectedPreviewMenu] = useState("desktop");
     const [copiedClipboard, setCopiedClipboard] = useState(false);
     const [showCopyButton, setShowCopyButton] = useState(false);
+    const [buildStatus, setBuildStatus] = useState(false);
 
     const selectPreviewType = () => {
         if (selectedPreviewMenu === "tablet") {
@@ -105,6 +107,14 @@ export const AppPreview = (props) => {
 
     const hoverClipboardInput = () => setShowCopyButton(true);
 
+    const handleBuildProject = () => window.open("https://cebupacificair-dev.apigee.net/ceb-poc-appbuilder/build", "_blank");
+
+    const handleVisitApp = () => {
+        if (buildStatus) {
+            window.open("https://cebupacificair-dev.apigee.net/ceb-poc-appbuilder/preview", "_blank");
+        }
+    }
+
     useOutsideClick(refClipboardInput, () => {
         setShowCopyButton(false);
 
@@ -116,6 +126,12 @@ export const AppPreview = (props) => {
     useOutsideClick(refPreviewMenu, () => {
         setTogglePreviewMenu(false);
     });
+
+    useEffect(() => {
+        let currentApp = findOne(currentAppId);
+
+        if (currentApp) setBuildStatus(currentApp.isPublished ? currentApp.isPublished : false)
+    }, [ currentAppId ]);
     
     return (
         <div className="app-preview-container">
@@ -180,7 +196,18 @@ export const AppPreview = (props) => {
                     </div>
                 </div>
                 <div className="header-action-panel">
-                    <a className="header-link" href="https://cebupacificair-dev.apigee.net/ceb-poc-appbuilder/preview" target="_blank" rel="noreferrer">Visit App</a>
+                    <button
+                        className="header-link"
+                        onClick={handleBuildProject}>
+                            Build Project
+                    </button>
+                    <button
+                        className={`header-link ${buildStatus ? '' : 'disabled-header-link'}`}
+                        title={buildStatus ? '' : 'App has not yet been published'}
+                        onClick={handleVisitApp}
+                        disabled={buildStatus}>
+                            Visit App
+                    </button>
                 </div>
             </div>
             <div className={`content-container ${selectedPreviewMenu === "tablet" ? 'content-container-tablet' : selectedPreviewMenu === "mobile" ? 'content-container-mobile' : 'content-container-desktop'}`}>

@@ -142,7 +142,7 @@
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    min-width: 200px;
+    min-width: 300px;
     text-align: center;
 }
 
@@ -151,12 +151,20 @@
     justify-content: center;
     align-items: center;
     text-decoration: none;
-    width: 80px;
+    width: 120px;
+    height: 35px;
     background-color: #007CBA;
     color: #FFFFFF;
     font-size: 13px;
     margin: 3px 8px;
     padding: 8px 14px;
+    border: none;
+    cursor: pointer;
+}
+
+.app-preview-container .header-container .header-action-panel .disabled-header-link {
+    color: #E1E2E6;
+    cursor: not-allowed;
 }
 
 .app-preview-container .content-container {
