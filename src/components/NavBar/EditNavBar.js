@@ -35,9 +35,8 @@ import {
 import "./EditNavBar.css";
 
 import DateTimePicker from '../../components/Form/DateTimePicker';
-import { createNewPage, updatePageByComponents, findCurrentPage } from "../../api/AppList";
+import { createNewPage, updatePageByComponents, findCurrentPage, updatePageByVisibility } from "../../api/AppList";
 import { delay } from '../../utils/helpers/timing';
-import { convertTimestampToGeneralDateTime } from '../../utils/helpers/convert';
 import { getBlocks, sendBlocks } from '../../stores/actions';
 import { useOutsideClick } from '../../utils/helpers/hooks';
 
@@ -79,7 +78,6 @@ const EditNavBar = (props) => {
     const refToolsMenu = useRef(null);
     const refDetailsMenu = useRef(null);
     const refPreviewMenu = useRef(null);
-    const refPublishMenu = useRef(null);
 
     const [toggleShowInserter, setToggleShowInserter] = useState(false);
     const [toggleShowSettings, setToggleShowSettings] = useState(false);
@@ -102,6 +100,10 @@ const EditNavBar = (props) => {
     const [togglePageVisibility, setTogglePageVisibility] = useState(false);
     const [togglePagePublishDate, setTogglePagePublishDate] = useState(false);
     const [publishDate, setPublishDate] = useState(null);
+    const [scheduledDate, setScheduledDate] = useState(null);
+    const [publishDateTime, setPublishDateTime] = useState(null);
+    const [appName, setAppName] = useState(null);
+    const [appURL, setAppURL] = useState(null);
 
     const saveDraftPage = () => {
         let components = Object.keys(blocks).map((block, i) => ({
@@ -117,7 +119,7 @@ const EditNavBar = (props) => {
             let newPageId = createNewPage(id, components, "draft");
             window.location.href = newPageId ? `/editor/${id}/page/${newPageId}` : `/dashboard/${id}/home`;
         } else {
-            updatePageByComponents(components, "draft", id, page_id);
+            updatePageByComponents(components, "draft", null, pageVisibility, id, page_id);
         }
     }
 
@@ -129,13 +131,11 @@ const EditNavBar = (props) => {
             })
         );
 
-        setPageStatusUpdate("published");
-
         if (page_id === "new") {
             let newPageId = createNewPage(id, components, "published");
             window.location.href = newPageId ? `/editor/${id}/page/${newPageId}` : `/dashboard/${id}/home`;
         } else {
-            updatePageByComponents(components, "published", id, page_id);
+            updatePageByComponents(components, "published", publishDate, pageVisibility, id, page_id);
         }
     }
 
@@ -217,7 +217,10 @@ const EditNavBar = (props) => {
 
     const handleCancelBeforePublishPage = () => setTogglePublishMenu(false);
 
-    const handleChangeToPublicVisibility = () => setPageVisibility("public");
+    const handleChangeToPublicVisibility = () => {
+        setPageVisibility("public");
+        updatePageByVisibility("public", id, page_id);
+    }
 
     const handleChangeToPrivateVisibility = () => {
         if (window.confirm("Would you like to privately publish this post now?")) {
@@ -225,6 +228,7 @@ const EditNavBar = (props) => {
             setAlertSeverity("info");
             setAlertMessage("Page visibility is now private.");
             setOpenSnackBar(true);
+            updatePageByVisibility("private", id, page_id);
         }
     }
 
@@ -236,6 +240,8 @@ const EditNavBar = (props) => {
         e.preventDefault();
 
         setSavePublishedPage(true);
+
+        setPageStatusUpdate("published");
 
         delay(() => {
             publishPage();
@@ -257,7 +263,7 @@ const EditNavBar = (props) => {
 
     const publishAction = (
         pageStatusUpdate === "published" ? 
-            <Button color="secondary" size="small" onClick={() => window.location.href = `/${id}/${page_id}`}>
+            <Button style={{color: "#FFFFFF", fontWeight: "bold"}} size="small" onClick={() => window.location.href = `/${id}/${page_id}`}>
                 View Page
             </Button> : null
     );
@@ -274,23 +280,24 @@ const EditNavBar = (props) => {
         if (togglePreviewMenu) setTogglePreviewMenu(false);
     });
 
-    useOutsideClick(refPublishMenu, () => {
-        if (togglePublishMenu) setTogglePublishMenu(false);
-    });
-
     useEffect(() => {
         let currentPage = findCurrentPage(id, page_id);
 
         if (currentPage) {
-            setPageStatusUpdate(currentPage.pageStatus === "published" ? "published" : "draft");
-            currentPage.components.forEach(component => {
+            setAppName(currentPage.appName);
+            setAppURL(currentPage.appURL);
+            setPageStatusUpdate(currentPage.pages.pageStatus);
+            setPageVisibility(currentPage.pages.visibility === "private" ? "private" : "public");
+            setScheduledDate(currentPage.pages.scheduledTimestamp);
+
+            currentPage.pages.components.forEach(component => {
                 let savedBlock = groupComponentsToBlocks([component]);
                 let saved = savedBlock[Object.keys(savedBlock)[0]];
                 sendBlocks(saved);
             });
         }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [sendBlocks]);
+    }, [sendBlocks, scheduledDate]);
 
     return (
         <div className="edit-nav-bar-container">
@@ -330,7 +337,7 @@ const EditNavBar = (props) => {
                 </div>
                 <div className="edit-nav-bar-menus">
                     {
-                        pageStatusUpdate === "published" ? 
+                        pageStatusUpdate === "published" || pageStatusUpdate === "scheduled" ? 
                             <button
                                 className={`page-button page-status-button ${switchDraft || updatePublishedPage ? 'disabled-draft-button' : ''}`}
                                 onClick={handleSwitchPageToDraft}
@@ -351,7 +358,7 @@ const EditNavBar = (props) => {
                         Preview
                     </button>
                     { 
-                        pageStatusUpdate === "published" ?
+                        pageStatusUpdate === "published" || pageStatusUpdate === "scheduled" ?
                             <button
                                 className={`page-button page-status-button publish-page-button ${switchDraft || updatePublishedPage ? 'disabled-publish-button' : ''}`}
                                 onClick={handleOnUpdatePage}
@@ -483,8 +490,7 @@ const EditNavBar = (props) => {
                         </div>
                     </div>
                     <div
-                        className={`editor-publish-container ${togglePublishMenu ? 'editor-publish-container-show' : ''}`}
-                        ref={refPublishMenu}>
+                        className={`editor-publish-container ${togglePublishMenu ? 'editor-publish-container-show' : ''}`}>
                         <div className="publish-header">
                             <div className="before-publish-buttons">
                                 <button
@@ -511,8 +517,8 @@ const EditNavBar = (props) => {
                                         <img className="app-logo" src={siteLogo} alt="logo" />
                                     </div>
                                     <div className="details">
-                                        <span className="title">App Title</span>
-                                        <span className="url">app.com</span>
+                                        <span className="title">{appName}</span>
+                                        <span className="url">{appURL}.com</span>
                                     </div>
                                 </div>
                                 <div className="app-settings">
@@ -532,7 +538,7 @@ const EditNavBar = (props) => {
                                     <div className={`visibility-list ${togglePageVisibility ? 'show-visibility-list' : ''}`}>
                                         <RadioGroup
                                             aria-label="page visibility"
-                                            defaultValue="public"
+                                            value={pageVisibility}
                                             name="radio-buttons-group">
                                                 <FormControlLabel
                                                     value="public"
@@ -556,7 +562,7 @@ const EditNavBar = (props) => {
                                         <span className="block">
                                             <span className="detail">
                                                 <span className="title">Publish:</span>
-                                                <span className="value">{ convertTimestampToGeneralDateTime(publishDate) }</span>
+                                                <span className="value">{ publishDateTime }</span>
                                             </span>
                                             <span className="icon">
                                                 {togglePagePublishDate ? <KeyboardArrowUpIcon/> : <KeyboardArrowDownIcon/>}
@@ -564,7 +570,7 @@ const EditNavBar = (props) => {
                                         </span>
                                     </button>
                                     <div className={`publish-date-time-setter ${togglePagePublishDate ? 'show-publish-date-time-setter' : ''}`}>
-                                        <DateTimePicker setPublishDate={setPublishDate} />
+                                        <DateTimePicker scheduledDate={scheduledDate} setPublishDateTime={setPublishDateTime} setPublishDate={setPublishDate} />
                                     </div>
                                 </div>
                             </div>

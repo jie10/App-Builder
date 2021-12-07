@@ -2,6 +2,7 @@ import { v4 as uuidv4 } from 'uuid'
 
 import { generateUniqId, generateTimestamp } from "../utils/helpers/generate";
 import { parseObject, unparseObject } from "../utils/helpers/json";
+import { compareDateToNowInMinutes } from "../utils/helpers/compare";
 
 import noPreviewAvailableImage from '../assets/images/no-preview-available.png';
 import defaultTemplateImage from '../assets/images/default-template.png';
@@ -109,6 +110,28 @@ export const updatePageByStatus = (newPageStatus, appId, pageId) => {
     }
 }
 
+export const updatePageByVisibility = (visibility, appId, pageId) => {
+    let currentApp = findOne(appId);
+
+    if (currentApp && currentApp.pages) {
+        let updatedApp = currentApp.pages.map(page => {
+            if (page._id === pageId) {
+                page.visibility = visibility;
+            }
+
+            return page;
+        });
+
+        currentApp.pages = updatedApp;
+
+        let newList = list.map(item => {
+            return updatedApp._id === item._id ? currentApp : item;
+        });
+
+        localStorage.setItem("apps_list", unparseObject(newList));
+    }
+}
+
 export const restorePageByStatus = (appId, pageId) => {
     let currentApp = findOne(appId);
 
@@ -163,10 +186,14 @@ export const createNewPage = (appId, components, pageStatusUpdate) => {
 
 export const findCurrentPage = (appId, pageId) => {
     let currentApp = findOne(appId);
-    return currentApp && currentApp.pages ? currentApp.pages.filter(page => page._id === pageId)[0] : null;
+    return currentApp && currentApp.pages ? {
+        appName: currentApp.appName,
+        appURL: currentApp.appURL,
+        pages: currentApp.pages.filter(page => page._id === pageId)[0]
+    } : null;
 }
 
-export const updatePageByComponents = (components, pageStatusUpdate, appId, pageId) => {
+export const updatePageByComponents = (components, pageStatusUpdate, publishDate, pageVisibility, appId, pageId) => {
     let currentApp = findOne(appId);
 
     if (currentApp && currentApp.pages) {
@@ -174,10 +201,18 @@ export const updatePageByComponents = (components, pageStatusUpdate, appId, page
             if (page._id === pageId) {
                 page.pageTitle = findHeaderTitle(components);
                 page.previousPageStatus = page.pageStatus;
-                page.pageStatus = pageStatusUpdate;
                 page.updatedTimestamp = generateTimestamp();
-                page.isPublished = pageStatusUpdate === "published" ? true : false;
                 page.components = components;
+                page.visibility = pageVisibility;
+
+                if (publishDate) {
+                    page.pageStatus = compareDateToNowInMinutes(publishDate) ? "scheduled" : pageStatusUpdate;
+                } else {
+                    page.pageStatus = pageStatusUpdate;
+                }
+
+                page.isPublished = pageStatusUpdate === "published" ? true : false;
+                page.scheduledTimestamp = page.pageStatus === "scheduled" ? publishDate : null;
             }
 
             return page;

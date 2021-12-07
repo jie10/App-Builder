@@ -3,4 +3,4 @@ import moment from "moment";
 
 export const generateUniqId = () => uniqid();
 
-export const generateTimestamp = () => moment().utc();
+export const generateTimestamp = () => moment();
