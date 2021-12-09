@@ -120,7 +120,7 @@ const ProjectsListSection = (props) => {
             return projectsList.map((app, i) => {
                 return <Grid key={i} item xs={12} md={4} lg={3}>
                             <div className="card card-app-container">
-                                <div className="preview" onClick={() => window.location.href = `/dashboard/${app.appName}/home`}>
+                                <div className="preview" onClick={() => window.location.href = `/dashboard/${app._id}/home`}>
                                     <img src={`/images/${app.themePreview}`} alt="app preview" />
                                 </div>
                                 <div className="details-container">
@@ -128,7 +128,7 @@ const ProjectsListSection = (props) => {
                                         <h3 className="app-name" title={app.appName}>{app.appName}</h3>
                                         <p className="publish-status">{app.isPublished ? "Pubished" : "Not Published"}</p>
                                     </div>
-                                    <a className="preview-link" href={`/dashboard/${app.appName}/preview`} target="_self">Preview</a>
+                                    <a className="preview-link" href={`/dashboard/${app._id}/preview`} target="_self">Preview</a>
                                 </div>
                             </div>
                         </Grid>;

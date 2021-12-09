@@ -16,3 +16,23 @@ export const getProjects = new Promise((resolve, reject) => {
         console.log(error);
     });
 });
+
+export const getProjectNameById = (id) => {
+    return new Promise((resolve, reject) => {
+        axios({
+            method: 'GET',
+            url: `${BASE_API_URL}/project/${id}`
+        })
+        .then((response) => {
+            let data = response.data;
+            resolve(data ? {
+                _id: data._id,
+                appName: data.appName
+            } : null);
+        })
+        .catch((error) => {
+            reject(error);
+            console.log(error);
+        });
+    });
+};

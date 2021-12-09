@@ -18,7 +18,7 @@ import {
 
 import "./AppSideBar.css";
 
-import { findOne } from '../../api/AppList';
+import { getProjectNameById } from '../../api/Projects';
 
 const MainHeader = (props) => {
     const { menuOnCollapse, currentAppId } = props;
@@ -28,17 +28,29 @@ const MainHeader = (props) => {
 
     const highlightOnBlur = () => setHighlightAppIcon(false);
 
-    const loadAppName = () => {
-        let currentApp = findOne(currentAppId);
-        return currentApp ? currentApp.appName : '';
-    }
+    const [selectedProjectName, setSelectedProjectName] = useState(null);
+
+    useEffect(() => {
+        getProjectNameById(currentAppId)
+            .then(project => {
+                setSelectedProjectName(project ? project.appName : null);
+            })
+            .catch(error => console.log(error));
+    }, [currentAppId]);
 
     return (
-        <a className="main-header-container" href={`/dashboard/${currentAppId}/preview`} onMouseEnter={highlightOnHover} onMouseLeave={highlightOnBlur} title={loadAppName()}>
-            <span className={`app-details-icon ${highlightAppIcon ? 'app-details-icon-highlight' : ''}`}>
-                {highlightAppIcon ? <HomeIcon/> : <PublicIcon/>}
-            </span>
-            <span className={`app-details-name ${menuOnCollapse ? 'app-details-name-hidden' : ''}`}>{ loadAppName() }</span>
+        <a
+            className="main-header-container"
+            href={`/dashboard/${currentAppId}/preview`}
+            onMouseEnter={highlightOnHover}
+            onMouseLeave={highlightOnBlur}
+            title={selectedProjectName}>
+                <span className={`app-details-icon ${highlightAppIcon ? 'app-details-icon-highlight' : ''}`}>
+                    {highlightAppIcon ? <HomeIcon/> : <PublicIcon/>}
+                </span>
+                <span className={`app-details-name ${menuOnCollapse ? 'app-details-name-hidden' : ''}`}>
+                    { selectedProjectName }
+                </span>
         </a>
     );
 }
