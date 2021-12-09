@@ -17,7 +17,7 @@ import {
 
 import "./CreateAppContent.css";
 
-import { findAll } from '../../api/AppList';
+import { getProjects } from '../../api/Projects';
 
 import sampleCoverImage from "../../assets/images/sample-cover-image.png";
 
@@ -107,8 +107,8 @@ const FirstWebsiteSection = (props) => {
     );
 }
 
-const AppsListSection = (props) => {
-    const { appsList, setLoadingContent, showGridView, setShowGridView } = props;
+const ProjectsListSection = (props) => {
+    const { projectsList, setLoadingContent, showGridView, setShowGridView } = props;
 
     const [searchKeyword, setSearchKeyword] = useState(null);
     const [showSearchClear, setShowSearchClear] = useState(false);
@@ -116,11 +116,11 @@ const AppsListSection = (props) => {
     const styledDivider = { margin: "0 36px" };
 
     const loadApps = () => {
-        if (appsList && appsList.length > 0) {
-            return appsList.map((app, i) => {
+        if (projectsList && projectsList.length > 0) {
+            return projectsList.map((app, i) => {
                 return <Grid key={i} item xs={12} md={4} lg={3}>
                             <div className="card card-app-container">
-                                <div className="preview" onClick={() => window.location.href = `/dashboard/${app.appURL}/home`}>
+                                <div className="preview" onClick={() => window.location.href = `/dashboard/${app.appName}/home`}>
                                     <img src={app.themePreview} alt="app preview" />
                                 </div>
                                 <div className="details-container">
@@ -128,7 +128,7 @@ const AppsListSection = (props) => {
                                         <h3 className="app-name" title={app.appName}>{app.appName}</h3>
                                         <p className="publish-status">{app.isPublished ? "Pubished" : "Not Published"}</p>
                                     </div>
-                                    <a className="preview-link" href={`/dashboard/${app.appURL}/preview`} target="_self">Preview</a>
+                                    <a className="preview-link" href={`/dashboard/${app.appName}/preview`} target="_self">Preview</a>
                                 </div>
                             </div>
                         </Grid>;
@@ -232,15 +232,16 @@ const CreateAppContent = (props) => {
     const [hiddenCreateNewFolderModal, setHiddenCreateNewFolderModal] = useState(true);
     const [hiddenCreateNewAppModal, setHiddenCreateNewAppModal] = useState(true);
     const [scrollValueFromTop, setScrollValueFromTop] = useState(false);
+    const [projectsList, setprojectsList] = useState([]);
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
     const loadContent = () => {
-        let appsList = findAll();
-
-        if (loadingContent && appsList.length > 0) {
-            return <AppsListSection appsList={appsList} setLoadingContent={setLoadingContent} showGridView={showGridView} setShowGridView={setShowGridView}/>
-        } if (loadingContent && appsList.length < 1) {
-            return <FirstWebsiteSection setHiddenCreateNewAppModal={setHiddenCreateNewAppModal} />
+        if (loadingContent) {
+            if (projectsList.length > 0) {
+                return <ProjectsListSection projectsList={projectsList} setLoadingContent={setLoadingContent} showGridView={showGridView} setShowGridView={setShowGridView}/>
+            } else {
+                return <FirstWebsiteSection setHiddenCreateNewAppModal={setHiddenCreateNewAppModal} />
+            }
         } else {
             return <ContentLoader />;
         }
@@ -259,6 +260,10 @@ const CreateAppContent = (props) => {
 
         const timer = setTimeout(() => {
             setLoadingContent(true);
+
+            getProjects.then(projects => {
+                setprojectsList(projects && projects.length > 0 ? projects : []);
+            });
           }, 1000);
 
         return () => clearTimeout(timer);
