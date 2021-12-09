@@ -35,7 +35,9 @@ import {
 import "./EditNavBar.css";
 
 import DateTimePicker from '../../components/Form/DateTimePicker';
-import { createNewPage, updatePageByComponents, findCurrentPage, updatePageByVisibility } from "../../api/AppList";
+import { createNewPage, updatePageByComponents, updatePageByVisibility } from "../../api/AppList";
+import { getProjectPreviewById } from "../../api/Projects";
+import { getPageById } from "../../api/Pages";
 import { delay } from '../../utils/helpers/timing';
 import { getBlocks, sendBlocks } from '../../stores/actions';
 import { useOutsideClick } from '../../utils/helpers/hooks';
@@ -281,23 +283,29 @@ const EditNavBar = (props) => {
     });
 
     useEffect(() => {
-        let currentPage = findCurrentPage(id, page_id);
+        Promise.all([getProjectPreviewById(id), getPageById(page_id)])
+        .then(current => {
+            let currentProject = current[0];
+            let currentPage = current[1];
 
-        if (currentPage) {
-            setAppName(currentPage.appName);
-            setAppURL(currentPage.appURL);
-            setPageStatusUpdate(currentPage.pages.pageStatus);
-            setPageVisibility(currentPage.pages.visibility === "private" ? "private" : "public");
-            setScheduledDate(currentPage.pages.scheduledTimestamp);
+            if (currentProject && currentPage) {
+                setAppName(currentProject.appName);
+                setAppURL(currentProject.appURL);
+                setPageStatusUpdate(currentPage.pageStatus);
+                setPageVisibility(currentPage.visibility === "private" ? "private" : "public");
+                setScheduledDate(currentPage.scheduledTimestamp);
 
-            currentPage.pages.components.forEach(component => {
-                let savedBlock = groupComponentsToBlocks([component]);
-                let saved = savedBlock[Object.keys(savedBlock)[0]];
-                sendBlocks(saved);
-            });
-        }
+                currentPage.blocks.forEach(block => {
+                    let savedBlock = groupComponentsToBlocks([block]);
+                    let saved = savedBlock[Object.keys(savedBlock)[0]];
+                    sendBlocks(saved);
+                });
+            }
+        })
+        .catch(error => console.log(error));
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [sendBlocks, scheduledDate]);
+    }, []);
 
     return (
         <div className="edit-nav-bar-container">
@@ -518,7 +526,7 @@ const EditNavBar = (props) => {
                                     </div>
                                     <div className="details">
                                         <span className="title">{appName}</span>
-                                        <span className="url">{appURL}.com</span>
+                                        <span className="url">{appURL}</span>
                                     </div>
                                 </div>
                                 <div className="app-settings">

@@ -39,3 +39,27 @@ export const getPagesByProjectId = (projectId) => {
         });
     });
 }
+
+export const getPageById = (id) => {
+    return new Promise((resolve, reject) => {
+        axios({
+            method: 'GET',
+            url: `${BASE_API_URL}/page/${id}`
+        })
+        .then((response) => {
+            let data = response.data;
+            resolve(data ? {
+                _id: data._id,
+                pageName: data.pageName,
+                pageTitle: data.pageTitle,
+                pageStatus: data.pageStatus,
+                updatedAt: data.updatedAt,
+                blocks: data.blocks
+            } : null);
+        })
+        .catch((error) => {
+            reject(error);
+            console.log(error);
+        });
+    });
+}
