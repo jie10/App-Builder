@@ -29,6 +29,7 @@ import { delay } from '../../utils/helpers/timing';
 import { remveHttpFromURL } from '../../utils/helpers/url';
 import { countAllPages, findOne, removePage, updatePageByStatus, restorePageByStatus } from '../../api/AppList';
 import { getProjectPreviewById, getProjectDashboardById } from '../../api/Projects';
+import { getPagesByProjectId } from '../../api/Pages';
 
 import  { ReactComponent as IllustrationPagesImage }from "../../assets/svgs/illustration-pages.svg";
 
@@ -543,9 +544,9 @@ const PagesList = (props) => {
                                     target="_self">
                                         {page.pageTitle}
                                 </a>
-                                <span className="time-created" title={convertTimestampToDateTime(page.updatedTimestamp)}>
+                                <span className="time-created" title={convertTimestampToDateTime(page.updatedAt)}>
                                     <AccessTimeIcon/>
-                                    {convertTimestampFromNow(page.updatedTimestamp)}
+                                    {convertTimestampFromNow(page.updatedAt)}
                                 </span>
                             </div>
                             <div className="action-page-status">
@@ -587,7 +588,8 @@ export const Pages = (props) => {
     const [toggleSearchBar, setToggleSearchBar] = useState(false);
     const [searchKeyword, setSearchKeyword] = useState(null);
     const [showPopupCopy, setShowPopupCopy] = useState(false);
-    const [pagesCount, setPagesCount] = useState(countAllPages(currentAppId));
+    const [pagesCount, setPagesCount] = useState(0);
+    const [pagesList, setPagesList] = useState([]);
     const [reloadPages, setReloadPages] = useState(false);
 
     const handleTabOnClick = (e) => {
@@ -650,8 +652,7 @@ export const Pages = (props) => {
     const handleClosePopupCopyOnClick = () => setShowPopupCopy(false);
 
     const loadSelectedPage = () => {
-        const currentApp = findOne(currentAppId);
-        let pages = currentApp ? currentApp.pages : [];
+        let pages = pagesList;
 
         let filterList = (pageType) => pages.filter(page => page.pageStatus === pageType);
 
@@ -771,9 +772,15 @@ export const Pages = (props) => {
     }
 
     useEffect(() => {
+        setReloadPages(true);
+
         if (reloadPages) {
-            setPagesCount(countAllPages(currentAppId));
-            setReloadPages(true);
+            getPagesByProjectId(currentAppId)
+                .then(project => {
+                    setPagesList(project ? project.pages.list : []);
+                    setPagesCount(project ? project.pages.count : null);
+                })
+                .catch(err => console.log(err));
         }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -803,28 +810,28 @@ export const Pages = (props) => {
                         <div className="tab-clicker" id="published_pages_tab"></div>
                         <span className="tab-text">Published</span>
                         <span className="badge-pages-count">
-                            { pagesCount && pagesCount.count.published ? pagesCount.count.published : 0 }
+                            { pagesCount && pagesCount.published ? pagesCount.published : 0 }
                         </span>
                     </div>
                     <div className={`tab ${draftTabActive ? 'tab-active' : ''}`} onClick={handleTabOnClick}>
                         <div className="tab-clicker" id="draft_pages_tab"></div>
                         <span className="tab-text">Drafts</span>
                         <span className="badge-pages-count">
-                            { pagesCount && pagesCount.count.draft ? pagesCount.count.draft : 0 }
+                            { pagesCount && pagesCount.draft ? pagesCount.draft : 0 }
                         </span>
                     </div>
                     <div className={`tab ${scheduledTabActive ? 'tab-active' : ''}`}  onClick={handleTabOnClick}>
                         <div className="tab-clicker" id="scheduled_pages_tab"></div>
                         <span className="tab-text">Scheduled</span>
                         <span className="badge-pages-count">
-                            { pagesCount && pagesCount.count.scheduled ? pagesCount.count.scheduled : 0 }
+                            { pagesCount && pagesCount.scheduled ? pagesCount.scheduled : 0 }
                         </span>
                     </div>
                     <div className={`tab ${trashedTabActive ? 'tab-active' : ''}`}  onClick={handleTabOnClick}>
                         <div className="tab-clicker" id="trashed_pages_tab"></div>
                         <span className="tab-text">Trashed</span>
                         <span className="badge-pages-count">
-                            { pagesCount && pagesCount.count.trashed ? pagesCount.count.trashed : 0 }
+                            { pagesCount && pagesCount.trashed ? pagesCount.trashed : 0 }
                         </span>
                     </div>
                 </div>
@@ -843,7 +850,7 @@ export const Pages = (props) => {
                     </div>
                 </div>
             </div>
-            { loadSelectedPage() }
+            { pagesList && pagesList.length > 0 ? loadSelectedPage() : null }
         </div>
     );
 }

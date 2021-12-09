@@ -10,8 +10,6 @@ import { AppPreview, MyHome, Pages } from './AppDashboardPages';
 const MainContent = (props) => {
     const { menuOnCollapse, currentAppId, pageName } = props;
 
-    const currentURL = window.location.pathname.split('/').slice(0, -1).join("/");
-
     const loadPage = () => {
         switch(pageName) {
             case "preview":
@@ -19,7 +17,7 @@ const MainContent = (props) => {
             case "home":
                 return <MyHome currentAppId={currentAppId} />;
             case "pages":
-                return <Pages currentAppId={currentURL.split('/').slice(-1)[0]} />;
+                return <Pages currentAppId={currentAppId} />;
             default:
             break;
         }
