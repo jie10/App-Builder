@@ -27,9 +27,9 @@ import { capitalizeWord, convertTimestampToDateTime, convertTimestampFromNow } f
 import { useOutsideClick } from '../../utils/helpers/hooks';
 import { delay } from '../../utils/helpers/timing';
 import { countAllPages, findOne, removePage, updatePageByStatus, restorePageByStatus } from '../../api/AppList';
+import { getProjectBuildStatusById } from '../../api/Projects';
 
 import  { ReactComponent as IllustrationPagesImage }from "../../assets/svgs/illustration-pages.svg";
-import build from '@date-io/moment';
 
 export const AppPreview = (props) => {
     const { currentAppId } = props;
@@ -42,6 +42,7 @@ export const AppPreview = (props) => {
     const [copiedClipboard, setCopiedClipboard] = useState(false);
     const [showCopyButton, setShowCopyButton] = useState(false);
     const [buildStatus, setBuildStatus] = useState(false);
+    const [selectedProjectName, setSelectedProjectName] = useState(false);
 
     const selectPreviewType = () => {
         if (selectedPreviewMenu === "tablet") {
@@ -128,9 +129,12 @@ export const AppPreview = (props) => {
     });
 
     useEffect(() => {
-        let currentApp = findOne(currentAppId);
-
-        if (currentApp) setBuildStatus(currentApp.isPublished ? currentApp.isPublished : false)
+        getProjectBuildStatusById(currentAppId)
+            .then(project => {
+                setBuildStatus(project ? project.isPublished : false);
+                setSelectedProjectName(project ? project.appName : null);
+            })
+            .catch(error => console.log(error));
     }, [ currentAppId ]);
     
     return (
@@ -184,7 +188,7 @@ export const AppPreview = (props) => {
                         <input
                             type="text"
                             ref={refClipboardInput}
-                            value={`${currentAppId}.appbuilder.com`}
+                            value={`${selectedProjectName}.appbuilder.com`}
                             onClick={selectClipboardInput}
                             onMouseOver={hoverClipboardInput}
                             readOnly />
