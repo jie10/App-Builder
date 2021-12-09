@@ -121,7 +121,7 @@ const ProjectsListSection = (props) => {
                 return <Grid key={i} item xs={12} md={4} lg={3}>
                             <div className="card card-app-container">
                                 <div className="preview" onClick={() => window.location.href = `/dashboard/${app.appName}/home`}>
-                                    <img src={app.themePreview} alt="app preview" />
+                                    <img src={`/images/${app.themePreview}`} alt="app preview" />
                                 </div>
                                 <div className="details-container">
                                     <div className="details">
