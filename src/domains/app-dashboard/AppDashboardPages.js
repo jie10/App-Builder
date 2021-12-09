@@ -26,8 +26,9 @@ import "./AppDashboardPages.css";
 import { capitalizeWord, convertTimestampToDateTime, convertTimestampFromNow } from '../../utils/helpers/convert';
 import { useOutsideClick } from '../../utils/helpers/hooks';
 import { delay } from '../../utils/helpers/timing';
+import { remveHttpFromURL } from '../../utils/helpers/url';
 import { countAllPages, findOne, removePage, updatePageByStatus, restorePageByStatus } from '../../api/AppList';
-import { getProjectBuildStatusById } from '../../api/Projects';
+import { getProjectPreviewById, getProjectDashboardById } from '../../api/Projects';
 
 import  { ReactComponent as IllustrationPagesImage }from "../../assets/svgs/illustration-pages.svg";
 
@@ -43,6 +44,7 @@ export const AppPreview = (props) => {
     const [showCopyButton, setShowCopyButton] = useState(false);
     const [buildStatus, setBuildStatus] = useState(false);
     const [selectedProjectName, setSelectedProjectName] = useState(false);
+    const [projectURL, setProjectURL] = useState(null);
 
     const selectPreviewType = () => {
         if (selectedPreviewMenu === "tablet") {
@@ -99,7 +101,7 @@ export const AppPreview = (props) => {
         setCopiedClipboard(true);
         refClipboardInput.current.select();
         refClipboardInput.current.setSelectionRange(0, 99999); /* For mobile devices */
-        navigator.clipboard.writeText("https://cebupacificair-dev.apigee.net/ceb-poc-appbuilder/preview");
+        navigator.clipboard.writeText(projectURL);
 
         delay(() => {
             setCopiedClipboard(false);
@@ -112,7 +114,7 @@ export const AppPreview = (props) => {
 
     const handleVisitApp = () => {
         if (buildStatus) {
-            window.open("https://cebupacificair-dev.apigee.net/ceb-poc-appbuilder/preview", "_blank");
+            window.open(projectURL, "_blank");
         }
     }
 
@@ -129,10 +131,11 @@ export const AppPreview = (props) => {
     });
 
     useEffect(() => {
-        getProjectBuildStatusById(currentAppId)
+        getProjectPreviewById(currentAppId)
             .then(project => {
                 setBuildStatus(project ? project.isPublished : false);
                 setSelectedProjectName(project ? project.appName : null);
+                setProjectURL(project ? project.appURL : null)
             })
             .catch(error => console.log(error));
     }, [ currentAppId ]);
@@ -188,7 +191,7 @@ export const AppPreview = (props) => {
                         <input
                             type="text"
                             ref={refClipboardInput}
-                            value={`${selectedProjectName}.appbuilder.com`}
+                            value={projectURL ? remveHttpFromURL(projectURL) : projectURL}
                             onClick={selectClipboardInput}
                             onMouseOver={hoverClipboardInput}
                             readOnly />
@@ -222,7 +225,16 @@ export const AppPreview = (props) => {
 }
 
 export const MyHome = (props) => {
-    const { currentURL } = props;
+    const { currentAppId } = props;
+    const [projectURL, setProjectURL] = useState(null);
+
+    useEffect(() => {
+        getProjectDashboardById(currentAppId)
+            .then(project => {
+                setProjectURL(project ? project.appURL : false);
+            })
+            .catch(error => console.log(error));
+    }, [ currentAppId ]);
 
     return (
         <div className="my-home-container">
@@ -231,7 +243,7 @@ export const MyHome = (props) => {
                     <h1>My Home</h1>
                     <p>Your hub for posting, editing, and growing your app.</p>
                 </div>
-                <a className="header-link" href={currentURL} target="_blank" rel="noreferrer">Visit App</a>
+                <a className="header-link" href={projectURL} target="_blank" rel="noreferrer">Visit App</a>
             </div>
         </div>
     );

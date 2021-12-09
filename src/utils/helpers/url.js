@@ -4,3 +4,5 @@ export const encodeToURL = (givenName) => {
 
     return encodeURI(newGivenName);
 }
+
+export const remveHttpFromURL = url => url.replace(/(^\w+:|^)\/\//, '');

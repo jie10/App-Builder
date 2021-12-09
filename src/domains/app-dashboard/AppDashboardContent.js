@@ -17,7 +17,7 @@ const MainContent = (props) => {
             case "preview":
                 return <AppPreview currentAppId={currentAppId} />;
             case "home":
-                return <MyHome currentURL={currentURL} />;
+                return <MyHome currentAppId={currentAppId} />;
             case "pages":
                 return <Pages currentAppId={currentURL.split('/').slice(-1)[0]} />;
             default:
