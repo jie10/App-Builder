@@ -10,13 +10,12 @@ import {
     getBlock
 } from '../../../../stores/actions'
 
-const HeaderSimple = (props) => {
+const SearchBarSection = (props) => {
 
     const { _id, block, deleteBlock, moveUpBlock, moveDownBlock, getBlock } = props
 
     return(
-        <div className = 'cebapp-header-component ng-tns-c13-32 height-small background-yellow rounded-buttom ng-star-inserted'
-            style={{
+        <div style={{
             width: '100%',
             height: block.parameters.height,
             backgroundColor: block.parameters.backgroundColor
@@ -41,15 +40,21 @@ const HeaderSimple = (props) => {
                     src='/images/round_close_black_24dp.png' />
             </Grid>
         </Grid>
-        <figure class="ng-tns-c7-33 ng-star-inserted">
-            <img class="ng-tns-c7-33" alt="" src={block.parameters.image}/>
-            
-         </figure>
-        <div className = 'banner-content container height-small'>
-            <span className = 'country text-blue'>
-                <p>{block.parameters.title}</p>
-                </span>
+        
+        
+        <div class='row' style={{ justifyContent: block.parameters.alignment}}>
+            <div class="c-city-popular-destinations__slider-wrapper">
+                <div class="c-city-popular-destinations__slider">
+                    <div class="c-city-popular-destinations__cards ng-star-inserted">
+                        <figure>
+                            <img src="https://cdn.media.amplience.net/i/cebupacificair/City_Guide_Boracay?w=600&amp;sm=c&amp;scaleFit=poi&amp;poi={$this.metadata.pointOfInterest.x},{$this.metadata.pointOfInterest.y},{$this.metadata.pointOfInterest.w},{$this.metadata.pointOfInterest.h}"/>
+                                <span class="city-name">Boracay</span>
+                                <a class="o-btn o-btn--primary-blue" href="javascript: void(0)">See guide</a>
+                        </figure>
+                    </div>
+                </div>
             </div>
+        </div>
         </div>
     )
 }
@@ -65,4 +70,9 @@ export default connect(mapStateToProps, {
     moveUpBlock,
     moveDownBlock,
     getBlock
-})(HeaderSimple)
+})(SearchBarSection)
+
+
+
+
+

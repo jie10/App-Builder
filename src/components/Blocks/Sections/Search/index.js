@@ -10,13 +10,12 @@ import {
     getBlock
 } from '../../../../stores/actions'
 
-const HeaderSimple = (props) => {
+const SliderWrapperSection = (props) => {
 
     const { _id, block, deleteBlock, moveUpBlock, moveDownBlock, getBlock } = props
 
     return(
-        <div className = 'cebapp-header-component ng-tns-c13-32 height-small background-yellow rounded-buttom ng-star-inserted'
-            style={{
+        <div style={{
             width: '100%',
             height: block.parameters.height,
             backgroundColor: block.parameters.backgroundColor
@@ -41,15 +40,24 @@ const HeaderSimple = (props) => {
                     src='/images/round_close_black_24dp.png' />
             </Grid>
         </Grid>
-        <figure class="ng-tns-c7-33 ng-star-inserted">
-            <img class="ng-tns-c7-33" alt="" src={block.parameters.image}/>
-            
-         </figure>
-        <div className = 'banner-content container height-small'>
-            <span className = 'country text-blue'>
-                <p>{block.parameters.title}</p>
-                </span>
+        
+        
+        <div class='' style={{ justifyContent: block.parameters.alignment}}>
+            <div class="city-guides-search" id="search-keywords">
+                <div class="c-search-for">
+                    <div class="container">
+                        <div class="c-search-for__input ng-untouched ng-pristine ng-valid">
+                            <div class="o-form_input">
+                                <span class="title">Search keyword/s</span>
+                                    <input type="text" placeholder="Search" class="ng-untouched ng-pristine ng-valid"/>
+                                    <span class="magnifiying-glass-click"></span>
+                            </div>
+                            <button class="o-btn o-btn--primary-blue">Search</button>
+                        </div>
+                    </div>
+                </div>
             </div>
+        </div>
         </div>
     )
 }
@@ -65,4 +73,13 @@ export default connect(mapStateToProps, {
     moveUpBlock,
     moveDownBlock,
     getBlock
-})(HeaderSimple)
+})(SliderWrapperSection)
+
+
+
+
+
+
+
+
+

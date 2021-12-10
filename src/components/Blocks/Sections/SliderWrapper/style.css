@@ -1,0 +1,106 @@
+.c-city-popular-destinations__slider-wrapper {
+    width: 100%;
+    position: relative;
+}
+
+
+.c-city-popular-destinations__slider {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    overflow: auto;
+    position: relative;
+}
+
+.c-city-popular-destinations__cards {
+    flex-basis: 25%;
+    cursor: pointer;
+    width: 248px;
+    min-width: 248px;
+    max-width: 248px;
+    margin-right: 16px;
+    margin-bottom: 16px;
+}
+.c-city-popular-destinations__cards figure {
+    position: relative;
+    margin: 0;
+}
+
+.c-city-popular-destinations__cards.is-active figure, 
+.c-city-popular-destinations__cards:hover figure {
+    z-index: 20;
+    position: relative;
+}
+
+.c-city-popular-destinations__cards figure img {
+    width: 100%;
+    -o-object-fit: cover;
+    object-fit: cover;
+    border-radius: 8px;
+    transition: transform .3s linear;
+    height: 298px;
+}
+
+
+.c-city-popular-destinations__cards.is-active figure .city-name, 
+.c-city-popular-destinations__cards:hover figure .city-name {
+    font-size: 22px;
+    left: 50%;
+    bottom: 88px;
+    transform: translateX(-50%);
+}
+.c-city-popular-destinations__cards figure .city-name {
+    position: absolute;
+    left: 24px;
+    bottom: 16px;
+    z-index: 20;
+    font-family: FSAlbert;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 150%;
+    letter-spacing: .005em;
+    color: #006fc1;
+}
+
+.c-city-popular-destinations__cards figure a {
+    opacity: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    max-width: 256px;
+    width: 100%;
+    padding: 16px;
+    line-height: 140%;
+}
+
+
+
+
+@media only screen and (min-width: 767px) {
+    .c-city-popular-destinations__slider {
+        overflow: visible;
+        flex-wrap: wrap;
+        justify-content: unset;
+    }
+    
+    .c-city-popular-destinations__cards {
+        min-width: initial;
+        max-width: 246px;
+        min-width: initial;
+    }
+    .c-city-popular-destinations__cards:first-child {
+        margin-left: 0;
+    }
+    .c-city-popular-destinations__cards.is-active figure img, 
+    .c-city-popular-destinations__cards:hover figure img {
+        transform: scale(1.23579,1.22369);
+        transition: transform .3s linear;
+    }
+    .c-city-popular-destinations__cards.is-active figure .city-name, 
+    .c-city-popular-destinations__cards:hover figure .city-name {
+        font-size: 25px;
+        bottom: 47px;
+    }
+}
+

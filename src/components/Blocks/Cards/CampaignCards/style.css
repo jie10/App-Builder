@@ -1,0 +1,48 @@
+.c-campaigns__cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.c-campaigns__card {
+    max-width: 336px;
+    flex-basis: 100%;
+    margin-right: 0;
+    border-top: 8px solid #ffcd00;
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 4px 23px rgb(0 0 0 / 10%);
+    margin-bottom: 24px;
+}
+.c-campaigns__card .content {
+    padding: 16px 16px 24px;
+}
+.c-campaigns__card .content h6 {
+    font-family: FSAlbert;
+    font-weight: 800;
+    font-size: 22px;
+    line-height: 150%;
+    color: #333;
+    margin-bottom: 16px;
+    margin-top: 0;
+}
+.c-campaigns__card .content button {
+    border: none;
+}
+
+@media only screen and (min-width: 767px) {
+    .c-campaigns__cards {
+        justify-content: initial;
+    }
+    .c-campaigns__card {
+        flex-basis: 33.33%;
+        margin-right: 24px;
+        margin-bottom: 0;
+    }
+    .c-campaigns__card .content {
+        padding: 16px 16px 18px;
+    }
+    .c-campaigns__card .content h6 {
+        margin-bottom: 8px;
+    }
+}
