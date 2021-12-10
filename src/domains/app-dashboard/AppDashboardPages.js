@@ -27,9 +27,8 @@ import { capitalizeWord, convertTimestampToDateTime, convertTimestampFromNow } f
 import { useOutsideClick } from '../../utils/helpers/hooks';
 import { delay } from '../../utils/helpers/timing';
 import { remveHttpFromURL } from '../../utils/helpers/url';
-import { countAllPages, findOne, removePage, updatePageByStatus, restorePageByStatus } from '../../api/AppList';
 import { getProjectPreviewById, getProjectDashboardById } from '../../api/Projects';
-import { getPagesByProjectId } from '../../api/Pages';
+import { getPagesByProjectId, updatePageStatusById, restorePageStatusById, removePageById } from '../../api/Pages';
 
 import  { ReactComponent as IllustrationPagesImage }from "../../assets/svgs/illustration-pages.svg";
 
@@ -350,9 +349,9 @@ const PagesList = (props) => {
         const currentPageId = e.currentTarget.parentElement.id.split('_').slice(-1)[0];
 
         disablePageRow("trash");
+        updatePageStatusById(currentPageId, currentAppId, "trashed");
 
         delay(() => {
-            updatePageByStatus("trashed", currentAppId, currentPageId);
             enablePageRow();
         }, 2000);
     }
@@ -361,9 +360,9 @@ const PagesList = (props) => {
         const currentPageId = e.currentTarget.parentElement.id.split('_').slice(-1)[0];
 
         disablePageRow("restore");
+        restorePageStatusById(currentPageId, currentAppId);
 
         delay(() => {
-            restorePageByStatus(currentAppId, currentPageId);
             enablePageRow();
         }, 2000);
     }
@@ -375,7 +374,7 @@ const PagesList = (props) => {
 
         if (window.confirm("Delete this page permanently?")) {
             delay(() => {
-                removePage(currentAppId, currentPageId);
+                removePageById(currentPageId);
                 enablePageRow();
             }, 2000);
         }
@@ -580,6 +579,7 @@ const PagesList = (props) => {
 export const Pages = (props) => {
     const { currentAppId } = props;
 
+    const [initialLoad, setInitialLoad] = useState(true);
     const [publishedTabActive, setPublishedTabActive] = useState(true);
     const [draftTabActive, setDraftTabActive] = useState(false);
     const [scheduledTabActive, setScheduledTabActive] = useState(false);
@@ -771,16 +771,23 @@ export const Pages = (props) => {
         
     }
 
-    useEffect(() => {
-        setReloadPages(true);
+    const loadPagesList = () => {
+        getPagesByProjectId(currentAppId)
+            .then(project => {
+                setPagesList(project ? project.pages.list : []);
+                setPagesCount(project ? project.pages.count : null);
+            })
+            .catch(err => console.log(err));
+    }
 
-        if (reloadPages) {
-            getPagesByProjectId(currentAppId)
-                .then(project => {
-                    setPagesList(project ? project.pages.list : []);
-                    setPagesCount(project ? project.pages.count : null);
-                })
-                .catch(err => console.log(err));
+    useEffect(() => {
+        if (initialLoad) {
+            setInitialLoad(false);
+            setReloadPages(true);
+        }
+
+         if (reloadPages) {
+            loadPagesList();
         }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -850,7 +857,7 @@ export const Pages = (props) => {
                     </div>
                 </div>
             </div>
-            { pagesList && pagesList.length > 0 ? loadSelectedPage() : null }
+            { loadSelectedPage() }
         </div>
     );
 }

@@ -48,14 +48,19 @@ export const getPageById = (id) => {
             url: `${BASE_API_URL}/page/${id}`
         })
         .then((response) => {
-            let data = response.data;
-            resolve(data ? {
-                _id: data._id,
-                pageName: data.pageName,
-                pageTitle: data.pageTitle,
-                pageStatus: data.pageStatus,
-                updatedAt: data.updatedAt,
-                blocks: data.blocks
+            let page = response.data;
+            resolve(page ? {
+                _id: page._id,
+                pageName: page.pageName,
+                pageTitle: page.pageTitle,
+                pageStatus: page.pageStatus,
+                updatedAt: page.updatedAt,
+                blocks: page.blocks,
+                previousPageStatus: page.previousPageStatus,
+                scheduledTimestamp: page.scheduledTimestamp,
+                isPublished: page.isPublished,
+                project: page.project,
+                table: page.table
             } : null);
         })
         .catch((error) => {
@@ -70,9 +75,16 @@ export const addNewPage = (projectId, pageDetails) => {
         "projectID": projectId,
         "pageName": pageDetails ? pageDetails.pageName : "index",
         "pageTitle": pageDetails ? pageDetails.pageTitle : "Index Page",
+        "previousPageStatus": null,
         "pageStatus": pageDetails ? pageDetails.pageStatus : "draft",
         "createdAt": generateTimestamp(),
-        "updatedAt": generateTimestamp()
+        "updatedAt": generateTimestamp(),
+        "visibility": "public",
+        "isPublished": false,
+        "blocks": [],
+        "scheduledTimestamp": null,
+        "project": "IT_APPBUILDER",
+        "table": "PAGE"
     };
 
     return new Promise((resolve, reject) => {
@@ -84,7 +96,99 @@ export const addNewPage = (projectId, pageDetails) => {
         })
         .then((response) => {
             let data = response.data;
-            console.log('addNewPage', data["0"])
+            resolve({defaultPageId: data ? data["0"] : null});
+        })
+        .catch((error) => {
+            reject(error);
+            console.log(error);
+        });
+    });
+}
+
+export const updatePageStatusById = (id, projectId, pageStatus) => {
+    getPageById(id)
+        .then(page => {
+            let newData = {
+                "projectID": projectId,
+                "pageName": page.pageName,
+                "pageTitle": page.pageTitle,
+                "previousPageStatus": page.pageStatus,
+                "pageStatus": pageStatus ? pageStatus : "draft",
+                "createdAt": page.createdAt,
+                "updatedAt": generateTimestamp(),
+                "isPublished": page.isPublished ? page.isPublished : false,
+                "blocks": page.blocks ? page.blocks : [],
+                "scheduledTimestamp": page.scheduledTimestamp ? page.scheduledTimestamp : null,
+                "project": page.project,
+                "table": page.table
+            };
+
+            return  new Promise((resolve, reject) => {
+                axios({
+                    method: 'PUT',
+                    url: `${BASE_API_URL}/page/${id}`,
+                    data: newData,
+                    headers: { "Content-Type": "application/json" }
+                })
+                .then((response) => {
+                    let data = response.data;
+                    resolve(data ? true : false);
+                })
+                .catch((error) => {
+                    reject(error);
+                    console.log(error);
+                });
+            });
+        })
+        .catch(error => console.log(error));
+}
+
+export const restorePageStatusById = (id, projectId) => {
+    getPageById(id)
+        .then(page => {
+            let newData = {
+                "projectID": projectId,
+                "pageName": page.pageName,
+                "pageTitle": page.pageTitle,
+                "previousPageStatus": page.previousPageStatus,
+                "pageStatus": page.previousPageStatus ? page.previousPageStatus : page.pageStatus,
+                "createdAt": page.createdAt,
+                "updatedAt": generateTimestamp(),
+                "isPublished": page.isPublished ? page.isPublished : false,
+                "blocks": page.blocks ? page.blocks : [],
+                "scheduledTimestamp": page.scheduledTimestamp ? page.scheduledTimestamp : null
+            };
+
+            return  new Promise((resolve, reject) => {
+                axios({
+                    method: 'PUT',
+                    url: `${BASE_API_URL}/page/${id}`,
+                    data: newData,
+                    headers: { "Content-Type": "application/json" }
+                })
+                .then((response) => {
+                    let data = response.data;
+                    resolve(data ? true : false);
+                })
+                .catch((error) => {
+                    reject(error);
+                    console.log(error);
+                });
+            });
+        })
+}
+
+export const removePageById = (id) => {
+    return new Promise((resolve, reject) => {
+        axios({
+            method: 'DELETE',
+            url: `${BASE_API_URL}/page/${id}`,
+            headers: {
+                "Content-Type": "application/json"
+            }
+        })
+        .then((response) => {
+            let data = response.data;
             resolve({defaultPageId: data ? data["0"] : null});
         })
         .catch((error) => {
