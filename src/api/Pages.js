@@ -1,6 +1,7 @@
 import axios from "axios";
 
 import { BASE_API_URL } from "../utils/constants/api";
+import { generateTimestamp } from "../utils/helpers/generate";
 
 const filterPagesByStatus = (pages, pageStatus) => pages.filter(page => page.pageStatus === pageStatus.toLowerCase());
 
@@ -56,6 +57,35 @@ export const getPageById = (id) => {
                 updatedAt: data.updatedAt,
                 blocks: data.blocks
             } : null);
+        })
+        .catch((error) => {
+            reject(error);
+            console.log(error);
+        });
+    });
+}
+
+export const addNewPage = (projectId, pageDetails) => {
+    let newData = {
+        "projectID": projectId,
+        "pageName": pageDetails ? pageDetails.pageName : "index",
+        "pageTitle": pageDetails ? pageDetails.pageTitle : "Index Page",
+        "pageStatus": pageDetails ? pageDetails.pageStatus : "draft",
+        "createdAt": generateTimestamp(),
+        "updatedAt": generateTimestamp()
+    };
+
+    return new Promise((resolve, reject) => {
+        axios({
+            method: 'POST',
+            url: `${BASE_API_URL}/page`,
+            data: newData,
+            headers: { "Content-Type": "application/json" }
+        })
+        .then((response) => {
+            let data = response.data;
+            console.log('addNewPage', data["0"])
+            resolve({defaultPageId: data ? data["0"] : null});
         })
         .catch((error) => {
             reject(error);

@@ -1,6 +1,7 @@
 import axios from "axios";
 
 import { BASE_API_URL } from "../utils/constants/api";
+import { generateTimestamp } from "../utils/helpers/generate";
 
 export const getProjects = new Promise((resolve, reject) => {
     axios({
@@ -83,3 +84,33 @@ export const getProjectPreviewById = (id) => {
         });
     });
 };
+
+export const addNewProject = (data) => {
+    let newData = {
+        "category": data.category,
+        "buildMode": data.buildMode,
+        "appName": data.appName,
+        "shortDesc": data.shortDesc,
+        "appURL": data.appURL ? data.appURL : "https://cebupacificair-dev.apigee.net/ceb-poc-appbuilder/preview",
+        "isPublished": false,
+        "themePreview": data.buildMode === "default_template" ? "default-template.png" : "no-preview-available.png",
+        "createdAt": generateTimestamp()
+    };
+
+    return new Promise((resolve, reject) => {
+        axios({
+            method: 'POST',
+            url: `${BASE_API_URL}/project`,
+            data: newData,
+            headers: { "Content-Type": "application/json" }
+        })
+        .then((response) => {
+            let data = response.data;
+            resolve({appId: data ? data["0"] : null});
+        })
+        .catch((error) => {
+            reject(error);
+            console.log(error);
+        });
+    });
+}

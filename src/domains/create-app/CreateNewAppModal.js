@@ -6,7 +6,8 @@ import "./CreateNewAppModal.css"
 
 import { appCategories } from "../../utils/constants/dataMart";
 import { useQuery } from "../../utils/helpers/hooks";
-import { createNew } from "../../api/AppList";
+import { addNewProject } from "../../api/Projects";
+import { addNewPage } from "../../api/Pages";
 
 const MAX_STEPS = 3;
 
@@ -253,9 +254,17 @@ const ModalFormPartThree = (props) => {
             setInputAppNameLength(0);
             setInputShortDescLength(0);
             setDisableButton(true);
-            let newApp = createNew({...appInfo, ...{appName, shortDesc}});
-            appInfo.newAppId = newApp.appId;
-            appInfo.defaultPageId = newApp.defaultPageId;
+
+            addNewProject({...appInfo, ...{appName, shortDesc}})
+                .then(newApp => {
+                    setAppInfo({...appInfo, ...{ newAppId: newApp.appId }});
+
+                    addNewPage(newApp.appId, null)
+                        .then(newPage => {
+                            setAppInfo({...appInfo, ...{ defaultPageId: newPage.defaultPageId }});
+                        }).catch(error => console.log(error));
+                }).catch(error => console.log(error));
+
             setCreateSuccess(true);
         } else {
             dispatchStepper({type: 'reset'});
