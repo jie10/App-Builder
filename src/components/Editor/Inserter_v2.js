@@ -394,6 +394,22 @@ const componentsList = {
             "preview_description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
             "preview_image": cardsPreviewImage
         }
+        ,
+        {
+            "_id": 19,
+            "name": "paragraph_section",
+            "text": "Paragraph",
+            "icon": <DashboardOutlinedIcon />,
+            "block_type": "PARAGRAPH_SECTION",
+            "block_parameters": {
+                alignment: 'left',
+                FontSize: '14px',
+                text: 'Welcome',
+                FontWeight: 'normal'
+            },
+            "preview_description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+            "preview_image": cardsPreviewImage
+        }
     ],
     "Text": [
         {

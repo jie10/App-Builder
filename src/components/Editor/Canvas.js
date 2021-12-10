@@ -13,6 +13,7 @@ import SectionTwoLeft from '../Blocks/Sections/SectionTwoLeft'
 import SectionTwoRight from '../Blocks/Sections/SectionTwoRight'
 import ImageSection from '../Blocks/Sections/Image'
 import VideoSection from '../Blocks/Sections/Video'
+import ParagraphSection from '../Blocks/Sections/Paragraph'
 import Breadcrumbs from '../Blocks/Breadcrumbs/BreadcrumbsSimple'
 import GuideBanner from '../Blocks/Banner/GuideBanner'
 import Cards from '../Blocks/Cards/Cards'
@@ -58,7 +59,9 @@ class Canvas extends Component {
                         case 'IMAGE_SECTION':
                             return <ImageSection key={key} _id={key} block={block} />  
                         case 'VIDEO_SECTION':
-                            return <VideoSection key={key} _id={key} block={block} />      
+                            return <VideoSection key={key} _id={key} block={block} />
+                        case 'PARAGRAPH_SECTION':
+                            return <ParagraphSection key={key} _id={key} block={block} />        
                         case 'BREADCRUMBS':
                             return <Breadcrumbs key={key} _id={key} block={block} /> 
                         case 'GUIDE_BANNER':
@@ -87,7 +90,7 @@ class Canvas extends Component {
                             return <FooterSimple key={key} _id={key} block={block} />
                         default:
                             return <div key={key}>DEFAULT</div>
-                    }
+                    }   
                 })}
                 </div>
             </Fragment>
