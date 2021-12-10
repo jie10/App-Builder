@@ -257,11 +257,9 @@ const ModalFormPartThree = (props) => {
 
             addNewProject({...appInfo, ...{appName, shortDesc}})
                 .then(newApp => {
-                    setAppInfo({...appInfo, ...{ newAppId: newApp.appId }});
-
                     addNewPage(newApp.appId, null)
                         .then(newPage => {
-                            setAppInfo({...appInfo, ...{ defaultPageId: newPage.defaultPageId }});
+                            setAppInfo({...appInfo, ...{ newAppId: newApp.appId, defaultPageId: newPage.defaultPageId }});
                         }).catch(error => console.log(error));
                 }).catch(error => console.log(error));
 
