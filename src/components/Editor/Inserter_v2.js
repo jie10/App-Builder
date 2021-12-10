@@ -175,7 +175,8 @@ const componentsList = {
             "block_parameters": {
                 backgroundColor: '#fbe700',
                 height: '160px',
-                title: 'Header'
+                title: 'Header',
+                image: 'https://cdn.media.amplience.net/i/cebupacificair/BKK-Bangkok-Thailand-SightSeeing2-6000x4000?w=1980&amp;sm=c&amp;scaleFit=poi&amp;poi={$this.metadata.pointOfInterest.x},{$this.metadata.pointOfInterest.y},{$this.metadata.pointOfInterest.w},{$this.metadata.pointOfInterest.h}?&amp;fmt=jpg&amp;fmt.options=interlaced'
             },
             "preview_description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
             "preview_image": headerPreviewImage
@@ -288,6 +289,126 @@ const componentsList = {
             },
             "preview_description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
             "preview_image": noPreviewAvailableImage
+        },
+        {
+            "_id": 13,
+            "name": "video",
+            "text": "Video",
+            "icon": <ImageIcon />,
+            "block_type": "VIDEO_SECTION",
+            "block_parameters": {
+                backgroundColor: '#FFFFF',
+                height: 'auto',
+                video: 'https://cdn.media.amplience.net/v/cebupacificair/[ONTIVA.COM]-A Message from our Chief Pilot for our 25th Anniversary-720P/mp4_720p',
+                alignment: 'center'
+            },
+            "preview_description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+            "preview_image": imagePreviewImage
+        },
+        {
+            "_id": 14,
+            "name": "campaign_cards",
+            "text": "Campaign Cards",
+            "icon": <DashboardOutlinedIcon />,
+            "block_type": "CAMPAIGN_CARDS",
+            "block_parameters": {
+                backgroundColor: '#FFFFFF',
+                height: 'auto',
+                card1Title : 'Corporate Profile',
+                card1Image : 'https://cdn.media.amplience.net/i/cebupacificair/Corp-Prof?w=600&amp;sm=c&amp;scaleFit=poi&amp;poi={$this.metadata.pointOfInterest.x},{$this.metadata.pointOfInterest.y},{$this.metadata.pointOfInterest.w},{$this.metadata.pointOfInterest.h}',
+                card2Title : 'Corporate Governance',
+                card2Image : 'https://cdn.media.amplience.net/i/cebupacificair/Corp-Gov?w=600&amp;sm=c&amp;scaleFit=poi&amp;poi={$this.metadata.pointOfInterest.x},{$this.metadata.pointOfInterest.y},{$this.metadata.pointOfInterest.w},{$this.metadata.pointOfInterest.h}',
+                card3Title : 'Corporate Disclosures',
+                card3Image : 'https://cdn.media.amplience.net/i/cebupacificair/Corp-Disclosure?w=600&amp;sm=c&amp;scaleFit=poi&amp;poi={$this.metadata.pointOfInterest.x},{$this.metadata.pointOfInterest.y},{$this.metadata.pointOfInterest.w},{$this.metadata.pointOfInterest.h}'
+            },
+            "preview_description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+            "preview_image": cardsPreviewImage
+        },
+        {
+            "_id": 15,
+            "name": "media_gallery",
+            "text": "Media Gallery",
+            "icon": <DashboardOutlinedIcon />,
+            "block_type": "MEDIA_GALLERY",
+            "block_parameters": {
+                backgroundColor: '#FFFFFF',
+                height: 'auto'
+                
+            },
+            "preview_description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+            "preview_image": cardsPreviewImage
+        },
+        {
+            "_id": 16,
+            "name": "column_section",
+            "text": "Column",
+            "icon": <DashboardOutlinedIcon />,
+            "block_type": "COLUMN_SECTION",
+            "block_parameters": {
+                backgroundColor: '#FFFFFF',
+                height: 'auto'
+                
+            },
+            "preview_description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+            "preview_image": cardsPreviewImage
+        },
+        {
+            "_id": 17,
+            "name": "sliderwrapper_section",
+            "text": "SliderWrapper",
+            "icon": <DashboardOutlinedIcon />,
+            "block_type": "SLIDERWRAPPER_SECTION",
+            "block_parameters": {
+                backgroundColor: '#FFFFFF',
+                height: 'auto'
+                
+            },
+            "preview_description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+            "preview_image": cardsPreviewImage
+        },
+        {
+            "_id": 18,
+            "name": "searchbar_section",
+            "text": "Search Bar",
+            "icon": <DashboardOutlinedIcon />,
+            "block_type": "SEARCHBAR_SECTION",
+            "block_parameters": {
+                backgroundColor: '#FFFFFF',
+                height: 'auto'
+                
+            },
+            "preview_description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+            "preview_image": cardsPreviewImage
+        },
+        {
+            "_id": 19,
+            "name": "filter_section",
+            "text": "Filter",
+            "icon": <DashboardOutlinedIcon />,
+            "block_type": "FILTER_SECTION",
+            "block_parameters": {
+                backgroundColor: '#FFFFFF',
+                height: 'auto'
+                
+            },
+            "preview_description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+            "preview_image": cardsPreviewImage
+        }
+        ,
+        {
+            "_id": 19,
+            "name": "paragraph_section",
+            "text": "Paragraph",
+            "icon": <DashboardOutlinedIcon />,
+            "block_type": "PARAGRAPH_SECTION",
+            "block_parameters": {
+                alignment: 'left',
+                FontSize: '14px',
+                text: 'Welcome',
+                FontWeight: 'normal'
+            },
+            "preview_description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+            "preview_image": cardsPreviewImage
         }
     ],
     "Text": [

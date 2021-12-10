@@ -10,13 +10,12 @@ import {
     getBlock
 } from '../../../../stores/actions'
 
-const HeaderSimple = (props) => {
+const FilterSection = (props) => {
 
     const { _id, block, deleteBlock, moveUpBlock, moveDownBlock, getBlock } = props
 
     return(
-        <div className = 'cebapp-header-component ng-tns-c13-32 height-small background-yellow rounded-buttom ng-star-inserted'
-            style={{
+        <div style={{
             width: '100%',
             height: block.parameters.height,
             backgroundColor: block.parameters.backgroundColor
@@ -41,15 +40,28 @@ const HeaderSimple = (props) => {
                     src='/images/round_close_black_24dp.png' />
             </Grid>
         </Grid>
-        <figure class="ng-tns-c7-33 ng-star-inserted">
-            <img class="ng-tns-c7-33" alt="" src={block.parameters.image}/>
-            
-         </figure>
-        <div className = 'banner-content container height-small'>
-            <span className = 'country text-blue'>
-                <p>{block.parameters.title}</p>
-                </span>
+        
+        
+        <div class='' style={{ justifyContent: block.parameters.alignment}}>
+            <div class="c-city-guides-filter">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-8">
+                            <h2 class="title">City Guides</h2>
+                            <p class="description">Looking for an adventure? We have more destinations to choose from!</p>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="o-form_input filter-destinations ng-pristine ng-valid ng-touched">
+                                <span class="title ng-tns-c8-5 ng-star-inserted">Filter by</span>
+                                <input class="o-form_input__field readonly ng-pristine ng-valid ng-touched" autocomplete="off" type="text" placeholder="Select destinations" readonly=""/>
+                                <span class="plane-text">✈</span>
+                                <i class="dropdown-caret"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
+        </div>
         </div>
     )
 }
@@ -65,4 +77,15 @@ export default connect(mapStateToProps, {
     moveUpBlock,
     moveDownBlock,
     getBlock
-})(HeaderSimple)
+})(FilterSection)
+
+
+
+
+
+
+
+
+
+
+

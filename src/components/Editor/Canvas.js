@@ -12,12 +12,20 @@ import SectionOne from '../Blocks/Sections/SectionOne'
 import SectionTwoLeft from '../Blocks/Sections/SectionTwoLeft'
 import SectionTwoRight from '../Blocks/Sections/SectionTwoRight'
 import ImageSection from '../Blocks/Sections/Image'
+import VideoSection from '../Blocks/Sections/Video'
+import ParagraphSection from '../Blocks/Sections/Paragraph'
 import Breadcrumbs from '../Blocks/Breadcrumbs/BreadcrumbsSimple'
 import GuideBanner from '../Blocks/Banner/GuideBanner'
 import Cards from '../Blocks/Cards/Cards'
+import CampaignCards from '../Blocks/Cards/CampaignCards'
 import Accordion from '../Blocks/Sections/Accordion'
 import BlockSeperator from '../Blocks/BlockSeperator/BlockSeperator'
 import Sidebar from '../Blocks/Sidebar/Sidebar'
+import MediaGallery from '../Blocks/Sections/MediaGallery'
+import SliderWrapperSection from '../Blocks/Sections/SliderWrapper'
+import SearchBarSection from '../Blocks/Sections/Search'
+import FilterSection from '../Blocks/Sections/Filter'
+import ColumnSection from '../Blocks/Column/Column'
 
 class Canvas extends Component {
     constructor(props){
@@ -50,23 +58,39 @@ class Canvas extends Component {
                             return <SectionTwoRight key={key} _id={key} block={block} />
                         case 'IMAGE_SECTION':
                             return <ImageSection key={key} _id={key} block={block} />  
+                        case 'VIDEO_SECTION':
+                            return <VideoSection key={key} _id={key} block={block} />
+                        case 'PARAGRAPH_SECTION':
+                            return <ParagraphSection key={key} _id={key} block={block} />        
                         case 'BREADCRUMBS':
                             return <Breadcrumbs key={key} _id={key} block={block} /> 
                         case 'GUIDE_BANNER':
                             return <GuideBanner key={key} _id={key} block={block} />
                         case 'CARDS':
-                            return <Cards key={key} _id={key} block={block} />   
+                            return <Cards key={key} _id={key} block={block} /> 
+                        case 'CAMPAIGN_CARDS':
+                            return <CampaignCards key={key} _id={key} block={block} />   
                         case 'ACCORDION':
                             return <Accordion key={key} _id={key} block={block} />     
                         case 'BLOCKSEPERATOR':
                             return <BlockSeperator key={key} _id={key} block={block} />
                         case 'SIDEBAR':
-                            return <Sidebar key={key} _id={key} block={block} /> 
+                            return <Sidebar key={key} _id={key} block={block} />
+                        case 'MEDIA_GALLERY':
+                            return <MediaGallery key={key} _id={key} block={block} /> 
+                        case 'SLIDERWRAPPER_SECTION':
+                            return <SliderWrapperSection key={key} _id={key} block={block} /> 
+                        case 'SEARCHBAR_SECTION':
+                            return <SearchBarSection key={key} _id={key} block={block} />
+                        case 'FILTER_SECTION':
+                            return <FilterSection key={key} _id={key} block={block} />     
+                        case 'COLUMN_SECTION':
+                            return <ColumnSection key={key} _id={key} block={block} /> 
                         case 'FOOTER':
                             return <FooterSimple key={key} _id={key} block={block} />
                         default:
                             return <div key={key}>DEFAULT</div>
-                    }
+                    }   
                 })}
                 </div>
             </Fragment>

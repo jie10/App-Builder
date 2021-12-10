@@ -122,6 +122,17 @@ const Inserter = (props) => {
                         </ListItemIcon>
                             <ListItemText primary="Image" />
                     </ListItemButton>
+                    <ListItemButton sx={{ pl: 4 }} onClick={() => sendBlocks({type: "VIDEO_SECTION", parameters: {
+                        backgroundColor: '#FFFFF',
+                        height: 'auto',
+                        image: 'https://cdn.media.amplience.net/i/cebupacificair/Safety measures for contactless flights?w=undefined&amp;h=undefined&amp;sm=c&amp;scaleFit=poi&amp;poi={$this.metadata.pointOfInterest.x},{$this.metadata.pointOfInterest.y},{$this.metadata.pointOfInterest.w},{$this.metadata.pointOfInterest.h}',
+                        alignment: 'center'
+                    }})}>
+                        <ListItemIcon>
+                            <SendIcon />
+                        </ListItemIcon>
+                            <ListItemText primary="Video" />
+                    </ListItemButton>
                 </List>
             </Collapse>
             <ListItemButton onClick={handleClick}>
