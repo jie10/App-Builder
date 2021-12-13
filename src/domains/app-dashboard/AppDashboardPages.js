@@ -2,6 +2,15 @@ import React, { useState, useRef, useEffect } from 'react';
 import ReactDOMServer from 'react-dom/server';
 
 import {
+    Snackbar,
+    Alert as MuiAlert,
+    FormControlLabel,
+    Typography,
+    RadioGroup,
+    Radio
+} from '@mui/material';
+
+import {
     Search as SearchIcon,
     AccessTime as AccessTimeIcon,
     MoreHoriz as MoreHorizIcon,
@@ -21,30 +30,59 @@ import {
     KeyboardArrowDown as KeyboardArrowDownIcon
 } from '@mui/icons-material';
 
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+
 import "./AppDashboardPages.css";
 
 import { capitalizeWord, convertTimestampToDateTime, convertTimestampFromNow } from '../../utils/helpers/convert';
 import { useOutsideClick } from '../../utils/helpers/hooks';
 import { delay } from '../../utils/helpers/timing';
 import { remveHttpFromURL } from '../../utils/helpers/url';
-import { getProjectPreviewById, getProjectDashboardById } from '../../api/Projects';
+import { getProjectPreviewById, getProjectDashboardById, updateProjectStatusById, buildProject } from '../../api/Projects';
 import { getPagesByProjectId, updatePageStatusById, restorePageStatusById, removePageById } from '../../api/Pages';
 
 import  { ReactComponent as IllustrationPagesImage }from "../../assets/svgs/illustration-pages.svg";
+
+const theme = createTheme({
+    components: {
+        MuiFormControlLabel: {
+            styleOverrides: {
+                root: {
+                    justifyContent: 'center'
+                }
+            }
+        },
+        MuiCheckbox: {
+            defaultProps: {
+                disableRipple: true
+            }
+        },
+        MuiRadio: {
+            defaultProps: {
+                disableRipple: true
+            }            
+        }
+    }
+});
 
 export const AppPreview = (props) => {
     const { currentAppId } = props;
 
     const refClipboardInput = useRef(null);
     const refPreviewMenu = useRef(null);
+    const refBuildSetupMenu = useRef(null);
 
     const [togglePreviewMenu, setTogglePreviewMenu] = useState(false);
     const [selectedPreviewMenu, setSelectedPreviewMenu] = useState("desktop");
     const [copiedClipboard, setCopiedClipboard] = useState(false);
     const [showCopyButton, setShowCopyButton] = useState(false);
     const [buildStatus, setBuildStatus] = useState(false);
-    const [selectedProjectName, setSelectedProjectName] = useState(false);
     const [projectURL, setProjectURL] = useState(null);
+    const [buildType, setBuildType] = useState("NATIVE");
+    const [showBuildSetup, setShowBuildSetup] = useState(false);
+    const [openSnackBar, setOpenSnackBar] = useState(false);
+    const [alertSeverity, setAlertSeverity] = useState("info");
+    const [alertMessage, setAlertMessage] = useState('Building project...');
 
     const selectPreviewType = () => {
         if (selectedPreviewMenu === "tablet") {
@@ -108,15 +146,58 @@ export const AppPreview = (props) => {
         }, 1000);
     }
 
+    const restartBuildSetup = () => {
+        setShowBuildSetup(false);
+        setBuildType("NATIVE");
+    }
+
     const hoverClipboardInput = () => setShowCopyButton(true);
 
-    const handleBuildProject = () => window.open("https://cebupacificair-dev.apigee.net/ceb-poc-appbuilder/build", "_blank");
+    const handleBuildProject = () => setShowBuildSetup(!showBuildSetup);
 
     const handleVisitApp = () => {
         if (buildStatus) {
             window.open(projectURL, "_blank");
         }
     }
+
+    const handleChangeToBuildWithReact = () => setBuildType("REACT");
+
+    const handleChangeToBuildWithAngular = () => setBuildType("ANGULAR");
+
+    const handleChangeToBuildWithNative = () => setBuildType("NATIVE");
+
+    const handleConfirmBuildSetup = () => {
+        restartBuildSetup();
+        setOpenSnackBar(true);
+        setBuildStatus(true);
+
+        Promise.all([updateProjectStatusById(currentAppId, buildStatus), buildProject(currentAppId, buildType)])
+            .then(newProject => {
+                let update = newProject[0];
+                let newBuild = newProject[1];
+                console.log(update)
+                if (update && newBuild) {
+                    setAlertSeverity("success");
+                    setAlertMessage("Project Build Successfully.");
+                } else {
+                    setAlertSeverity("error");
+                    setAlertMessage("Project Build Failed.");
+                }
+            })
+            .catch(error => console.log(error));
+    }
+    const handleCancelBuildSetup = () => {
+        restartBuildSetup();
+    }
+
+    const handleCloseSnackBar = (event, reason) => {
+        if (reason === 'clickaway') {
+            return;
+        }
+
+        setOpenSnackBar(false);
+    };
 
     useOutsideClick(refClipboardInput, () => {
         setShowCopyButton(false);
@@ -130,16 +211,19 @@ export const AppPreview = (props) => {
         setTogglePreviewMenu(false);
     });
 
+    useOutsideClick(refBuildSetupMenu, () => {
+        restartBuildSetup();
+    });
+
     useEffect(() => {
         getProjectPreviewById(currentAppId)
             .then(project => {
                 setBuildStatus(project ? project.isPublished : false);
-                setSelectedProjectName(project ? project.appName : null);
                 setProjectURL(project ? project.appURL : null)
             })
             .catch(error => console.log(error));
     }, [ currentAppId ]);
-    
+
     return (
         <div className="app-preview-container">
             <div className="header-container">
@@ -212,14 +296,68 @@ export const AppPreview = (props) => {
                         className={`header-link ${buildStatus ? '' : 'disabled-header-link'}`}
                         title={buildStatus ? '' : 'App has not yet been published'}
                         onClick={handleVisitApp}
-                        disabled={buildStatus}>
+                        disabled={buildStatus ? false : true}>
                             Visit App
                     </button>
+                </div>
+                <div className={`preview-build-pop-over ${showBuildSetup ? "show-preview-build-pop-over" : ""}`}
+                    ref={refBuildSetupMenu}>
+                <ThemeProvider theme={theme}>
+                    <div className="build-action-buttons">
+                        <button
+                            className="build-confirm-button"
+                            onClick={handleConfirmBuildSetup}>
+                                Confirm
+                        </button>
+                        <button
+                            className="build-cancel-button"
+                            onClick={handleCancelBuildSetup}>
+                                Cancel
+                        </button>
+                    </div>
+                    <div className="build-action-details">
+                        <strong>Ready to build your project?</strong>
+                        <p>Choose the type of web framework for your application.</p>
+                    </div>
+                    <div className="build-radio-buttons">
+                        <RadioGroup
+                            aria-label="page visibility"
+                            value={buildType}
+                            name="radio-buttons-group">
+                                <FormControlLabel
+                                    value="NATIVE"
+                                    control={<Radio onClick={handleChangeToBuildWithNative} />}
+                                    label={<Typography style={{textAlign: "left", margin: "24px 0 0 0"}} variant="p">
+                                                <strong style={{margin: "0 0 8px 0"}}>Native</strong>
+                                                <p style={{margin: 0, wordBreak: "break-word", width: "150px"}}>Build with native Javascript.</p>
+                                            </Typography>} />
+                                <FormControlLabel
+                                    value="REACT"
+                                    control={<Radio onClick={handleChangeToBuildWithReact} />}
+                                    label={<Typography style={{textAlign: "left", margin: "24px 0 0 0"}} variant="p">
+                                                <strong style={{margin: "0 0 8px 0"}}>React</strong>
+                                                <p style={{margin: 0, wordBreak: "break-word", width: "150px"}}>Build with React framework (create-app).</p>
+                                            </Typography>} />
+                                <FormControlLabel
+                                    value="ANGULAR"
+                                    control={<Radio onClick={handleChangeToBuildWithAngular} />}
+                                    label={<Typography style={{textAlign: "left", margin: "24px 0 0 0"}} variant="p">
+                                                <strong style={{margin: "0 0 8px 0"}}>Angular</strong>
+                                                <p style={{margin: 0, wordBreak: "break-word", width: "150px"}}>Build with Angular framework (apigee).</p>
+                                            </Typography>} />
+                        </RadioGroup>
+                    </div>
+                </ThemeProvider>
                 </div>
             </div>
             <div className={`content-container ${selectedPreviewMenu === "tablet" ? 'content-container-tablet' : selectedPreviewMenu === "mobile" ? 'content-container-mobile' : 'content-container-desktop'}`}>
                 <iframe src={projectURL} title="app preview" />
             </div>
+            <Snackbar open={openSnackBar} autoHideDuration={2000} onClose={handleCloseSnackBar}>
+                <MuiAlert onClose={handleCloseSnackBar} severity={alertSeverity} sx={{ width: '100%' }}>
+                    { alertMessage } 
+                </MuiAlert>
+            </Snackbar>
         </div>
     );
 }

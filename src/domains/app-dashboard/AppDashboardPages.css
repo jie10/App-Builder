@@ -194,6 +194,72 @@
     overflow-y: auto;
 }
 
+.app-preview-container .preview-build-pop-over {
+    display: none;
+    width: 265px;
+    position: absolute;
+    background-color: #FFFFFF;
+    height: calc(100vh - 50px);
+    top: 0;
+    right: 0;
+    z-index: 999;
+}
+
+.app-preview-container .show-preview-build-pop-over {
+    display: block;
+    border-left: 1px solid #E0E0E0;
+}
+
+.app-preview-container .preview-build-pop-over .build-radio-buttons {
+    padding: 16px;
+}
+
+.app-preview-container .preview-build-pop-over .build-action-details {
+    padding: 16px;
+    border-bottom: 1px solid #E0E0E0;
+}
+
+.app-preview-container .preview-build-pop-over .build-action-details strong {
+    font-size: 14px;
+}
+
+.app-preview-container .preview-build-pop-over .build-action-details p {
+    margin: 8px 0 0 0;
+    font-size: 14px;
+}
+
+.app-preview-container .preview-build-pop-over .build-action-buttons {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-around;
+    padding: 16px 0;
+    border-bottom: 1px solid #E0E0E0;
+}
+
+.app-preview-container .preview-build-pop-over .build-action-buttons button {
+    display: block;
+    align-self: center;
+    background-color: #FFFFFF;
+    border: 1px solid #007CBA;
+    flex-basis: 40%;
+    color: #007CBA;
+    padding: 10px 16px;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+.app-preview-container .preview-build-pop-over .build-action-buttons .build-confirm-button {
+    border: 1px solid #007CBA;
+    background-color: #007CBA;
+    color: #FFFFFF;
+    padding: 10px 16px;
+    cursor: pointer;
+}
+
+.app-preview-container .preview-build-pop-over .build-action-buttons .build-confirm-button:hover {
+    background-color: #006BA1;
+}
+
 /** HOME CONTENT */
 .my-home-container {
     width: 100%;

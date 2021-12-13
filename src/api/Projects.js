@@ -18,6 +18,23 @@ export const getProjects = new Promise((resolve, reject) => {
     });
 });
 
+export const getProjectById = (id) => {
+    return new Promise((resolve, reject) => {
+        axios({
+            method: 'GET',
+            url: `${BASE_API_URL}/project/${id}`
+        })
+        .then((response) => {
+            let data = response.data;
+            resolve(data ? data : null);
+        })
+        .catch((error) => {
+            reject(error);
+            console.log(error);
+        });
+    });
+};
+
 export const getProjectNameById = (id) => {
     return new Promise((resolve, reject) => {
         axios({
@@ -109,6 +126,67 @@ export const addNewProject = (data) => {
         .then((response) => {
             let data = response.data;
             resolve({appId: data ? data["0"] : null});
+        })
+        .catch((error) => {
+            reject(error);
+            console.log(error);
+        });
+    });
+}
+
+export const updateProjectStatusById = (id, projectStatus) => {
+    getProjectPreviewById(id)
+        .then(project => {
+            let newData = {
+                "_id": project._id,
+                "category": project.category,
+                "buildMode": project.buildMode,
+                "appName": project.appName,
+                "shortDesc": project.shortDesc,
+                "appURL": project.appURL,
+                "isPublished": projectStatus ? projectStatus : false,
+                "themePreview": project.themePreview,
+                "createdAt": project.createdAt,
+                "project": project.project,
+                "table": project.table,
+                "pages": project.pages
+            };
+
+            return  new Promise((resolve, reject) => {
+                axios({
+                    method: 'PUT',
+                    url: `${BASE_API_URL}/page/${id}`,
+                    data: newData,
+                    headers: { "Content-Type": "application/json" },
+                    
+                })
+                .then((response) => {
+                    let data = response.data;
+                    resolve(data ? true : false);
+                })
+                .catch((error) => {
+                    reject(error);
+                    console.log(error);
+                });
+            });
+        })
+        .catch(error => console.log(error));
+}
+
+export const buildProject = (id, projectType) => {
+    return new Promise((resolve, reject) => {
+        axios({
+            method: 'POST',
+            url: `${BASE_API_URL}/build`,
+            data: {
+                "projectID": id,
+                "projectType": projectType
+            },
+            headers: { "Content-Type": "application/json" }
+        })
+        .then((response) => {
+            let data = response.data;
+            resolve(data ? true : false);
         })
         .catch((error) => {
             reject(error);
