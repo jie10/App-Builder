@@ -38,6 +38,7 @@ import DateTimePicker from '../../components/Form/DateTimePicker';
 import { createNewPage, updatePageByComponents, updatePageByVisibility } from "../../api/AppList";
 import { getProjectPreviewById } from "../../api/Projects";
 import { getPageById } from "../../api/Pages";
+import { getBlocksByPageId } from "../../api/Blocks";
 import { delay } from '../../utils/helpers/timing';
 import { getBlocks, sendBlocks } from '../../stores/actions';
 import { useOutsideClick } from '../../utils/helpers/hooks';
@@ -283,26 +284,27 @@ const EditNavBar = (props) => {
     });
 
     useEffect(() => {
-        Promise.all([getProjectPreviewById(id), getPageById(page_id)])
-        .then(current => {
-            let currentProject = current[0];
-            let currentPage = current[1];
+        Promise.all([getProjectPreviewById(id), getPageById(page_id), getBlocksByPageId(page_id)])
+            .then(current => {
+                let currentProject = current[0];
+                let currentPage = current[1];
+                let blocks = current[2];
 
-            if (currentProject && currentPage) {
-                setAppName(currentProject.appName);
-                setAppURL(currentProject.appURL);
-                setPageStatusUpdate(currentPage.pageStatus);
-                setPageVisibility(currentPage.visibility === "private" ? "private" : "public");
-                setScheduledDate(currentPage.scheduledTimestamp);
+                if (currentProject && currentPage) {
+                    setAppName(currentProject.appName);
+                    setAppURL(currentProject.appURL);
+                    setPageStatusUpdate(currentPage.pageStatus);
+                    setPageVisibility(currentPage.visibility === "private" ? "private" : "public");
+                    setScheduledDate(currentPage.scheduledTimestamp);
 
-                currentPage.blocks.forEach(block => {
-                    let savedBlock = groupComponentsToBlocks([block]);
-                    let saved = savedBlock[Object.keys(savedBlock)[0]];
-                    sendBlocks(saved);
-                });
-            }
-        })
-        .catch(error => console.log(error));
+                    blocks && blocks.forEach(block => {
+                        let savedBlock = groupComponentsToBlocks([block]);
+                        let saved = savedBlock[Object.keys(savedBlock)[0]];
+                        sendBlocks(saved);
+                    });
+                }
+            })
+            .catch(error => console.log(error));
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
