@@ -8,6 +8,7 @@ import { appCategories } from "../../utils/constants/dataMart";
 import { useQuery } from "../../utils/helpers/hooks";
 import { addNewProject } from "../../api/Projects";
 import { addNewPage } from "../../api/Pages";
+import { addNewBlock } from "../../api/Blocks";
 
 const MAX_STEPS = 3;
 
@@ -259,7 +260,25 @@ const ModalFormPartThree = (props) => {
                 .then(newApp => {
                     addNewPage(newApp.appId, null)
                         .then(newPage => {
-                            setAppInfo({...appInfo, ...{ newAppId: newApp.appId, defaultPageId: newPage.defaultPageId }});
+                            addNewBlock(newPage.defaultPageId, {
+                                "name": "header",
+                                "text": "Header",
+                                "icon": "/icons/svg/table_chart_outlined_black_36dp.svg",
+                                "type": "HEADER",
+                                "group": "Default",
+                                "template": "Default",
+                                "parameters": {
+                                    "backgroundColor": "#fbe700",
+                                    "height": "160px",
+                                    "title": "Header",
+                                    "image": "https://cdn.media.amplience.net/i/cebupacificair/BKK-Bangkok-Thailand-SightSeeing2-6000x4000?w=1980&amp;sm=c&amp;scaleFit=poi&amp;poi={$this.metadata.pointOfInterest.x},{$this.metadata.pointOfInterest.y},{$this.metadata.pointOfInterest.w},{$this.metadata.pointOfInterest.h}?&amp;fmt=jpg&amp;fmt.options=interlaced"
+                                },
+                                "preview_description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+                                "preview_image": "/images/preview/header-preview.png"
+                            })
+                                .then(newBlock => {
+                                    setAppInfo({...appInfo, ...{ newAppId: newApp.appId, defaultPageId: newPage.defaultPageId }});
+                                }).catch(error => console.log(error));
                         }).catch(error => console.log(error));
                 }).catch(error => console.log(error));
 
