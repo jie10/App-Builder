@@ -153,12 +153,12 @@ export const updateProjectStatusById = (id, projectStatus) => {
             };
 
             return  new Promise((resolve, reject) => {
+                console.log(`${BASE_API_URL}/project/${id}`)
                 axios({
                     method: 'PUT',
-                    url: `${BASE_API_URL}/page/${id}`,
+                    url: `${BASE_API_URL}/project/${id}`,
                     data: newData,
-                    headers: { "Content-Type": "application/json" },
-                    
+                    headers: { "Content-Type": "application/json"}
                 })
                 .then((response) => {
                     let data = response.data;
