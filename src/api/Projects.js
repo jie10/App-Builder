@@ -135,10 +135,10 @@ export const addNewProject = (data) => {
 }
 
 export const updateProjectStatusById = (id, projectStatus) => {
-    getProjectPreviewById(id)
+    return new Promise((resolve, reject) => {
+        getProjectById(id)
         .then(project => {
             let newData = {
-                "_id": project._id,
                 "category": project.category,
                 "buildMode": project.buildMode,
                 "appName": project.appName,
@@ -146,31 +146,28 @@ export const updateProjectStatusById = (id, projectStatus) => {
                 "appURL": project.appURL,
                 "isPublished": projectStatus ? projectStatus : false,
                 "themePreview": project.themePreview,
-                "createdAt": project.createdAt,
-                "project": project.project,
-                "table": project.table,
-                "pages": project.pages
+                "createdAt": project.createdAt
             };
 
-            return  new Promise((resolve, reject) => {
-                console.log(`${BASE_API_URL}/project/${id}`)
-                axios({
-                    method: 'PUT',
-                    url: `${BASE_API_URL}/project/${id}`,
-                    data: newData,
-                    headers: { "Content-Type": "application/json"}
-                })
-                .then((response) => {
-                    let data = response.data;
-                    resolve(data ? true : false);
-                })
-                .catch((error) => {
-                    reject(error);
-                    console.log(error);
-                });
+            axios({
+                method: 'PUT',
+                url: `${BASE_API_URL}/project/${id}`,
+                data: newData,
+                headers: { "Content-Type": "application/json" }
+            })
+            .then((response) => {
+                let data = response.data;
+                resolve(data ? true : false);
+            })
+            .catch((error) => {
+                reject(error);
+                console.log(error);
             });
+
         })
         .catch(error => console.log(error));
+    });
+
 }
 
 export const buildProject = (id, projectType) => {
