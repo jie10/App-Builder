@@ -218,7 +218,7 @@ export const AppPreview = (props) => {
                 </div>
             </div>
             <div className={`content-container ${selectedPreviewMenu === "tablet" ? 'content-container-tablet' : selectedPreviewMenu === "mobile" ? 'content-container-mobile' : 'content-container-desktop'}`}>
-                <iframe src="https://cebupacificair-dev.apigee.net/ceb-poc-appbuilder/preview" title="app preview" />
+                <iframe src={projectURL} title="app preview" />
             </div>
         </div>
     );
