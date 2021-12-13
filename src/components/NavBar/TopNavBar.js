@@ -11,7 +11,7 @@ import {
 
 import "./TopNavBar.css";
 
-import { findAll } from '../../api/AppList';
+import { getProjects } from '../../api/Projects';
 
 import { sampleUser } from "../../utils/constants/dataMart";
 
@@ -32,6 +32,7 @@ const TopNavBar = () => {
     const [openNotifMenu, setOpenNotifMenu] = useState(false);
     const [openAccountMenu, setOpenAccountMenu] = useState(false);
     const [hoverLanguagesList, setHoverLanguagesList] = useState(false);
+    const [projectsList, setprojectsList] = useState([]);
 
     const useOutsideClick = (ref, callback) => {
       const handleClick = e => {
@@ -117,13 +118,11 @@ const TopNavBar = () => {
     });
 
     const loadApps = () => {
-        let appsList = findAll();
-
-        if (appsList && appsList.length > 0) {
-            return <div className={`apps-list-container ${ appsList.length > 4 ? 'apps-list-scrolled-container' : '' }`}>
+        if (projectsList && projectsList.length > 0) {
+            return <div className={`apps-list-container ${ projectsList.length > 4 ? 'apps-list-scrolled-container' : '' }`}>
                         {
-                            appsList.map((app, i) => {
-                                return <a key={i} className="app-container" href={`/dashboard/${app.appURL}/home`} target="_self">
+                            projectsList.map((app, i) => {
+                                return <a key={i} className="app-container" href={`/dashboard/${app._id}/home`} target="_self">
                                             <span className="app-preview-image">
                                                 <img src={app.themePreview} alt="preview" />
                                             </span>
@@ -139,6 +138,12 @@ const TopNavBar = () => {
                     </div>;
         }
     }
+
+    useEffect(() => {
+        getProjects.then(projects => {
+            setprojectsList(projects && projects.length > 0 ? projects : []);
+        });
+    }, []);
 
     return (
         <div className="top-nav-bar-container">
