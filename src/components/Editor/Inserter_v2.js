@@ -1,4 +1,4 @@
-import React, { Fragment, useRef, useState } from 'react'
+import React, { Fragment, useEffect, useState } from 'react'
 import { connect } from 'react-redux'
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
@@ -93,6 +93,8 @@ import imagePreviewImage from '../../assets/images/image-preview.PNG';
 import guideBannerPreviewImage from '../../assets/images/guide-banner-preview.PNG';
 import imageTextPreviewImage from '../../assets/images/image-text-preview.PNG';
 import imageTextButtonPreviewImage from '../../assets/images/image-text-button-preview.PNG';
+
+import { getComponents } from "../../api/Components";
 
 import {
     sendBlocks
@@ -1876,7 +1878,7 @@ const ComponentPreview = (props) => {
             </div>
             <div className="component-preview-details-container">
                 <div className="component-preview-details-icon">
-                    { component.icon }
+                    <img src={component.icon} alt={`${component.text} icon`} />
                 </div>
                 <div className="component-preview-details-text">
                     <h6 className="component-preview-text">{ component.text }</h6>
@@ -1888,7 +1890,7 @@ const ComponentPreview = (props) => {
 }
 
 const BlocksList = (props) => {
-    const { sendBlocks, setOnPreview, setSelectedComponent } = props;
+    const { sendBlocks, setOnPreview, setSelectedComponent, componentsList } = props;
 
     const styleGridComponent = {
         padding: "16px 8px",
@@ -1944,15 +1946,15 @@ const BlocksList = (props) => {
                                                 sx={styleGridComponent}
                                                 onClick={() => {
                                                         sendBlocks({
-                                                            type: component.block_type,
-                                                            parameters: component.block_parameters})
+                                                            type: component.type,
+                                                            parameters: component.parameters})
                                                             setOnPreview(false);
                                                     }}
                                                 onMouseOver={handleOnShowPreview}
                                                 onMouseLeave={handleOnHidePreview}>
                                                 <div className={`component-box-clicker ${category.group}-${component.name}`}></div>
                                                 <span className={`component-icon component-icon-${i}-${component.name}`}>
-                                                    {component.icon}
+                                                    <img src={component.icon} alt={`${component.name} icon`} />
                                                 </span>
                                                 <span className={`component-text component-text-${i}-${component.name}`}>
                                                     {component.text}
@@ -1985,7 +1987,7 @@ const NoResutsFound = (props) => {
 }
 
 const SearchResultsList = (props) => {
-    const { sendBlocks, keyword, setOnPreview, setSelectedComponent } = props;
+    const { sendBlocks, keyword, setOnPreview, setSelectedComponent, componentsList } = props;
 
     const styleGridComponent = {
         padding: "16px 8px",
@@ -2029,15 +2031,15 @@ const SearchResultsList = (props) => {
                         sx={styleGridComponent}
                         onClick={() => {
                                 sendBlocks({
-                                    type: component.block_type,
-                                    parameters: component.block_parameters})
+                                    type: component.type,
+                                    parameters: component.parameters})
                                     setOnPreview(false);
                             }}
                         onMouseOver={handleOnShowPreview}
                         onMouseLeave={handleOnHidePreview}>
                         <div className={`component-box-clicker ${component.name}`}></div>
                         <span className={`component-icon component-icon-${i}-${component.name}`}>
-                            {component.icon}
+                            <img src={component.icon} alt={`${component.name} icon`} />
                         </span>
                         <span className={`component-text component-text-${i}-${component.name}`}>
                             {component.text}
@@ -2050,14 +2052,14 @@ const SearchResultsList = (props) => {
 }
 
 const TabPanel = (props) => {
-    const { value, sendBlocks, keyword } = props;
+    const { value, sendBlocks, keyword, components } = props;
     const [onPreview, setOnPreview] = useState(false);
     const [selectedComponent, setSelectedComponent] = useState({});
     
     return (
         keyword && keyword.length > 0 ? 
             <>
-                <SearchResultsList sendBlocks={sendBlocks} keyword={keyword} setOnPreview={setOnPreview} setSelectedComponent={setSelectedComponent} />
+                <SearchResultsList sendBlocks={sendBlocks} keyword={keyword} setOnPreview={setOnPreview} setSelectedComponent={setSelectedComponent} componentsList={components} />
                 <ComponentPreview  component={selectedComponent} onPreview={onPreview} />
             </>
         :
@@ -2065,7 +2067,7 @@ const TabPanel = (props) => {
                 <div
                     hidden={value !== 0 ? true : false}
                     id={`simple-tabpanel-0`} >
-                    <BlocksList sendBlocks={sendBlocks} setOnPreview={setOnPreview} setSelectedComponent={setSelectedComponent} />
+                    <BlocksList sendBlocks={sendBlocks} setOnPreview={setOnPreview} setSelectedComponent={setSelectedComponent} componentsList={components} />
                     <ComponentPreview  component={selectedComponent} onPreview={onPreview} />
                 </div>
                 <div
@@ -2128,7 +2130,7 @@ const ComponentSearchBar = (props) => {
 }
 
 const ComponentTabs = (props) => {
-    const { sendBlocks } = props
+    const { sendBlocks, components } = props
     const [value, setValue] = useState(0);
     const [keyword, setKeyword] = useState('');
 
@@ -2167,7 +2169,7 @@ const ComponentTabs = (props) => {
                             aria-controls="component-tab-1" />
                     </Tabs>
                 </div>
-                <TabPanel value={value} sendBlocks={sendBlocks} keyword={keyword} />
+                <TabPanel value={value} sendBlocks={sendBlocks} keyword={keyword} components={components} />
             </Box>
         </ThemeProvider>
     );
@@ -2175,10 +2177,19 @@ const ComponentTabs = (props) => {
 
 const Inserter = (props) => {
     const { isInserterVisible, sendBlocks } = props
+    const [components , setComponents] = useState(null);
+
+    useEffect(() => {
+        getComponents
+            .then(data => {
+                setComponents(data);
+            })
+            .catch(error => console.log(error));
+    }, []);
 
     return(
         <Fragment>
-            { isInserterVisible && <ComponentTabs sendBlocks={sendBlocks} /> }
+            { isInserterVisible && <ComponentTabs sendBlocks={sendBlocks} components={components} /> }
         </Fragment>
     )
 }
