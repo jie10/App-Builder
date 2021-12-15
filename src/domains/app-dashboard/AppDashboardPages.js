@@ -456,7 +456,7 @@ const PagesList = (props) => {
     const copyPageOnClick = (e) => {
         const currentPageId = e.currentTarget.parentElement.id.split('_').slice(-1)[0];
 
-        window.location.href = `/editor/${currentAppId}/page/new?copy=${currentPageId}`;
+        window.location.href = `/editor/${currentAppId}/page?action=create&copy=${currentPageId}`;
     }
 
     const previewPageOnClick = (e) => {
@@ -667,7 +667,7 @@ const PagesList = (props) => {
                     <div className="pages-list-header">
                         <h2>Pages</h2>
                         <a className="create-page-button"
-                            href={`/editor/${currentAppId}/page/new`}
+                            href={`/editor/${currentAppId}/page?action=create`}
                             target="_blank"
                             rel="noreferrer">
                                 Add new page
@@ -844,7 +844,7 @@ export const Pages = (props) => {
                                                             <h2>You haven't published any pages yet.</h2>
                                                             <p>Would you like to publish your first page?</p>
                                                         </>, <a className="start-page-button"
-                                                                href={`/editor/${currentAppId}/page/new`}
+                                                                href={`/editor/${currentAppId}/page?action=create`}
                                                                 target="_blank"
                                                                 rel="noreferrer">
                                                                     Start a page
@@ -863,7 +863,7 @@ export const Pages = (props) => {
                                                                     <h2>You don't have any drafts.</h2>
                                                                     <p>Would you like to create one?</p>
                                                                 </>, <a className="start-page-button"
-                                                                        href={`/editor/${currentAppId}/page/new`}
+                                                                        href={`/editor/${currentAppId}/page?action=create`}
                                                                         target="_blank"
                                                                         rel="noreferrer">
                                                                             Start a page
@@ -882,7 +882,7 @@ export const Pages = (props) => {
                                                                     <h2>You don't have any scheduled pages yet.</h2>
                                                                     <p>Would you like to create one?</p>
                                                                 </>, <a className="start-page-button"
-                                                                        href={`/editor/${currentAppId}/page/new`}
+                                                                        href={`/editor/${currentAppId}/page?action=create`}
                                                                         target="_blank"
                                                                         rel="noreferrer">
                                                                             Start a page

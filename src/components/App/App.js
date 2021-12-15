@@ -32,7 +32,7 @@ export default class extends Component {
             <Route exact path="/" render={() => <Editor />} />
             <Route exact path="/account/apps" render={() => <CreateApp />} />
             <Route path="/dashboard/:id/:page/:sub_page?" render={() => <AppDashboard />} />
-            <Route path="/editor/:id/page/:page_id" render={() => <PageEditor />} />
+            <Route path="/editor/:id/page/:page_id?" render={() => <PageEditor />} />
           </Switch>
         </BrowserRouter>
       </ThemeProvider>

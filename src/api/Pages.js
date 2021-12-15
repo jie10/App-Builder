@@ -2,6 +2,7 @@ import axios from "axios";
 
 import { BASE_API_URL } from "../utils/constants/api";
 import { generateTimestamp } from "../utils/helpers/generate";
+import { compareDateToNowInMinutes } from "../utils/helpers/compare";
 
 const filterPagesByStatus = (pages, pageStatus) => pages.filter(page => page.pageStatus === pageStatus.toLowerCase());
 
@@ -71,18 +72,19 @@ export const getPageById = (id) => {
 }
 
 export const addNewPage = (projectId, pageDetails) => {
+
     let newData = {
         "projectID": projectId,
         "pageName": pageDetails ? pageDetails.pageName : "index",
         "pageTitle": pageDetails ? pageDetails.pageTitle : "Index Page",
         "previousPageStatus": null,
-        "pageStatus": pageDetails ? pageDetails.pageStatus : "draft",
+        "pageStatus": pageDetails ? compareDateToNowInMinutes(pageDetails.scheduledTimestamp) === true ? "scheduled" : pageDetails.pageStatus : "draft",
         "createdAt": generateTimestamp(),
         "updatedAt": generateTimestamp(),
-        "visibility": "public",
-        "isPublished": false,
-        "blocks": [],
-        "scheduledTimestamp": null,
+        "visibility": pageDetails ? pageDetails.visibility : "public",
+        "isPublished": pageDetails ? pageDetails.isPublished : false,
+        "blocks": pageDetails ? pageDetails.blocks : [],
+        "scheduledTimestamp": pageDetails ? compareDateToNowInMinutes(pageDetails.scheduledTimestamp) === true ? pageDetails.scheduledTimestamp : null : null,
         "project": "IT_APPBUILDER",
         "table": "PAGE"
     };
@@ -103,6 +105,45 @@ export const addNewPage = (projectId, pageDetails) => {
             console.log(error);
         });
     });
+}
+
+export const updatePageById = (id, projectId, pageDetails) => {
+    getPageById(id)
+        .then(page => {
+            let newData = {
+                "projectID": projectId,
+                "pageName": pageDetails.pageName ? pageDetails.pageName : page.pageName,
+                "pageTitle": pageDetails.pageTitle ? pageDetails.pageTitle : page.pageTitle,
+                "previousPageStatus": pageDetails.previousPageStatus ? pageDetails.previousPageStatus : page.previousPageStatus,
+                "pageStatus": pageDetails.pageStatus ? pageDetails.pageStatus : page.pageStatus,
+                "createdAt": page.createdAt,
+                "updatedAt": generateTimestamp(),
+                "visibility": pageDetails.visibility ? pageDetails.visibility : page.visibility,
+                "isPublished": pageDetails.isPublished ? pageDetails.isPublished : page.isPublished,
+                "blocks": pageDetails.blocks ? pageDetails.blocks : page.blocks,
+                "scheduledTimestamp": pageDetails.scheduledTimestamp ? pageDetails.scheduledTimestamp : page.scheduledTimestamp,
+                "project": page.project,
+                "table": page.table
+            };
+
+            return  new Promise((resolve, reject) => {
+                axios({
+                    method: 'PUT',
+                    url: `${BASE_API_URL}/page/${id}`,
+                    data: newData,
+                    headers: { "Content-Type": "application/json" }
+                })
+                .then((response) => {
+                    let data = response.data;
+                    resolve(data ? true : false);
+                })
+                .catch((error) => {
+                    reject(error);
+                    console.log(error);
+                });
+            });
+        })
+        .catch(error => console.log(error));
 }
 
 export const updatePageStatusById = (id, projectId, pageStatus) => {

@@ -36,9 +36,10 @@ import "./EditNavBar.css";
 
 import DateTimePicker from '../../components/Form/DateTimePicker';
 import { createNewPage, updatePageByComponents, updatePageByVisibility } from "../../api/AppList";
+import { useQuery } from "../../utils/helpers/hooks";
 import { getProjectPreviewById } from "../../api/Projects";
-import { getPageById } from "../../api/Pages";
-import { getBlocksByPageId } from "../../api/Blocks";
+import { getPageById, addNewPage } from "../../api/Pages";
+import { addNewBlock, getBlocksByPageId } from "../../api/Blocks";
 import { delay } from '../../utils/helpers/timing';
 import { getBlocks, sendBlocks } from '../../stores/actions';
 import { useOutsideClick } from '../../utils/helpers/hooks';
@@ -77,6 +78,7 @@ const EditNavBar = (props) => {
     const { toggleInserter, toggleSettings, blocks, sendBlocks } = props;
 
     const { id, page_id } = useParams();
+    let query = useQuery();
 
     const refToolsMenu = useRef(null);
     const refDetailsMenu = useRef(null);
@@ -108,9 +110,14 @@ const EditNavBar = (props) => {
     const [appName, setAppName] = useState(null);
     const [appURL, setAppURL] = useState(null);
 
+    const findHeaderTitle = (components) => {
+        let result = components.length > 0 ? components.filter(component => component.settings.type === "HEADER")[0] : null;
+        return result ? result.settings.parameters.title : "Untitled";
+    }
+
     const saveDraftPage = () => {
+        let action = query.get("action");
         let components = Object.keys(blocks).map((block, i) => ({
-                _id: block,
                 settings: blocks[block],
                 sortId: i + 1
             })
@@ -118,27 +125,82 @@ const EditNavBar = (props) => {
 
         setPageStatusUpdate("draft");
 
-        if (page_id === "new") {
-            let newPageId = createNewPage(id, components, "draft");
-            window.location.href = newPageId ? `/editor/${id}/page/${newPageId}` : `/dashboard/${id}/home`;
+        if (!page_id && action === "create") {
+            addNewPage(id, {
+                pageName : "index",
+                pageTitle: findHeaderTitle(components),
+                pageStatus: "draft",
+                scheduledTimestamp: null,
+                visibility: pageVisibility,
+                blocks: components
+            })
+            .then(newPage => {
+                if (newPage) {
+                    if (components && components.length > 0) {
+                        components.forEach((component, i) => {
+                            if (newPage.defaultPageId) {
+                                addNewBlock(newPage.defaultPageId, component.settings, component.sortId)
+                                .then((newBlock, i) => console.log(`${i} ${newBlock}`))
+                                .catch(error => console.log(error));
+    
+                                if (i === components.length - 1) window.location.href = `/editor/${id}/page/${newPage.defaultPageId}`;
+                            }
+                        });
+                    } else {
+                        window.location.href = `/editor/${id}/page/${newPage.defaultPageId}`;
+                    }
+                } else {
+                    window.location.href = `/dashboard/${id}/home`;
+                }
+            })
+            .catch(error => console.log(error));
         } else {
-            updatePageByComponents(components, "draft", null, pageVisibility, id, page_id);
+            console.log("updatePage")
+            // updatePageByComponents(components, "draft", null, pageVisibility, id, page_id);
         }
     }
 
     const publishPage = () => {
+        let action = query.get("action");
         let components = Object.keys(blocks).map((block, i) => ({
-                _id: block,
                 settings: blocks[block],
                 sortId: i + 1
             })
         );
 
-        if (page_id === "new") {
-            let newPageId = createNewPage(id, components, "published");
-            window.location.href = newPageId ? `/editor/${id}/page/${newPageId}` : `/dashboard/${id}/home`;
+        if (!page_id && action === "create") {
+            addNewPage(id, {
+                pageName : "index",
+                pageTitle: findHeaderTitle(components),
+                pageStatus: "published",
+                scheduledTimestamp: publishDate,
+                visibility: pageVisibility,
+                blocks: components,
+                isPublished: true
+            })
+            .then(newPage => {
+                if (newPage) {
+                    if (components && components.length > 0) {
+                        components.forEach((component, i) => {
+                            if (newPage.defaultPageId) {
+                                addNewBlock(newPage.defaultPageId, component.settings, component.sortId)
+                                .then((newBlock, i) => console.log(`${i} ${newBlock}`))
+                                .catch(error => console.log(error));
+    
+                                if (i === components.length - 1) window.location.href = `/editor/${id}/page/${newPage.defaultPageId}`;
+                            }
+                        });
+                    } else {
+                        window.location.href = `/editor/${id}/page/${newPage.defaultPageId}`;
+                    }
+                } else {
+                    window.location.href = `/dashboard/${id}/home`;
+                }
+            })
+            .catch(error => console.log(error));
         } else {
-            updatePageByComponents(components, "published", publishDate, pageVisibility, id, page_id);
+            console.log("updatePage")
+            // updatePageByComponents(components, "published", publishDate, pageVisibility, id, page_id);
         }
     }
 

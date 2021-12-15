@@ -275,7 +275,7 @@ const ModalFormPartThree = (props) => {
                                 },
                                 "preview_description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
                                 "preview_image": "/images/preview/header-preview.png"
-                            })
+                            }, 1)
                                 .then(newBlock => {
                                     setAppInfo({...appInfo, ...{ newAppId: newApp.appId, defaultPageId: newPage.defaultPageId }});
                                 }).catch(error => console.log(error));

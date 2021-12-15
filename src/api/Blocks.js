@@ -10,7 +10,6 @@ export const getBlocksByPageId = (pageId) => {
         })
         .then((response) => {
             let data = response.data;
-            console.log(data)
             resolve(data ? data : []);
         })
         .catch((error) => {
@@ -20,17 +19,16 @@ export const getBlocksByPageId = (pageId) => {
     });
 }
 
-export const addNewBlock = (pageId, block) => {
+export const addNewBlock = (pageId, block, sortId) => {
     return new Promise((resolve, reject) => {
-        let newData = {
-            "pageID": pageId,
-            "settings": block
-        };
-
         axios({
             method: 'POST',
             url: `${BASE_API_URL}/block`,
-            data: newData,
+            data: {
+                pageID: pageId,
+                settings: block,
+                sortId: sortId
+            },
             headers: { "Content-Type": "application/json" }
         })
         .then((response) => {
@@ -74,12 +72,11 @@ export const removeBlockById = (id) => {
     return new Promise((resolve, reject) => {
         axios({
             method: 'DELETE',
-            url: `${BASE_API_URL}/block/${id}`,
-            headers: { "Content-Type": "application/json" }
+            url: `${BASE_API_URL}/block/${id}`
         })
         .then((response) => {
             let data = response.data;
-            resolve({defaultPageId: data ? data["0"] : null});
+            resolve(data ? data : null);
         })
         .catch((error) => {
             reject(error);

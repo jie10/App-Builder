@@ -194,7 +194,7 @@ const AppSideBar = (props) => {
                     text: "Add New",
                     pageName: "page",
                     subPageName: "new",
-                    href: `/editor/${currentAppId}/page/new`
+                    href: `/editor/${currentAppId}/page?action=create`
                 }
             ]
         },
