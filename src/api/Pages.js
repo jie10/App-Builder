@@ -78,13 +78,13 @@ export const addNewPage = (projectId, pageDetails) => {
         "pageName": pageDetails ? pageDetails.pageName : "index",
         "pageTitle": pageDetails ? pageDetails.pageTitle : "Index Page",
         "previousPageStatus": null,
-        "pageStatus": pageDetails ? compareDateToNowInMinutes(pageDetails.scheduledTimestamp) === true ? "scheduled" : pageDetails.pageStatus : "draft",
+        "pageStatus": pageDetails ? pageDetails.scheduledTimestamp && compareDateToNowInMinutes(pageDetails.scheduledTimestamp) === true ? "scheduled" : pageDetails.pageStatus : "draft",
         "createdAt": generateTimestamp(),
         "updatedAt": generateTimestamp(),
         "visibility": pageDetails ? pageDetails.visibility : "public",
         "isPublished": pageDetails ? pageDetails.isPublished : false,
         "blocks": pageDetails ? pageDetails.blocks : [],
-        "scheduledTimestamp": pageDetails ? compareDateToNowInMinutes(pageDetails.scheduledTimestamp) === true ? pageDetails.scheduledTimestamp : null : null,
+        "scheduledTimestamp": pageDetails ? pageDetails.scheduledTimestamp && compareDateToNowInMinutes(pageDetails.scheduledTimestamp) === true ? pageDetails.scheduledTimestamp : null : null,
         "project": "IT_APPBUILDER",
         "table": "PAGE"
     };

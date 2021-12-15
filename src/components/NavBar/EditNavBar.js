@@ -168,7 +168,7 @@ const EditNavBar = (props) => {
             })
         );
 
-        if (!page_id && action === "create") {
+        if (action === "create") {
             addNewPage(id, {
                 pageName : "index",
                 pageTitle: findHeaderTitle(components),
@@ -346,27 +346,35 @@ const EditNavBar = (props) => {
     });
 
     useEffect(() => {
+        let action = query.get("action");
+        let copyPageId = query.get("copy");
+
         Promise.all([getProjectPreviewById(id), getPageById(page_id), getBlocksByPageId(page_id)])
-            .then(current => {
-                let currentProject = current[0];
-                let currentPage = current[1];
-                let blocks = current[2];
+        .then(current => {
+            let currentProject = current[0];
+            let currentPage = current[1];
 
-                if (currentProject && currentPage) {
-                    setAppName(currentProject.appName);
-                    setAppURL(currentProject.appURL);
-                    setPageStatusUpdate(currentPage.pageStatus);
-                    setPageVisibility(currentPage.visibility === "private" ? "private" : "public");
-                    setScheduledDate(currentPage.scheduledTimestamp);
+            if (currentProject && currentPage) {
+                setAppName(currentProject.appName);
+                setAppURL(currentProject.appURL);
+                setPageStatusUpdate(currentPage.pageStatus);
+                setPageVisibility(currentPage.visibility === "private" ? "private" : "public");
+                setScheduledDate(currentPage.scheduledTimestamp);
 
-                    blocks && blocks.forEach(block => {
-                        let savedBlock = groupComponentsToBlocks([block]);
-                        let saved = savedBlock[Object.keys(savedBlock)[0]];
-                        sendBlocks(saved);
-                    });
-                }
-            })
-            .catch(error => console.log(error));
+                let pageId = action === "create" && copyPageId ? copyPageId : page_id;
+
+                getBlocksByPageId(pageId)
+                    .then(blocks => {
+                        blocks && blocks.forEach(block => {
+                            let savedBlock = groupComponentsToBlocks([block]);
+                            let saved = savedBlock[Object.keys(savedBlock)[0]];
+                            sendBlocks(saved);
+                        });
+                    })
+                    .catch(error => console.log(error));
+            }
+        })
+        .catch(error => console.log(error));
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
