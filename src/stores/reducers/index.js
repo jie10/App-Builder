@@ -7,6 +7,7 @@ import {
     ACTION_GET_BLOCK,
     ACTION_SEND_BLOCK,
     ACTION_DELETE_BLOCK,
+    ACTION_DELETE_BLOCKS,
     ACTION_MOVE_UP_BLOCK,
     ACTION_MOVE_DOWN_BLOCK,
     ACTION_UPDATE_BLOCK
@@ -56,6 +57,9 @@ const blocksReducer = (blocks = {}, action) => {
         case ACTION_DELETE_BLOCK:
             const { [action.payload.id]: _, ...newData } = blocks
             return newData
+        case ACTION_DELETE_BLOCKS:
+            blocks = {}
+            return blocks
         case ACTION_MOVE_UP_BLOCK:
             let keysUp = Object.keys( blocks )
             let indexUp = Object.keys(blocks).indexOf(action.payload.id)

@@ -8,6 +8,7 @@ import {
     ACTION_GET_BLOCK,
     ACTION_SEND_BLOCK,
     ACTION_DELETE_BLOCK,
+    ACTION_DELETE_BLOCKS,
     ACTION_MOVE_UP_BLOCK,
     ACTION_MOVE_DOWN_BLOCK,
     ACTION_UPDATE_BLOCK
@@ -46,6 +47,10 @@ export const sendBlocks = (block) => async dispatch => {
 
 export const deleteBlock = (id) => async dispatch => {
     dispatch({type: ACTION_DELETE_BLOCK, payload: {id: id}})
+}
+
+export const deleteBlocks = () => async dispatch => {
+    dispatch({type: ACTION_DELETE_BLOCKS})
 }
 
 export const moveUpBlock = (id) => async dispatch => {
