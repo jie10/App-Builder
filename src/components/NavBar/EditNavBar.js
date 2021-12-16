@@ -40,7 +40,7 @@ import { getProjectPreviewById } from "../../api/Projects";
 import { getPageById, addNewPage, updatePageById } from "../../api/Pages";
 import { addNewBlock, getBlocksByPageId, removeBlockById } from "../../api/Blocks";
 import { delay } from '../../utils/helpers/timing';
-import { sendBlocks } from '../../stores/actions';
+import { sendBlocks, deleteBlocks } from '../../stores/actions';
 import { useOutsideClick } from '../../utils/helpers/hooks';
 
 import siteLogo from "../../assets/logos/ceblogo.png";
@@ -74,7 +74,7 @@ const Alert = React.forwardRef(function Alert(props, ref) {
 });
 
 const EditNavBar = (props) => {
-    const { toggleInserter, toggleSettings, blocks, sendBlocks } = props;
+    const { toggleInserter, toggleSettings, blocks, sendBlocks, deleteBlocks } = props;
 
     const { id, page_id } = useParams();
     let query = useQuery();
@@ -126,7 +126,6 @@ const EditNavBar = (props) => {
         );
 
         setPageStatusUpdate("draft");
-        setLoadPageComponents(true);
 
         if (!page_id && action === "create") {
             addNewPage(id, {
@@ -168,12 +167,15 @@ const EditNavBar = (props) => {
             })
             .then(newPage => {
                 if (newPage) {
+                    // delete all previousBlocks first
+                    previousBlocks && previousBlocks.forEach((block, i) => {
+                        removeBlockById(block._id)
+                        .catch(error => console.log(error));
+                    });
+
+                    setPreviousBlocks([]);
+
                     if (currentComponents && currentComponents.length > 0) {
-                        // delete all previousBlocks first
-                        previousBlocks && previousBlocks.forEach((block, i) => {
-                            removeBlockById(block._id)
-                            .catch(error => console.log(error));
-                        });
                         // then add new blocks for page
                         currentComponents.forEach((component, i) => {
                             if (newPage.defaultPageId) {
@@ -181,6 +183,8 @@ const EditNavBar = (props) => {
                                 .catch(error => console.log(error));
                             }
                         });
+                        deleteBlocks();
+                        setLoadPageComponents(true);
                     }
                 } else {
                     window.location.href = `/dashboard/${id}/home`;
@@ -198,7 +202,6 @@ const EditNavBar = (props) => {
                 sortId: i + 1
             })
         );
-        setLoadPageComponents(true);
 
         if (action === "create") {
             addNewPage(id, {
@@ -247,6 +250,8 @@ const EditNavBar = (props) => {
                             removeBlockById(block._id)
                             .catch(error => console.log(error));
                         });
+
+                        setPreviousBlocks([]);
                         // then add new blocks for page
                         currentComponents.forEach((component, i) => {
                             if (newPage.defaultPageId) {
@@ -254,6 +259,8 @@ const EditNavBar = (props) => {
                                 .catch(error => console.log(error));
                             }
                         });
+                        deleteBlocks();
+                        setLoadPageComponents(true);
                     }
                 } else {
                     window.location.href = `/dashboard/${id}/home`;
@@ -443,7 +450,7 @@ const EditNavBar = (props) => {
         }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+    }, [loadPageComponents]);
 
     return (
         <div className="edit-nav-bar-container">
@@ -750,4 +757,4 @@ const mapStateToProps = state => {
     }
 }
 
-export default connect(mapStateToProps, { sendBlocks })(EditNavBar)
+export default connect(mapStateToProps, { sendBlocks, deleteBlocks })(EditNavBar)
