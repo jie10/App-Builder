@@ -108,7 +108,8 @@ export const addNewPage = (projectId, pageDetails) => {
 }
 
 export const updatePageById = (id, projectId, pageDetails) => {
-    getPageById(id)
+    return new Promise((resolve, reject) => {
+        getPageById(id)
         .then(page => {
             let newData = {
                 "projectID": projectId,
@@ -122,28 +123,27 @@ export const updatePageById = (id, projectId, pageDetails) => {
                 "isPublished": pageDetails.isPublished ? pageDetails.isPublished : page.isPublished,
                 "blocks": pageDetails.blocks ? pageDetails.blocks : page.blocks,
                 "scheduledTimestamp": pageDetails.scheduledTimestamp ? pageDetails.scheduledTimestamp : page.scheduledTimestamp,
-                "project": page.project,
-                "table": page.table
+                "project": page.project ? page.project : "IT_APPBUILDER",
+                "table": page.table ? page.table : "PAGE"
             };
 
-            return  new Promise((resolve, reject) => {
-                axios({
-                    method: 'PUT',
-                    url: `${BASE_API_URL}/page/${id}`,
-                    data: newData,
-                    headers: { "Content-Type": "application/json" }
-                })
-                .then((response) => {
-                    let data = response.data;
-                    resolve(data ? true : false);
-                })
-                .catch((error) => {
-                    reject(error);
-                    console.log(error);
-                });
+            axios({
+                method: 'PUT',
+                url: `${BASE_API_URL}/page/${id}`,
+                data: newData,
+                headers: { "Content-Type": "application/json" }
+            })
+            .then((response) => {
+                let data = response.data;
+                resolve({defaultPageId: data ? id : null});
+            })
+            .catch((error) => {
+                reject(error);
+                console.log(error);
             });
         })
         .catch(error => console.log(error));
+    });
 }
 
 export const updatePageStatusById = (id, projectId, pageStatus) => {

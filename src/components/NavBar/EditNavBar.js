@@ -35,13 +35,12 @@ import {
 import "./EditNavBar.css";
 
 import DateTimePicker from '../../components/Form/DateTimePicker';
-import { createNewPage, updatePageByComponents, updatePageByVisibility } from "../../api/AppList";
 import { useQuery } from "../../utils/helpers/hooks";
 import { getProjectPreviewById } from "../../api/Projects";
-import { getPageById, addNewPage } from "../../api/Pages";
-import { addNewBlock, getBlocksByPageId } from "../../api/Blocks";
+import { getPageById, addNewPage, updatePageById } from "../../api/Pages";
+import { addNewBlock, getBlocksByPageId, removeBlockById } from "../../api/Blocks";
 import { delay } from '../../utils/helpers/timing';
-import { getBlocks, sendBlocks } from '../../stores/actions';
+import { sendBlocks } from '../../stores/actions';
 import { useOutsideClick } from '../../utils/helpers/hooks';
 
 import siteLogo from "../../assets/logos/ceblogo.png";
@@ -109,6 +108,8 @@ const EditNavBar = (props) => {
     const [publishDateTime, setPublishDateTime] = useState(null);
     const [appName, setAppName] = useState(null);
     const [appURL, setAppURL] = useState(null);
+    const [loadPageComponents, setLoadPageComponents] = useState(true);
+    const [previousBlocks, setPreviousBlocks] = useState([]);
 
     const findHeaderTitle = (components) => {
         let result = components.length > 0 ? components.filter(component => component.settings.type === "HEADER")[0] : null;
@@ -117,33 +118,34 @@ const EditNavBar = (props) => {
 
     const saveDraftPage = () => {
         let action = query.get("action");
-        let components = Object.keys(blocks).map((block, i) => ({
+        // collect all current components to be added on page
+        let currentComponents = Object.keys(blocks).map((block, i) => ({
                 settings: blocks[block],
                 sortId: i + 1
             })
         );
 
         setPageStatusUpdate("draft");
+        setLoadPageComponents(true);
 
         if (!page_id && action === "create") {
             addNewPage(id, {
                 pageName : "index",
-                pageTitle: findHeaderTitle(components),
+                pageTitle: findHeaderTitle(currentComponents),
                 pageStatus: "draft",
                 scheduledTimestamp: null,
                 visibility: pageVisibility,
-                blocks: components
+                blocks: currentComponents
             })
             .then(newPage => {
                 if (newPage) {
-                    if (components && components.length > 0) {
-                        components.forEach((component, i) => {
+                    if (currentComponents && currentComponents.length > 0) {
+                        currentComponents.forEach((component, i) => {
                             if (newPage.defaultPageId) {
                                 addNewBlock(newPage.defaultPageId, component.settings, component.sortId)
-                                .then((newBlock, i) => console.log(`${i} ${newBlock}`))
                                 .catch(error => console.log(error));
     
-                                if (i === components.length - 1) window.location.href = `/editor/${id}/page/${newPage.defaultPageId}`;
+                                if (i === currentComponents.length - 1) window.location.href = `/editor/${id}/page/${newPage.defaultPageId}`;
                             }
                         });
                     } else {
@@ -155,39 +157,68 @@ const EditNavBar = (props) => {
             })
             .catch(error => console.log(error));
         } else {
-            console.log("updatePage")
-            // updatePageByComponents(components, "draft", null, pageVisibility, id, page_id);
+            updatePageById(page_id, id, {
+                pageName : "index",
+                pageTitle: findHeaderTitle(currentComponents),
+                pageStatus: "draft",
+                scheduledTimestamp: null,
+                visibility: pageVisibility,
+                blocks: currentComponents,
+                isPublished: false
+            })
+            .then(newPage => {
+                if (newPage) {
+                    if (currentComponents && currentComponents.length > 0) {
+                        // delete all previousBlocks first
+                        previousBlocks && previousBlocks.forEach((block, i) => {
+                            removeBlockById(block._id)
+                            .catch(error => console.log(error));
+                        });
+                        // then add new blocks for page
+                        currentComponents.forEach((component, i) => {
+                            if (newPage.defaultPageId) {
+                                addNewBlock(newPage.defaultPageId, component.settings, component.sortId)
+                                .catch(error => console.log(error));
+                            }
+                        });
+                    }
+                } else {
+                    window.location.href = `/dashboard/${id}/home`;
+                }
+            })
+            .catch(error => console.log(error));
         }
     }
 
     const publishPage = () => {
         let action = query.get("action");
-        let components = Object.keys(blocks).map((block, i) => ({
+        // collect all current components to be added on page
+        let currentComponents = Object.keys(blocks).map((block, i) => ({
                 settings: blocks[block],
                 sortId: i + 1
             })
         );
+        setLoadPageComponents(true);
 
         if (action === "create") {
             addNewPage(id, {
                 pageName : "index",
-                pageTitle: findHeaderTitle(components),
+                pageTitle: findHeaderTitle(currentComponents),
                 pageStatus: "published",
                 scheduledTimestamp: publishDate,
                 visibility: pageVisibility,
-                blocks: components,
+                blocks: currentComponents,
                 isPublished: true
             })
             .then(newPage => {
                 if (newPage) {
-                    if (components && components.length > 0) {
-                        components.forEach((component, i) => {
+                    if (currentComponents && currentComponents.length > 0) {
+                        currentComponents.forEach((component, i) => {
                             if (newPage.defaultPageId) {
                                 addNewBlock(newPage.defaultPageId, component.settings, component.sortId)
-                                .then((newBlock, i) => console.log(`${i} ${newBlock}`))
                                 .catch(error => console.log(error));
     
-                                if (i === components.length - 1) window.location.href = `/editor/${id}/page/${newPage.defaultPageId}`;
+                                if (i === currentComponents.length - 1) window.location.href = `/editor/${id}/page/${newPage.defaultPageId}`;
                             }
                         });
                     } else {
@@ -199,8 +230,36 @@ const EditNavBar = (props) => {
             })
             .catch(error => console.log(error));
         } else {
-            console.log("updatePage")
-            // updatePageByComponents(components, "published", publishDate, pageVisibility, id, page_id);
+            updatePageById(page_id, id, {
+                pageName : "index",
+                pageTitle: findHeaderTitle(currentComponents),
+                pageStatus: "published",
+                scheduledTimestamp: publishDate,
+                visibility: pageVisibility,
+                blocks: currentComponents,
+                isPublished: true
+            })
+            .then(newPage => {
+                if (newPage) {
+                    if (currentComponents && currentComponents.length > 0) {
+                        // delete all previousBlocks first
+                        previousBlocks && previousBlocks.forEach((block, i) => {
+                            removeBlockById(block._id)
+                            .catch(error => console.log(error));
+                        });
+                        // then add new blocks for page
+                        currentComponents.forEach((component, i) => {
+                            if (newPage.defaultPageId) {
+                                addNewBlock(newPage.defaultPageId, component.settings, component.sortId)
+                                .catch(error => console.log(error));
+                            }
+                        });
+                    }
+                } else {
+                    window.location.href = `/dashboard/${id}/home`;
+                }
+            })
+            .catch(error => console.log(error));
         }
     }
 
@@ -254,6 +313,8 @@ const EditNavBar = (props) => {
 
             setSwitchDraft(true);
 
+            setPageStatusUpdate("draft");
+
             delay(() => {
                 saveDraftPage();
                 setSwitchDraft(false);
@@ -268,6 +329,8 @@ const EditNavBar = (props) => {
         e.preventDefault();
 
         setUpdatePublishedPage(true);
+
+        setPageStatusUpdate("published");
 
         delay(() => {
             publishPage();
@@ -284,7 +347,6 @@ const EditNavBar = (props) => {
 
     const handleChangeToPublicVisibility = () => {
         setPageVisibility("public");
-        updatePageByVisibility("public", id, page_id);
     }
 
     const handleChangeToPrivateVisibility = () => {
@@ -293,7 +355,6 @@ const EditNavBar = (props) => {
             setAlertSeverity("info");
             setAlertMessage("Page visibility is now private.");
             setOpenSnackBar(true);
-            updatePageByVisibility("private", id, page_id);
         }
     }
 
@@ -349,32 +410,37 @@ const EditNavBar = (props) => {
         let action = query.get("action");
         let copyPageId = query.get("copy");
 
-        Promise.all([getProjectPreviewById(id), getPageById(page_id), getBlocksByPageId(page_id)])
-        .then(current => {
-            let currentProject = current[0];
-            let currentPage = current[1];
+        if (loadPageComponents) {
+            Promise.all([getProjectPreviewById(id), getPageById(page_id), getBlocksByPageId(page_id)])
+            .then(current => {
+                let currentProject = current[0];
+                let currentPage = current[1];
 
-            if (currentProject && currentPage) {
-                setAppName(currentProject.appName);
-                setAppURL(currentProject.appURL);
-                setPageStatusUpdate(currentPage.pageStatus);
-                setPageVisibility(currentPage.visibility === "private" ? "private" : "public");
-                setScheduledDate(currentPage.scheduledTimestamp);
+                if (currentProject && currentPage) {
+                    setAppName(currentProject.appName);
+                    setAppURL(currentProject.appURL);
+                    setPageStatusUpdate(currentPage.pageStatus);
+                    setPageVisibility(currentPage.visibility === "private" ? "private" : "public");
+                    setScheduledDate(currentPage.scheduledTimestamp);
 
-                let pageId = action === "create" && copyPageId ? copyPageId : page_id;
+                    let pageId = action === "create" && copyPageId ? copyPageId : page_id;
 
-                getBlocksByPageId(pageId)
-                    .then(blocks => {
-                        blocks && blocks.forEach(block => {
-                            let savedBlock = groupComponentsToBlocks([block]);
-                            let saved = savedBlock[Object.keys(savedBlock)[0]];
-                            sendBlocks(saved);
-                        });
-                    })
-                    .catch(error => console.log(error));
-            }
-        })
-        .catch(error => console.log(error));
+                    getBlocksByPageId(pageId)
+                        .then(currentBlocks => {
+                            setPreviousBlocks(currentBlocks);
+
+                            currentBlocks && currentBlocks.sort((a, b) => a.sortId - b.sortId).forEach(block => {
+                                let savedBlock = groupComponentsToBlocks([block]);
+                                let saved = savedBlock[Object.keys(savedBlock)[0]];
+                                sendBlocks(saved);
+                            });
+                            setLoadPageComponents(false);
+                        })
+                        .catch(error => console.log(error));
+                }
+            })
+            .catch(error => console.log(error));
+        }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
@@ -445,8 +511,9 @@ const EditNavBar = (props) => {
                                 disabled={switchDraft || updatePublishedPage}>
                                 {updatePublishedPage ? 'Updating...' : 'Update'}
                             </button> : <button
-                                className="page-button page-status-button publish-page-button"
-                                onClick={handleBeforePublishPage}>
+                                className={`page-button page-status-button publish-page-button  ${saveDraft || savePublishedPage ? 'disabled-publish-button' : ''}`}
+                                onClick={handleBeforePublishPage}
+                                disabled={saveDraft || savePublishedPage}>
                                 Publish
                             </button>
                     }
@@ -683,4 +750,4 @@ const mapStateToProps = state => {
     }
 }
 
-export default connect(mapStateToProps, { getBlocks, sendBlocks })(EditNavBar)
+export default connect(mapStateToProps, { sendBlocks })(EditNavBar)
