@@ -156,9 +156,10 @@ export const AppPreview = (props) => {
     const handleBuildProject = () => setShowBuildSetup(!showBuildSetup);
 
     const handleVisitApp = () => {
-        if (buildStatus) {
-            window.open(projectURL, "_blank");
-        }
+        // Todo - Add download project files here
+        // if (buildStatus) {
+        //     window.open(projectURL, "_blank");
+        // }
     }
 
     const handleChangeToBuildWithReact = () => setBuildType("REACT");
@@ -298,7 +299,7 @@ export const AppPreview = (props) => {
                         title={buildStatus ? '' : 'App has not yet been published'}
                         onClick={handleVisitApp}
                         disabled={buildStatus ? false : true}>
-                            Visit App
+                            Download
                     </button>
                 </div>
                 <div className={`preview-build-pop-over ${showBuildSetup ? "show-preview-build-pop-over" : ""}`}
@@ -330,21 +331,21 @@ export const AppPreview = (props) => {
                                     control={<Radio onClick={handleChangeToBuildWithNative} />}
                                     label={<Typography style={{textAlign: "left", margin: "24px 0 0 0"}} variant="p">
                                                 <strong style={{margin: "0 0 8px 0"}}>Native</strong>
-                                                <p style={{margin: 0, wordBreak: "break-word", width: "150px"}}>Build with native Javascript.</p>
+                                                <p style={{margin: 0, wordBreak: "break-word", width: "150px"}}>Build with Node.js (Apigee).</p>
                                             </Typography>} />
                                 <FormControlLabel
                                     value="REACT"
                                     control={<Radio onClick={handleChangeToBuildWithReact} />}
                                     label={<Typography style={{textAlign: "left", margin: "24px 0 0 0"}} variant="p">
                                                 <strong style={{margin: "0 0 8px 0"}}>React</strong>
-                                                <p style={{margin: 0, wordBreak: "break-word", width: "150px"}}>Build with React framework (create-app).</p>
+                                                <p style={{margin: 0, wordBreak: "break-word", width: "150px"}}>Build with React framework.</p>
                                             </Typography>} />
                                 <FormControlLabel
                                     value="ANGULAR"
                                     control={<Radio onClick={handleChangeToBuildWithAngular} />}
                                     label={<Typography style={{textAlign: "left", margin: "24px 0 0 0"}} variant="p">
                                                 <strong style={{margin: "0 0 8px 0"}}>Angular</strong>
-                                                <p style={{margin: 0, wordBreak: "break-word", width: "150px"}}>Build with Angular framework (apigee).</p>
+                                                <p style={{margin: 0, wordBreak: "break-word", width: "150px"}}>Build with Angular framework.</p>
                                             </Typography>} />
                         </RadioGroup>
                     </div>
