@@ -24,14 +24,14 @@ export const DEFAULT_GLOBAL_STYLE = {
         fontColor: "#1e1e1e"
     },
     "default_template": {
-        fontFamily: `'FSAlbert', sans-serif`,
+        fontFamily: `"FSAlbert", sans-serif`,
         fontSize: "1rem",
         fontColor: "#212529"
     },
     "enterprise_template": {
-        fontFamily: `"Roboto","Helvetica","Arial",sans-serif`,
-        fontSize: "0.875rem",
-        fontColor: "#1e1e1e"
+        fontFamily: `"Calibri", Fallback, Arial, sans-serif`,
+        fontSize: "14px",
+        fontColor: "#333333"
     }
 }
 
