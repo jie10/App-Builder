@@ -1,6 +1,7 @@
 import axios from "axios";
 
 import { BASE_API_URL } from "../utils/constants/api";
+import { DEFAULT_PREVIEW_IMAGE, DEFAULT_GLOBAL_STYLE } from "../utils/constants/dataMart";
 import { generateTimestamp } from "../utils/helpers/generate";
 
 export const getProjects = new Promise((resolve, reject) => {
@@ -131,6 +132,52 @@ export const addNewProject = (data) => {
             reject(error);
             console.log(error);
         });
+    });
+}
+
+export const updateProjectById = (id, data) => {
+    return new Promise((resolve, reject) => {
+        getProjectById(id)
+            .then(project => {
+                let checkData = data && Object.keys(data).length !== 0 && Object.getPrototypeOf(data) === Object.prototype;
+
+                let newData = {
+                    "category": checkData ? data.category : project.category,
+                    "buildMode": checkData ? data.buildMode : project.buildMode,
+                    "appName": checkData ? data.appName : project.appName,
+                    "shortDesc": checkData ? data.shortDesc : project.shortDesc,
+                    "appURL": checkData ? data.appURL : project.appURL,
+                    "isPublished": project.isPublished,
+                    "themePreview": checkData ? DEFAULT_PREVIEW_IMAGE[data.buildMode]: project.themePreview,
+                    "createdAt": project.createdAt
+                };
+
+                if (data && data.defaultTheme === project.buildMode) {
+                    newData.globalStyleSettings = {
+                        "fontFamily": data && data.fontFamily ? data.fontFamily : DEFAULT_GLOBAL_STYLE[data.defaultTheme].fontFamily,
+                        "fontSize": data && data.fontSize ? data.fontSize : DEFAULT_GLOBAL_STYLE[data.defaultTheme].fontSize,
+                        "fontColor": data && data.fontColor ? data.fontColor : DEFAULT_GLOBAL_STYLE[data.defaultTheme].fontColor
+                    }
+                } else {
+                    newData.globalStyleSettings = DEFAULT_GLOBAL_STYLE[data.defaultTheme]
+                }
+
+                axios({
+                    method: 'PUT',
+                    url: `${BASE_API_URL}/project/${id}`,
+                    data: newData,
+                    headers: { "Content-Type": "application/json" }
+                })
+                .then((response) => {
+                    let data = response.data;
+                    resolve(data ? true : false);
+                })
+                .catch((error) => {
+                    reject(error);
+                    console.log(error);
+                });
+            })
+            .catch(error => console.log(error));
     });
 }
 

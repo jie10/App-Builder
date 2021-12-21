@@ -1,0 +1,97 @@
+.general-settings-container {
+    position: relative;
+    width: 100%;
+    margin: 48px 0;
+}
+
+.general-settings-container .header-container {
+    width: 90%;
+    display: flex;
+    flex-flow: row nowrap;
+    margin: 0 auto 8px auto;
+}
+
+.general-settings-container .header-container .header-title h1 {
+    margin: 0 0 8px 0;
+    font-size: 24px;
+}
+
+.general-settings-container .header-container .header-title p {
+    margin: 0;
+    font-size: 14px;
+}
+
+.section-container {
+    width: 90%;
+    margin: 16px auto;
+    background-color: #FFFFFF;
+    border: 1px solid #c3c4c7;
+}
+
+.section-container .section-header {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 24px;
+    border-bottom: 1px solid #c3c4c7;
+}
+
+.section-container .section-header .section-label h2 {
+    font-size: 16px;
+    margin: 0;
+    font-weight: normal;
+}
+
+.section-container .section-header .section-action .save-settings-button {
+    padding: 6px 8px;
+    background-color: #06A0DB;
+    color: #FFFFFF;
+    text-decoration: none;
+    font-size: 12px;
+    margin: auto;
+    border-radius: 2px;
+    border: 1px solid #06A0DB;
+    cursor: pointer;
+}
+
+.section-container .section-header .section-action .disabled-save-settings-button {
+    padding: 6px 8px;
+    background-color: transparent;
+    color: #C3C4C7;
+    text-decoration: none;
+    font-size: 12px;
+    margin: auto;
+    border-radius: 2px;
+    border: 1px solid #DCDCDE;
+    cursor: default;
+}
+
+.section-container .section-body {
+    padding: 10px 24px;
+}
+
+.section-container .section-body .section-row {
+    padding: 8px;
+}
+
+.section-container .section-body .section-row .form-fieldset {
+    overflow: hidden;
+}
+
+.section-container .section-body .section-row .form-fieldset label {
+    display: block;
+    font-size: 14px;
+    font-weight: 700;
+    margin: 0 0 8px 0;
+}
+
+.section-container .section-body .section-row .form-fieldset input.form-text-input {
+    padding: 6px 8px;
+    width: 200px;
+}
+
+.section-container .section-body .section-row .form-fieldset .form-text-select {
+    padding: 6px 8px;
+    width: 220px;
+}

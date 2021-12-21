@@ -6,9 +6,10 @@ import "./AppDashboardContent.css";
 
 import AppSideBar from '../../components/SideBar/AppSideBar';
 import { AppPreview, MyHome, Pages } from './AppDashboardPages';
+import { AppSettings } from './AppSettings';
 
 const MainContent = (props) => {
-    const { menuOnCollapse, currentAppId, pageName } = props;
+    const { menuOnCollapse, currentAppId, pageName, subPageName } = props;
 
     const loadPage = () => {
         switch(pageName) {
@@ -18,6 +19,8 @@ const MainContent = (props) => {
                 return <MyHome currentAppId={currentAppId} />;
             case "pages":
                 return <Pages currentAppId={currentAppId} />;
+            case "settings":
+                return <AppSettings subPageName={subPageName} />
             default:
             break;
         }
