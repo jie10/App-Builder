@@ -111,8 +111,9 @@ export const addNewProject = (data) => {
         "shortDesc": data.shortDesc,
         "appURL": data.appURL ? data.appURL : "https://cebupacificair-dev.apigee.net/ceb-poc-appbuilder/preview",
         "isPublished": false,
-        "themePreview": data.buildMode === "default_template" ? "/images/preview/default-template.png" : "/images/preview/no-preview-available.png",
+        "themePreview": data.buildMode ? DEFAULT_PREVIEW_IMAGE[data.buildMode] : DEFAULT_PREVIEW_IMAGE["scratch"],
         "createdAt": generateTimestamp(),
+        "globalStyleSettings": data.buildMode ? DEFAULT_GLOBAL_STYLE[data.buildMode] : DEFAULT_GLOBAL_STYLE["scratch"],
         "project": "IT_APPBUILDER",
         "table": "PROJECT"
     };

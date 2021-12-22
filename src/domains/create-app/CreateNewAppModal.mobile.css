@@ -1,0 +1,194 @@
+/** PORTRAIT style */
+
+@media screen and (max-width: 1024px) {
+    .create-new-app-modal-box .modal-form-part-one h1.header-title {
+        font-size: 1.6rem;
+    }
+
+    .modal-form-part-two .choose-options-container {
+        display: flex;
+        flex-flow: column nowrap;
+        justify-content: center;
+        width: 80%
+    }
+
+    .modal-form-part-two .choose-options-container .preview-template-view {
+        width: 250px;
+        height: 200px;  
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .create-new-app-modal-box .modal-form-part-one h1.header-title {
+        font-size: 1.4rem;
+    }
+
+    .create-new-app-modal-box .search-app-type-container {
+        display: flex;
+        flex-flow: column nowrap;
+        align-items: center;
+    }
+
+    .create-new-app-modal-box .type-suggestion-list {
+        height: 200px;
+        width: 300px;
+    }
+
+    .search-app-type-container .search-input-container {
+        width: 100%;
+        margin: 0 0 24px 0;
+    }
+
+    .search-app-type-container .search-input-container .search-input-form {
+        font-size: 1.2rem;
+    }
+
+    .search-app-type-container .next-button {
+        margin: 0;
+        padding: 14px 0;
+        width: 100%;
+    }
+
+    .modal-form-part-two .choose-options-container .choose-template-control-panel {
+        flex-flow: column;
+    }
+
+    .modal-form-part-two .choose-options-container .options .choose-template-control-panel .choose-template-select {
+        flex-basis: content;
+        width: 300px;
+        margin: 0 auto 16px auto;
+    }
+
+    .modal-form-part-two .choose-options-container .options h3 {
+        font-size: 1.5rem;
+        margin: 0 0 8px 0;
+        text-align: center;
+    }
+    
+    .modal-form-part-two .choose-options-container .options p {
+        font-size: 0.875rem;
+        margin: 0 0 24px 0;
+        text-align: center;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .create-new-app-modal-box {
+        height: 95%;
+    }
+
+    .progress-stepper .steps .step {
+        font-size: 1.2rem;
+    }
+
+    .create-new-app-modal-box .search-app-type-container {
+        width: 80%;
+    }
+
+    .search-app-type-container .search-input-container .search-input-form {
+        font-size: 1rem;
+    }
+
+    .create-new-app-modal-box .type-suggestion-list {
+        width: 80%;
+    }
+
+    .modal-form-part-two {
+        overflow: auto;
+        padding: 0 0 8px 0;
+    }
+
+    .modal-form-part-two h2 {
+        margin: 0 0 32px 0;
+        font-size: 1rem;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .create-new-app-modal-box .modal-form-part-one h1.header-title {
+        font-size: 1.2rem;
+    }
+
+    .modal-form-part-three h2 {
+        font-size: 1.2rem;
+    }
+
+    .modal-form-part-two h2 {
+        margin: 0 0 16px 0;
+        font-size: 0.75rem;
+    }
+
+    .modal-form-part-two .choose-options-container .preview-template-view {
+        width: 100%;
+        height: auto;
+        margin: 16px auto;
+        overflow: hidden;
+    }
+
+    .modal-form-part-two .choose-options-container .options .choose-template-control-panel .choose-template-select {
+        width: 100%;
+        margin: 0 auto 16px auto;
+    }
+
+    .modal-form-part-two .choose-options-container .options h3 {
+        font-size: 1.2rem;
+    }
+
+    .modal-form-part-two .choose-options-container .options p {
+        font-size: 0.75rem;
+        margin: 0 0 16px 0;
+    }
+
+    .modal-form-part-two .choose-options-container .options button {
+        width: 100%;
+    }
+
+    .modal-form-part-three .input-forms-container .input-form {
+        width: 80%;
+        margin: 12px auto;
+    }
+
+    .modal-form-part-three .input-forms-container .input-form input {
+        font-size: 1.2rem;
+    }
+
+    .modal-form-part-three .input-length {
+        font-size: 0.75rem;
+    }
+
+    .modal-form-part-three .submit-app-button {
+        width: 80%;
+    }
+
+    .create-new-app-modal-box .back-button {
+        font-size: 0.875rem;
+        margin: 16px 24px;
+    }
+
+    .modal-form-success h2 {
+        font-size: 1rem;
+    }
+
+    .modal-form-success .form-buttons {
+        flex-flow: column;
+        margin: auto;
+        width: 80%;
+    }
+
+    .modal-form-success .form-buttons a,
+    .modal-form-success .form-buttons a:visited {
+        margin: 4px 0;
+        width: auto;
+    }
+}
+
+@media screen and (max-width: 320px) {
+    .create-new-app-modal-box .type-suggestion-list {
+        height: 150px;
+        margin: 16px 0;
+    }
+
+    .modal-form-part-three .input-forms-container .input-form input {
+        font-size: 1rem;
+    }
+}

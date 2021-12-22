@@ -12,8 +12,8 @@
 
 .create-new-app-modal-box {
     position: absolute;
-    height: 80%;
-    width: 80%;
+    height: 90%;
+    width: 95%;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -27,11 +27,22 @@
 }
 
 .modal-form {
+    display: none;
     position: relative;
+    height: 100%;
+    width: 100%;
 }
 
-.create-new-app-modal-box .header-title {
-    margin: 120px 0 36px 0;
+.modal-form-part-one {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.create-new-app-modal-box .modal-form-part-one h1.header-title {
+    font-size: 1.8rem;
+    margin: 0 0 24px 0;
+    text-align: center;
 }
 
 .create-new-app-modal-box .search-app-type-container {
@@ -64,14 +75,17 @@
     border: none;
     width: 100%;
     background-color: transparent;
-    font-size: 24px;
+    font-size: 1.5rem;
 }
 
 .search-app-type-container .next-button {
-    padding: 0 30px;
-    border-radius: 20px;
+    margin: 4px 0 0 0;
+    padding: 14px 48px;
+    border-radius: 30px;
+    height: 48px;
+    align-self: center;
     border: none;
-    font-size: 16px;
+    font-size: 1rem;
     background-color: #237AFF;
     color: #FFFFFF;
     cursor: pointer;
@@ -89,14 +103,14 @@
 }
 
 .create-new-app-modal-box .type-suggestion-list {
-    margin: 8px 0 0 60px;
-    height: 250px;
-    width: 360px;
+    margin: 30px 0;
+    height: 300px;
+    width: 500px;
     overflow-y: auto;
 }
 
 .create-new-app-modal-box .type-suggestion-list h3 {
-    font-size: 14px;
+    font-size: 0.875rem;
     text-transform: uppercase;
     color: #A3ABB0;
 }
@@ -118,18 +132,18 @@
     cursor: pointer;
 }
 
-.create-new-app-modal-box .back-button {
-    position: absolute;
-    bottom: 35px;
-    left: 40px;
+.create-new-app-modal-box .back-button,
+.create-new-app-modal-box .back-button:visited {
     border: none;
     background-color: transparent;
-    padding: 0 0 8px 0;
+    padding: 0 0 4px 0;
+    margin: 32px 48px;
     color: #20303C;
     border-bottom: 1px solid #20303C;
-    font-size: 16px;
+    font-size: 1rem;
     cursor: pointer;
     transition-duration: 0.2s;
+    align-self: flex-start;
 }
 
 .create-new-app-modal-box .back-button:hover {
@@ -138,10 +152,10 @@
 }
 
 .progress-stepper {
-    position: absolute;
+    position: relative;
     width: 80%;
     border: 1px solid #A3ABB0;
-    top: 50px;
+    margin: 48px 0;
 }
 
 .progress-stepper .steps {
@@ -153,7 +167,7 @@
 
 .progress-stepper .steps .step {
     background-color: #F6F7F9;
-    font-size: 24px;
+    font-size: 1.5rem;
     font-weight: 700;
     width: 100%;
     padding: 8px 0;
@@ -171,13 +185,16 @@
 }
 
 .modal-form-part-two {
-    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .modal-form-part-two h2 {
-    margin: 0 0 64px 0;
+    margin: 0 0 30px 0;
     font-weight: normal;
-    font-size: 18px;
+    font-size: 1.2rem;
+    text-align: center;
 }
 
 .modal-form-part-two .choose-options-container {
@@ -186,25 +203,54 @@
     justify-content: space-evenly;
 }
 
+.modal-form-part-two .choose-options-container .preview-template-view {
+    width: 300px;
+    height: 250px;
+    margin: 16px auto;
+}
+
 .modal-form-part-two .choose-options-container .options h3 {
-    font-size: 36px;
-    margin: 0 0 16px 0;
+    font-size: 2rem;
+    margin: 0 0 8px 0;
+    text-align: center;
 }
 
 .modal-form-part-two .choose-options-container .options p {
-    font-size: 16px;
-    margin: 0 0 36px 0
+    font-size: 1rem;
+    margin: 0 0 32px 0;
+    text-align: center;
 }
 
 .modal-form-part-two .choose-options-container .options button {
+    display: block;
     padding: 14px 48px;
     border-radius: 30px;
     border: none;
-    font-size: 14px;
+    font-size: 0.875rem;
     background-color: #237AFF;
     color: #FFFFFF;
     cursor: pointer;
     transition-duration: 0.2s;
+    margin: auto;
+}
+
+.modal-form-part-two .choose-options-container .choose-template-control-panel {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+}
+
+.modal-form-part-two .choose-options-container .options .choose-template-control-panel .choose-template-select {
+    margin: 8px 0;
+    height: 50px;
+    flex-basis: 250px;
+    margin: 0 30px 0 0;
+}
+
+.modal-form-part-two .choose-options-container .options .choose-template-control-panel button {
+    margin: 0;
+    height: 44px;
+    align-self: center;
 }
 
 .modal-form-part-two .choose-options-container .options button:hover {
@@ -215,16 +261,19 @@
     display: flex;
     flex-flow: column nowrap;
     justify-content: center;
-    padding: 0 48px;
+    padding: 24px 48px;
+    text-align: center;
 }
 
 .modal-form-part-two .choose-options-container .options-divider .text {
-    font-size: 24px;
+    font-size: 1.5rem;
     font-weight: 700;
 }
 
 .modal-form-part-three {
-    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .modal-form-part-three .input-forms-container {
@@ -237,13 +286,19 @@
     flex-flow: row nowrap;
     align-items: center;
     border-bottom: 3px solid #20303C;
-    margin: 0 0 24px 0;
+    margin: 12px 0;
 }
 
 .modal-form-part-three .input-length {
     width: 75px;
     font-weight: 700;
-    font-size: 14px;
+    font-size: 0.875rem;
+    text-align: center;
+}
+
+.modal-form-part-three h2 {
+    font-size: 1.8rem;
+    margin: 0 0 24px 0;
     text-align: center;
 }
 
@@ -258,18 +313,18 @@
 }
 
 .modal-form-part-three .input-forms-container .input-form input {
-    padding: 8px;
+    padding: 4px 8px;
     border: none;
     width: 100%;
     background-color: transparent;
-    font-size: 24px;
+    font-size: 1.5rem;
 }
 
 .modal-form-part-three .submit-app-button {
     padding: 14px 48px;
     border-radius: 30px;
     border: none;
-    font-size: 14px;
+    font-size: 0.875rem;
     background-color: #237AFF;
     color: #FFFFFF;
     cursor: pointer;
@@ -289,13 +344,13 @@
 .modal-form-success h2 {
     margin: 0 0 24px 0;
    text-align: center;
-   font-size: 24px;
+   font-size: 1.5rem;
 }
 
 .modal-form-success .form-buttons {
     display: flex;
     flex-flow: row nowrap;
-    justify-content: space-evenly;
+    justify-content: center;
 }
 
 .modal-form-success .form-buttons a,
@@ -303,12 +358,14 @@
     padding: 14px 24px;
     border-radius: 30px;
     border: none;
-    font-size: 14px;
+    font-size: 0.875rem;
     background-color: #237AFF;
     color: #FFFFFF;
     cursor: pointer;
     text-decoration: none;
     transition-duration: 0.2s;
+    margin: 0 8px;
+    text-align: center;
 }
 
 .modal-form-success .form-buttons a:hover {

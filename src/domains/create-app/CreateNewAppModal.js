@@ -2,9 +2,11 @@ import React, { useState, useEffect, useReducer } from 'react';
 
 import { Search as SearchIcon } from '@mui/icons-material';
 
-import "./CreateNewAppModal.css"
+import "./CreateNewAppModal.css";
+import "./CreateNewAppModal.mobile.css";
 
-import { appCategories } from "../../utils/constants/dataMart";
+import { appCategories, appTemplates, DEFAULT_PREVIEW_IMAGE } from "../../utils/constants/dataMart";
+import { correctURL } from "../../utils/helpers/validate";
 import { useQuery } from "../../utils/helpers/hooks";
 import { addNewProject } from "../../api/Projects";
 import { addNewPage } from "../../api/Pages";
@@ -98,7 +100,7 @@ const ModalFormPartOne = (props) => {
         setVisibleSuggestionList(false);
     }
 
-    const handleNextButton = () => {
+    const moveToSecondStep = () => {
         if (stepper.count >= 1 && stepper.count < MAX_STEPS) {
             dispatchStepper({type: 'increment'});
             setAppInfo({category})
@@ -118,8 +120,8 @@ const ModalFormPartOne = (props) => {
     }, [category]);
 
     return (
-        <div className="modal-form modal-form-part-one" style={{ display: stepper.count === 1 ? 'block' : 'none' }}>
-            <h1 className="header-title">What kind of application are you creating?</h1>
+        <div className={`modal-form ${stepper.count === 1 ? "modal-form-part-one" : ""}`}>
+            <h1 className="header-title">What kind of project?</h1>
             <div className="search-app-type-container">
                 <div className={`search-input-container ${inputFocus ? 'search-input-focus' : ''}`}>
                     <div className="search-input-icon">
@@ -127,13 +129,14 @@ const ModalFormPartOne = (props) => {
                     </div>
                     <input className="search-input-form"
                         type="text"
-                        placeholder="Search for your applicaton type"
+                        placeholder="Search for a category"
                         value={ category ? category : '' }
+                        maxLength={20}
                         onClick={ handleInputOnClick }
                         onChange={ handleInputOnChange }
                         onBlur={ handleInputOnBlur } />
                 </div>
-                <button className="next-button" disabled={ disableButton } onClick={handleNextButton}>Next</button>
+                <button className="next-button" disabled={ disableButton } onClick={moveToSecondStep}>Next</button>
             </div>
             { showSuggestionList() }
         </div>
@@ -142,12 +145,11 @@ const ModalFormPartOne = (props) => {
 
 const ModalFormPartTwo = (props) => {
     const { setHiddenCreateNewAppModal, stepper, dispatchStepper, appInfo, setAppInfo } = props;
+    const [templatePreview, setTemplatePreview] = useState("default_template");
 
-    const handleOptionOneOnClick = (e) => {
-        e.preventDefault();
-
+    const moveToThirdStep = (chosenTemplate) => {
         if (stepper.count >= 2 && stepper.count < MAX_STEPS) {
-            let buildMode = { buildMode: 'default_template' };
+            let buildMode = { buildMode: chosenTemplate };
             dispatchStepper({type: 'increment'});
             setAppInfo({...appInfo, ...buildMode});
         } else {
@@ -156,29 +158,31 @@ const ModalFormPartTwo = (props) => {
             setAppInfo(null);
         }
     }
+    const handleChooseWithTemplate = () => moveToThirdStep(templatePreview);
 
-    const handleOptionTwoOnClick = (e) => {
-        e.preventDefault();
+    const handleChooseFromScratch = () => moveToThirdStep("scratch");
 
-        if (stepper.count >= 2 && stepper.count < MAX_STEPS) {
-            let buildMode = { buildMode: 'scratch' };
-            dispatchStepper({type: 'increment'});
-            setAppInfo({...appInfo, ...buildMode});
-        } else {
-            dispatchStepper({type: 'reset'});
-            setHiddenCreateNewAppModal(true);
-            setAppInfo(null);
-        }
-    }
+    const handleChooseTemplate = (e) => setTemplatePreview(e.target.value);
 
     return (
-        <div className="modal-form modal-form-part-two" style={{ display: stepper.count === 2 ? 'block' : 'none' }}>
+        <div className={`modal-form ${stepper.count === 2 ? "modal-form-part-two" : ""}`}>
             <h2>Choose how you want to create your application:</h2>
             <div className="choose-options-container">
                 <div className="options option-one">
                     <h3>Start with a Template</h3>
                     <p>Create an application with a ready-made template to start with.</p>
-                    <button className="button-option-one" onClick={handleOptionOneOnClick}>Start Now</button>
+                    <div className="preview-template-view">
+                        <img src={DEFAULT_PREVIEW_IMAGE[templatePreview]} alt="template preview" />
+                    </div>
+                    <div className="choose-template-control-panel">
+                        <select
+                            className="choose-template-select"
+                            defaultValue={templatePreview}
+                            onChange={handleChooseTemplate}>
+                            { appTemplates && appTemplates.map(template => <option value={template.value}>{template.name}</option>) }
+                        </select>
+                        <button className="button-option-one" onClick={handleChooseWithTemplate}>Start Now</button>
+                    </div>
                 </div>
                 <div className="options-divider">
                     <span className="text">OR</span>
@@ -186,7 +190,7 @@ const ModalFormPartTwo = (props) => {
                 <div className="options option-two">
                     <h3>Start from Scratch</h3>
                     <p>Build from an empty canvas, let your creativity flow.</p>
-                    <button className="button-option-two" onClick={handleOptionTwoOnClick}>Start Now</button>
+                    <button className="button-option-two" onClick={handleChooseFromScratch}>Start Now</button>
                 </div>
             </div>
         </div>
@@ -197,11 +201,14 @@ const ModalFormPartThree = (props) => {
     const { setHiddenCreateNewAppModal, stepper, dispatchStepper, appInfo, setAppInfo, setCreateSuccess } = props;
 
     const [appName, setAppName] = useState(null);
-    const [shortDesc, setShortDec] = useState(null);
+    const [shortDesc, setShortDesc] = useState(null);
+    const [appURL, setAppURL] = useState(null);
     const [inputAppNameFocus, setInputAppNameFocus] = useState(false);
     const [inputShortDescFocus, setInputShortDescFocus] = useState(false);
+    const [inputAppURLFocus, setInputAppURLFocus] = useState(false);
     const [inputAppNameLength, setInputAppNameLength] = useState(0);
     const [inputShortDescLength, setInputShortDescLength] = useState(0);
+    const [inputAppURLLength, setInputAppURLLength] = useState(0);
     const [disableButton, setDisableButton] = useState(true);
 
     const handleInputOnClick = (e) => {
@@ -211,6 +218,9 @@ const ModalFormPartThree = (props) => {
             break;
             case "short_description":
                 setInputShortDescFocus(true);
+            break;
+            case "app_url":
+                setInputAppURLFocus(true);
             break;
             default:
             break;
@@ -227,7 +237,12 @@ const ModalFormPartThree = (props) => {
             case "short_description":
                 setInputShortDescFocus(true);
                 setInputShortDescLength(e.target.value.length);
-                setShortDec(e.target.value);
+                setShortDesc(e.target.value);
+            break;
+            case "app_url":
+                setInputAppURLFocus(true);
+                setInputAppURLLength(e.target.value.length);
+                setAppURL(e.target.value);
             break;
             default:
             break;
@@ -242,21 +257,26 @@ const ModalFormPartThree = (props) => {
             case "short_description":
                 setInputShortDescFocus(false);
             break;
+            case "app_url":
+                setInputAppURLFocus(false);
+            break;
             default:
             break;
         }
     }
 
-    const handleSubmitOnClick = () => {
+    const moveToSubmitForm = () => {
         if (stepper.count === MAX_STEPS) {
             dispatchStepper({type: 'increment'});
             setInputAppNameFocus(false);
             setInputShortDescFocus(false);
+            setInputAppURLFocus(false);
             setInputAppNameLength(0);
             setInputShortDescLength(0);
+            setInputAppURLLength(0);
             setDisableButton(true);
 
-            addNewProject({...appInfo, ...{appName, shortDesc}})
+            addNewProject({...appInfo, ...{appName, shortDesc, appURL}})
                 .then(newApp => {
                     addNewPage(newApp.appId, null)
                         .then(newPage => {
@@ -277,7 +297,9 @@ const ModalFormPartThree = (props) => {
                                 "preview_image": "/images/preview/header-preview.png"
                             }, 1)
                                 .then(newBlock => {
-                                    setAppInfo({...appInfo, ...{ newAppId: newApp.appId, defaultPageId: newPage.defaultPageId }});
+                                    if (newBlock) {
+                                        setAppInfo({...appInfo, ...{ newAppId: newApp.appId, defaultPageId: newPage.defaultPageId }});
+                                    }
                                 }).catch(error => console.log(error));
                         }).catch(error => console.log(error));
                 }).catch(error => console.log(error));
@@ -288,8 +310,10 @@ const ModalFormPartThree = (props) => {
             setHiddenCreateNewAppModal(true);
             setInputAppNameFocus(false);
             setInputShortDescFocus(false);
+            setInputAppURLFocus(false);
             setInputAppNameLength(0);
             setInputShortDescLength(0);
+            setInputAppURLLength(0);
             setDisableButton(true);
             setAppInfo(null);
         }
@@ -302,8 +326,9 @@ const ModalFormPartThree = (props) => {
     
             let validAppName = inputAppNameLength >= MAX_APP_NAME_LENGTH;
             let validShortDesc = inputShortDescLength >= MAX_SHORT_DESC_LENGTH;
+            let validAppURL = correctURL(appURL);
     
-            return validAppName && validShortDesc ? true : false;
+            return validAppName && validShortDesc && validAppURL ? true : false;
         }
 
         if (appName && shortDesc && checkValidation()) {
@@ -311,11 +336,11 @@ const ModalFormPartThree = (props) => {
         } else {
             setDisableButton(true);
         }
-    }, [appName, inputAppNameLength, inputShortDescLength, shortDesc]);
+    }, [appName, appURL, inputAppNameLength, inputShortDescLength, shortDesc]);
 
     return (
-        <div className="modal-form modal-form-part-three" style={{ display: stepper.count === 3 ? 'block' : 'none' }}>
-            <h2>Describe your new application:</h2>
+        <div className={`modal-form ${stepper.count === 3 ? "modal-form-part-three" : ""}`}>
+            <h2>Describe your new project.</h2>
             <div className="input-forms-container">
                 <div className={`input-form ${ inputAppNameFocus ? 'input-form-focus' : '' }`}>
                     <input className="app-name-input-form"
@@ -343,10 +368,23 @@ const ModalFormPartThree = (props) => {
                             onBlur={handleInputOnBlur} />
                     <span className="input-length">{inputShortDescLength} / 150</span>
                 </div>
+                <div className={`input-form ${ inputAppURLFocus ? 'input-form-focus' : '' }`}>
+                    <input className="app-url-input-form"
+                            name="app_url"
+                            type="text"
+                            placeholder="URL"
+                            maxLength="150"
+                            autoComplete="off"
+                            value={appURL ? appURL : ''}
+                            onClick={handleInputOnClick}
+                            onChange={handleInputOnChange}
+                            onBlur={handleInputOnBlur} />
+                    <span className="input-length">{inputAppURLLength} / 150</span>
+                </div>
             </div>
             <button className="submit-app-button"
                     disabled={ disableButton }
-                    onClick={handleSubmitOnClick}>
+                    onClick={moveToSubmitForm}>
                 Submit
             </button>
         </div>
@@ -358,7 +396,7 @@ const ModalFormSuccess = (props) => {
 
     return (
         <div className="modal-form modal-form-success" style={{ display: stepper.count > 3 ? 'block' : 'none' }}>
-            <h2>New App has been created successfully!</h2>
+            <h2>Project created successfully!</h2>
             <div className="form-buttons">
                 <a href={`/editor/${appInfo.newAppId}/page/${appInfo.defaultPageId}`} target="_self">Edit New App</a>
                 <a href={`/dashboard/${appInfo.newAppId}/home`} target="_self">Go to Dashboard</a>
