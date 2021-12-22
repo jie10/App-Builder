@@ -17,6 +17,17 @@ export const appCategories = [
     "Community"
 ];
 
+export const appTemplates = [
+    {
+        "name": "OMNIX",
+        "value": "default_template"
+    },
+    {
+        "name": "Enterprise",
+        "value": "enterprise_template"
+    }
+]
+
 export const DEFAULT_GLOBAL_STYLE = {
     "scratch": {
         fontFamily: `"Roboto","Helvetica","Arial",sans-serif`,
