@@ -24,6 +24,7 @@
     "recompose": "^0.30.0",
     "redux": "^4.1.1",
     "redux-thunk": "^2.3.0",
+    "styled-components": "^5.3.3",
     "uniqid": "^5.4.0",
     "uuid": "^8.3.2",
     "validator": "^13.7.0",
