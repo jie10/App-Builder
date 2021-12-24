@@ -1,5 +1,7 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useState, useEffect } from 'react';
 import { connect } from 'react-redux';
+import { useParams } from 'react-router-dom';
+import { getProjectEditorById } from "../../api/Projects";
 
 import "./PageEditor.css";
 
@@ -13,6 +15,10 @@ import EditNavBar from '../../components/NavBar/EditNavBar';
 import PageEditorContent from './PageEditorContent';
 
 const PageEditor = (props) => {
+    const { id  } = useParams();
+
+    const [projectBuldMode, setProjectBuildMode] = useState(null);
+    const [customGlobalStyleSettings, setCustomGlobalStyleSettings] = useState(null);
     const [isInserterEnabled, setInserterEnabled] = useState(false)
     const [isSettingsEnabled, setSettingsEnabled] = useState(false)
     const [inserterWidth, setInserterWidth] = useState('0%')
@@ -77,10 +83,22 @@ const PageEditor = (props) => {
         }
     }
 
+    useEffect(() => {
+        getProjectEditorById(id)
+        .then(result => {
+            setProjectBuildMode(result.buildMode);
+            setCustomGlobalStyleSettings(result.globalStyleSettings);
+        }).catch(error => console.log(error));
+    }, [id]);
+
     return(
         <Fragment>
             <EditNavBar toggleInserter={toggleInserter} toggleSettings={toggleSettings} />
-            <PageEditorContent inserterWidth={inserterWidth} canvasWidth={canvasWidth} settingsWidth={settingsWidth} />
+            <PageEditorContent
+                projectBuldMode={projectBuldMode}
+                customGlobalStyleSettings={customGlobalStyleSettings}
+                inserterWidth={inserterWidth}
+                canvasWidth={canvasWidth} settingsWidth={settingsWidth} />
         </Fragment>
     )
 }
