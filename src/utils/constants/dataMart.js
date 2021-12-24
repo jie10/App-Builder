@@ -1,5 +1,9 @@
 import sampleUserAvatar from "../../assets/images/sample-user-avatar.jpeg";
 
+import { BASIC_THEME_STYLE } from "../../themes/BasicTheme";
+import { OMNIX_THEME_STYLE } from "../../themes/OMNIXTheme";
+import { ENTERPRISE_THEME_STYLE } from "../../themes/EnterpriseTheme";
+
 export const sampleUser = {
     username: "Tim Powell",
     avatarImage: sampleUserAvatar
@@ -29,21 +33,9 @@ export const appTemplates = [
 ]
 
 export const DEFAULT_GLOBAL_STYLE = {
-    "scratch": {
-        fontFamily: `"Roboto","Helvetica","Arial",sans-serif`,
-        fontSize: "0.875rem",
-        fontColor: "#1e1e1e"
-    },
-    "default_template": {
-        fontFamily: `"FSAlbert", sans-serif`,
-        fontSize: "1rem",
-        fontColor: "#212529"
-    },
-    "enterprise_template": {
-        fontFamily: `"Calibri", Fallback, Arial, sans-serif`,
-        fontSize: "14px",
-        fontColor: "#333333"
-    }
+    "scratch": BASIC_THEME_STYLE.body,
+    "default_template": OMNIX_THEME_STYLE.body,
+    "enterprise_template": ENTERPRISE_THEME_STYLE.body
 }
 
 export const DEFAULT_PREVIEW_IMAGE = {

@@ -1,13 +1,14 @@
 import GlobalStyles from '@mui/material/GlobalStyles';
 
-const white = "#FFFFFF";
-const nightRider = "#333333";
+import { WHITE, NIGHT_RIDER } from "../utils/constants/colors";
 
-export default <GlobalStyles styles={{
+export const ENTERPRISE_THEME_STYLE = {
   body: {
-    backgroundColor: white,
+    backgroundColor: WHITE,
     fontFamily: `"Calibri", Fallback, Arial, sans-serif`,
     fontSize: "0.875rem",
-    fontColor: nightRider
+    fontColor: NIGHT_RIDER
   }
-}} />;
+};
+
+export default <GlobalStyles styles={ENTERPRISE_THEME_STYLE} />;

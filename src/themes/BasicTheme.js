@@ -1,13 +1,14 @@
 import GlobalStyles from '@mui/material/GlobalStyles';
 
-const white = "#FFFFFF";
-const eerieBlack = "#1e1e1e";
+import { WHITE, EERIE_BLACK } from "../utils/constants/colors";
 
-export default <GlobalStyles styles={{
+export const BASIC_THEME_STYLE = {
   body: {
-    backgroundColor: white,
+    backgroundColor: WHITE,
     fontFamily: `'Roboto', 'Helvetica', 'Arial',sans-serif`,
     fontSize: "0.875rem",
-    fontColor: eerieBlack
+    fontColor: EERIE_BLACK
   }
-}} />;
+};
+
+export default <GlobalStyles styles={BASIC_THEME_STYLE} />;
