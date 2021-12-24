@@ -15,8 +15,10 @@ import EditNavBar from '../../components/NavBar/EditNavBar';
 import PageEditorContent from './PageEditorContent';
 
 const PageEditor = (props) => {
-    const { id  } = useParams();
+    const { id } = useParams();
 
+    const [appName, setAppName] = useState(null);
+    const [appURL, setAppURL] = useState(null);
     const [projectBuldMode, setProjectBuildMode] = useState(null);
     const [customGlobalStyleSettings, setCustomGlobalStyleSettings] = useState(null);
     const [isInserterEnabled, setInserterEnabled] = useState(false)
@@ -86,14 +88,21 @@ const PageEditor = (props) => {
     useEffect(() => {
         getProjectEditorById(id)
         .then(result => {
+            setAppName(result.appName);
+            setAppURL(result.appURL);
             setProjectBuildMode(result.buildMode);
             setCustomGlobalStyleSettings(result.globalStyleSettings);
         }).catch(error => console.log(error));
     }, [id]);
 
-    return(
+    return (
         <Fragment>
-            <EditNavBar toggleInserter={toggleInserter} toggleSettings={toggleSettings} />
+            <EditNavBar
+                appId={id}
+                appName={appName}
+                appURL={appURL}
+                toggleInserter={toggleInserter}
+                toggleSettings={toggleSettings} />
             <PageEditorContent
                 projectBuldMode={projectBuldMode}
                 customGlobalStyleSettings={customGlobalStyleSettings}

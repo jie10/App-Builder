@@ -35,7 +35,6 @@ import "./EditNavBar.css";
 
 import DateTimePicker from '../../components/Form/DateTimePicker';
 import { useQuery } from "../../utils/helpers/hooks";
-import { getProjectPreviewById } from "../../api/Projects";
 import { getPageById, addNewPage, updatePageById } from "../../api/Pages";
 import { addNewBlock, getBlocksByPageId, removeBlockById } from "../../api/Blocks";
 import { delay } from '../../utils/helpers/timing';
@@ -73,9 +72,9 @@ const Alert = React.forwardRef(function Alert(props, ref) {
 });
 
 const EditNavBar = (props) => {
-    const { toggleInserter, toggleSettings, blocks, sendBlocks, deleteBlocks } = props;
+    const { appId, appName, appURL, toggleInserter, toggleSettings, blocks, sendBlocks, deleteBlocks } = props;
 
-    const { id, page_id } = useParams();
+    const { page_id } = useParams();
     let query = useQuery();
 
     const refToolsMenu = useRef(null);
@@ -104,8 +103,6 @@ const EditNavBar = (props) => {
     const [publishDate, setPublishDate] = useState(null);
     const [scheduledDate, setScheduledDate] = useState(null);
     const [publishDateTime, setPublishDateTime] = useState(null);
-    const [appName, setAppName] = useState(null);
-    const [appURL, setAppURL] = useState(null);
     const [loadPageComponents, setLoadPageComponents] = useState(true);
     const [previousBlocks, setPreviousBlocks] = useState([]);
     const [pageName, setPageName] = useState(null);
@@ -127,7 +124,7 @@ const EditNavBar = (props) => {
         setPageStatusUpdate("draft");
 
         if (!page_id && action === "create") {
-            addNewPage(id, {
+            addNewPage(appId, {
                 pageName : "index",
                 pageTitle: findHeaderTitle(currentComponents),
                 pageStatus: "draft",
@@ -143,19 +140,19 @@ const EditNavBar = (props) => {
                                 addNewBlock(newPage.defaultPageId, component.settings, component.sortId)
                                 .catch(error => console.log(error));
     
-                                if (i === currentComponents.length - 1) window.location.href = `/editor/${id}/page/${newPage.defaultPageId}`;
+                                if (i === currentComponents.length - 1) window.location.href = `/editor/${appId}/page/${newPage.defaultPageId}`;
                             }
                         });
                     } else {
-                        window.location.href = `/editor/${id}/page/${newPage.defaultPageId}`;
+                        window.location.href = `/editor/${appId}/page/${newPage.defaultPageId}`;
                     }
                 } else {
-                    window.location.href = `/dashboard/${id}/home`;
+                    window.location.href = `/dashboard/${appId}/home`;
                 }
             })
             .catch(error => console.log(error));
         } else {
-            updatePageById(page_id, id, {
+            updatePageById(page_id, appId, {
                 pageName : pageName && pageName !== "" ? pageName.toLowerCase() : null,
                 pageTitle: findHeaderTitle(currentComponents),
                 pageStatus: "draft",
@@ -186,7 +183,7 @@ const EditNavBar = (props) => {
                         setLoadPageComponents(true);
                     }
                 } else {
-                    window.location.href = `/dashboard/${id}/home`;
+                    window.location.href = `/dashboard/${appId}/home`;
                 }
             })
             .catch(error => console.log(error));
@@ -203,7 +200,7 @@ const EditNavBar = (props) => {
         );
 
         if (action === "create") {
-            addNewPage(id, {
+            addNewPage(appId, {
                 pageName : "index",
                 pageTitle: findHeaderTitle(currentComponents),
                 pageStatus: "published",
@@ -220,19 +217,19 @@ const EditNavBar = (props) => {
                                 addNewBlock(newPage.defaultPageId, component.settings, component.sortId)
                                 .catch(error => console.log(error));
     
-                                if (i === currentComponents.length - 1) window.location.href = `/editor/${id}/page/${newPage.defaultPageId}`;
+                                if (i === currentComponents.length - 1) window.location.href = `/editor/${appId}/page/${newPage.defaultPageId}`;
                             }
                         });
                     } else {
-                        window.location.href = `/editor/${id}/page/${newPage.defaultPageId}`;
+                        window.location.href = `/editor/${appId}/page/${newPage.defaultPageId}`;
                     }
                 } else {
-                    window.location.href = `/dashboard/${id}/home`;
+                    window.location.href = `/dashboard/${appId}/home`;
                 }
             })
             .catch(error => console.log(error));
         } else {
-            updatePageById(page_id, id, {
+            updatePageById(page_id, appId, {
                 pageName : pageName && pageName !== "" ? pageName.toLowerCase() : null,
                 pageTitle: findHeaderTitle(currentComponents),
                 pageStatus: "published",
@@ -262,7 +259,7 @@ const EditNavBar = (props) => {
                         setLoadPageComponents(true);
                     }
                 } else {
-                    window.location.href = `/dashboard/${id}/home`;
+                    window.location.href = `/dashboard/${appId}/home`;
                 }
             })
             .catch(error => console.log(error));
@@ -395,7 +392,7 @@ const EditNavBar = (props) => {
 
     const publishAction = (
         pageStatusUpdate === "published" ? 
-            <Button style={{color: "#FFFFFF", fontWeight: "bold"}} size="small" onClick={() => window.location.href = `/${id}/${page_id}`}>
+            <Button style={{color: "#FFFFFF", fontWeight: "bold"}} size="small" onClick={() => window.location.href = `/${appId}/${page_id}`}>
                 View Page
             </Button> : null
     );
@@ -417,14 +414,9 @@ const EditNavBar = (props) => {
         let copyPageId = query.get("copy");
 
         if (loadPageComponents) {
-            Promise.all([getProjectPreviewById(id), getPageById(page_id), getBlocksByPageId(page_id)])
-            .then(current => {
-                let currentProject = current[0];
-                let currentPage = current[1];
-
-                if (currentProject && currentPage) {
-                    setAppName(currentProject.appName);
-                    setAppURL(currentProject.appURL);
+            getPageById(page_id)
+            .then(currentPage => {
+                if (currentPage) {
                     setPageName(currentPage.pageName);
                     setPageStatusUpdate(currentPage.pageStatus);
                     setPageVisibility(currentPage.visibility === "private" ? "private" : "public");
@@ -634,7 +626,7 @@ const EditNavBar = (props) => {
                             </button>
                         </div>
                         <div className="preview-menu-links">
-                            <a href={pageStatusUpdate === "published" ? `/${id}/${page_id}` : `/dashboard/${id}/preview?page=${page_id}`}
+                            <a href={pageStatusUpdate === "published" ? `/${appId}/${page_id}` : `/dashboard/${appId}/preview?page=${page_id}`}
                                 className="preview-menu-link"
                                 target="_blank"
                                 rel="noreferrer">
