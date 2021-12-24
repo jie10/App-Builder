@@ -231,7 +231,7 @@ const General = ({ appId }) => {
                                     autoComplete="off"
                                     onChange={handleFormChange}
                                     maxLength="50"
-                                    defaultValue={appDetails ? appDetails.globalStyleSettings ? appDetails.globalStyleSettings.fontFamily : DEFAULT_GLOBAL_STYLE[defaultTheme].fontFamily : ""} />
+                                    defaultValue={appDetails ? appDetails.globalStyleSettings && Object.keys(appDetails.globalStyleSettings).length !== 0 ? appDetails.globalStyleSettings.body.fontFamily : DEFAULT_GLOBAL_STYLE[defaultTheme].body.fontFamily : ""} />
                             </div>
                         </div>
                         <div className="section-row">
@@ -245,7 +245,7 @@ const General = ({ appId }) => {
                                     autoComplete="off"
                                     onChange={handleFormChange}
                                     maxLength="30"
-                                    defaultValue={appDetails ? appDetails.globalStyleSettings ? appDetails.globalStyleSettings.fontSize : DEFAULT_GLOBAL_STYLE[defaultTheme].fontSize : ""} />
+                                    defaultValue={appDetails ? appDetails.globalStyleSettings && Object.keys(appDetails.globalStyleSettings).length !== 0 ? appDetails.globalStyleSettings.body.fontSize : DEFAULT_GLOBAL_STYLE[defaultTheme].body.fontSize : ""} />
                             </div>
                         </div>
                         <div className="section-row">
@@ -259,7 +259,7 @@ const General = ({ appId }) => {
                                     autoComplete="off"
                                     onChange={handleFormChange}
                                     maxLength="30"
-                                    defaultValue={appDetails ? appDetails.globalStyleSettings ? appDetails.globalStyleSettings.fontColor : DEFAULT_GLOBAL_STYLE[defaultTheme].fontColor : ""} />
+                                    defaultValue={appDetails ? appDetails.globalStyleSettings && Object.keys(appDetails.globalStyleSettings).length !== 0 ? appDetails.globalStyleSettings.body.fontColor : DEFAULT_GLOBAL_STYLE[defaultTheme].body.fontColor : ""} />
                             </div>
                         </div>
                     </form>

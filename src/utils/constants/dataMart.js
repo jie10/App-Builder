@@ -33,9 +33,9 @@ export const appTemplates = [
 ]
 
 export const DEFAULT_GLOBAL_STYLE = {
-    "scratch": BASIC_THEME_STYLE.body,
-    "default_template": OMNIX_THEME_STYLE.body,
-    "enterprise_template": ENTERPRISE_THEME_STYLE.body
+    "scratch": BASIC_THEME_STYLE,
+    "default_template": OMNIX_THEME_STYLE,
+    "enterprise_template": ENTERPRISE_THEME_STYLE
 }
 
 export const DEFAULT_PREVIEW_IMAGE = {

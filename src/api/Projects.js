@@ -176,14 +176,17 @@ export const updateProjectById = (id, data) => {
                     "themePreview": checkData ? DEFAULT_PREVIEW_IMAGE[data.buildMode]: project.themePreview,
                     "createdAt": project.createdAt
                 };
-
+                
                 if (data && data.defaultTheme === project.buildMode) {
                     newData.globalStyleSettings = {
-                        "fontFamily": data && data.fontFamily ? data.fontFamily : DEFAULT_GLOBAL_STYLE[data.defaultTheme].fontFamily,
-                        "fontSize": data && data.fontSize ? data.fontSize : DEFAULT_GLOBAL_STYLE[data.defaultTheme].fontSize,
-                        "fontColor": data && data.fontColor ? data.fontColor : DEFAULT_GLOBAL_STYLE[data.defaultTheme].fontColor
+                        body: {
+                            "fontFamily": data && data.fontFamily ? data.fontFamily : DEFAULT_GLOBAL_STYLE[data.defaultTheme].body.fontFamily,
+                            "fontSize": data && data.fontSize ? data.fontSize : DEFAULT_GLOBAL_STYLE[data.defaultTheme].body.fontSize,
+                            "fontColor": data && data.fontColor ? data.fontColor : DEFAULT_GLOBAL_STYLE[data.defaultTheme].body.fontColor
+                        }
                     }
                 } else {
+                    
                     newData.globalStyleSettings = DEFAULT_GLOBAL_STYLE[data.defaultTheme]
                 }
 
