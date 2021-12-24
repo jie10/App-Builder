@@ -103,6 +103,30 @@ export const getProjectPreviewById = (id) => {
     });
 };
 
+export const getProjectEditorById = (id) => {
+    return new Promise((resolve, reject) => {
+        axios({
+            method: 'GET',
+            url: `${BASE_API_URL}/project/${id}`
+        })
+        .then((response) => {
+            let data = response.data;
+            resolve(data ? {
+                _id: data._id,
+                appName: data.appName,
+                isPublished: data.isPublished,
+                appURL: data.appURL,
+                buildMode: data.buildMode,
+                globalStyleSettings: data.globalStyleSettings
+            } : null);
+        })
+        .catch((error) => {
+            reject(error);
+            console.log(error);
+        });
+    });
+};
+
 export const addNewProject = (data) => {
     let newData = {
         "category": data.category,
