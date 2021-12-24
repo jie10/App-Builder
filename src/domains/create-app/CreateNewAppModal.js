@@ -282,7 +282,7 @@ const ModalFormPartThree = (props) => {
                         .then(newPage => {
                             addNewBlock(newPage.defaultPageId, {
                                 "name": "header",
-                                "text": "Header",
+                                "text": "Index Page",
                                 "icon": "/icons/svg/table_chart_outlined_black_36dp.svg",
                                 "type": "HEADER",
                                 "group": "Default",
@@ -290,7 +290,7 @@ const ModalFormPartThree = (props) => {
                                 "parameters": {
                                     "backgroundColor": "#fbe700",
                                     "height": "160px",
-                                    "title": "Header",
+                                    "title": "Index Page",
                                     "image": "https://cdn.media.amplience.net/i/cebupacificair/BKK-Bangkok-Thailand-SightSeeing2-6000x4000?w=1980&amp;sm=c&amp;scaleFit=poi&amp;poi={$this.metadata.pointOfInterest.x},{$this.metadata.pointOfInterest.y},{$this.metadata.pointOfInterest.w},{$this.metadata.pointOfInterest.h}?&amp;fmt=jpg&amp;fmt.options=interlaced"
                                 },
                                 "preview_description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
