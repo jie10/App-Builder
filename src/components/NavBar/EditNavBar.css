@@ -41,6 +41,20 @@
     align-items: center;
 }
 
+.edit-nav-bar .page-file-name-container input {
+    border: none;
+    font-size: 1.5rem;
+    width: 350px;
+    padding: 2px;
+    border-bottom: 1px solid transparent;
+    text-align: center;
+    overflow: auto;
+}
+
+.edit-nav-bar .page-file-name-container input:focus {
+    border-bottom: 1px solid #e1e1e1;
+}
+
 .edit-nav-bar .edit-nav-bar-menus {
     display: flex;
 }

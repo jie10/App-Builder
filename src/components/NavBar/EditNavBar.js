@@ -9,7 +9,6 @@ import {
     Undo as UndoIcon,
     Redo as RedoIcon,
     InfoOutlined as InfoOutlinedIcon,
-    ListOutlined as ListOutlinedIcon,
     Settings as SettingsIcon,
     NearMeOutlined as NearMeOutlinedIcon,
     Check as CheckIcon,
@@ -87,7 +86,6 @@ const EditNavBar = (props) => {
     const [toggleShowSettings, setToggleShowSettings] = useState(false);
     const [toggleToolsMenu, setToggleToolsMenu] = useState(false);
     const [toggleDetailsMenu, setToggleDetailssMenu] = useState(false);
-    const [toggleListView, setToggleListView] = useState(false);
     const [togglePreviewMenu, setTogglePreviewMenu] = useState(false);
     const [togglePublishMenu, setTogglePublishMenu] = useState(false);
     const [selectedToolMenu, setSelectedToolMenu] = useState('edit');
@@ -110,6 +108,7 @@ const EditNavBar = (props) => {
     const [appURL, setAppURL] = useState(null);
     const [loadPageComponents, setLoadPageComponents] = useState(true);
     const [previousBlocks, setPreviousBlocks] = useState([]);
+    const [pageName, setPageName] = useState(null);
 
     const findHeaderTitle = (components) => {
         let result = components.length > 0 ? components.filter(component => component.settings.type === "HEADER")[0] : null;
@@ -157,7 +156,7 @@ const EditNavBar = (props) => {
             .catch(error => console.log(error));
         } else {
             updatePageById(page_id, id, {
-                pageName : "index",
+                pageName : pageName && pageName !== "" ? pageName.toLowerCase() : null,
                 pageTitle: findHeaderTitle(currentComponents),
                 pageStatus: "draft",
                 scheduledTimestamp: null,
@@ -234,7 +233,7 @@ const EditNavBar = (props) => {
             .catch(error => console.log(error));
         } else {
             updatePageById(page_id, id, {
-                pageName : "index",
+                pageName : pageName && pageName !== "" ? pageName.toLowerCase() : null,
                 pageTitle: findHeaderTitle(currentComponents),
                 pageStatus: "published",
                 scheduledTimestamp: publishDate,
@@ -295,8 +294,6 @@ const EditNavBar = (props) => {
     const handleSelectedMobilePreview = () => setSelectedPreviewMenu("mobile");
 
     const handleShowDetails = () => setToggleDetailssMenu(!toggleDetailsMenu);
-
-    const handleToggleListView = () => setToggleListView(!toggleListView);
 
     const handleShowPreview = () => setTogglePreviewMenu(!togglePreviewMenu);
 
@@ -365,6 +362,8 @@ const EditNavBar = (props) => {
         }
     }
 
+    const handleChangePageName = (e) => setPageName(e.target.value);
+
     const handleTogglePageVisibility = () => setTogglePageVisibility(!togglePageVisibility);
 
     const handleTogglePagePublishDate = () => setTogglePagePublishDate(!togglePagePublishDate);
@@ -426,6 +425,7 @@ const EditNavBar = (props) => {
                 if (currentProject && currentPage) {
                     setAppName(currentProject.appName);
                     setAppURL(currentProject.appURL);
+                    setPageName(currentPage.pageName);
                     setPageStatusUpdate(currentPage.pageStatus);
                     setPageVisibility(currentPage.visibility === "private" ? "private" : "public");
                     setScheduledDate(currentPage.scheduledTimestamp);
@@ -483,10 +483,14 @@ const EditNavBar = (props) => {
                         onClick={handleShowDetails}>
                         <InfoOutlinedIcon/>
                     </button>
-                    <button className={`page-button page-edit-button ${toggleListView ? 'toggle-list-view' : ''}`}
-                        onClick={handleToggleListView}>
-                        <ListOutlinedIcon/>
-                    </button>
+                </div>
+                <div className='page-file-name-container'>
+                    <input
+                        type="text"
+                        maxLength={25}
+                        defaultValue={pageName}
+                        value={pageName ? pageName : ""}
+                        onChange={handleChangePageName} />
                 </div>
                 <div className="edit-nav-bar-menus">
                     {
