@@ -7,7 +7,13 @@ export const BASIC_THEME_STYLE = {
     backgroundColor: WHITE,
     fontFamily: `'Roboto', 'Helvetica', 'Arial',sans-serif`,
     fontSize: "0.875rem",
-    fontColor: EERIE_BLACK
+    color: EERIE_BLACK
+  },
+  p: {
+    alignment: "left",
+    FontWeight: "normal",
+    FontSize: "14px",
+    text: "Welcome"
   }
 };
 

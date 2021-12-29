@@ -180,13 +180,12 @@ export const updateProjectById = (id, data) => {
                 if (data && data.defaultTheme === project.buildMode) {
                     newData.globalStyleSettings = {
                         body: {
-                            "fontFamily": data && data.fontFamily ? data.fontFamily : DEFAULT_GLOBAL_STYLE[data.defaultTheme].body.fontFamily,
-                            "fontSize": data && data.fontSize ? data.fontSize : DEFAULT_GLOBAL_STYLE[data.defaultTheme].body.fontSize,
-                            "fontColor": data && data.fontColor ? data.fontColor : DEFAULT_GLOBAL_STYLE[data.defaultTheme].body.fontColor
+                            "fontFamily": data.fontFamily ? data.fontFamily : project.globalStyleSettings.body.fontFamily ? project.globalStyleSettings.body.fontFamily : DEFAULT_GLOBAL_STYLE[data.defaultTheme].body.fontFamily,
+                            "fontSize": data.fontSize ? data.fontSize : project.globalStyleSettings.body.fontSize ? project.globalStyleSettings.body.fontSize : DEFAULT_GLOBAL_STYLE[data.defaultTheme].body.fontSize,
+                            "color": data.color ? data.color : project.globalStyleSettings.body.color ? project.globalStyleSettings.body.color : DEFAULT_GLOBAL_STYLE[data.defaultTheme].body.color
                         }
                     }
                 } else {
-                    
                     newData.globalStyleSettings = DEFAULT_GLOBAL_STYLE[data.defaultTheme]
                 }
 

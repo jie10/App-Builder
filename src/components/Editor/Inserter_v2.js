@@ -1947,6 +1947,7 @@ const BlocksList = (props) => {
                                                 onClick={() => {
                                                         sendBlocks({
                                                             type: component.type,
+                                                            status: "added",
                                                             parameters: component.parameters})
                                                             setOnPreview(false);
                                                     }}

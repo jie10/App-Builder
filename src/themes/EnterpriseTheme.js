@@ -7,7 +7,13 @@ export const ENTERPRISE_THEME_STYLE = {
     backgroundColor: WHITE,
     fontFamily: `"Calibri", Fallback, Arial, sans-serif`,
     fontSize: "0.875rem",
-    fontColor: NIGHT_RIDER
+    color: NIGHT_RIDER
+  },
+  p: {
+    alignment: "left",
+    FontWeight: "normal",
+    FontSize: "14px",
+    text: "Welcome"
   }
 };
 

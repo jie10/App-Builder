@@ -37,7 +37,7 @@ class Canvas extends Component {
     }
 
     render() {
-        const { blocks } = this.props
+        const { blocks, themeStyle } = this.props
         return(
             <Fragment>
                 <div style={{padding: '4em'}}>
@@ -61,7 +61,8 @@ class Canvas extends Component {
                         case 'VIDEO_SECTION':
                             return <VideoSection key={key} _id={key} block={block} />
                         case 'PARAGRAPH_SECTION':
-                            return <ParagraphSection key={key} _id={key} block={block} />        
+
+                            return <ParagraphSection key={key} _id={key} themeStyle={themeStyle.p} block={block} />        
                         case 'BREADCRUMBS':
                             return <Breadcrumbs key={key} _id={key} block={block} /> 
                         case 'GUIDE_BANNER':

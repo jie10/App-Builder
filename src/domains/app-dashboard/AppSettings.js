@@ -27,7 +27,7 @@ const General = ({ appId }) => {
         setSaveSettings(true);
 
         inputs.defaultTheme = defaultTheme;
-
+        console.log(inputs)
         delay(() => {
             updateProjectById(appId, inputs)
                 .then(result => {
@@ -250,16 +250,16 @@ const General = ({ appId }) => {
                         </div>
                         <div className="section-row">
                             <div className="form-fieldset">
-                                <label for="fontColor">Font Color</label>
+                                <label for="color">Font Color</label>
                                 <input 
                                     className="form-text-input"
                                     type="text"
-                                    name="fontColor"
-                                    id="fontColor"
+                                    name="color"
+                                    id="color"
                                     autoComplete="off"
                                     onChange={handleFormChange}
                                     maxLength="30"
-                                    defaultValue={appDetails ? appDetails.globalStyleSettings && Object.keys(appDetails.globalStyleSettings).length !== 0 ? appDetails.globalStyleSettings.body.fontColor : DEFAULT_GLOBAL_STYLE[defaultTheme].body.fontColor : ""} />
+                                    defaultValue={appDetails ? appDetails.globalStyleSettings && Object.keys(appDetails.globalStyleSettings).length !== 0 ? appDetails.globalStyleSettings.body.color : DEFAULT_GLOBAL_STYLE[defaultTheme].body.color : ""} />
                             </div>
                         </div>
                     </form>

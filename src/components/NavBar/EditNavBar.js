@@ -431,6 +431,9 @@ const EditNavBar = (props) => {
                             currentBlocks && currentBlocks.sort((a, b) => a.sortId - b.sortId).forEach(block => {
                                 let savedBlock = groupComponentsToBlocks([block]);
                                 let saved = savedBlock[Object.keys(savedBlock)[0]];
+                                console.log(saved)
+                                saved.status = "saved"
+                                
                                 sendBlocks(saved);
                             });
                             setLoadPageComponents(false);

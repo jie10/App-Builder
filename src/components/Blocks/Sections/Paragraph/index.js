@@ -1,18 +1,22 @@
-import React, { useState } from 'react'
-import { connect } from 'react-redux'
-import { Grid, Button } from '@mui/material'
-import './style.css'
+import React from 'react';
+import { connect } from 'react-redux';
+import { Grid } from '@mui/material';
+
+import './style.css';
 
 import {
     deleteBlock,
     moveUpBlock,
     moveDownBlock,
     getBlock
-} from '../../../../stores/actions'
+} from '../../../../stores/actions';
 
 const ParagraphSection = (props) => {
+    const { _id, block, deleteBlock, moveUpBlock, moveDownBlock, getBlock, themeStyle } = props
 
-    const { _id, block, deleteBlock, moveUpBlock, moveDownBlock, getBlock } = props
+    if (block.status === "added") {
+        block.parameters = themeStyle
+    }
 
     return(
         <div style={{
@@ -41,8 +45,10 @@ const ParagraphSection = (props) => {
             </Grid>
         </Grid>
         
-        <div class='row' style={{ justifyContent: block.parameters.alignment}}>
-            <p style={{ fontSize: block.parameters.FontSize, fontWeight: block.parameters.FontWeight}}>{block.parameters.text}</p>
+        <div className='row' style={{ justifyContent: block.parameters.alignment}}>
+            <p style={{ fontSize: block.parameters.FontSize, fontWeight: block.parameters.FontWeight}}>
+                {block.parameters.text}
+            </p>
         </div>      
         </div>         
     )
