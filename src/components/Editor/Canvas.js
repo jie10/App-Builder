@@ -61,7 +61,6 @@ class Canvas extends Component {
                         case 'VIDEO_SECTION':
                             return <VideoSection key={key} _id={key} block={block} />
                         case 'PARAGRAPH_SECTION':
-
                             return <ParagraphSection key={key} _id={key} themeStyle={themeStyle.p} block={block} />        
                         case 'BREADCRUMBS':
                             return <Breadcrumbs key={key} _id={key} block={block} /> 
@@ -74,7 +73,7 @@ class Canvas extends Component {
                         case 'ACCORDION':
                             return <Accordion key={key} _id={key} block={block} />     
                         case 'BLOCKSEPERATOR':
-                            return <BlockSeperator key={key} _id={key} block={block} />
+                            return <BlockSeperator key={key} _id={key} themeStyle={themeStyle[".block_separator"]} block={block} />
                         case 'SIDEBAR':
                             return <Sidebar key={key} _id={key} block={block} />
                         case 'MEDIA_GALLERY':

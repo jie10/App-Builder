@@ -1,3 +1,4 @@
+import { dividerClasses } from '@mui/material';
 import GlobalStyles from '@mui/material/GlobalStyles';
 
 import { WHITE, BLUE_CHARCOAL, BLACK } from "../utils/constants/colors";
@@ -14,6 +15,10 @@ export const OMNIX_THEME_STYLE = {
     FontWeight: "normal",
     FontSize: "14px",
     text: "Welcome"
+  },
+  ".block_separator": {
+    height: "40px",
+    backgroundColor: "#F7F7F7"
   }
 };
 

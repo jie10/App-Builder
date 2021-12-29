@@ -14,6 +14,10 @@ export const BASIC_THEME_STYLE = {
     FontWeight: "normal",
     FontSize: "14px",
     text: "Welcome"
+  },
+  ".block_separator": {
+    height: "40px",
+    backgroundColor: "#F7F7F7"
   }
 };
 

@@ -11,11 +11,14 @@ import {
 } from '../../../../stores/actions'
 
 const BlockSeperator = (props) => {
+    const { _id, block, deleteBlock, moveUpBlock, moveDownBlock, getBlock, themeStyle } = props
 
-    const { _id, block, deleteBlock, moveUpBlock, moveDownBlock, getBlock } = props
+    if (block.status === "added") {
+        block.parameters = themeStyle
+    }
 
     return(
-        <div style={{
+        <div className="block_separator" style={{
             width: '100%',
             height: block.parameters.height,
             backgroundColor: block.parameters.backgroundColor
