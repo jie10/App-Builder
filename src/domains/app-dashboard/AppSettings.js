@@ -27,7 +27,7 @@ const General = ({ appId }) => {
         setSaveSettings(true);
 
         inputs.defaultTheme = defaultTheme;
-        console.log(inputs)
+
         delay(() => {
             updateProjectById(appId, inputs)
                 .then(result => {
@@ -107,7 +107,7 @@ const General = ({ appId }) => {
                     <form>
                         <div className="section-row">
                             <div className="form-fieldset">
-                                <label for="appName">Name</label>
+                                <label htmlFor="appName">Name</label>
                                 <input 
                                     className="form-text-input"
                                     type="text"
@@ -120,7 +120,7 @@ const General = ({ appId }) => {
                         </div>
                         <div className="section-row">
                             <div className="form-fieldset">
-                                <label for="shortDesc">Description</label>
+                                <label htmlFor="shortDesc">Description</label>
                                 <input 
                                     className="form-text-input"
                                     type="text"
@@ -134,7 +134,7 @@ const General = ({ appId }) => {
                         </div>
                         <div className="section-row">
                             <div className="form-fieldset">
-                                <label for="category">Category</label>
+                                <label htmlFor="category">Category</label>
                                 <select 
                                     className="form-text-select"
                                     name="category"
@@ -155,7 +155,7 @@ const General = ({ appId }) => {
                         </div>
                         <div className="section-row">
                             <div className="form-fieldset">
-                                <label for="appURL">URL</label>
+                                <label htmlFor="appURL">URL</label>
                                 <input 
                                     className="form-text-input"
                                     type="text"
@@ -188,7 +188,7 @@ const General = ({ appId }) => {
                     <form>
                         <div className="section-row">
                             <div className="form-fieldset">
-                                <label for="buildMode">Default Theme</label>
+                                <label htmlFor="buildMode">Default Theme</label>
                                 <select 
                                     className="form-text-select"
                                     name="buildMode"
@@ -201,28 +201,9 @@ const General = ({ appId }) => {
                                 </select>
                             </div>
                         </div>
-                    </form>
-                </div>
-            </div>
-            <div className="section-container">
-                <div className="section-header">
-                    <div className="section-label">
-                        <h2>Global Style</h2>
-                    </div> 
-                    <div className="section-action">
-                        <button
-                            className={`save-settings-button ${ saveSettings ? "disabled-save-settings-button" : "" }`}
-                            onClick={saveChanges}
-                            disabled={ saveSettings ? true : false }>
-                                { saveSettings ? "Saving..." : "Save settings" }
-                        </button>
-                    </div>
-                </div>
-                <div className="section-body">
-                    <form>
                         <div className="section-row">
                             <div className="form-fieldset">
-                                <label for="fontFamily">Font Family</label>
+                                <label htmlFor="fontFamily">Font Family</label>
                                 <input 
                                     className="form-text-input"
                                     type="text"
@@ -236,7 +217,7 @@ const General = ({ appId }) => {
                         </div>
                         <div className="section-row">
                             <div className="form-fieldset">
-                                <label for="fontSize">Font Size</label>
+                                <label htmlFor="fontSize">Font Size</label>
                                 <input 
                                     className="form-text-input"
                                     type="text"
@@ -250,7 +231,7 @@ const General = ({ appId }) => {
                         </div>
                         <div className="section-row">
                             <div className="form-fieldset">
-                                <label for="color">Font Color</label>
+                                <label htmlFor="color">Font Color</label>
                                 <input 
                                     className="form-text-input"
                                     type="text"
