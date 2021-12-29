@@ -57,7 +57,7 @@ class Canvas extends Component {
                         case 'SECTION_TWO_RIGHT':
                             return <SectionTwoRight key={key} _id={key} block={block} />
                         case 'IMAGE_SECTION':
-                            return <ImageSection key={key} _id={key} block={block} />  
+                            return <ImageSection key={key} _id={key} themeStyle={themeStyle[".image_only_section"]} block={block} />  
                         case 'VIDEO_SECTION':
                             return <VideoSection key={key} _id={key} block={block} />
                         case 'PARAGRAPH_SECTION':

@@ -18,6 +18,12 @@ export const BASIC_THEME_STYLE = {
   ".block_separator": {
     height: "40px",
     backgroundColor: "#F7F7F7"
+  },
+  ".image_only_section": {
+    backgroundColor: "#FFFFFF",
+    height: "auto",
+    image: "https://cdn.media.amplience.net/i/cebupacificair/Safety measures for contactless flights?w=undefined&amp;h=undefined&amp;sm=c&amp;scaleFit=poi&amp;poi={$this.metadata.pointOfInterest.x},{$this.metadata.pointOfInterest.y},{$this.metadata.pointOfInterest.w},{$this.metadata.pointOfInterest.h}",
+    alignment: "center"
   }
 };
 

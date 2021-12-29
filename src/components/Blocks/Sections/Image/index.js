@@ -1,25 +1,31 @@
-import React, { useState } from 'react'
-import { connect } from 'react-redux'
-import { Grid, Button } from '@mui/material'
-import './style.css'
+import React from 'react';
+import { connect } from 'react-redux';
+import { Grid } from '@mui/material';
+
+import './style.css';
 
 import {
     deleteBlock,
     moveUpBlock,
     moveDownBlock,
     getBlock
-} from '../../../../stores/actions'
+} from '../../../../stores/actions';
 
 const ImageSection = (props) => {
+    const { _id, block, deleteBlock, moveUpBlock, moveDownBlock, getBlock, themeStyle } = props
 
-    const { _id, block, deleteBlock, moveUpBlock, moveDownBlock, getBlock } = props
+    if (block.status === "added") {
+        block.parameters = themeStyle
+    }
 
-    return(
-        <div style={{
-            width: '100%',
-            height: block.parameters.height,
-            backgroundColor: block.parameters.backgroundColor
-        }} onClick={() => getBlock(_id, block)}>
+    return (
+        <div className="image_only_section"
+            style={{
+                width: '100%',
+                height: block.parameters.height,
+                backgroundColor: block.parameters.backgroundColor
+            }}
+            onClick={() => getBlock(_id, block)}>
         <Grid container direction="row" justifyContent="flex-end" alignItems="center">
             <Grid item onClick={() => moveUpBlock(_id)}>
                 <img 
@@ -41,10 +47,10 @@ const ImageSection = (props) => {
             </Grid>
         </Grid>
         
-        <div class='row' style={{ justifyContent: block.parameters.alignment}}>
-            <div class='col-md-5'>
-                <div class='text-left'>
-                    <div class="photo">
+        <div className='row' style={{ justifyContent: block.parameters.alignment}}>
+            <div className='col-md-5'>
+                <div className='text-left'>
+                    <div className="photo">
                         <img src={block.parameters.image}/>
                     </div>
                 </div>
