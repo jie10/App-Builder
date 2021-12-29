@@ -1,25 +1,30 @@
-import React, { useState } from 'react'
-import { connect } from 'react-redux'
-import { Grid, Button } from '@mui/material'
-import './style.css'
+import React from 'react';
+import { connect } from 'react-redux';
+import { Grid } from '@mui/material';
+import './style.css';
 
 import {
     deleteBlock,
     moveUpBlock,
     moveDownBlock,
     getBlock
-} from '../../../../stores/actions'
+} from '../../../../stores/actions';
 
 const VideoSection = (props) => {
+    const { _id, block, deleteBlock, moveUpBlock, moveDownBlock, getBlock, themeStyle } = props
 
-    const { _id, block, deleteBlock, moveUpBlock, moveDownBlock, getBlock } = props
+    if (block.status === "added") {
+        block.parameters = themeStyle
+    }
 
     return(
-        <div style={{
-            width: '100%',
-            height: block.parameters.height,
-            backgroundColor: block.parameters.backgroundColor
-        }} onClick={() => getBlock(_id, block)}>
+        <div className='video_only_section'
+            style={{
+                width: '100%',
+                height: block.parameters.height,
+                backgroundColor: block.parameters.backgroundColor
+            }}
+            onClick={() => getBlock(_id, block)}>
         <Grid container direction="row" justifyContent="flex-end" alignItems="center">
             <Grid item onClick={() => moveUpBlock(_id)}>
                 <img 
@@ -42,10 +47,8 @@ const VideoSection = (props) => {
         </Grid>
         
         
-        <div class='row' style={{ justifyContent: block.parameters.alignment}}>
-            <video src={block.parameters.video} controls style={{width: '100%'}}>
-                
-            </video>
+        <div className='row' style={{ justifyContent: block.parameters.alignment}}>
+            <video src={block.parameters.video} controls style={{width: '100%'}}></video>
         </div>
         </div>
     )

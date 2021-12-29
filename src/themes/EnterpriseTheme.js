@@ -24,6 +24,12 @@ export const ENTERPRISE_THEME_STYLE = {
     height: "auto",
     image: "https://cdn.media.amplience.net/i/cebupacificair/Safety measures for contactless flights?w=undefined&amp;h=undefined&amp;sm=c&amp;scaleFit=poi&amp;poi={$this.metadata.pointOfInterest.x},{$this.metadata.pointOfInterest.y},{$this.metadata.pointOfInterest.w},{$this.metadata.pointOfInterest.h}",
     alignment: "center"
+  },
+  ".video_only_section": {
+    backgroundColor: "#FFFFFF",
+    height: "auto",
+    video: "https://cdn.media.amplience.net/v/cebupacificair/[ONTIVA.COM]-A Message from our Chief Pilot for our 25th Anniversary-720P/mp4_720p",
+    alignment: "center"
   }
 };
 
