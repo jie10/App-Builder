@@ -83,7 +83,7 @@ class Canvas extends Component {
                         case 'SEARCHBAR_SECTION':
                             return <SearchBarSection key={key} _id={key} block={block} />
                         case 'FILTER_SECTION':
-                            return <FilterSection key={key} _id={key} block={block} />     
+                            return <FilterSection key={key} _id={key} themeStyle={themeStyle[".filter_section"]} block={block} />     
                         case 'COLUMN_SECTION':
                             return <ColumnSection key={key} _id={key} block={block} /> 
                         case 'FOOTER':

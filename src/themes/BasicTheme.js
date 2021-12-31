@@ -69,6 +69,10 @@ export const BASIC_THEME_STYLE = {
     parentcategoryPath: "/about",
     currentpostName: "Our Story",
     currentpostPath: "/pages/about/our-story"
+  },
+  ".filter_section": {
+    backgroundColor: "#FFFFFF",
+    height: "auto"
   }
 };
 
