@@ -101,6 +101,12 @@ export const ENTERPRISE_THEME_STYLE = {
   ".footer_simple": {
     backgroundColor: "#fbe700",
     height: "auto"
+  },
+  ".header_simple": {
+    backgroundColor: "#fbe700",
+    height: "160px",
+    title: "Header",
+    image: "https://cdn.media.amplience.net/i/cebupacificair/BKK-Bangkok-Thailand-SightSeeing2-6000x4000?w=1980&amp;sm=c&amp;scaleFit=poi&amp;poi={$this.metadata.pointOfInterest.x},{$this.metadata.pointOfInterest.y},{$this.metadata.pointOfInterest.w},{$this.metadata.pointOfInterest.h}?&amp;fmt=jpg&amp;fmt.options=interlaced"
   }
 };
 

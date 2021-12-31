@@ -45,7 +45,7 @@ class Canvas extends Component {
                     var block = blocks[key]
                     switch(block.type){
                         case 'HEADER':
-                            return <HeaderSimple key={key} _id={key} block={block} />
+                            return <HeaderSimple key={key} _id={key} themeStyle={themeStyle[".header_simple"]}  block={block} />
                         case 'SECTION_SSO':
                             return <div key={key}>SECTION SSO</div>
                         case 'SECTION_CARDS':

@@ -11,8 +11,11 @@ import {
 } from '../../../../stores/actions'
 
 const HeaderSimple = (props) => {
+    const { _id, block, deleteBlock, moveUpBlock, moveDownBlock, getBlock, themeStyle } = props
 
-    const { _id, block, deleteBlock, moveUpBlock, moveDownBlock, getBlock } = props
+    if (block.status === "added") {
+        block.parameters = themeStyle
+    }
 
     return(
         <div className = 'cebapp-header-component ng-tns-c13-32 height-small background-yellow rounded-buttom ng-star-inserted'
@@ -41,8 +44,8 @@ const HeaderSimple = (props) => {
                     src='/images/round_close_black_24dp.png' />
             </Grid>
         </Grid>
-        <figure class="ng-tns-c7-33 ng-star-inserted">
-            <img class="ng-tns-c7-33" alt="" src={block.parameters.image}/>
+        <figure className="ng-tns-c7-33 ng-star-inserted">
+            <img className="ng-tns-c7-33" alt="" src={block.parameters.image}/>
             
          </figure>
         <div className = 'banner-content container height-small'>
