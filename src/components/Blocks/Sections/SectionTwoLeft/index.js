@@ -18,7 +18,9 @@ const SectionTwoLeft = (props) => {
     }
 
     return(
-        <div style={{
+        <div 
+        className='left_image_with_text_and_button_section'
+        style={{
             width: '100%',
             height: block.parameters.height,
             backgroundColor: block.parameters.backgroundColor,

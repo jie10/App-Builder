@@ -18,7 +18,9 @@ const SectionOne = (props) => {
     }
 
     return(
-        <div style={{
+        <div
+        className='image_with_text_section'
+        style={{
             width: '100%',
             height: block.parameters.height,
             backgroundColor: block.parameters.backgroundColor

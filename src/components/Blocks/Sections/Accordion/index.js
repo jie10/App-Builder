@@ -20,7 +20,9 @@ const Accordion = (props) => {
     const [open, setOpen] = React.useState(false);
 
     return(
-        <div style={{
+        <div
+        className='accordion_section'
+        style={{
             width: '100%',
             height: block.parameters.height,
             backgroundColor: block.parameters.backgroundColor
