@@ -81,7 +81,7 @@ class Canvas extends Component {
                         case 'SLIDERWRAPPER_SECTION':
                             return <SliderWrapperSection key={key} _id={key} block={block} /> 
                         case 'SEARCHBAR_SECTION':
-                            return <SearchBarSection key={key} _id={key} block={block} />
+                            return <SearchBarSection key={key} _id={key} themeStyle={themeStyle[".search_bar_section"]} block={block} />
                         case 'FILTER_SECTION':
                             return <FilterSection key={key} _id={key} themeStyle={themeStyle[".filter_section"]} block={block} />     
                         case 'COLUMN_SECTION':

@@ -77,6 +77,10 @@ export const ENTERPRISE_THEME_STYLE = {
   ".media_gallery_section": {
     backgroundColor: "#FFFFFF",
     height: "auto"
+  },
+  ".search_bar_section": {
+    backgroundColor: "#FFFFFF",
+    height: "auto"
   }
 };
 
