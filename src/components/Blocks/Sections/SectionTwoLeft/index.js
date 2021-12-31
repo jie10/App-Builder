@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { connect } from 'react-redux'
-import { Grid, Button } from '@mui/material'
+import { Grid } from '@mui/material'
 import './style.css'
 
 import {
@@ -11,8 +11,11 @@ import {
 } from '../../../../stores/actions'
 
 const SectionTwoLeft = (props) => {
+    const { _id, block, deleteBlock, moveUpBlock, moveDownBlock, getBlock, themeStyle } = props
 
-    const { _id, block, deleteBlock, moveUpBlock, moveDownBlock, getBlock } = props
+    if (block.status === "added") {
+        block.parameters = themeStyle
+    }
 
     return(
         <div style={{
@@ -42,7 +45,7 @@ const SectionTwoLeft = (props) => {
         </Grid>
         <div className='c-about-landing__two-columns c-about-landing__two-columns--space'>
             <div>
-                <img src={block.parameters.image}/>
+                <img src={block.parameters.image} alt="new section with text and button" />
             </div>
             <div>
                 <div style={{padding: '24px 24px 0'}}>
