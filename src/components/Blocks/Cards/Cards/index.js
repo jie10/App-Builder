@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { connect } from 'react-redux'
-import { Grid, Button } from '@mui/material'
+import { Grid } from '@mui/material'
 import './style.css'
 
 import {
@@ -11,8 +11,11 @@ import {
 } from '../../../../stores/actions'
 
 const Cards = (props) => {
+    const { _id, block, deleteBlock, moveUpBlock, moveDownBlock, getBlock, themeStyle } = props
 
-    const { _id, block, deleteBlock, moveUpBlock, moveDownBlock, getBlock } = props
+    if (block.status === "added") {
+        block.parameters = themeStyle
+    }
 
     return(
         <div id='page-content-wrapper'>
@@ -55,9 +58,9 @@ const Cards = (props) => {
                 </figure>
             </a>
             <a className="c-explore__threecards--item ng-star-inserted" target="_self" href="/pages/about/corporate-disclosure/sec-filing?nohf=true&amp;header=Corporate%20Disclosures">
-                <h6 className="title">{block.parameters.card2Title}</h6>
+                <h6 className="title">{block.parameters.card3Title}</h6>
                 <figure>
-                    <img alt="" src={block.parameters.card2Image}/>
+                    <img alt="" src={block.parameters.card3Image}/>
                 </figure>
             </a>
         </div>
