@@ -73,6 +73,10 @@ export const ENTERPRISE_THEME_STYLE = {
   ".filter_section": {
     backgroundColor: "#FFFFFF",
     height: "auto"
+  },
+  ".media_gallery_section": {
+    backgroundColor: "#FFFFFF",
+    height: "auto"
   }
 };
 

@@ -77,7 +77,7 @@ class Canvas extends Component {
                         case 'SIDEBAR':
                             return <Sidebar key={key} _id={key} block={block} />
                         case 'MEDIA_GALLERY':
-                            return <MediaGallery key={key} _id={key} block={block} /> 
+                            return <MediaGallery key={key} _id={key} themeStyle={themeStyle[".media_gallery_section"]} block={block} /> 
                         case 'SLIDERWRAPPER_SECTION':
                             return <SliderWrapperSection key={key} _id={key} block={block} /> 
                         case 'SEARCHBAR_SECTION':
