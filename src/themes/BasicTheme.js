@@ -93,6 +93,10 @@ export const BASIC_THEME_STYLE = {
     text: "We have more destinations to choose from!",
     button: "View all destinations",
     buttonLink: "https://www.cebupacificair.com/"
+  },
+  ".sidebar": {
+    backgroundColor: "#F4D03F",
+    height: "40px"
   }
 };
 
