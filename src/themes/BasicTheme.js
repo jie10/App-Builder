@@ -81,6 +81,10 @@ export const BASIC_THEME_STYLE = {
   ".search_bar_section": {
     backgroundColor: "#FFFFFF",
     height: "auto"
+  },
+  ".slider_wrapper_section": {
+    backgroundColor: "#FFFFFF",
+    height: "auto"
   }
 };
 

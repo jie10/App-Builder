@@ -10,7 +10,7 @@ import {
     getBlock
 } from '../../../../stores/actions'
 
-const SearchBarSection = (props) => {
+const SliderWrapperSection = (props) => {
     const { _id, block, deleteBlock, moveUpBlock, moveDownBlock, getBlock, themeStyle } = props
 
     if (block.status === "added") {
@@ -19,7 +19,7 @@ const SearchBarSection = (props) => {
 
     return(
         <div
-        className='search_bar_section'
+        className='slider_wrapper_section'
         style={{
             width: '100%',
             height: block.parameters.height,
@@ -75,7 +75,7 @@ export default connect(mapStateToProps, {
     moveUpBlock,
     moveDownBlock,
     getBlock
-})(SearchBarSection)
+})(SliderWrapperSection)
 
 
 

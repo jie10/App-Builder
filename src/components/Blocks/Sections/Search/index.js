@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { connect } from 'react-redux'
-import { Grid, Button } from '@mui/material'
+import { Grid } from '@mui/material'
 import './style.css'
 
 import {
@@ -10,12 +10,17 @@ import {
     getBlock
 } from '../../../../stores/actions'
 
-const SliderWrapperSection = (props) => {
+const SearchBarSection = (props) => {
+    const { _id, block, deleteBlock, moveUpBlock, moveDownBlock, getBlock, themeStyle } = props
 
-    const { _id, block, deleteBlock, moveUpBlock, moveDownBlock, getBlock } = props
+    if (block.status === "added") {
+        block.parameters = themeStyle
+    }
 
     return(
-        <div style={{
+        <div
+        className='search_bar_section'
+        style={{
             width: '100%',
             height: block.parameters.height,
             backgroundColor: block.parameters.backgroundColor
@@ -73,7 +78,7 @@ export default connect(mapStateToProps, {
     moveUpBlock,
     moveDownBlock,
     getBlock
-})(SliderWrapperSection)
+})(SearchBarSection)
 
 
 

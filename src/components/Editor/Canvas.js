@@ -79,7 +79,7 @@ class Canvas extends Component {
                         case 'MEDIA_GALLERY':
                             return <MediaGallery key={key} _id={key} themeStyle={themeStyle[".media_gallery_section"]} block={block} /> 
                         case 'SLIDERWRAPPER_SECTION':
-                            return <SliderWrapperSection key={key} _id={key} block={block} /> 
+                            return <SliderWrapperSection key={key} _id={key} themeStyle={themeStyle[".slider_wrapper_section"]} block={block} /> 
                         case 'SEARCHBAR_SECTION':
                             return <SearchBarSection key={key} _id={key} themeStyle={themeStyle[".search_bar_section"]} block={block} />
                         case 'FILTER_SECTION':
