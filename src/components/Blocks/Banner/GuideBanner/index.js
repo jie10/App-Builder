@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { connect } from 'react-redux'
-import { Grid, Button } from '@mui/material'
+import { Grid } from '@mui/material'
 import './style.css'
 
 import {
@@ -11,11 +11,14 @@ import {
 } from '../../../../stores/actions'
 
 const GuideBanner = (props) => {
+    const { _id, block, deleteBlock, moveUpBlock, moveDownBlock, getBlock, themeStyle } = props
 
-    const { _id, block, deleteBlock, moveUpBlock, moveDownBlock, getBlock } = props
+    if (block.status === "added") {
+        block.parameters = themeStyle
+    }
 
     return(
-        <div className='cebapp-banner-component-guide ng-tns-c13-33 height-medium background-yellow ng-star-inserted' 
+        <div className='cebapp-banner-component-guide ng-tns-c13-33 height-medium background-yellow ng-star-inserted guide_banner' 
             style={{
             width: '100%',
             height: block.parameters.height,

@@ -85,6 +85,14 @@ export const ENTERPRISE_THEME_STYLE = {
   ".slider_wrapper_section": {
     backgroundColor: "#FFFFFF",
     height: "auto"
+  },
+  ".guide_banner": {
+    backgroundColor: "#fbe700",
+    height: "auto",
+    title: "Looking for more destinations?",
+    text: "We have more destinations to choose from!",
+    button: "View all destinations",
+    buttonLink: "https://www.cebupacificair.com/"
   }
 };
 

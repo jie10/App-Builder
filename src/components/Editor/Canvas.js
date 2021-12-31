@@ -65,7 +65,7 @@ class Canvas extends Component {
                         case 'BREADCRUMBS':
                             return <Breadcrumbs key={key} _id={key} themeStyle={themeStyle[".breadcrumbs"]} block={block} /> 
                         case 'GUIDE_BANNER':
-                            return <GuideBanner key={key} _id={key} block={block} />
+                            return <GuideBanner key={key} _id={key} themeStyle={themeStyle[".guide_banner"]} block={block} />
                         case 'CARDS':
                             return <Cards key={key} _id={key} block={block} /> 
                         case 'CAMPAIGN_CARDS':
