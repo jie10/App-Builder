@@ -51,7 +51,7 @@ class Canvas extends Component {
                         case 'SECTION_CARDS':
                             return <div key={key}>SECTION CARDS</div>
                         case 'SECTION_ONE':
-                            return <SectionOne key={key} _id={key} block={block} />
+                            return <SectionOne key={key} _id={key} themeStyle={themeStyle[".image_with_text_section"]} block={block} />
                         case 'SECTION_TWO_LEFT':
                             return <SectionTwoLeft key={key} _id={key} block={block} />   
                         case 'SECTION_TWO_RIGHT':

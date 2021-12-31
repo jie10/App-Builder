@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { connect } from 'react-redux'
-import { Grid, Button } from '@mui/material'
+import { Grid } from '@mui/material'
 import './style.css'
 
 import {
@@ -11,8 +11,11 @@ import {
 } from '../../../../stores/actions'
 
 const SectionOne = (props) => {
+    const { _id, block, deleteBlock, moveUpBlock, moveDownBlock, getBlock, themeStyle } = props
 
-    const { _id, block, deleteBlock, moveUpBlock, moveDownBlock, getBlock } = props
+    if (block.status === "added") {
+        block.parameters = themeStyle
+    }
 
     return(
         <div style={{
@@ -45,7 +48,7 @@ const SectionOne = (props) => {
             <div class='col-md-5'>
                 <div class='text-left'>
                     <div class="photo">
-                        <img src={block.parameters.image}/>
+                        <img src={block.parameters.image} alt="new section with text" />
                     </div>
                     <h4 style={{
                         fontSize: '1.5em'
