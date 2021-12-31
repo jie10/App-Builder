@@ -63,7 +63,7 @@ class Canvas extends Component {
                         case 'PARAGRAPH_SECTION':
                             return <ParagraphSection key={key} _id={key} themeStyle={themeStyle.p} block={block} />        
                         case 'BREADCRUMBS':
-                            return <Breadcrumbs key={key} _id={key} block={block} /> 
+                            return <Breadcrumbs key={key} _id={key} themeStyle={themeStyle[".breadcrumbs"]} block={block} /> 
                         case 'GUIDE_BANNER':
                             return <GuideBanner key={key} _id={key} block={block} />
                         case 'CARDS':
