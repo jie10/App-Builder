@@ -97,6 +97,10 @@ export const ENTERPRISE_THEME_STYLE = {
   ".sidebar": {
     backgroundColor: "#F4D03F",
     height: "40px"
+  },
+  ".footer_simple": {
+    backgroundColor: "#fbe700",
+    height: "auto"
   }
 };
 

@@ -87,7 +87,7 @@ class Canvas extends Component {
                         case 'COLUMN_SECTION':
                             return <ColumnSection key={key} _id={key} block={block} /> 
                         case 'FOOTER':
-                            return <FooterSimple key={key} _id={key} block={block} />
+                            return <FooterSimple key={key} _id={key} themeStyle={themeStyle[".footer_simple"]} block={block} />
                         default:
                             return <div key={key}>DEFAULT</div>
                     }   
