@@ -71,7 +71,7 @@ class Canvas extends Component {
                         case 'CAMPAIGN_CARDS':
                             return <CampaignCards key={key} _id={key} block={block} />   
                         case 'ACCORDION':
-                            return <Accordion key={key} _id={key} block={block} />     
+                            return <Accordion key={key} _id={key} themeStyle={themeStyle[".accordion_section"]} block={block} />     
                         case 'BLOCKSEPERATOR':
                             return <BlockSeperator key={key} _id={key} themeStyle={themeStyle[".block_separator"]} block={block} />
                         case 'SIDEBAR':

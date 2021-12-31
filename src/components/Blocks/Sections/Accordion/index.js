@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { connect } from 'react-redux'
-import { Grid, Button } from '@mui/material'
+import { Grid } from '@mui/material'
 import './style.css'
 
 import {
@@ -11,9 +11,14 @@ import {
 } from '../../../../stores/actions'
 
 const Accordion = (props) => {
+    const { _id, block, deleteBlock, moveUpBlock, moveDownBlock, getBlock, themeStyle } = props
 
-    const { _id, block, deleteBlock, moveUpBlock, moveDownBlock, getBlock } = props
+    if (block.status === "added") {
+        block.parameters = themeStyle
+    }
+
     const [open, setOpen] = React.useState(false);
+
     return(
         <div style={{
             width: '100%',
@@ -56,7 +61,7 @@ const Accordion = (props) => {
                         <div className="content">
                             <omnix-markdown-content className="ng-star-inserted">
                                 <div className="markdown-content left" markdown-external-link="">
-                                    <p>{block.parameters.content}</p>
+                                    <p>{block.parameters.text}</p>
                                 </div>
                             </omnix-markdown-content>
                         </div>
