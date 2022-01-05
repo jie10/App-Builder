@@ -45,15 +45,18 @@ const SectionTwoLeft = (props) => {
                     src='/images/round_close_black_24dp.png' />
             </Grid>
         </Grid>
-        <div className='c-about-landing__two-columns c-about-landing__two-columns--space'>
-            <div>
+        <div className='c-about-landing__two-columns c-about-landing__two-columns--space' 
+            style={{ borderRadius: block.parameters.borderRadius,
+                boxShadow: block.parameters.boxShadow}}>
+            <div style={{ flexBasis: block.parameters.flexBasisLeft}}>
                 <img src={block.parameters.image} alt="new section with text and button" />
             </div>
-            <div>
+            <div style={{ flexBasis: block.parameters.flexBasisRight}}>
                 <div style={{padding: '24px 24px 0'}}>
                     <h4 style={{
                         fontSize: '1.5em',
-                        marginTop: '0'
+                        marginTop: '0',
+                        color: block.parameters.titleColors
                     }}>{block.parameters.title}</h4>
                     <p>{block.parameters.text}</p>
                     <a class="o-btn o-btn--primary-blue" target="_self" href={block.parameters.url}> View more information </a>

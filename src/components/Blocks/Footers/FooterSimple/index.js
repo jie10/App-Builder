@@ -44,7 +44,8 @@ const FooterSimple = (props) => {
             </Grid>
         </Grid>
         <div>
-            <div className="c-footer__copyright">
+            <div className="c-footer__copyright" 
+                style={{borderTop: block.parameters.borderTop}}>
                 <div className="container">
                     <div className="row">
                         <div className="col-lg-8 d-none d-lg-block">

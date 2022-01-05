@@ -1,6 +1,6 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { connect } from 'react-redux'
-import { Grid } from '@mui/material'
+import { Grid, Button } from '@mui/material'
 import './style.css'
 
 import {
@@ -11,18 +11,17 @@ import {
 } from '../../../../stores/actions'
 
 const GuideBanner = (props) => {
-    const { _id, block, deleteBlock, moveUpBlock, moveDownBlock, getBlock, themeStyle } = props
 
-    if (block.status === "added") {
-        block.parameters = themeStyle
-    }
+    const { _id, block, deleteBlock, moveUpBlock, moveDownBlock, getBlock } = props
 
     return(
-        <div className='cebapp-banner-component-guide ng-tns-c13-33 height-medium background-yellow ng-star-inserted guide_banner' 
+        <div className='cebapp-banner-component-guide ng-tns-c13-33 height-medium ng-star-inserted' 
             style={{
             width: '100%',
             height: block.parameters.height,
-            backgroundColor: block.parameters.backgroundColor
+            backgroundColor: block.parameters.backgroundColor,
+            borderRadius: block.parameters.borderRadius,
+            boxShadow: block.parameters.boxShadow
         }} onClick={() => getBlock(_id, block)}>
         <Grid container direction="row" justifyContent="flex-end" alignItems="center">
             <Grid item onClick={() => moveUpBlock(_id)}>
@@ -44,8 +43,7 @@ const GuideBanner = (props) => {
                     src='/images/round_close_black_24dp.png' />
             </Grid>
         </Grid>
-        <div className="">
-            <div className="banner-content container height-medium">
+        <div className="banner-content container height-medium">
                 <div className="content left design-b">
                     <div className="content-wrap left">
                         <span className="country text-blue">
@@ -58,7 +56,6 @@ const GuideBanner = (props) => {
                     <a className="o-btn fixed-size o-btn--primary-blue" href="{block.parameters.buttonLink}" target="_self">{block.parameters.button}</a>
                 </div>
             </div>
-        </div>
         </div>
     )
 }

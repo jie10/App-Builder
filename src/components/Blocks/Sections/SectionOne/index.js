@@ -47,19 +47,24 @@ const SectionOne = (props) => {
         </Grid>
         
         <div class="justify-content-md-center row">
-            <div class='col-md-5'>
+            <div class='col-md-5'
+                style={{ borderRadius: block.parameters.borderRadius,
+                    boxShadow: block.parameters.boxShadow}}>
                 <div class='text-left'>
                     <div class="photo">
                         <img src={block.parameters.image} alt="new section with text" />
                     </div>
-                    <h4 style={{
-                        fontSize: '1.5em'
-                    }}>{block.parameters.title}</h4>
-                    <p style={{
-                    }}>{block.parameters.text}</p>
+                    <div style={{padding: block.parameters.paddingContent}}>
+                        <h4 style={{
+                            fontSize: '1.5em',
+                            color: block.parameters.titleColors
+                        }}>{block.parameters.title}</h4>
+                        <p style={{
+                        }}>{block.parameters.text}</p>
                     </div>
                 </div>
             </div>
+        </div>
         </div>
     )
 }

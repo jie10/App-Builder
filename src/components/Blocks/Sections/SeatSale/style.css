@@ -1,0 +1,142 @@
+
+.seat-sale-body__subtitle {
+    margin-bottom: 10px;
+}
+.seat-sale-body__subtitle h3 {
+    margin: 0;
+    font-size: 1.5em;
+}
+.seat-sale-body__subtitle .ss-subtitle {
+    margin-right: 20px;
+}
+.seat-sale-body__subtitle .ss-sale-period {
+    width: 100%;
+}
+.seat-sale-body__subtitle .ss-days-left span {
+    background: #ffcd00;
+    color: #0060a7;
+    padding: 2px 10px;
+    font-size: 12px;
+    font-weight: 700;
+    border-radius: 10px;
+}
+
+
+.seat-sale-body__data {
+    border-top-color: #ffcd00;
+    border-width: 5px 0 0;
+    border-style: solid;
+    border-radius: 5px;
+    background-color: #fff;
+    padding: 0;
+    
+}
+
+.container {
+    padding: 10px 0;
+}
+.container {
+    max-width: 1056px;
+    width: 100%;
+}
+.seat-sale-body__data .icon-flight-blue {
+    padding-right: 5px;
+}
+.seat-sale-body__data span {
+    font-family: "Source Sans Pro",sans-serif!important;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 150%;
+    letter-spacing: .0025em;
+    color: #858585;
+    position: relative;
+}
+.seat-sale-body__data h5 {
+    margin: 0;
+    font-size: 1.25rem;
+}
+
+
+@media (min-width: 768px) {
+    .col-md-7 {
+        flex: 0 0 58.333333%;
+        max-width: 58.333333%;
+    }
+    .col-md-5 {
+        flex: 0 0 41.666667%;
+        max-width: 41.666667%;
+    }
+}
+@media (min-width: 576px) {
+    .col-sm-6 {
+        flex: 0 0 50%;
+        max-width: 50%;
+    }
+}
+
+.d-flex {
+    display: flex!important;
+}
+.m-auto {
+    margin: auto!important;
+}
+
+.w-100 {
+    width: 100%!important;
+}
+a.tool-tip {
+    position: relative;
+}
+
+.seat-sale a {
+    text-decoration: none!important;
+    font-family: FSAlbert;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 150%;
+    letter-spacing: .015em;
+    color: #006fc1;
+    display: inline-block;
+}
+.seat-sale-body__data .btn-book-now {
+    width: calc(100% - 50px);
+    font-size: 12px;
+    margin-top: 0;
+}
+
+@media only screen and (min-width: 468px), only screen and (min-width: 320px) {
+    .seat-sale-body__subtitle .ss-subtitle {
+        width: 100%;
+    }
+    .seat-sale-body__subtitle .ss-days-left {
+        width: 100%;
+    }
+    .seat-sale-body__subtitle .ss-sale-period {
+        max-width: 272px;
+    }
+    .seat-sale-body__data .travel-period {
+        text-align: right;
+    }
+}
+
+@media only screen and (min-width: 1151px) {
+    .seat-sale-body__subtitle .ss-subtitle {
+        order: 1;
+        width: auto;
+    }
+    .seat-sale-body__subtitle .ss-days-left {
+        order: 2;
+        width: auto;
+    }
+    .seat-sale-body__subtitle .ss-sale-period {
+        max-width: 100%;
+        order: 3;
+    }
+    .seat-sale-body__data .travel-period {
+        text-align: left;
+    }
+}
+
+

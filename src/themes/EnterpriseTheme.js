@@ -23,20 +23,28 @@ export const ENTERPRISE_THEME_STYLE = {
     backgroundColor: "#FFFFFF",
     height: "auto",
     image: "https://cdn.media.amplience.net/i/cebupacificair/Safety measures for contactless flights?w=undefined&amp;h=undefined&amp;sm=c&amp;scaleFit=poi&amp;poi={$this.metadata.pointOfInterest.x},{$this.metadata.pointOfInterest.y},{$this.metadata.pointOfInterest.w},{$this.metadata.pointOfInterest.h}",
-    alignment: "center"
+    alignment: "center",
+    borderRadius: "12px",
+    boxShadow: "3px 3px 3px 3px #efefef",
   },
   ".video_only_section": {
     backgroundColor: "#FFFFFF",
     height: "auto",
     video: "https://cdn.media.amplience.net/v/cebupacificair/[ONTIVA.COM]-A Message from our Chief Pilot for our 25th Anniversary-720P/mp4_720p",
-    alignment: "center"
+    alignment: "center",
+    borderRadius: "12px",
+    boxShadow: "3px 3px 3px 3px #efefef",
   },
   ".image_with_text_section": {
     backgroundColor: "#FFFFFF",
     height: "auto",
     image: "https://cdn.media.amplience.net/i/cebupacificair/Safety measures for contactless flights?w=undefined&amp;h=undefined&amp;sm=c&amp;scaleFit=poi&amp;poi={$this.metadata.pointOfInterest.x},{$this.metadata.pointOfInterest.y},{$this.metadata.pointOfInterest.w},{$this.metadata.pointOfInterest.h}",
     title: "Title",
-    text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent quis sapien quis lectus elementum laoreet sed sit amet velit. Praesent nec enim est. Nulla blandit bibendum ipsum non gravida. Nam placerat purus quis lacinia consequat. Donec magna dolor, dictum ut tortor auctor, pulvinar ultricies turpis. Sed vulputate nunc sit amet iaculis placerat. Morbi non risus vel ex iaculis bibendum. Cras sit amet eleifend nisi, at mattis tortor. Nunc id ornare nunc. Donec porttitor euismod magna eu fermentum."
+    text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent quis sapien quis lectus elementum laoreet sed sit amet velit. Praesent nec enim est. Nulla blandit bibendum ipsum non gravida. Nam placerat purus quis lacinia consequat. Donec magna dolor, dictum ut tortor auctor, pulvinar ultricies turpis. Sed vulputate nunc sit amet iaculis placerat. Morbi non risus vel ex iaculis bibendum. Cras sit amet eleifend nisi, at mattis tortor. Nunc id ornare nunc. Donec porttitor euismod magna eu fermentum.",
+    borderRadius: "12px",
+    boxShadow: "3px 3px 3px 3px #efefef",
+    titleColors: "#0074c9",
+    paddingContent: "0 15px"
   },
   ".left_image_with_text_and_button_section": {
     backgroundColor: "#FFFFFF",
@@ -44,7 +52,12 @@ export const ENTERPRISE_THEME_STYLE = {
     image: "https://cdn.media.amplience.net/i/cebupacificair/Our-Story-About?w=800&amp;sm=c&amp;scaleFit=poi&amp;poi={$this.metadata.pointOfInterest.x},{$this.metadata.pointOfInterest.y},{$this.metadata.pointOfInterest.w},{$this.metadata.pointOfInterest.h}",
     title: "Title",
     text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent quis sapien quis lectus elementum laoreet sed sit amet velit. Praesent nec enim est. Nulla blandit bibendum ipsum non gravida. Nam placerat purus quis lacinia consequat. Donec magna dolor, dictum ut tortor auctor, pulvinar ultricies turpis. Sed vulputate nunc sit amet iaculis placerat. Morbi non risus vel ex iaculis bibendum. Cras sit amet eleifend nisi, at mattis tortor. Nunc id ornare nunc. Donec porttitor euismod magna eu fermentum.",
-    url: "/pages/about/our-story/our-fleet"
+    url: "/pages/about/our-story/our-fleet",
+    borderRadius: "12px",
+    boxShadow: "3px 3px 3px 3px #efefef",
+    titleColors: "#0074c9",
+    flexBasisLeft: "30%",
+    flexBasisRight: "70%"
   },
   ".right_image_with_text_and_button_section": {
     backgroundColor: "#FFFFFF",
@@ -52,7 +65,12 @@ export const ENTERPRISE_THEME_STYLE = {
     image: "https://cdn.media.amplience.net/i/cebupacificair/Our-Story-About?w=800&amp;sm=c&amp;scaleFit=poi&amp;poi={$this.metadata.pointOfInterest.x},{$this.metadata.pointOfInterest.y},{$this.metadata.pointOfInterest.w},{$this.metadata.pointOfInterest.h}",
     title: "Title",
     text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent quis sapien quis lectus elementum laoreet sed sit amet velit. Praesent nec enim est. Nulla blandit bibendum ipsum non gravida. Nam placerat purus quis lacinia consequat. Donec magna dolor, dictum ut tortor auctor, pulvinar ultricies turpis. Sed vulputate nunc sit amet iaculis placerat. Morbi non risus vel ex iaculis bibendum. Cras sit amet eleifend nisi, at mattis tortor. Nunc id ornare nunc. Donec porttitor euismod magna eu fermentum.",
-    url: "/pages/about/our-story/our-fleet"
+    url: "/pages/about/our-story/our-fleet",
+    borderRadius: "12px",
+    boxShadow: "3px 3px 3px 3px #efefef",
+    titleColors: "#0074c9",
+    flexBasisLeft: "70%",
+    flexBasisRight: "30%"
   },
   ".accordion_section": {
     backgroundColor: "#FFFFFF",
@@ -72,41 +90,48 @@ export const ENTERPRISE_THEME_STYLE = {
   },
   ".filter_section": {
     backgroundColor: "#FFFFFF",
-    height: "auto"
+    height: "auto",
   },
   ".media_gallery_section": {
     backgroundColor: "#FFFFFF",
-    height: "auto"
+    height: "auto",
+    borderRadius: "12px",
+    boxShadow: "3px 3px 3px 3px #efefef",
   },
   ".search_bar_section": {
     backgroundColor: "#FFFFFF",
-    height: "auto"
+    height: "auto",
   },
   ".slider_wrapper_section": {
     backgroundColor: "#FFFFFF",
-    height: "auto"
+    height: "auto",
   },
   ".guide_banner": {
-    backgroundColor: "#fbe700",
+    backgroundColor: "#FFFFFF",
     height: "auto",
     title: "Looking for more destinations?",
     text: "We have more destinations to choose from!",
     button: "View all destinations",
-    buttonLink: "https://www.cebupacificair.com/"
+    buttonLink: "https://www.cebupacificair.com/",
+    borderRadius: "12px",
+    boxShadow: "3px 3px 3px 3px #efefef"
   },
   ".sidebar": {
     backgroundColor: "#F4D03F",
     height: "40px"
   },
   ".footer_simple": {
-    backgroundColor: "#fbe700",
-    height: "auto"
+    backgroundColor: "#ffffff",
+    height: "auto",
+    borderTop: "1px solid #efefef"
   },
   ".header_simple": {
-    backgroundColor: "#fbe700",
+    backgroundColor: "#ffffff",
     height: "160px",
     title: "Header",
-    image: "https://cdn.media.amplience.net/i/cebupacificair/BKK-Bangkok-Thailand-SightSeeing2-6000x4000?w=1980&amp;sm=c&amp;scaleFit=poi&amp;poi={$this.metadata.pointOfInterest.x},{$this.metadata.pointOfInterest.y},{$this.metadata.pointOfInterest.w},{$this.metadata.pointOfInterest.h}?&amp;fmt=jpg&amp;fmt.options=interlaced"
+    image: "",
+    borderBottom: "1px solid #efefef",
+    borderRadius: "0"
   },
   ".cards": {
     backgroundColor: "#FFFFFF",

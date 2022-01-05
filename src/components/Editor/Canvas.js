@@ -25,6 +25,7 @@ import MediaGallery from '../Blocks/Sections/MediaGallery'
 import SliderWrapperSection from '../Blocks/Sections/SliderWrapper'
 import SearchBarSection from '../Blocks/Sections/Search'
 import FilterSection from '../Blocks/Sections/Filter'
+import SeatSaleSection from '../Blocks/Sections/SeatSale'
 import ColumnSection from '../Blocks/Column/Column'
 
 class Canvas extends Component {
@@ -84,6 +85,8 @@ class Canvas extends Component {
                             return <SearchBarSection key={key} _id={key} themeStyle={themeStyle[".search_bar_section"]} block={block} />
                         case 'FILTER_SECTION':
                             return <FilterSection key={key} _id={key} themeStyle={themeStyle[".filter_section"]} block={block} />     
+                        case 'SEATSALE_SECTION':
+                            return <SeatSaleSection key={key} _id={key} themeStyle={themeStyle[".Seatsale_section"]} block={block} />
                         case 'COLUMN_SECTION':
                             return <ColumnSection key={key} _id={key} block={block} /> 
                         case 'FOOTER':
