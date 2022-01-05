@@ -137,7 +137,7 @@ export const addNewProject = (data) => {
         "isPublished": false,
         "themePreview": data.buildMode ? DEFAULT_PREVIEW_IMAGE[data.buildMode] : DEFAULT_PREVIEW_IMAGE["scratch"],
         "createdAt": generateTimestamp(),
-        "globalStyleSettings": data.buildMode ? DEFAULT_GLOBAL_STYLE[data.buildMode] : DEFAULT_GLOBAL_STYLE["scratch"],
+        "globalStyleSettings": { body: data.buildMode ? DEFAULT_GLOBAL_STYLE[data.buildMode].body : DEFAULT_GLOBAL_STYLE["scratch"].body },
         "project": "IT_APPBUILDER",
         "table": "PROJECT"
     };
@@ -186,7 +186,7 @@ export const updateProjectById = (id, data) => {
                         }
                     }
                 } else {
-                    newData.globalStyleSettings = DEFAULT_GLOBAL_STYLE[data.defaultTheme]
+                    newData.globalStyleSettings = { body: DEFAULT_GLOBAL_STYLE[data.defaultTheme].body }
                 }
 
                 axios({
