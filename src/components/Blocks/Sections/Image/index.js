@@ -48,10 +48,11 @@ const ImageSection = (props) => {
         </Grid>
         
         <div className='row' style={{ justifyContent: block.parameters.alignment}}>
-            <div className='col-md-5'>
+            <div className='col-md-5' style={{ borderRadius: block.parameters.borderRadius,
+                boxShadow: block.parameters.boxShadow}}>
                 <div className='text-left'>
                     <div className="photo">
-                        <img src={block.parameters.image}/>
+                        <img src={block.parameters.image} style={{ borderRadius: block.parameters.borderRadius}}/>
                     </div>
                 </div>
             </div>

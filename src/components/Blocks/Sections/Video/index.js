@@ -46,9 +46,14 @@ const VideoSection = (props) => {
             </Grid>
         </Grid>
         
-        
-        <div className='row' style={{ justifyContent: block.parameters.alignment}}>
-            <video src={block.parameters.video} controls style={{width: '100%'}}></video>
+        <div style={{ borderRadius: block.parameters.borderRadius,
+                boxShadow: block.parameters.boxShadow}}>
+            <div className='row' style={{ justifyContent: block.parameters.alignment,
+                }}>
+                <video src={block.parameters.video} controls 
+                style={{width: '100%',
+                    borderRadius: block.parameters.borderRadius}}></video>
+            </div>
         </div>
         </div>
     )

@@ -46,7 +46,9 @@ const MediaGallery = (props) => {
             </Grid>
         </Grid>
         
-        <div className="c-guide__gallery">
+        <div className="c-guide__gallery" 
+            style={{ borderRadius: block.parameters.borderRadius,
+                boxShadow: block.parameters.boxShadow}}>
             <div className="c-guide__gallery--selected">
                 <img className="ng-tns-c15-34" alt="" src="https://cdn.media.amplience.net/i/cebupacificair/media_gallery-photo-aircraft-a321neo_pw_ceb_v05_1500px-1500x1125?w=1980&amp;sm=c&amp;scaleFit=poi&amp;poi={$this.metadata.pointOfInterest.x},{$this.metadata.pointOfInterest.y},{$this.metadata.pointOfInterest.w},{$this.metadata.pointOfInterest.h}"/>
                 <a className="viewall" href="javascript: void(0)">View All Photos</a>
