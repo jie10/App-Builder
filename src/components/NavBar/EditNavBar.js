@@ -103,7 +103,7 @@ const EditNavBar = (props) => {
     const [publishDate, setPublishDate] = useState(null);
     const [scheduledDate, setScheduledDate] = useState(null);
     const [publishDateTime, setPublishDateTime] = useState(null);
-    const [loadPageComponents, setLoadPageComponents] = useState(true);
+    const [loadPageComponents, setLoadPageComponents] = useState(false);
     const [previousBlocks, setPreviousBlocks] = useState([]);
     const [pageName, setPageName] = useState(null);
 
@@ -163,15 +163,15 @@ const EditNavBar = (props) => {
             })
             .then(newPage => {
                 if (newPage) {
-                    // delete all previousBlocks first
-                    previousBlocks && previousBlocks.forEach((block, i) => {
-                        removeBlockById(block._id)
-                        .catch(error => console.log(error));
-                    });
-
-                    setPreviousBlocks([]);
-
                     if (currentComponents && currentComponents.length > 0) {
+                        // delete all previousBlocks first
+                        previousBlocks && previousBlocks.forEach((block, i) => {
+                            removeBlockById(block._id)
+                            .catch(error => console.log(error));
+                        });
+
+                        setPreviousBlocks([]);
+
                         // then add new blocks for page
                         currentComponents.forEach((component, i) => {
                             if (newPage.defaultPageId) {
@@ -264,6 +264,22 @@ const EditNavBar = (props) => {
             })
             .catch(error => console.log(error));
         }
+    }
+
+    const loadPageBlocks = pageId => {
+        getBlocksByPageId(pageId)
+        .then(currentBlocks => {
+            setPreviousBlocks(currentBlocks);
+
+            currentBlocks && currentBlocks.sort((a, b) => a.sortId - b.sortId).forEach(block => {
+                let savedBlock = groupComponentsToBlocks([block]);
+                let saved = savedBlock[Object.keys(savedBlock)[0]];
+                saved.status = "saved"
+                
+                sendBlocks(saved);
+                setLoadPageComponents(false);
+            });
+        }).catch(error => console.log(error));
     }
 
     const groupComponentsToBlocks = (components) => components.reduce((a, v) => ({ ...a, [v._id]: v.settings}), {});
@@ -410,40 +426,30 @@ const EditNavBar = (props) => {
     });
 
     useEffect(() => {
-        let action = query.get("action");
-        let copyPageId = query.get("copy");
-
-        if (loadPageComponents) {
-            getPageById(page_id)
+        getPageById(page_id)
             .then(currentPage => {
                 if (currentPage) {
                     setPageName(currentPage.pageName);
                     setPageStatusUpdate(currentPage.pageStatus);
                     setPageVisibility(currentPage.visibility === "private" ? "private" : "public");
                     setScheduledDate(currentPage.scheduledTimestamp);
-
-                    let pageId = action === "create" && copyPageId ? copyPageId : page_id;
-
-                    getBlocksByPageId(pageId)
-                        .then(currentBlocks => {
-                            setPreviousBlocks(currentBlocks);
-
-                            currentBlocks && currentBlocks.sort((a, b) => a.sortId - b.sortId).forEach(block => {
-                                let savedBlock = groupComponentsToBlocks([block]);
-                                let saved = savedBlock[Object.keys(savedBlock)[0]];
-                                console.log(saved)
-                                saved.status = "saved"
-                                
-                                sendBlocks(saved);
-                            });
-                            setLoadPageComponents(false);
-                        })
-                        .catch(error => console.log(error));
+                    loadPageBlocks(page_id);
                 }
-            })
-            .catch(error => console.log(error));
-        }
+            }).catch(error => console.log(error));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
+    useEffect(() => {
+        let action = query.get("action");
+        let copyPageId = query.get("copy");
+
+        let pageId = action === "create" && copyPageId ? copyPageId : page_id;
+
+        if (loadPageComponents) {
+            delay(() => {
+                loadPageBlocks(pageId);
+            }, 2000)
+        }
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [loadPageComponents]);
 
