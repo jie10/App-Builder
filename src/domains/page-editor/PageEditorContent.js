@@ -47,9 +47,15 @@ const PageEditorContent = (props) => {
 
     const loadCustomGlobalStyleSettings = () => customGlobalStyleSettings ? applyCustomTheme(customGlobalStyleSettings) : null;
 
+    const inserterContainerStyle = {
+                                        width: inserterWidth,
+                                        backgroundColor: '#ffffff',
+                                        height: 'calc(100vh - 50px)',
+                                        zIndex: 999
+                                    };
     return (
         <Grid container style={{marginTop: '50px'}}>
-            <Grid item style={{width: inserterWidth, margin: '0px', backgroundColor: '#fff', height: 'calc(100vh - 5rem)'}}>
+            <Grid item style={inserterContainerStyle}>
                 <Inserter />
             </Grid>
             <Grid item style={{width: canvasWidth, margin: '0px', backgroundColor: '#fff', height: 'calc(100vh - 5rem)'}}>
