@@ -1,17 +1,13 @@
-import React, { Fragment, useState, useEffect } from 'react'
+import React, { Fragment, useState } from 'react'
 import { connect } from 'react-redux'
 
 import ListSubheader from '@mui/material/ListSubheader'
 import TextField from '@mui/material/TextField'
-import Button from '@mui/material/Button'
 import List from '@mui/material/List'
 import ListItemButton from '@mui/material/ListItemButton'
 import ListItemIcon from '@mui/material/ListItemIcon'
 import ListItemText from '@mui/material/ListItemText'
 import Collapse from '@mui/material/Collapse'
-import InboxIcon from '@mui/icons-material/MoveToInbox'
-import DraftsIcon from '@mui/icons-material/Drafts'
-import SendIcon from '@mui/icons-material/Send'
 import ExpandLess from '@mui/icons-material/ExpandLess'
 import ExpandMore from '@mui/icons-material/ExpandMore'
 import StarBorder from '@mui/icons-material/StarBorder'
@@ -20,8 +16,10 @@ import {
     updateBlock
 } from '../../stores/actions'
 
+import "./Settings.css";
+
 const Settings = (props) => {
-    const { block, updateBlock, isSettingsVisible } = props
+    const { block, updateBlock, settingsWidth } = props
     const [open, setOpen] = useState(false)
     const [blockKey, setBlockKey] = useState(null)
     const [blockParams, setBlockParams] = useState(null)
@@ -114,7 +112,8 @@ const Settings = (props) => {
     */
 
     const getSettings = (block) => {
-        if(block.block != undefined){
+
+        if(block.block !== undefined){
             var params = []
             var data = block.block.parameters
     
@@ -124,7 +123,7 @@ const Settings = (props) => {
                 obj['value'] = data[key]
                 params.push(obj)
               })
-
+              console.log(params)
             return <List>
                 {params.map(item => {
                     return <TextField 
@@ -140,16 +139,15 @@ const Settings = (props) => {
                 })}
             </List>
         }else{
-            return <p>Loading</p>
+            return <p style={{fontSize: "1rem", textAlign: "center", alignSelf: "center"}}>Click on an element to modfy its settings</p>
         }
 
     }
     
     return(
-        <Fragment>
-            <div style={{height: '60px'}}></div>
+        <div className={`settings-container ${settingsWidth === "0%" ? 'settings-container-hide' : ''}`}>
             {block && getSettings(block)}
-        </Fragment>
+        </div>
     )
 }
 

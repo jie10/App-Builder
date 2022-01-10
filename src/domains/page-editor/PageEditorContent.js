@@ -50,9 +50,15 @@ const PageEditorContent = (props) => {
     const inserterContainerStyle = {
                                         width: inserterWidth,
                                         backgroundColor: '#ffffff',
-                                        height: 'calc(100vh - 50px)',
-                                        zIndex: 999
+                                        height: 'calc(100vh - 50px)'
                                     };
+
+    const settingsContainerStyle = {
+                                        width: settingsWidth,
+                                        backgroundColor: '#ffffff',
+                                        height: 'calc(100vh - 50px)'
+                                    };
+
     return (
         <Grid container style={{marginTop: '50px'}}>
             <Grid item style={inserterContainerStyle}>
@@ -63,8 +69,8 @@ const PageEditorContent = (props) => {
                 { loadCustomGlobalStyleSettings() }
                 <Canvas themeStyle={loadProjectThemeStyle(projectBuldMode)} selectedPreviewMenu={selectedPreviewMenu} />
             </Grid>
-            <Grid item style={{width: settingsWidth, margin: '0px', backgroundColor: '#fff', height: 'calc(100vh - 5rem)'}}>
-                <Settings />
+            <Grid item style={settingsContainerStyle}>
+                <Settings settingsWidth={settingsWidth} />
             </Grid>
         </Grid>
     );

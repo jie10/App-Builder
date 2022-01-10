@@ -1,0 +1,10 @@
+.settings-container {
+    display: flex;
+    padding: 16px 8px 0 8px;
+    border-left: 1.5px solid #F0F0F0;
+    height: 100%;
+}
+
+.settings-container-hide {
+    display: none;
+}
