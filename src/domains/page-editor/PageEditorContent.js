@@ -17,7 +17,7 @@ import Settings from '../../components/Editor/Settings';
 import "./PageEditorContent.css";
 
 const PageEditorContent = (props) => {
-    const { projectBuldMode, customGlobalStyleSettings, inserterWidth, canvasWidth, settingsWidth} = props;
+    const { projectBuldMode, customGlobalStyleSettings, inserterWidth, canvasWidth, settingsWidth, selectedPreviewMenu } = props;
 
     const loadProjectThemeStyle = (buildMode) => {
         switch (buildMode) {
@@ -58,10 +58,10 @@ const PageEditorContent = (props) => {
             <Grid item style={inserterContainerStyle}>
                 <Inserter />
             </Grid>
-            <Grid item style={{width: canvasWidth, margin: '0px', backgroundColor: '#fff', height: 'calc(100vh - 5rem)'}}>
+            <Grid item style={{width: canvasWidth, margin: '0px', backgroundColor: "#EDEDED"}}>
                 { loadProjectTheme(projectBuldMode) }
                 { loadCustomGlobalStyleSettings() }
-                <Canvas themeStyle={loadProjectThemeStyle(projectBuldMode)} />
+                <Canvas themeStyle={loadProjectThemeStyle(projectBuldMode)} selectedPreviewMenu={selectedPreviewMenu} />
             </Grid>
             <Grid item style={{width: settingsWidth, margin: '0px', backgroundColor: '#fff', height: 'calc(100vh - 5rem)'}}>
                 <Settings />

@@ -1,0 +1,16 @@
+.canvas-container .content-container {
+    margin: 0 auto;
+    transition: width 0.15s ease-in-out 0s;
+}
+
+.canvas-container .content-container-desktop {
+    width: 100%;
+} 
+
+.canvas-container .content-container-tablet {
+    width: 783px;
+}
+
+.canvas-container .content-container-mobile {
+    width: 460px;
+}

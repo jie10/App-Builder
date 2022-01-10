@@ -26,6 +26,7 @@ const PageEditor = (props) => {
     const [inserterWidth, setInserterWidth] = useState('0%')
     const [canvasWidth, setCanvasWidth] = useState('100%')
     const [settingsWidth, setSettingsWidth] = useState('0%')
+    const [selectedPreviewMenu, setSelectedPreviewMenu] = useState('desktop');
 
     props.toggleInserter(isInserterEnabled)
 
@@ -102,12 +103,16 @@ const PageEditor = (props) => {
                 appName={appName}
                 appURL={appURL}
                 toggleInserter={toggleInserter}
-                toggleSettings={toggleSettings} />
+                toggleSettings={toggleSettings}
+                selectedPreviewMenu={selectedPreviewMenu}
+                setSelectedPreviewMenu={setSelectedPreviewMenu} />
             <PageEditorContent
                 projectBuldMode={projectBuldMode}
                 customGlobalStyleSettings={customGlobalStyleSettings}
+                selectedPreviewMenu={selectedPreviewMenu}
                 inserterWidth={inserterWidth}
-                canvasWidth={canvasWidth} settingsWidth={settingsWidth} />
+                canvasWidth={canvasWidth}
+                settingsWidth={settingsWidth} />
         </Fragment>
     )
 }

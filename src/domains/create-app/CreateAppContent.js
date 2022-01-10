@@ -271,7 +271,7 @@ const CreateAppContent = (props) => {
     }, [location, loadContent])
 
     return (
-        <div className="content-container" onScroll={handleOnScroll}>
+        <div className="create-app-content-container" onScroll={handleOnScroll}>
             <Header setHiddenCreateNewFolderModal={setHiddenCreateNewFolderModal} setHiddenCreateNewAppModal={setHiddenCreateNewAppModal} scrollValueFromTop={scrollValueFromTop} />
             { loadContent() }
             <CreateNewFolderModal hiddenCreateNewFolderModal={hiddenCreateNewFolderModal} setHiddenCreateNewFolderModal={setHiddenCreateNewFolderModal} />

@@ -72,7 +72,7 @@ const Alert = React.forwardRef(function Alert(props, ref) {
 });
 
 const EditNavBar = (props) => {
-    const { appId, appName, appURL, toggleInserter, toggleSettings, blocks, sendBlocks, deleteBlocks } = props;
+    const { appId, appName, appURL, toggleInserter, toggleSettings, blocks, sendBlocks, deleteBlocks, selectedPreviewMenu, setSelectedPreviewMenu } = props;
 
     const { page_id } = useParams();
     let query = useQuery();
@@ -88,7 +88,6 @@ const EditNavBar = (props) => {
     const [togglePreviewMenu, setTogglePreviewMenu] = useState(false);
     const [togglePublishMenu, setTogglePublishMenu] = useState(false);
     const [selectedToolMenu, setSelectedToolMenu] = useState('edit');
-    const [selectedPreviewMenu, setSelectedPreviewMenu] = useState('desktop');
     const [pageStatusUpdate, setPageStatusUpdate] = useState('draft');
     const [saveDraft, setSaveDraft] = useState(false);
     const [switchDraft, setSwitchDraft] = useState(false);
@@ -635,7 +634,7 @@ const EditNavBar = (props) => {
                             </button>
                         </div>
                         <div className="preview-menu-links">
-                            <a href={pageStatusUpdate === "published" ? `/${appId}/${page_id}` : `/dashboard/${appId}/preview?page=${page_id}`}
+                            <a href={`/dashboard/${appId}/preview?page=${page_id}`}
                                 className="preview-menu-link"
                                 target="_blank"
                                 rel="noreferrer">
