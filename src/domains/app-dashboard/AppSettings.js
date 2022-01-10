@@ -22,6 +22,9 @@ const General = ({ appId }) => {
     const [alertSeverity, setAlertSeverity] = useState("success");
     const [alertMessage, setAlertMessage] = useState("Settings saved successfully.");
     const [reloadContent, setReloadContent] = useState(true);
+    const [defaultFontFamily, setDefaultFontFamily] = useState(null);
+    const [defaultFontSize, setDefaultFontSize] = useState(null);
+    const [defaultFontColor, setDefaultFontColor] = useState(null)
 
     const saveChanges = () => {
         setSaveSettings(true);
@@ -48,6 +51,9 @@ const General = ({ appId }) => {
 
     const updateDefaultTheme = (e) => {
         setDefaultTheme(e.target.value);
+        setDefaultFontFamily(DEFAULT_GLOBAL_STYLE[e.target.value].body.fontFamily);
+        setDefaultFontSize(DEFAULT_GLOBAL_STYLE[e.target.value].body.fontSize);
+        setDefaultFontColor(DEFAULT_GLOBAL_STYLE[e.target.value].body.color);
         setInputs(values => ({...values, [e.target.name]: e.target.value}));
     }
 
@@ -56,7 +62,23 @@ const General = ({ appId }) => {
         setInputs(values => ({...values, [e.target.name]: e.target.value}));
     }
 
-    const handleFormChange = (e) => setInputs(values => ({...values, [e.target.name]: e.target.value}));
+    const handleFormChange = (e) =>{
+        switch(e.target.name){
+            case "fontFamily":
+                setDefaultFontFamily(e.target.value);
+                break;
+            case "fontSize":
+                setDefaultFontSize(e.target.value);
+                break;
+            case "color":
+                setDefaultFontColor(e.target.value);
+                break;
+            default:
+                break;
+        }
+        
+        setInputs(values => ({...values, [e.target.name]: e.target.value}));
+    } 
 
     const handleCloseSnackBar = (event, reason) => {
         if (reason === 'clickaway') {
@@ -73,6 +95,9 @@ const General = ({ appId }) => {
                 if (data) {
                     setAppDetails(data);
                     setDefaultTheme(data ? data.buildMode : "scratch");
+                    setDefaultFontFamily(data.globalStyleSettings.body.fontFamily);
+                    setDefaultFontSize(data.globalStyleSettings.body.fontSize);
+                    setDefaultFontColor(data.globalStyleSettings.body.color);
                     setDefaultCategory(data ? data.category : "scratch");
                 }
                 setReloadContent(false);
@@ -80,7 +105,7 @@ const General = ({ appId }) => {
             .catch(error => console.log(error));
         }
     }, [appId, reloadContent]);
-
+console.log(defaultFontFamily)
     return (
         <div className="general-settings-container">
             <header className="header-container">
@@ -212,7 +237,7 @@ const General = ({ appId }) => {
                                     autoComplete="off"
                                     onChange={handleFormChange}
                                     maxLength="50"
-                                    defaultValue={appDetails ? appDetails.globalStyleSettings && Object.keys(appDetails.globalStyleSettings).length !== 0 ? appDetails.globalStyleSettings.body.fontFamily : DEFAULT_GLOBAL_STYLE[defaultTheme].body.fontFamily : ""} />
+                                    value={defaultFontFamily} />
                             </div>
                         </div>
                         <div className="section-row">
@@ -226,7 +251,7 @@ const General = ({ appId }) => {
                                     autoComplete="off"
                                     onChange={handleFormChange}
                                     maxLength="30"
-                                    defaultValue={appDetails ? appDetails.globalStyleSettings && Object.keys(appDetails.globalStyleSettings).length !== 0 ? appDetails.globalStyleSettings.body.fontSize : DEFAULT_GLOBAL_STYLE[defaultTheme].body.fontSize : ""} />
+                                    value={defaultFontSize} />
                             </div>
                         </div>
                         <div className="section-row">
@@ -240,7 +265,7 @@ const General = ({ appId }) => {
                                     autoComplete="off"
                                     onChange={handleFormChange}
                                     maxLength="30"
-                                    defaultValue={appDetails ? appDetails.globalStyleSettings && Object.keys(appDetails.globalStyleSettings).length !== 0 ? appDetails.globalStyleSettings.body.color : DEFAULT_GLOBAL_STYLE[defaultTheme].body.color : ""} />
+                                    value={defaultFontColor} />
                             </div>
                         </div>
                     </form>
