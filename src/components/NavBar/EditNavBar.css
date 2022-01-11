@@ -15,7 +15,7 @@
 .site-logo-container .site-logo-link {
     position: relative;
     display: flex;
-    max-width: 2em;
+    width: 75px;
     padding: 8px;
 }
 
