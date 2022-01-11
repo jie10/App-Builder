@@ -19,7 +19,7 @@ import {
 import "./Settings.css";
 
 const Settings = (props) => {
-    const { block, updateBlock, settingsWidth } = props
+    const { block, updateBlock, isSettingsEnabled } = props
     const [open, setOpen] = useState(false)
     const [blockKey, setBlockKey] = useState(null)
     const [blockParams, setBlockParams] = useState(null)
@@ -123,7 +123,7 @@ const Settings = (props) => {
                 obj['value'] = data[key]
                 params.push(obj)
               })
-              console.log(params)
+
             return <List>
                 {params.map(item => {
                     return <TextField 
@@ -145,7 +145,7 @@ const Settings = (props) => {
     }
     
     return(
-        <div className={`settings-container ${settingsWidth === "0%" ? 'settings-container-hide' : ''}`}>
+        <div className={`settings-container ${isSettingsEnabled  ? '' : 'settings-container-hide'}`}>
             {block && getSettings(block)}
         </div>
     )

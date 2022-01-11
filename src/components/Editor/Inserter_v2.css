@@ -1,3 +1,24 @@
+.inserter-container {
+    position: fixed;
+    top: 58px;
+    left: 0;
+    display: block;
+    border-left: 1.5px solid #F0F0F0;
+    background-color: #ffffff;
+    height: calc(100vh - 50px);
+    width: 25%;
+    z-index: 999;
+}
+
+.inserter-container-hide {
+    display: none;
+}
+
+.inserter-container .patterns-list-container p {
+    font-size: 1rem;
+    text-align: center;
+}
+
 .component-tabs {
     position: relative;
     width: 100%;

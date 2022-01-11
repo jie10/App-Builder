@@ -189,7 +189,7 @@ const BlocksList = (props) => {
 
 const PatternsList = (props) => {
     return (
-        <div>
+        <div className='patterns-list-container'>
             <p>Patterns List goes here!</p>
         </div>
     );
@@ -394,7 +394,7 @@ const ComponentTabs = (props) => {
 }
 
 const Inserter = (props) => {
-    const { isInserterVisible, sendBlocks } = props
+    const { isInserterVisible, sendBlocks, isInserterEnabled } = props
     const [components , setComponents] = useState(null);
 
     useEffect(() => {
@@ -406,9 +406,9 @@ const Inserter = (props) => {
     }, []);
 
     return(
-        <Fragment>
+        <div className={`inserter-container ${isInserterEnabled  ? '' : 'inserter-container-hide'}`}>
             { isInserterVisible && <ComponentTabs sendBlocks={sendBlocks} components={components} /> }
-        </Fragment>
+        </div>
     )
 }
 

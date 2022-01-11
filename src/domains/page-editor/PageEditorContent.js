@@ -1,5 +1,4 @@
 import React from 'react';
-import Grid from '@mui/material/Grid';
 
 /** List of available project themes */
 import { applyCustomTheme } from "../../themes/CustomTheme";
@@ -17,7 +16,7 @@ import Settings from '../../components/Editor/Settings';
 import "./PageEditorContent.css";
 
 const PageEditorContent = (props) => {
-    const { projectBuldMode, customGlobalStyleSettings, inserterWidth, canvasWidth, settingsWidth, selectedPreviewMenu } = props;
+    const { projectBuldMode, customGlobalStyleSettings, selectedPreviewMenu, isInserterEnabled, isSettingsEnabled } = props;
 
     const loadProjectThemeStyle = (buildMode) => {
         switch (buildMode) {
@@ -47,32 +46,16 @@ const PageEditorContent = (props) => {
 
     const loadCustomGlobalStyleSettings = () => customGlobalStyleSettings ? applyCustomTheme(customGlobalStyleSettings) : null;
 
-    const inserterContainerStyle = {
-                                        width: inserterWidth,
-                                        backgroundColor: '#ffffff',
-                                        height: 'calc(100vh - 50px)'
-                                    };
-
-    const settingsContainerStyle = {
-                                        width: settingsWidth,
-                                        backgroundColor: '#ffffff',
-                                        height: 'calc(100vh - 50px)'
-                                    };
-
     return (
-        <Grid container style={{marginTop: '50px'}}>
-            <Grid item style={inserterContainerStyle}>
-                <Inserter />
-            </Grid>
-            <Grid item style={{width: canvasWidth, margin: '0px', backgroundColor: "#EDEDED"}}>
+        <div className='page-editor-content-container'>
+            <Inserter isInserterEnabled={isInserterEnabled} />
+            <>
                 { loadProjectTheme(projectBuldMode) }
                 { loadCustomGlobalStyleSettings() }
-                <Canvas themeStyle={loadProjectThemeStyle(projectBuldMode)} selectedPreviewMenu={selectedPreviewMenu} />
-            </Grid>
-            <Grid item style={settingsContainerStyle}>
-                <Settings settingsWidth={settingsWidth} />
-            </Grid>
-        </Grid>
+                <Canvas isInserterEnabled={isInserterEnabled} isSettingsEnabled={isSettingsEnabled} themeStyle={loadProjectThemeStyle(projectBuldMode)} selectedPreviewMenu={selectedPreviewMenu} />
+            </>
+            <Settings isSettingsEnabled={isSettingsEnabled} />
+        </div>
     );
 }
 

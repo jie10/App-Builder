@@ -36,10 +36,22 @@ class Canvas extends Component {
     }
 
     render() {
-        const { blocks, themeStyle, selectedPreviewMenu } = this.props;
+        const { blocks, themeStyle, selectedPreviewMenu, isSettingsEnabled, isInserterEnabled } = this.props;
+
+        let canvasSize = () => {
+            if (isSettingsEnabled && isInserterEnabled) {
+                return { width: "57%", margin: "0 18% 0 25%" }
+            } else if (isSettingsEnabled && !isInserterEnabled) {
+                return { width: "82%", margin: "0 18% 0 0" }
+            } else if (!isSettingsEnabled && isInserterEnabled) {
+                return { width: "75%", margin: "0 0 0 25%" }
+            } else {
+                return { width: "100%" }
+            }
+        }
 
         return(
-            <div className='canvas-container'>
+            <div className='canvas-container' style={canvasSize()}>
                 <div className={`content-container ${selectedPreviewMenu === "tablet" ? 'content-container-tablet' : selectedPreviewMenu === "mobile" ? 'content-container-mobile' : 'content-container-desktop'}`}>
                     { blocks && Object.keys(blocks).map(key => {
                         let block = blocks[key];

@@ -1,10 +1,27 @@
 .settings-container {
+    position: fixed;
+    top: 58px;
+    right: 0;
     display: flex;
-    padding: 16px 8px 0 8px;
+    background-color: #ffffff;
     border-left: 1.5px solid #F0F0F0;
-    height: 100%;
+    height: calc(100vh - 50px);
+    width: 18%;
+    z-index: 999;
+    padding: 16px 0;
 }
 
+.settings-container p {
+    display: block;
+    width: 80%;
+    font-size: 1rem;
+    text-align: center;
+    align-self: center;
+    margin: auto;
+}
+/* 
+backgroundColor: '#ffffff',
+                                        height: 'calc(100vh - 50px)' */
 .settings-container-hide {
     display: none;
 }
