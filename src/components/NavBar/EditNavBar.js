@@ -43,8 +43,6 @@ import { useOutsideClick } from '../../utils/helpers/hooks';
 
 import siteLogo from "../../assets/logos/ceblogo.png";
 
-const currentURL = window.location.pathname;
-
 const theme = createTheme({
     components: {
         MuiFormControlLabel: {
@@ -76,6 +74,7 @@ const EditNavBar = (props) => {
 
     const { page_id } = useParams();
     let query = useQuery();
+    const { id } = useParams();
 
     const refToolsMenu = useRef(null);
     const refDetailsMenu = useRef(null);
@@ -455,7 +454,7 @@ const EditNavBar = (props) => {
     return (
         <div className="edit-nav-bar-container">
             <div className="site-logo-container">
-                <a className="site-logo-link" href={ currentURL } target="_self">
+                <a className="site-logo-link" href={ `/dashboard/${id}/home` } target="_self">
                     <div className="logo-protector"></div>
                     <img className="site-logo" src={siteLogo} alt="logo" />
                 </a>

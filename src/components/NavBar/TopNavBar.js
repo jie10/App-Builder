@@ -148,7 +148,7 @@ const TopNavBar = () => {
     return (
         <div className="top-nav-bar-container">
             <div className="top-nav-bar top-nav-bar-site-nav">
-                <a className="site-logo-link" href={ currentURL } target="_self">
+                <a className="site-logo-link" href={ `/account/apps` } target="_self">
                     <div className="logo-protector"></div>
                     <img className="site-logo" src={siteLogo} alt="logo" />
                 </a>
