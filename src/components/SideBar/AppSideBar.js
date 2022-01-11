@@ -18,6 +18,7 @@ import {
 
 import "./AppSideBar.css";
 
+import { useOutsideClick } from '../../utils/helpers/hooks';
 import { getProjectNameById } from '../../api/Projects';
 
 const MainHeader = (props) => {
@@ -58,6 +59,7 @@ const MainHeader = (props) => {
 const AppSideBar = (props) => {
     const { menuOnCollapse, setMenuOnCollapse, pageName, subPageName, currentAppId } = props;
     const menuItemRef = useRef([]);
+    const sidebarRef = useRef(null);
     const currentButtonRef = useRef(null);
     const currentMenuItemRef = useRef(null);
 
@@ -300,6 +302,11 @@ const AppSideBar = (props) => {
         });
       });
 
+    useOutsideClick(sidebarRef, () => {
+        currentMenuItemRef.current.style.display = "none";
+            currentButtonRef.current && currentButtonRef.current.classList.remove('active-menu-item');
+    });
+
     return (
         <div className={`app-side-bar-container ${menuOnCollapse ? 'app-side-bar-minimize' : ''}`}>
             <MainHeader menuOnCollapse={menuOnCollapse} currentAppId={currentAppId} />
@@ -348,7 +355,7 @@ const AppSideBar = (props) => {
                                 : null }
                         </>
             }) }
-            <div className={`side-nav-menu`}>
+            <div className={`side-nav-menu`} ref={sidebarRef}>
                 <div className="menu-item" onClick={handleMenuOnCollapse} onMouseOver={handleCollapseMenuOnHover}>
                     <span className="nav-icon">
                         {menuOnCollapse ? <KeyboardArrowRightOutlinedIcon/> : <KeyboardArrowLeftOutlinedIcon/>}
