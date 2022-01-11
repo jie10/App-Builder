@@ -303,8 +303,11 @@ const AppSideBar = (props) => {
       });
 
     useOutsideClick(sidebarRef, () => {
-        currentMenuItemRef.current.style.display = "none";
-            currentButtonRef.current && currentButtonRef.current.classList.remove('active-menu-item');
+        if (currentMenuItemRef.current) {
+            currentMenuItemRef.current.style.display = "none";
+        }
+
+        currentButtonRef.current && currentButtonRef.current.classList.remove('active-menu-item');
     });
 
     return (
