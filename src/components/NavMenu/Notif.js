@@ -1,7 +1,64 @@
 import React from 'react';
+import { useParams } from 'react-router-dom';
 import notifBellImage from "../../assets/images/notif-bell-image.png";
 
+import './Notif.css';
+
 const Notif = ({ refNotifMenu, openNotifMenu }) => {
+    let { id } = useParams();
+
+    const notifList = {
+        "61ad9e3f9b8c33f82b6e8aed": [
+            {
+                icon: "/images/build_project_notif_icon.png",
+                message: "Building Project",
+                timeFromNow: "Now",
+                timestamp: 1642475940,
+                status: "pending",
+                next_action: "",
+                next_source_url: ""
+            },
+            {
+                icon: "/images/build_project_notif_icon.png",
+                message: "Project Build Successful",
+                timeFromNow: "4d ago",
+                timestamp: 1642089600,
+                status: "success",
+                next_action: "View",
+                next_source_url: `/dashboard/${id}/preview`
+            },
+            {
+                icon: "/images/build_project_notif_icon.png",
+                message: "Project Build Failed",
+                timeFromNow: "3d ago",
+                tmestamp: 1642003200,
+                status: "error",
+                next_action: "Retry",
+                next_source_url: `/dashboard/${id}/preview`
+            }
+        ]
+    };
+
+    const goToURL = (url) => window.location.href = url;
+
+    const showNotifList = () => {
+        return(<div className='notif-list-container'>
+            { notifList[id].sort().map((item, i) => <div className='notif-list-item' key={i}>
+                <div className={`notif-status-indicator notif-status-${item.status}`}></div>
+                <div className='notif-item-icon'>
+                    <img src={item.icon} alt='build project notif' />
+                </div>
+                <div className='notif-details-container'>
+                    <p className='notif-message'>{item.message}</p>
+                    <span className='notif-time-from-now'>{item.timeFromNow}</span>
+                </div>
+                <div className='notif-item-action'>
+                    { item.next_action ? <button className='notif-action-button' onClick={() => goToURL(item.next_source_url)}>{item.next_action}</button> : null }
+                </div>
+            </div>) }
+        </div>);
+    }
+
     const showEmptyNotifList = () => {
         return (<div className="no-results-container">
                     <div className="no-results-image">
@@ -18,7 +75,7 @@ const Notif = ({ refNotifMenu, openNotifMenu }) => {
                     <span className="header-title">Notifications</span>
                 </div>
                 <div className="list-content">
-                    { showEmptyNotifList() }
+                    { notifList[id] && notifList[id].length > 0 ? showNotifList() : showEmptyNotifList() }
                 </div>
             </div>);
 }
