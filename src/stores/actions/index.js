@@ -1,4 +1,5 @@
 import { v4 as uuidv4 } from 'uuid'
+import openSocket from "socket.io-client"
 
 import { 
     ACTION_GET_COMPONENTS, 
@@ -11,8 +12,11 @@ import {
     ACTION_DELETE_BLOCKS,
     ACTION_MOVE_UP_BLOCK,
     ACTION_MOVE_DOWN_BLOCK,
-    ACTION_UPDATE_BLOCK
+    ACTION_UPDATE_BLOCK,
+    INITSOCKET
  } from './types'
+
+ import { SOCKETURL } from '../../utils/constants/socket'
 
 export const getComponents = () => async dispatch => {
     var components = [
@@ -67,4 +71,31 @@ export const toggleInserter = (mode) => async dispatch => {
 
 export const toggleSettings = (mode) => async dispatch => {
     dispatch({type: ACTION_TOGGLE_SETTINGS, payload: mode})
+}
+
+export const getProjectNotif = () => async dispatch => {
+    const sessionID = uuidv4();
+    dispatch(initSocket(sessionID));
+}
+
+const initSocket = (sessionID) => async dispatch => {
+    const socket = openSocket(SOCKETURL, {  transports: ['websocket'], 
+                                            reconnection: true,
+                                            reconnectionAttempts: Infinity,
+                                            reconnectionDelay: 1000,
+                                            reconnectionDelayMax: 5000,
+                                            randomizationFactor: 0.5
+                                        });
+
+    socket.emit("chat_message", `hello from web widget ${sessionID}`);
+
+    socket.on("chat_message", sf => {
+        dispatch({type: INITSOCKET, payload: { socketID: socket.id, message: sf }});
+    });
+
+    socket.on(sessionID, async data => {
+        console.log(data);
+    });
+
+    socket.open();
 }
