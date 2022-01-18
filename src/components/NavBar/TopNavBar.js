@@ -15,8 +15,9 @@ import { getProjects } from '../../api/Projects';
 
 import { sampleUser } from "../../utils/constants/dataMart";
 
+import Notif from '../NavMenu/Notif';
+
 import siteLogo from "../../assets/logos/ceblogo.png";
-import notifBellImage from "../../assets/images/notif-bell-image.png";
 
 const currentURL = window.location.pathname;
 
@@ -247,21 +248,7 @@ const TopNavBar = () => {
                             </Tooltip>
                         </span>
                     </div>
-                    <div className="notif-list-items" ref={refNotifMenu} style={{display: openNotifMenu ? "block" : "none"}}>
-                        <div className="pointer"></div>
-                        <div className="list-header">
-                            <span className="header-title">Notifications</span>
-                        </div>
-                        <div className="list-content">
-                            <div className="no-results-container">
-                                <div className="no-results-image">
-                                    <img src={notifBellImage} alt="notfication bell" />
-                                </div>
-                                <h3 className="no-results-title">Get Notified Here</h3>
-                                <p className="no-results-description">This is where you’ll see all your notifications from users, apps and more.</p>
-                            </div>
-                        </div>
-                    </div>
+                    <Notif refNotifMenu={refNotifMenu} openNotifMenu={openNotifMenu} />
                 </div>
                 <div className="vertical-divider"></div>
                 <div className="user-nav">
