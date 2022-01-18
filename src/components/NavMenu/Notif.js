@@ -1,5 +1,7 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
+import Loader from "react-loader-spinner";
+
 import notifBellImage from "../../assets/images/notif-bell-image.png";
 
 import './Notif.css';
@@ -14,6 +16,7 @@ const Notif = ({ refNotifMenu, openNotifMenu }) => {
                 message: "Building Project",
                 timeFromNow: "Now",
                 timestamp: 1642475940,
+                pending_progress_percent: 20,
                 status: "pending",
                 next_action: "",
                 next_source_url: ""
@@ -23,6 +26,7 @@ const Notif = ({ refNotifMenu, openNotifMenu }) => {
                 message: "Project Build Successful",
                 timeFromNow: "4d ago",
                 timestamp: 1642089600,
+                pending_progress_percent: null,
                 status: "success",
                 next_action: "View",
                 next_source_url: `/dashboard/${id}/preview`
@@ -32,6 +36,7 @@ const Notif = ({ refNotifMenu, openNotifMenu }) => {
                 message: "Project Build Failed",
                 timeFromNow: "3d ago",
                 tmestamp: 1642003200,
+                pending_progress_percent: null,
                 status: "error",
                 next_action: "Retry",
                 next_source_url: `/dashboard/${id}/preview`
@@ -49,11 +54,16 @@ const Notif = ({ refNotifMenu, openNotifMenu }) => {
                     <img src={item.icon} alt='build project notif' />
                 </div>
                 <div className='notif-details-container'>
-                    <p className='notif-message'>{item.message}</p>
+                    <p className='notif-message'>{item.message} - {item.pending_progress_percent ? <span className='notf-pending-progress'>{item.pending_progress_percent}%</span> : ''}</p>
                     <span className='notif-time-from-now'>{item.timeFromNow}</span>
                 </div>
                 <div className='notif-item-action'>
-                    { item.next_action ? <button className='notif-action-button' onClick={() => goToURL(item.next_source_url)}>{item.next_action}</button> : null }
+                    { item.next_action ? <button className='notif-action-button' onClick={() => goToURL(item.next_source_url)}>{item.next_action}</button> : <Loader
+                type="Oval"
+                color="#00BFFF"
+                height={18}
+                width={40}
+            /> }
                 </div>
             </div>) }
         </div>);

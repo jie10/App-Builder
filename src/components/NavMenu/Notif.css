@@ -82,6 +82,10 @@
     font-size: 1rem;
 }
 
+.notif-list-items .list-content .notif-list-container .notif-list-item .notif-details-container .notif-message .notf-pending-progress {
+    font-weight: 300;
+}
+
 .notif-list-items .list-content .notif-list-container .notif-list-item .notif-details-container .notif-time-from-now {
     margin: 0;
     font-size: 0.875rem;
