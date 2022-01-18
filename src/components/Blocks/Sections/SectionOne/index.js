@@ -18,38 +18,37 @@ const SectionOne = (props) => {
     }
 
     return(
-        <div
-        className='image_with_text_section'
+        <div className='image_with_text_section'
         style={{
             width: '100%',
-            height: block.parameters.height,
-            backgroundColor: block.parameters.backgroundColor
         }} onClick={() => getBlock(_id, block)}>
-        <Grid container direction="row" justifyContent="flex-end" alignItems="center">
-            <Grid item onClick={() => moveUpBlock(_id)}>
-                <img 
-                    className='buttoncontrols' 
-                    alt='upbutton' 
-                    src='/images/round_expand_less_black_24dp.png' />
-            </Grid>
-            <Grid item onClick={() => moveDownBlock(_id)}>
-                <img 
-                    className='buttoncontrols' 
-                    alt='downbutton' 
-                    src='/images/round_expand_more_black_24dp.png' />
-            </Grid>
-            <Grid item onClick={() => deleteBlock(_id)}>
-                <img 
-                    className='buttoncontrols' 
-                    alt='deletebutton' 
-                    src='/images/round_close_black_24dp.png' />
-            </Grid>
-        </Grid>
-        
-        <div class="justify-content-md-center row">
-            <div class='col-md-5'
-                style={{ borderRadius: block.parameters.borderRadius,
-                    boxShadow: block.parameters.boxShadow}}>
+            <div class="justify-content-md-center row">
+                <div class='col-md-5'
+                    style={{ 
+                        height: block.parameters.height,
+                        backgroundColor: block.parameters.backgroundColor,
+                        borderRadius: block.parameters.borderRadius,
+                        boxShadow: block.parameters.boxShadow}}>
+                <Grid container direction="row" justifyContent="flex-end" alignItems="center">
+                    <Grid item onClick={() => moveUpBlock(_id)}>
+                        <img 
+                            className='buttoncontrols' 
+                            alt='upbutton' 
+                            src='/images/round_expand_less_black_24dp.png' />
+                    </Grid>
+                    <Grid item onClick={() => moveDownBlock(_id)}>
+                        <img 
+                            className='buttoncontrols' 
+                            alt='downbutton' 
+                            src='/images/round_expand_more_black_24dp.png' />
+                    </Grid>
+                    <Grid item onClick={() => deleteBlock(_id)}>
+                        <img 
+                            className='buttoncontrols' 
+                            alt='deletebutton' 
+                            src='/images/round_close_black_24dp.png' />
+                    </Grid>
+                </Grid>
                 <div class='text-left'>
                     <div class="photo">
                         <img src={block.parameters.image} alt="new section with text" />

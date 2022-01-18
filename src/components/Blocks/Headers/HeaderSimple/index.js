@@ -20,8 +20,7 @@ const HeaderSimple = (props) => {
     return(
         <div
             style={{
-            width: '100%',
-            height: block.parameters.height,
+            width: '100%'
             
         }} onClick={() => getBlock(_id, block)}>
         <Grid container direction="row" justifyContent="flex-end" alignItems="center">
@@ -44,13 +43,15 @@ const HeaderSimple = (props) => {
                     src='/images/round_close_black_24dp.png' />
             </Grid>
         </Grid>
-        <div className = 'cebapp-header-component ng-tns-c13-32 height-small rounded-buttom ng-star-inserted'
+        <div className = 'cebapp-header-component rounded-buttom '
             style={{backgroundColor: block.parameters.backgroundColor,
                 borderBottom: block.parameters.borderBottom,
-                borderRadius: block.parameters.borderRadius}}>
-            <figure className="ng-tns-c7-33 ng-star-inserted">
-                <img className="ng-tns-c7-33" alt="" src={block.parameters.image}/>
-                
+                borderRadius: block.parameters.borderRadius,
+                height: block.parameters.height}}>
+            <figure>
+                <img alt="" src={block.parameters.image} 
+                    style={{width: block.parameters.bannerImageWidth,
+                            float: block.parameters.bannerImagePosition}}/>
             </figure>
             <div className = 'banner-content container height-small'>
                 <span className = 'country text-blue'>

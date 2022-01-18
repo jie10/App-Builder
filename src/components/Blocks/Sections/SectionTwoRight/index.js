@@ -22,8 +22,7 @@ const SectionTwoRight = (props) => {
         className='right_image_with_text_and_button_section'
         style={{
             width: '100%',
-            height: block.parameters.height,
-            backgroundColor: block.parameters.backgroundColor,
+            height: block.parameters.height
         }} onClick={() => getBlock(_id, block)}>
         <Grid container direction="row" justifyContent="flex-end" alignItems="center">
             <Grid item onClick={() => moveUpBlock(_id)}>
@@ -47,7 +46,8 @@ const SectionTwoRight = (props) => {
         </Grid>
         <div className='c-about-landing__two-columns c-about-landing__two-columns--space'
             style={{ borderRadius: block.parameters.borderRadius,
-                boxShadow: block.parameters.boxShadow}}>
+                boxShadow: block.parameters.boxShadow,
+                backgroundColor: block.parameters.backgroundColor}}>
             <div style={{ flexBasis: block.parameters.flexBasisLeft}}>
                 <div style={{padding: '24px 24px 0'}}>
                     <h4 style={{
@@ -56,7 +56,8 @@ const SectionTwoRight = (props) => {
                         color: block.parameters.titleColors
                     }}>{block.parameters.title}</h4>
                     <p>{block.parameters.text}</p>
-                    <a class="o-btn o-btn--primary-blue" target="_self" href={block.parameters.url}> View more information </a>
+                    <a class="o-btn o-btn--primary-blue" target="_self" href={block.parameters.url}
+                        style={{background: block.parameters.buttonColor}}> View more information </a>
                 </div>
             </div>
             <div style={{ flexBasis: block.parameters.flexBasisRight}}>

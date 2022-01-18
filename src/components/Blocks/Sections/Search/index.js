@@ -22,8 +22,7 @@ const SearchBarSection = (props) => {
         className='search_bar_section'
         style={{
             width: '100%',
-            height: block.parameters.height,
-            backgroundColor: block.parameters.backgroundColor
+            height: block.parameters.height
         }} onClick={() => getBlock(_id, block)}>
         <Grid container direction="row" justifyContent="flex-end" alignItems="center">
             <Grid item onClick={() => moveUpBlock(_id)}>
@@ -51,13 +50,14 @@ const SearchBarSection = (props) => {
             <div class="city-guides-search" id="search-keywords">
                 <div class="c-search-for">
                     <div class="container">
-                        <div class="c-search-for__input ng-untouched ng-pristine ng-valid">
+                        <div class="c-search-for__input ng-untouched ng-pristine ng-valid" style={{backgroundColor: block.parameters.backgroundColor}}>
                             <div class="o-form_input">
                                 <span class="title">Search keyword/s</span>
                                     <input type="text" placeholder="Search" class="ng-untouched ng-pristine ng-valid"/>
                                     <span class="magnifiying-glass-click"></span>
                             </div>
-                            <button class="o-btn o-btn--primary-blue">Search</button>
+                            <button class="o-btn o-btn--primary-blue" 
+                                style={{background: block.parameters.buttonColor}}>Search</button>
                         </div>
                     </div>
                 </div>
