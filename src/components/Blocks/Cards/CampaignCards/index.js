@@ -18,11 +18,10 @@ const CampaignCards = (props) => {
     }
 
     return(
-        <div id='page-content-wrapper'>
         <div style={{
             width: '100%',
             height: block.parameters.height,
-            backgroundColor: block.parameters.backgroundColor
+            
         }} onClick={() => getBlock(_id, block)}>
         <Grid container direction="row" justifyContent="flex-end" alignItems="center">
             <Grid item onClick={() => moveUpBlock(_id)}>
@@ -45,20 +44,21 @@ const CampaignCards = (props) => {
             </Grid>
         </Grid>
         <div className="c-campaigns__cards">
-            <div className="c-campaigns__card ng-star-inserted">
+            <div className="c-campaigns__card" style={{backgroundColor: block.parameters.backgroundColor}}>
                 <div>
                     <img alt="" src={block.parameters.card1Image}/>
                 </div>
                 <div className="content">
                     <h6><strong>{block.parameters.card1Title}</strong></h6>
                     <p><p>As the country's leading carrier, Cebu Pacific celebrates its 25th year by continuously making air travel fun, safe, convenient, flexible, accessible, and affordable for everyJuan.</p></p>
-                    <button className="o-btn fixed-size o-btn--primary-blue" type="button"> View more information</button>
+                    <button className="o-btn fixed-size o-btn--primary-blue" type="button"
+                        style={{background: block.parameters.buttonColor}}> View more information</button>
                 </div>
             </div>
         </div>
         
         </div>
-        </div>
+        
     )
 }
 

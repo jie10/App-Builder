@@ -22,8 +22,7 @@ const ImageSection = (props) => {
         <div className="image_only_section"
             style={{
                 width: '100%',
-                height: block.parameters.height,
-                backgroundColor: block.parameters.backgroundColor
+                height: block.parameters.height
             }}
             onClick={() => getBlock(_id, block)}>
         <Grid container direction="row" justifyContent="flex-end" alignItems="center">
@@ -49,7 +48,8 @@ const ImageSection = (props) => {
         
         <div className='row' style={{ justifyContent: block.parameters.alignment}}>
             <div className='col-md-5' style={{ borderRadius: block.parameters.borderRadius,
-                boxShadow: block.parameters.boxShadow}}>
+                boxShadow: block.parameters.boxShadow,
+                backgroundColor: block.parameters.backgroundColor}}>
                 <div className='text-left'>
                     <div className="photo">
                         <img src={block.parameters.image} style={{ borderRadius: block.parameters.borderRadius}}/>
