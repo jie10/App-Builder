@@ -21,8 +21,7 @@ const VideoSection = (props) => {
         <div className='video_only_section'
             style={{
                 width: '100%',
-                height: block.parameters.height,
-                backgroundColor: block.parameters.backgroundColor
+                height: block.parameters.height
             }}
             onClick={() => getBlock(_id, block)}>
         <Grid container direction="row" justifyContent="flex-end" alignItems="center">
@@ -46,12 +45,13 @@ const VideoSection = (props) => {
             </Grid>
         </Grid>
         
-        <div style={{ borderRadius: block.parameters.borderRadius,
-                boxShadow: block.parameters.boxShadow}}>
-            <div className='row' style={{ justifyContent: block.parameters.alignment,
+        <div className='row' style={{ justifyContent: block.parameters.alignment,
                 }}>
+            <div style={{ borderRadius: block.parameters.borderRadius,
+                boxShadow: block.parameters.boxShadow,
+                backgroundColor: block.parameters.backgroundColor}}>
                 <video src={block.parameters.video} controls 
-                style={{width: '100%',
+                style={{width: block.parameters.videoSize,
                     borderRadius: block.parameters.borderRadius}}></video>
             </div>
         </div>

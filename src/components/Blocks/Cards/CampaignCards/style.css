@@ -2,6 +2,8 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    max-width: 1024px;
+    margin: 0 auto;
 }
 
 .c-campaigns__card {

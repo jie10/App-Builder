@@ -12,7 +12,11 @@ import {
 
 const GuideBanner = (props) => {
 
-    const { _id, block, deleteBlock, moveUpBlock, moveDownBlock, getBlock } = props
+    const { _id, block, deleteBlock, moveUpBlock, moveDownBlock, getBlock, themeStyle } = props
+
+    if (block.status === "added") {
+        block.parameters = themeStyle
+    }
 
     return(
         <div className='cebapp-banner-component-guide ng-tns-c13-33 height-medium ng-star-inserted' 

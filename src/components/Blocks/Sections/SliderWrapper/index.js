@@ -50,7 +50,28 @@ const SliderWrapperSection = (props) => {
         <div class='row' style={{ justifyContent: block.parameters.alignment}}>
             <div class="c-city-popular-destinations__slider-wrapper">
                 <div class="c-city-popular-destinations__slider">
-                    <div class="c-city-popular-destinations__cards ng-star-inserted">
+                    <div class="c-city-popular-destinations__cards">
+                        <figure>
+                            <img src="https://cdn.media.amplience.net/i/cebupacificair/City_Guide_Boracay?w=600&amp;sm=c&amp;scaleFit=poi&amp;poi={$this.metadata.pointOfInterest.x},{$this.metadata.pointOfInterest.y},{$this.metadata.pointOfInterest.w},{$this.metadata.pointOfInterest.h}"/>
+                                <span class="city-name">Boracay</span>
+                                <a class="o-btn o-btn--primary-blue" href="javascript: void(0)">See guide</a>
+                        </figure>
+                    </div>
+                    <div class="c-city-popular-destinations__cards">
+                        <figure>
+                            <img src="https://cdn.media.amplience.net/i/cebupacificair/City_Guide_Boracay?w=600&amp;sm=c&amp;scaleFit=poi&amp;poi={$this.metadata.pointOfInterest.x},{$this.metadata.pointOfInterest.y},{$this.metadata.pointOfInterest.w},{$this.metadata.pointOfInterest.h}"/>
+                                <span class="city-name">Boracay</span>
+                                <a class="o-btn o-btn--primary-blue" href="javascript: void(0)">See guide</a>
+                        </figure>
+                    </div>
+                    <div class="c-city-popular-destinations__cards">
+                        <figure>
+                            <img src="https://cdn.media.amplience.net/i/cebupacificair/City_Guide_Boracay?w=600&amp;sm=c&amp;scaleFit=poi&amp;poi={$this.metadata.pointOfInterest.x},{$this.metadata.pointOfInterest.y},{$this.metadata.pointOfInterest.w},{$this.metadata.pointOfInterest.h}"/>
+                                <span class="city-name">Boracay</span>
+                                <a class="o-btn o-btn--primary-blue" href="javascript: void(0)">See guide</a>
+                        </figure>
+                    </div>
+                    <div class="c-city-popular-destinations__cards">
                         <figure>
                             <img src="https://cdn.media.amplience.net/i/cebupacificair/City_Guide_Boracay?w=600&amp;sm=c&amp;scaleFit=poi&amp;poi={$this.metadata.pointOfInterest.x},{$this.metadata.pointOfInterest.y},{$this.metadata.pointOfInterest.w},{$this.metadata.pointOfInterest.h}"/>
                                 <span class="city-name">Boracay</span>

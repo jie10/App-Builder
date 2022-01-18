@@ -33,6 +33,7 @@ export const ENTERPRISE_THEME_STYLE = {
     video: "https://cdn.media.amplience.net/v/cebupacificair/[ONTIVA.COM]-A Message from our Chief Pilot for our 25th Anniversary-720P/mp4_720p",
     alignment: "center",
     borderRadius: "12px",
+    videoSize: "600px",
     boxShadow: "3px 3px 3px 3px #efefef",
   },
   ".image_with_text_section": {
@@ -52,12 +53,13 @@ export const ENTERPRISE_THEME_STYLE = {
     image: "https://cdn.media.amplience.net/i/cebupacificair/Our-Story-About?w=800&amp;sm=c&amp;scaleFit=poi&amp;poi={$this.metadata.pointOfInterest.x},{$this.metadata.pointOfInterest.y},{$this.metadata.pointOfInterest.w},{$this.metadata.pointOfInterest.h}",
     title: "Title",
     text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent quis sapien quis lectus elementum laoreet sed sit amet velit. Praesent nec enim est. Nulla blandit bibendum ipsum non gravida. Nam placerat purus quis lacinia consequat. Donec magna dolor, dictum ut tortor auctor, pulvinar ultricies turpis. Sed vulputate nunc sit amet iaculis placerat. Morbi non risus vel ex iaculis bibendum. Cras sit amet eleifend nisi, at mattis tortor. Nunc id ornare nunc. Donec porttitor euismod magna eu fermentum.",
-    url: "/pages/about/our-story/our-fleet",
     borderRadius: "12px",
     boxShadow: "3px 3px 3px 3px #efefef",
     titleColors: "#0074c9",
     flexBasisLeft: "30%",
-    flexBasisRight: "70%"
+    flexBasisRight: "70%",
+    url: "/pages/about/our-story/our-fleet",
+    buttonColor: "#0077c8"
   },
   ".right_image_with_text_and_button_section": {
     backgroundColor: "#FFFFFF",
@@ -65,12 +67,13 @@ export const ENTERPRISE_THEME_STYLE = {
     image: "https://cdn.media.amplience.net/i/cebupacificair/Our-Story-About?w=800&amp;sm=c&amp;scaleFit=poi&amp;poi={$this.metadata.pointOfInterest.x},{$this.metadata.pointOfInterest.y},{$this.metadata.pointOfInterest.w},{$this.metadata.pointOfInterest.h}",
     title: "Title",
     text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent quis sapien quis lectus elementum laoreet sed sit amet velit. Praesent nec enim est. Nulla blandit bibendum ipsum non gravida. Nam placerat purus quis lacinia consequat. Donec magna dolor, dictum ut tortor auctor, pulvinar ultricies turpis. Sed vulputate nunc sit amet iaculis placerat. Morbi non risus vel ex iaculis bibendum. Cras sit amet eleifend nisi, at mattis tortor. Nunc id ornare nunc. Donec porttitor euismod magna eu fermentum.",
-    url: "/pages/about/our-story/our-fleet",
     borderRadius: "12px",
     boxShadow: "3px 3px 3px 3px #efefef",
     titleColors: "#0074c9",
     flexBasisLeft: "70%",
-    flexBasisRight: "30%"
+    flexBasisRight: "30%",
+    url: "/pages/about/our-story/our-fleet",
+    buttonColor: "#0077c8"
   },
   ".accordion_section": {
     backgroundColor: "#FFFFFF",
@@ -79,7 +82,7 @@ export const ENTERPRISE_THEME_STYLE = {
     text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent quis sapien quis lectus elementum laoreet sed sit amet velit. Praesent nec enim est. Nulla blandit bibendum ipsum non gravida. Nam placerat purus quis lacinia consequat. Donec magna dolor, dictum ut tortor auctor, pulvinar ultricies turpis. Sed vulputate nunc sit amet iaculis placerat. Morbi non risus vel ex iaculis bibendum. Cras sit amet eleifend nisi, at mattis tortor. Nunc id ornare nunc. Donec porttitor euismod magna eu fermentum."
   },
   ".breadcrumbs": {
-    backgroundColor: "#FFFFFF",
+    backgroundColor: "",
     height: "auto",
     homepageName: "Home",
     homepagePath: "/homepage",
@@ -101,6 +104,7 @@ export const ENTERPRISE_THEME_STYLE = {
   ".search_bar_section": {
     backgroundColor: "#FFFFFF",
     height: "auto",
+    buttonColor: "#0077c8"
   },
   ".slider_wrapper_section": {
     backgroundColor: "#FFFFFF",
@@ -127,9 +131,11 @@ export const ENTERPRISE_THEME_STYLE = {
   },
   ".header_simple": {
     backgroundColor: "#ffffff",
-    height: "160px",
+    height: "260px",
     title: "Header",
-    image: "",
+    image: "https://images.jgsummit.com.ph/2018/05/23/2cfee4f98eb5e32d09abbc04dd5e18b777492fae.jpg",
+    bannerImageWidth: "50%",
+    bannerImagePosition: "right",
     borderBottom: "1px solid #efefef",
     borderRadius: "0"
   },
@@ -151,7 +157,8 @@ export const ENTERPRISE_THEME_STYLE = {
     card2Title: "Corporate Governance",
     card2Image: "https://cdn.media.amplience.net/i/cebupacificair/Corp-Gov?w=600&amp;sm=c&amp;scaleFit=poi&amp;poi={$this.metadata.pointOfInterest.x},{$this.metadata.pointOfInterest.y},{$this.metadata.pointOfInterest.w},{$this.metadata.pointOfInterest.h}",
     card3Title: "Corporate Disclosures",
-    card3Image: "https://cdn.media.amplience.net/i/cebupacificair/Corp-Disclosure?w=600&amp;sm=c&amp;scaleFit=poi&amp;poi={$this.metadata.pointOfInterest.x},{$this.metadata.pointOfInterest.y},{$this.metadata.pointOfInterest.w},{$this.metadata.pointOfInterest.h}"
+    card3Image: "https://cdn.media.amplience.net/i/cebupacificair/Corp-Disclosure?w=600&amp;sm=c&amp;scaleFit=poi&amp;poi={$this.metadata.pointOfInterest.x},{$this.metadata.pointOfInterest.y},{$this.metadata.pointOfInterest.w},{$this.metadata.pointOfInterest.h}",
+    buttonColor: "#0077c8"
   }
 };
 
