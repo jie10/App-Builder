@@ -73,12 +73,11 @@ export const toggleSettings = (mode) => async dispatch => {
     dispatch({type: ACTION_TOGGLE_SETTINGS, payload: mode})
 }
 
-export const getProjectNotif = () => async dispatch => {
-    const sessionID = uuidv4();
-    dispatch(initSocket(sessionID));
+export const getProjectNotif = (projectID) => async dispatch => {
+    dispatch(initSocket(projectID));
 }
 
-const initSocket = (sessionID) => async dispatch => {
+const initSocket = (projectID) => async dispatch => {
     const socket = openSocket(SOCKETURL, {  transports: ['websocket'], 
                                             reconnection: true,
                                             reconnectionAttempts: Infinity,
@@ -87,14 +86,11 @@ const initSocket = (sessionID) => async dispatch => {
                                             randomizationFactor: 0.5
                                         });
 
-    socket.emit("chat_message", `hello from web widget ${sessionID}`);
-
-    socket.on("chat_message", sf => {
-        dispatch({type: INITSOCKET, payload: { socketID: socket.id, message: sf }});
-    });
-
-    socket.on(sessionID, async data => {
-        console.log(data);
+    socket.on(projectID, async data => {
+        data.projectID = projectID;
+        data.sessionID = uuidv4();
+        console.log(data)
+        dispatch({type: INITSOCKET, payload: {[projectID]: [data]} });
     });
 
     socket.open();

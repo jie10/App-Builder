@@ -10,7 +10,8 @@ import {
     ACTION_DELETE_BLOCKS,
     ACTION_MOVE_UP_BLOCK,
     ACTION_MOVE_DOWN_BLOCK,
-    ACTION_UPDATE_BLOCK
+    ACTION_UPDATE_BLOCK,
+    INITSOCKET
 } from '../actions/types'
 
 const componentsReducer = (components = null, action) => {
@@ -95,10 +96,20 @@ const blocksReducer = (blocks = {}, action) => {
     return blocks
 }
 
+const notifReducer = (notif = {}, action) => {
+    if (action.type === INITSOCKET) {
+        let notif = action.payload;
+        return notif;
+    }
+
+    return notif;
+}
+
 export default combineReducers({
     components: componentsReducer,
     isInserterVisible: toggleInserterReducer,
     isSettingsVisible: toggleSettingsReducer,
     blocks: blocksReducer,
-    block: blockReducer
+    block: blockReducer,
+    notif: notifReducer
 })
