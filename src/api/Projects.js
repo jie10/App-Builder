@@ -248,10 +248,14 @@ export const buildProject = (id, projectType) => {
     return new Promise((resolve, reject) => {
         axios({
             method: 'POST',
-            url: `${BASE_API_URL}/build`,
+            url: `https://cebupacificair-dev.apigee.net/ceb-techinnov/v1/sqs/rpa`,
             data: {
-                "projectID": id,
-                "projectType": projectType
+                "Message": {
+                    "Action": "APP_BUILDER",
+                    "Parameters": {
+                        projectID: id
+                    }
+                }
             },
             headers: { "Content-Type": "application/json" }
         })
