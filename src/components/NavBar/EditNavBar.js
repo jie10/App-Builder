@@ -123,7 +123,7 @@ const EditNavBar = (props) => {
 
         if (!page_id && action === "create") {
             addNewPage(appId, {
-                pageName : "index",
+                pageName : pageName && pageName !== "" ? pageName.toLowerCase() : "index",
                 pageTitle: findHeaderTitle(currentComponents),
                 pageStatus: "draft",
                 scheduledTimestamp: null,
