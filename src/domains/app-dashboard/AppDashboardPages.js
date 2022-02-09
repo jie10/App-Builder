@@ -172,15 +172,16 @@ export const AppPreview = (props) => {
         restartBuildSetup();
         setOpenSnackBar(true);
 
-        Promise.all([updateProjectStatusById(currentAppId, true), buildProject(currentAppId, buildType)])
+        Promise.all([updateProjectStatusById(currentAppId, false), buildProject(currentAppId, buildType)])
             .then(update => {
                 let newProject = update[0];
                 let newBuild = update[1];
 
                 if (newProject && newBuild) {
+                    console.log(newBuild)
                     setAlertSeverity("success");
                     setAlertMessage("Project Build Successfully.");
-                    setBuildStatus(true);
+                    setBuildStatus(false);
                 } else {
                     setAlertSeverity("error");
                     setAlertMessage("Project Build Failed.");

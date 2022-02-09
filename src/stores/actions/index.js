@@ -78,19 +78,26 @@ export const getProjectNotif = (projectID) => async dispatch => {
 }
 
 const initSocket = (projectID) => async dispatch => {
-    const socket = openSocket(SOCKETURL, {  transports: ['websocket'], 
-                                            reconnection: true,
-                                            reconnectionAttempts: Infinity,
-                                            reconnectionDelay: 1000,
-                                            reconnectionDelayMax: 5000,
-                                            randomizationFactor: 0.5
-                                        });
+    const socket = openSocket('https://2f38-2001-4451-a3d-d400-244b-35b8-9b2c-cb83.ngrok.io/', {  transports: ['websocket'], 
+                                reconnection: true,
+                                reconnectionAttempts: Infinity,
+                                reconnectionDelay: 1000,
+                                reconnectionDelayMax: 5000,
+                                randomizationFactor: 0.5
+                            });
 
-    socket.on(projectID, async data => {
+    socket.on("build_process", async data => {
         data.projectID = projectID;
         data.sessionID = uuidv4();
         console.log(data)
         dispatch({type: INITSOCKET, payload: {[projectID]: [data]} });
+    });
+
+    socket.emit("chat_message", `hello from web widget ${projectID}`);
+
+    socket.on("chat_message", sf => {
+        console.log(sf)
+        dispatch({type: INITSOCKET, payload: { socketID: socket.id, message: sf }});
     });
 
     socket.open();

@@ -248,12 +248,12 @@ export const buildProject = (id, projectType) => {
     return new Promise((resolve, reject) => {
         axios({
             method: 'POST',
-            url: `https://cebupacificair-dev.apigee.net/ceb-techinnov/v1/sqs/rpa`,
+            url: `https://2f38-2001-4451-a3d-d400-244b-35b8-9b2c-cb83.ngrok.io/`,
             data: {
                 "Message": {
                     "Action": "APP_BUILDER",
                     "Parameters": {
-                        projectID: id
+                        "projectID": id
                     }
                 }
             },
@@ -261,7 +261,7 @@ export const buildProject = (id, projectType) => {
         })
         .then((response) => {
             let data = response.data;
-            resolve(data ? true : false);
+            resolve(data ? data : false);
         })
         .catch((error) => {
             reject(error);

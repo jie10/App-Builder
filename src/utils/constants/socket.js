@@ -1,1 +1,1 @@
-export const SOCKETURL = `https://4715-2001-4451-a9a-1d00-e439-2910-9eed-815e.ngrok.io/`;
+export const SOCKETURL = `https://cebupacificair-dev.apigee.net/ceb-techinnov/v1/sqs/rpa`;
