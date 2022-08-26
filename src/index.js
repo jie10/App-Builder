@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
 import { createStore, applyMiddleware, compose } from 'redux'
 import reduxThink from 'redux-thunk'
-
+import './assets/style/custom/css/bulma.css'
 import './index.css'
 import App from './components/App/App'
 import reducers from '../src/stores/reducers'
