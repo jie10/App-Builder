@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import { Grid } from '@mui/material'
 import './style.css'
-import LoginForm from './LoginForm'
+import SignupForm from './SignupForm'
 import PinCodeInput from './PinCodeInput'
 import {
   deleteBlock,
@@ -66,8 +66,8 @@ const FormBlocks = (props) => {
               setToggle(!toggle)
             } }
           >
-            { ' ' }
-            Login
+            { 'button' }
+            Signup
           </button>
           <button
             onClick={ () => {
@@ -80,8 +80,8 @@ const FormBlocks = (props) => {
           </button>
 
         </div>
-        { selected === 'Login' && <LoginForm/> }
-        { selected === 'Contact' && <PinCodeInput/> }
+        { selected === 'Login' && <SignupForm/> }
+        { selected === 'PinCode' && <PinCodeInput/> }
       </div>
     </div>
 
