@@ -9,6 +9,7 @@
     width: 18%;
     z-index: 999;
     padding: 16px 0;
+    overflow: auto;
 }
 
 .settings-container p {

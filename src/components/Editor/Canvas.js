@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
 import {
-    getBlocks
+  getBlocks,
 } from '../../stores/actions'
 
 // import all blocks - should be put in another class
@@ -28,35 +28,40 @@ import FilterSection from '../Blocks/Sections/Filter'
 import SeatSaleSection from '../Blocks/Sections/SeatSale'
 import ColumnSection from '../Blocks/Column/Column'
 import SplashScreen from '../Blocks/SplashScreen';
+import ListSection from '../Blocks/Sections/ListSection'
+import WideButton from '../Blocks/Sections/WideButton'
+import Forms from '../Blocks/Forms'
+import './Canvas.css'
+import PinCodeInput from '../Blocks/Forms/PinCodeInput'
+import SignupForm from '../Blocks/Forms/SignupForm'
+import BottomNavbar from '../Blocks/Navbar/Bottom-Navbar'
 
-import "./Canvas.css";
 
 class Canvas extends Component {
-    async componentDidMount() {
-        this.props.getBlocks()
+  async componentDidMount() {
+    this.props.getBlocks()
+  }
+
+  render() {
+    const {blocks, themeStyle, selectedPreviewMenu, isSettingsEnabled, isInserterEnabled} = this.props
+
+    let canvasSize = () => {
+      if (isSettingsEnabled && isInserterEnabled) {
+        return {width: '57%', margin: '0 18% 0 25%'}
+      } else if (isSettingsEnabled && !isInserterEnabled) {
+        return {width: '82%', margin: '0 18% 0 0'}
+      } else if (!isSettingsEnabled && isInserterEnabled) {
+        return {width: '75%', margin: '0 0 0 25%'}
+      } else {
+        return {width: '100%'}
+      }
     }
-
-    render() {
-        const { blocks, themeStyle, selectedPreviewMenu, isSettingsEnabled, isInserterEnabled } = this.props;
-
-        let canvasSize = () => {
-            if (isSettingsEnabled && isInserterEnabled) {
-                return { width: "57%", margin: "0 18% 0 25%" }
-            } else if (isSettingsEnabled && !isInserterEnabled) {
-                return { width: "82%", margin: "0 18% 0 0" }
-            } else if (!isSettingsEnabled && isInserterEnabled) {
-                return { width: "75%", margin: "0 0 0 25%" }
-            } else {
-                return { width: "100%" }
-            }
-        }
 
         return(
             <div className='canvas-container' style={canvasSize()}>
                 <div className={`content-container ${selectedPreviewMenu === "tablet" ? 'content-container-tablet' : selectedPreviewMenu === "mobile" ? 'content-container-mobile' : 'content-container-desktop'}`}>
                     { blocks && Object.keys(blocks).map(key => {
                         let block = blocks[key];
-
                         switch(block.type){
                             case 'HEADER':
                                 return <HeaderSimple key={key} _id={key} themeStyle={themeStyle[".header_simple"]}  block={block} />
@@ -106,6 +111,18 @@ class Canvas extends Component {
                                 return <FooterSimple key={key} _id={key} themeStyle={themeStyle[".footer_simple"]} block={block} />
                             case 'SPLASH_SCREEN':
                                 return <SplashScreen key={key} _id={key} themeStyle={themeStyle[".splash-screen-component"]} block={block} />
+                            case 'LIST_SECTION':
+                                return <ListSection key={key} _id={key} themeStyle={themeStyle[".list_section"]} block={block} />
+                            case 'WIDE_BUTTON':
+                                    return <WideButton key={key} _id={key} themeStyle={themeStyle[".wide_button"]} block={block} />
+                            case 'FORM_BLOCKS':
+                                    return <Forms key={ key } _id={ key } themeStyle={ themeStyle['.form_blocks'] } block={ block }/>
+                            case 'PinCode_Input':
+                                    return <PinCodeInput key={ key } _id={ key } themeStyle={ themeStyle['.PinCode_Input'] } block={ block }/>
+                            case 'Signup_Form':
+                                    return <SignupForm key={ key } _id={ key } themeStyle={ themeStyle['.Signup_Form'] } block={ block }/>
+                            case 'BOTTOM_NAVBAR':
+                                    return <BottomNavbar key={ key } _id={ key } themeStyle={ themeStyle['.bottom_navbar'] } block={ block }/>
                             default:
                                 return <div key={key}>DEFAULT</div>
                         }   
@@ -117,9 +134,9 @@ class Canvas extends Component {
 }
 
 const mapStateToProps = state => {
-    return {
-        blocks: state.blocks
-    }
+  return {
+    blocks: state.blocks,
+  }
 }
 
 export default connect(mapStateToProps, {getBlocks})(Canvas)

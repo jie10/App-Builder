@@ -1,13 +1,13 @@
-import GlobalStyles from '@mui/material/GlobalStyles';
+import GlobalStyles from '@mui/material/GlobalStyles'
 
-import { WHITE, NIGHT_RIDER } from "../utils/constants/colors";
+import { WHITE, NIGHT_RIDER } from '../utils/constants/colors'
 
 export const ENTERPRISE_THEME_STYLE = {
   body: {
     backgroundColor: WHITE,
     fontFamily: `"Calibri", Fallback, Arial, sans-serif`,
-    fontSize: "0.875rem",
-    color: NIGHT_RIDER
+    fontSize: '0.875rem',
+    color: NIGHT_RIDER,
   },
   p: {
     alignment: "left",
@@ -129,10 +129,29 @@ export const ENTERPRISE_THEME_STYLE = {
     height: "auto",
     borderTop: "1px solid #efefef"
   },
+  ".list_section": {
+    backgroundColor: "#fff",
+    height: "auto",
+    count: 3,
+    cellPadding: "4px 16px"
+  },
+  ".wide_button": {
+    backgroundColor: "#fff",
+    height: "auto",
+    button_height: "48px",
+    button_background: "linear-gradient(134.96deg, #00A4E5 17.86%, #006FC1 87.93%)",
+    padding: "0",
+    margin: "0",
+    label: "Start"
+  },
   ".header_simple": {
     backgroundColor: "#ffffff",
     height: "260px",
     title: "Header",
+    HeaderTitleAlignment: "center",
+    HeaderTitleColor: "#0060a7",
+    HeaderTitleSize: "41px",
+    backButton: "block",
     image: "https://images.jgsummit.com.ph/2018/05/23/2cfee4f98eb5e32d09abbc04dd5e18b777492fae.jpg",
     bannerImageWidth: "50%",
     bannerImagePosition: "right",
@@ -170,7 +189,87 @@ export const ENTERPRISE_THEME_STYLE = {
     brandname_title: "App Name",
     text_color: "#006EBF",
     font_size: "32px"
+    '.form_blocks': {
+    backgroundColor: '#FFFFFF',
+    height: 'auto',
+  },
+  '.PinCode_Input': {
+    backgroundColor: '#FFFFFF',
+    height: 'auto',
+    width: 'auto',
+    fontFamily: '\'Source Sans Pro\', sans-serif',
+    placeholder: 'Enter your Pin Code',
+  },
+  '.Signup_Form': {
+    placeholder: 'Enter your CEB Email',
+    placeholder2: '92xx xxx xxx',
+    label1: 'Email',
+    label2: 'Mobile Number',
+    label3: 'Target Location',
+    label4: 'No Landmark',
+    text1: 'Your preferred pickup or drop off used in carpool matching',
+    text2: 'Region, province, municipality, Barangay',
+    fontSize1: '',
+    fontFamily1: '',
+    fontWeight1: '',
+    color1: '',
+
+    fontSize: '',
+    fontFamily: '',
+    fontWeight: '',
+    color: '',
+    borderRadius: '',
+
+    fontSize2: '',
+    fontFamily2: '',
+    fontWeight2: '',
+    color2: '',
+
+    fontSize3: '',
+    fontFamily3: '',
+    fontWeight3: '',
+    color3: '',
+
+    btnHeight: '',
+    btnWidth: '',
+    btnColor: '',
+    btnRadius: '',
+
+    imgHeight: '',
+    imgWidth: '',
+
+    textSize1: '',
+    textFamily1: '',
+    textWeight1: '',
+    textcolor1: '',
+
+    textSize2: '',
+    textFamily2: '',
+    textWeight2: '',
+    textcolor2: '',
+
+    btnradius2: '',
+    btnHeight2: '',
+    btnWidth2: '',
+    btnColor2: ''
+  },
+  ".bottom_navbar": {
+    height: "60px",
+    backgroundColor: "#F7F7F7",
+    fontColor: "#373737",
+    BottomNavbarItem1Name: "Carpool",
+    BottomNavbarItem1URL: "https://cebupacificair-dev.apigee.net/ceb-poc-juander_dev/app/carpool",
+    BottomNavbarItem1Icon: "car",
+    BottomNavbarItem2Name: "Shuttle",
+    BottomNavbarItem2URL: "https://cebupacificair-dev.apigee.net/ceb-poc-juander_dev/app/shuttle",
+    BottomNavbarItem2Icon: "airport_shuttle",
+    BottomNavbarItem3Name: "Account",
+    BottomNavbarItem3URL: "https://cebupacificair-dev.apigee.net/ceb-poc-juander_dev/app/account",
+    BottomNavbarItem3Icon: "person",
+    BottomNavbarItem4Name: "#",
+    BottomNavbarItem4URL: "#",
+    BottomNavbarItem4Icon: "#",
   }
 };
 
-export default <GlobalStyles styles={ENTERPRISE_THEME_STYLE} />;
+export default <GlobalStyles styles={ ENTERPRISE_THEME_STYLE }/>
