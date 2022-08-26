@@ -159,7 +159,11 @@ export const ENTERPRISE_THEME_STYLE = {
     card3Title: "Corporate Disclosures",
     card3Image: "https://cdn.media.amplience.net/i/cebupacificair/Corp-Disclosure?w=600&amp;sm=c&amp;scaleFit=poi&amp;poi={$this.metadata.pointOfInterest.x},{$this.metadata.pointOfInterest.y},{$this.metadata.pointOfInterest.w},{$this.metadata.pointOfInterest.h}",
     buttonColor: "#0077c8"
-  }
+  },
+  ".form_blocks":{
+    backgroundColor: "#FFFFFF",
+    height: "auto",
+  },
 };
 
 export default <GlobalStyles styles={ENTERPRISE_THEME_STYLE} />;

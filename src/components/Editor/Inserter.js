@@ -237,6 +237,15 @@ const Inserter = (props) => {
                 </ListItemIcon>
                 <ListItemText primary="Section" />
             </ListItemButton>
+            <ListItemButton onClick={() => sendBlocks({type: "FORM_BLOCKS", parameters: {
+                    backgroundColor: '#F4D03F',
+                    height: '40px'
+                }})}>
+                <ListItemIcon>
+                    <DraftsIcon />
+                </ListItemIcon>
+                <ListItemText primary="form blocks" />
+            </ListItemButton>
         </List>
     )
 

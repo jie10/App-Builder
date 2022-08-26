@@ -27,8 +27,9 @@ import SearchBarSection from '../Blocks/Sections/Search'
 import FilterSection from '../Blocks/Sections/Filter'
 import SeatSaleSection from '../Blocks/Sections/SeatSale'
 import ColumnSection from '../Blocks/Column/Column'
-
+import Forms from '../Blocks/Forms'
 import "./Canvas.css";
+
 
 class Canvas extends Component {
     async componentDidMount() {
@@ -103,6 +104,8 @@ class Canvas extends Component {
                                 return <ColumnSection key={key} _id={key} block={block} /> 
                             case 'FOOTER':
                                 return <FooterSimple key={key} _id={key} themeStyle={themeStyle[".footer_simple"]} block={block} />
+                            case 'FORM_BLOCKS':
+                                return <Forms key={key} _id={key} themeStyle={themeStyle[".form_blocks"]} block={block}/>
                             default:
                                 return <div key={key}>DEFAULT</div>
                         }   
