@@ -103,6 +103,21 @@ export const OMNIX_THEME_STYLE = {
     backgroundColor: "#fbe700",
     height: "auto"
   },
+  ".list_section": {
+    backgroundColor: "#fff",
+    height: "auto",
+    count: 3,
+    cellPadding: "4px 16px"
+  },
+  ".wide_button": {
+    backgroundColor: "#fff",
+    height: "auto",
+    button_height: "48px",
+    button_background: "linear-gradient(134.96deg, #00A4E5 17.86%, #006FC1 87.93%)",
+    padding: "0",
+    margin: "0",
+    label: "Start"
+  },
   ".header_simple": {
     backgroundColor: "#fbe700",
     height: "160px",

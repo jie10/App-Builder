@@ -27,6 +27,8 @@ import SearchBarSection from '../Blocks/Sections/Search'
 import FilterSection from '../Blocks/Sections/Filter'
 import SeatSaleSection from '../Blocks/Sections/SeatSale'
 import ColumnSection from '../Blocks/Column/Column'
+import ListSection from '../Blocks/Sections/ListSection'
+import WideButton from '../Blocks/Sections/WideButton'
 
 import "./Canvas.css";
 
@@ -55,7 +57,6 @@ class Canvas extends Component {
                 <div className={`content-container ${selectedPreviewMenu === "tablet" ? 'content-container-tablet' : selectedPreviewMenu === "mobile" ? 'content-container-mobile' : 'content-container-desktop'}`}>
                     { blocks && Object.keys(blocks).map(key => {
                         let block = blocks[key];
-
                         switch(block.type){
                             case 'HEADER':
                                 return <HeaderSimple key={key} _id={key} themeStyle={themeStyle[".header_simple"]}  block={block} />
@@ -103,6 +104,10 @@ class Canvas extends Component {
                                 return <ColumnSection key={key} _id={key} block={block} /> 
                             case 'FOOTER':
                                 return <FooterSimple key={key} _id={key} themeStyle={themeStyle[".footer_simple"]} block={block} />
+                            case 'LIST_SECTION':
+                                return <ListSection key={key} _id={key} themeStyle={themeStyle[".list_section"]} block={block} />
+                            case 'WIDE_BUTTON':
+                                    return <WideButton key={key} _id={key} themeStyle={themeStyle[".wide_button"]} block={block} />
                             default:
                                 return <div key={key}>DEFAULT</div>
                         }   
