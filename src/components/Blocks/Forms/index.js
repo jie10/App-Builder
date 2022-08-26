@@ -3,46 +3,46 @@ import { connect } from 'react-redux'
 import { Grid } from '@mui/material'
 import './style.css'
 import LoginForm from './LoginForm'
-import PinCodeForm from './PinCodeForm'
+import PinCodeInput from './PinCodeInput'
 import {
   deleteBlock,
   moveUpBlock,
   moveDownBlock,
-  getBlock
+  getBlock,
 } from '../../../stores/actions'
 
 const FormBlocks = (props) => {
-  const { _id, block, deleteBlock, moveUpBlock, moveDownBlock, getBlock, themeStyle } = props
+  const {_id, block, deleteBlock, moveUpBlock, moveDownBlock, getBlock, themeStyle} = props
 
-  if (block.status === "added") {
+  if (block.status === 'added') {
     block.parameters = themeStyle
   }
   const [ selected, setSelected ] = useState('')
   const [ toggle, setToggle ] = useState(false)
-  return(
-    <div style={{
+  return (
+    <div style={ {
       width: '100%',
       height: block.parameters.height,
 
-    }} onClick={() => getBlock(_id, block)}>
+    } } onClick={ () => getBlock(_id, block) }>
       <Grid container direction="row" justifyContent="flex-end" alignItems="center">
-        <Grid item onClick={() => moveUpBlock(_id)}>
+        <Grid item onClick={ () => moveUpBlock(_id) }>
           <img
-            className='buttoncontrols'
-            alt='upbutton'
-            src='/images/round_expand_less_black_24dp.png' />
+            className="buttoncontrols"
+            alt="upbutton"
+            src="/images/round_expand_less_black_24dp.png"/>
         </Grid>
-        <Grid item onClick={() => moveDownBlock(_id)}>
+        <Grid item onClick={ () => moveDownBlock(_id) }>
           <img
-            className='buttoncontrols'
-            alt='downbutton'
-            src='/images/round_expand_more_black_24dp.png' />
+            className="buttoncontrols"
+            alt="downbutton"
+            src="/images/round_expand_more_black_24dp.png"/>
         </Grid>
-        <Grid item onClick={() => deleteBlock(_id)}>
+        <Grid item onClick={ () => deleteBlock(_id) }>
           <img
-            className='buttoncontrols'
-            alt='deletebutton'
-            src='/images/round_close_black_24dp.png' />
+            className="buttoncontrols"
+            alt="deletebutton"
+            src="/images/round_close_black_24dp.png"/>
         </Grid>
       </Grid>
       {/*<div className="c-campaigns__cards">
@@ -57,8 +57,8 @@ const FormBlocks = (props) => {
                     style={{background: block.parameters.buttonColor}}> View more information</button>
           </div>
         </div>
-      </div>*/}
-      <div style={{backgroundColor: block.parameters.backgroundColor}}>
+      </div>*/ }
+      <div style={ {backgroundColor: block.parameters.backgroundColor} }>
         <div className={ `${ toggle ? 'hidden' : 'w-100 m' }` }>
           <button
             onClick={ () => {
@@ -81,7 +81,7 @@ const FormBlocks = (props) => {
 
         </div>
         { selected === 'Login' && <LoginForm/> }
-        { selected === 'Contact' && <PinCodeForm/> }
+        { selected === 'Contact' && <PinCodeInput/> }
       </div>
     </div>
 
@@ -90,7 +90,7 @@ const FormBlocks = (props) => {
 
 const mapStateToProps = state => {
   return {
-    isInserterVisible: state.isInserterVisible
+    isInserterVisible: state.isInserterVisible,
   }
 }
 
@@ -98,7 +98,7 @@ export default connect(mapStateToProps, {
   deleteBlock,
   moveUpBlock,
   moveDownBlock,
-  getBlock
+  getBlock,
 })(FormBlocks)
 
 
