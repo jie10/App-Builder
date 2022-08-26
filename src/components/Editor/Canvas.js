@@ -30,6 +30,7 @@ import ColumnSection from '../Blocks/Column/Column'
 import Forms from '../Blocks/Forms'
 import './Canvas.css'
 import PinCodeInput from '../Blocks/Forms/PinCodeInput'
+import SignupForm from '../Blocks/Forms/SignupForm'
 
 
 class Canvas extends Component {
@@ -128,6 +129,9 @@ class Canvas extends Component {
               case 'PinCode_Input':
                 return <PinCodeInput key={ key } _id={ key } themeStyle={ themeStyle['.PinCode_Input'] }
                                      block={ block }/>
+              case 'Signup_Form':
+                return <SignupForm key={ key } _id={ key } themeStyle={ themeStyle['.Signup_Form'] }
+                                   block={ block }/>
               default:
                 return <div key={ key }>DEFAULT</div>
             }
