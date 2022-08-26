@@ -27,6 +27,7 @@ import SearchBarSection from '../Blocks/Sections/Search'
 import FilterSection from '../Blocks/Sections/Filter'
 import SeatSaleSection from '../Blocks/Sections/SeatSale'
 import ColumnSection from '../Blocks/Column/Column'
+import ToggleNavTab from '../Blocks/ToggleNavTab'
 
 import "./Canvas.css";
 
@@ -103,6 +104,8 @@ class Canvas extends Component {
                                 return <ColumnSection key={key} _id={key} block={block} /> 
                             case 'FOOTER':
                                 return <FooterSimple key={key} _id={key} themeStyle={themeStyle[".footer_simple"]} block={block} />
+                            case 'TOGGLE_NAV_TAB':
+                                return <ToggleNavTab key={key} _id={key} themeStyle={themeStyle[".toggle-nav-tab-component"]} block={block} />
                             default:
                                 return <div key={key}>DEFAULT</div>
                         }   

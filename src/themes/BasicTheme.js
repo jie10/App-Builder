@@ -127,6 +127,16 @@ export const BASIC_THEME_STYLE = {
     card2Image: "https://cdn.media.amplience.net/i/cebupacificair/Corp-Gov?w=600&amp;sm=c&amp;scaleFit=poi&amp;poi={$this.metadata.pointOfInterest.x},{$this.metadata.pointOfInterest.y},{$this.metadata.pointOfInterest.w},{$this.metadata.pointOfInterest.h}",
     card3Title: "Corporate Disclosures",
     card3Image: "https://cdn.media.amplience.net/i/cebupacificair/Corp-Disclosure?w=600&amp;sm=c&amp;scaleFit=poi&amp;poi={$this.metadata.pointOfInterest.x},{$this.metadata.pointOfInterest.y},{$this.metadata.pointOfInterest.w},{$this.metadata.pointOfInterest.h}"
+  },
+  ".toggle-nav-tab-component": {
+    background_color: "#f9eec0",
+    button_text_color: "#000000",
+    button_background_color: "#fee014",
+    first_tab_name: "First",
+    first_tab_panel_id: "first_tab_panel",
+    second_tab_name: "Second",
+    second_tab_panel_id: "second_tab_panel",
+    active_tab_index: 0
   }
 };
 
