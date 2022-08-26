@@ -148,6 +148,10 @@ export const ENTERPRISE_THEME_STYLE = {
     backgroundColor: "#ffffff",
     height: "260px",
     title: "Header",
+    HeaderTitleAlignment: "center",
+    HeaderTitleColor: "#0060a7",
+    HeaderTitleSize: "41px",
+    backButton: "block",
     image: "https://images.jgsummit.com.ph/2018/05/23/2cfee4f98eb5e32d09abbc04dd5e18b777492fae.jpg",
     bannerImageWidth: "50%",
     bannerImagePosition: "right",
@@ -238,6 +242,23 @@ export const ENTERPRISE_THEME_STYLE = {
     btnHeight2: '',
     btnWidth2: '',
     btnColor2: ''
+  },
+  ".bottom_navbar": {
+    height: "60px",
+    backgroundColor: "#F7F7F7",
+    fontColor: "#373737",
+    BottomNavbarItem1Name: "Carpool",
+    BottomNavbarItem1URL: "https://cebupacificair-dev.apigee.net/ceb-poc-juander_dev/app/carpool",
+    BottomNavbarItem1Icon: "car",
+    BottomNavbarItem2Name: "Shuttle",
+    BottomNavbarItem2URL: "https://cebupacificair-dev.apigee.net/ceb-poc-juander_dev/app/shuttle",
+    BottomNavbarItem2Icon: "airport_shuttle",
+    BottomNavbarItem3Name: "Account",
+    BottomNavbarItem3URL: "https://cebupacificair-dev.apigee.net/ceb-poc-juander_dev/app/account",
+    BottomNavbarItem3Icon: "person",
+    BottomNavbarItem4Name: "#",
+    BottomNavbarItem4URL: "#",
+    BottomNavbarItem4Icon: "#",
   }
 };
 

@@ -33,6 +33,7 @@ import Forms from '../Blocks/Forms'
 import './Canvas.css'
 import PinCodeInput from '../Blocks/Forms/PinCodeInput'
 import SignupForm from '../Blocks/Forms/SignupForm'
+import BottomNavbar from '../Blocks/Navbar/Bottom-Navbar'
 
 
 class Canvas extends Component {
@@ -117,6 +118,8 @@ class Canvas extends Component {
                                     return <PinCodeInput key={ key } _id={ key } themeStyle={ themeStyle['.PinCode_Input'] } block={ block }/>
                             case 'Signup_Form':
                                     return <SignupForm key={ key } _id={ key } themeStyle={ themeStyle['.Signup_Form'] } block={ block }/>
+                            case 'BOTTOM_NAVBAR':
+                                    return <BottomNavbar key={ key } _id={ key } themeStyle={ themeStyle['.bottom_navbar'] } block={ block }/>
                             default:
                                 return <div key={key}>DEFAULT</div>
                         }   
