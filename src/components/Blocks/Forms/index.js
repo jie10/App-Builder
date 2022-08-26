@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import { Grid } from '@mui/material'
 import './style.css'
@@ -9,7 +9,7 @@ import {
   moveUpBlock,
   moveDownBlock,
   getBlock
-} from '../../../../stores/actions'
+} from '../../../stores/actions'
 
 const FormBlocks = (props) => {
   const { _id, block, deleteBlock, moveUpBlock, moveDownBlock, getBlock, themeStyle } = props
@@ -17,7 +17,8 @@ const FormBlocks = (props) => {
   if (block.status === "added") {
     block.parameters = themeStyle
   }
-
+  const [ selected, setSelected ] = useState('')
+  const [ toggle, setToggle ] = useState(false)
   return(
     <div style={{
       width: '100%',
@@ -57,7 +58,7 @@ const FormBlocks = (props) => {
           </div>
         </div>
       </div>*/}
-      <div>
+      <div style={{backgroundColor: block.parameters.backgroundColor}}>
         <div className={ `${ toggle ? 'hidden' : 'w-100 m' }` }>
           <button
             onClick={ () => {
