@@ -54,86 +54,88 @@ const SignupForm = (props) => {
         </Grid>
       </Grid>
 
-      <form>
-        <div>
-          <label style={ {
-            fontSize: block.parameters.fontSize1,
-            fontFamily: block.parameters.fontFamily1,
-            fontWeight: block.parameters.fontWeight1,
-            color: block.parameters.color1,
-          } }>{ label1 }</label>
-          <input type={ 'text' } placeholder={ placeholder } style={ {
-            fontSize: block.parameters.fontSize,
-            fontFamily: block.parameters.fontFamily,
-            fontWeight: block.parameters.fontWeight,
-            color: block.parameters.color,
-            borderRadius: block.parameters.borderRadius,
-          } }/>
-        </div>
-        <div>
-          <label style={ {
-            fontSize: block.parameters.fontSize2,
-            fontFamily: block.parameters.fontFamily2,
-            fontWeight: block.parameters.fontWeight2,
-            color: block.parameters.color2,
-          } }>{ label2 }</label>
-          <input type={ 'text' } placeholder={ placeholder2 } style={ {
-            fontSize: block.parameters.fontSize,
-            fontFamily: block.parameters.fontFamily,
-            fontWeight: block.parameters.fontWeight,
-            color: block.parameters.color,
-            borderRadius: block.parameters.borderRadius,
-          } }/>
-        </div>
-        <div>
-          <label style={ {
-            fontSize: block.parameters.fontSize3,
-            fontFamily: block.parameters.fontFamily3,
-            fontWeight: block.parameters.fontWeight3,
-            color: block.parameters.color3,
-          } }>{ label3 }</label>
-          <p style={ {
-            fontSize: block.parameters.textSize1,
-            fontFamily: block.parameters.textFamily1,
-            fontWeight: block.parameters.textWeight1,
-            color: block.parameters.textcolor1,
-          } }>{ text1 }</p>
+      <div className={ 'container' }>
+        <form>
+          <div>
+            <label style={ {
+              fontSize: block.parameters.fontSize1,
+              fontFamily: block.parameters.fontFamily1,
+              fontWeight: block.parameters.fontWeight1,
+              color: block.parameters.color1,
+            } }>{ label1 }</label>
+            <input type={ 'text' } placeholder={ placeholder } style={ {
+              fontSize: block.parameters.fontSize,
+              fontFamily: block.parameters.fontFamily,
+              fontWeight: block.parameters.fontWeight,
+              color: block.parameters.color,
+              borderRadius: block.parameters.borderRadius,
+            } }/>
+          </div>
+          <div>
+            <label style={ {
+              fontSize: block.parameters.fontSize2,
+              fontFamily: block.parameters.fontFamily2,
+              fontWeight: block.parameters.fontWeight2,
+              color: block.parameters.color2,
+            } }>{ label2 }</label>
+            <input type={ 'text' } placeholder={ placeholder2 } style={ {
+              fontSize: block.parameters.fontSize,
+              fontFamily: block.parameters.fontFamily,
+              fontWeight: block.parameters.fontWeight,
+              color: block.parameters.color,
+              borderRadius: block.parameters.borderRadius,
+            } }/>
+          </div>
+          <div>
+            <label style={ {
+              fontSize: block.parameters.fontSize3,
+              fontFamily: block.parameters.fontFamily3,
+              fontWeight: block.parameters.fontWeight3,
+              color: block.parameters.color3,
+            } }>{ label3 }</label>
+            <p style={ {
+              fontSize: block.parameters.textSize1,
+              fontFamily: block.parameters.textFamily1,
+              fontWeight: block.parameters.textWeight1,
+              color: block.parameters.textcolor1,
+            } }>{ text1 }</p>
+            <button style={ {
+              height: block.parameters.btnHeight,
+              width: block.parameters.btnWidth,
+              backgroundColor: block.parameters.btnColor,
+              borderRadius: block.parameters.btnRadius,
+            } }>
+              <div className={ 'columns' }>
+                <div className={ 'column' }>
+                  <img style={ {height: block.parameters.imgHeight, width: block.parameters.imgWidth} }
+                       src={ navigationLogo }/>
+                </div>
+                <div className={ 'column' }>
+                  <label style={ {
+                    fontSize: block.parameters.fontSize4,
+                    fontFamily: block.parameters.fontFamily4,
+                    fontWeight: block.parameters.fontWeight4,
+                    color: block.parameters.color4,
+                  } }>{ label4 }</label>
+                  <p style={ {
+                    fontSize: block.parameters.textSize2,
+                    fontFamily: block.parameters.textFamily2,
+                    fontWeight: block.parameters.textWeight2,
+                    color: block.parameters.textcolor2,
+                  } }>{ text2 }</p>
+                </div>
+              </div>
+            </button>
+          </div>
           <button style={ {
-            height: block.parameters.btnHeight,
-            width: block.parameters.btnWidth,
-            backgroundColor: block.parameters.btnColor,
-            borderRadius: block.parameters.btnRadius,
-          } }>
-            <div className={ 'columns' }>
-              <div className={ 'column' }>
-                <img style={ {height: block.parameters.imgHeight, width: block.parameters.imgWidth} }
-                     src={ navigationLogo }/>
-              </div>
-              <div className={ 'column' }>
-                <label style={ {
-                  fontSize: block.parameters.fontSize4,
-                  fontFamily: block.parameters.fontFamily4,
-                  fontWeight: block.parameters.fontWeight4,
-                  color: block.parameters.color4,
-                } }>{ label4 }</label>
-                <p style={ {
-                  fontSize: block.parameters.textSize2,
-                  fontFamily: block.parameters.textFamily2,
-                  fontWeight: block.parameters.textWeight2,
-                  color: block.parameters.textcolor2,
-                } }>{ text2 }</p>
-              </div>
-            </div>
+            borderRadius: block.parameters.btnradius2,
+            height: block.parameters.btnHeight2,
+            width: block.parameters.btnWidth2,
+            backgroundColor: block.parameters.btnColor2,
+          } }>Sign Up
           </button>
-        </div>
-        <button style={ {
-          borderRadius: block.parameters.btnradius2,
-          height: block.parameters.btnHeight2,
-          width: block.parameters.btnWidth2,
-          backgroundColor: block.parameters.btnColor2,
-        } }>Sign Up
-        </button>
-      </form>
+        </form>
+      </div>
 
     </div>
 
