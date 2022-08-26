@@ -1,13 +1,13 @@
-import GlobalStyles from '@mui/material/GlobalStyles';
+import GlobalStyles from '@mui/material/GlobalStyles'
 
-import { WHITE, NIGHT_RIDER } from "../utils/constants/colors";
+import { WHITE, NIGHT_RIDER } from '../utils/constants/colors'
 
 export const ENTERPRISE_THEME_STYLE = {
   body: {
     backgroundColor: WHITE,
     fontFamily: `"Calibri", Fallback, Arial, sans-serif`,
-    fontSize: "0.875rem",
-    color: NIGHT_RIDER
+    fontSize: '0.875rem',
+    color: NIGHT_RIDER,
   },
   p: {
     alignment: "left",
@@ -174,7 +174,71 @@ export const ENTERPRISE_THEME_STYLE = {
     card3Title: "Corporate Disclosures",
     card3Image: "https://cdn.media.amplience.net/i/cebupacificair/Corp-Disclosure?w=600&amp;sm=c&amp;scaleFit=poi&amp;poi={$this.metadata.pointOfInterest.x},{$this.metadata.pointOfInterest.y},{$this.metadata.pointOfInterest.w},{$this.metadata.pointOfInterest.h}",
     buttonColor: "#0077c8"
+  },
+    '.form_blocks': {
+    backgroundColor: '#FFFFFF',
+    height: 'auto',
+  },
+  '.PinCode_Input': {
+    backgroundColor: '#FFFFFF',
+    height: 'auto',
+    width: 'auto',
+    fontFamily: '\'Source Sans Pro\', sans-serif',
+    placeholder: 'Enter your Pin Code',
+  },
+  '.Signup_Form': {
+    placeholder: 'Enter your CEB Email',
+    placeholder2: '92xx xxx xxx',
+    label1: 'Email',
+    label2: 'Mobile Number',
+    label3: 'Target Location',
+    label4: 'No Landmark',
+    text1: 'Your preferred pickup or drop off used in carpool matching',
+    text2: 'Region, province, municipality, Barangay',
+    fontSize1: '',
+    fontFamily1: '',
+    fontWeight1: '',
+    color1: '',
+
+    fontSize: '',
+    fontFamily: '',
+    fontWeight: '',
+    color: '',
+    borderRadius: '',
+
+    fontSize2: '',
+    fontFamily2: '',
+    fontWeight2: '',
+    color2: '',
+
+    fontSize3: '',
+    fontFamily3: '',
+    fontWeight3: '',
+    color3: '',
+
+    btnHeight: '',
+    btnWidth: '',
+    btnColor: '',
+    btnRadius: '',
+
+    imgHeight: '',
+    imgWidth: '',
+
+    textSize1: '',
+    textFamily1: '',
+    textWeight1: '',
+    textcolor1: '',
+
+    textSize2: '',
+    textFamily2: '',
+    textWeight2: '',
+    textcolor2: '',
+
+    btnradius2: '',
+    btnHeight2: '',
+    btnWidth2: '',
+    btnColor2: ''
   }
 };
 
-export default <GlobalStyles styles={ENTERPRISE_THEME_STYLE} />;
+export default <GlobalStyles styles={ ENTERPRISE_THEME_STYLE }/>
