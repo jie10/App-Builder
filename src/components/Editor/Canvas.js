@@ -27,6 +27,7 @@ import SearchBarSection from '../Blocks/Sections/Search'
 import FilterSection from '../Blocks/Sections/Filter'
 import SeatSaleSection from '../Blocks/Sections/SeatSale'
 import ColumnSection from '../Blocks/Column/Column'
+import SplashScreen from '../Blocks/SplashScreen';
 
 import "./Canvas.css";
 
@@ -103,6 +104,8 @@ class Canvas extends Component {
                                 return <ColumnSection key={key} _id={key} block={block} /> 
                             case 'FOOTER':
                                 return <FooterSimple key={key} _id={key} themeStyle={themeStyle[".footer_simple"]} block={block} />
+                            case 'SPLASH_SCREEN':
+                                return <SplashScreen key={key} _id={key} themeStyle={themeStyle[".splash-screen-component"]} block={block} />
                             default:
                                 return <div key={key}>DEFAULT</div>
                         }   

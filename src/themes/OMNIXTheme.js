@@ -128,6 +128,17 @@ export const OMNIX_THEME_STYLE = {
     card2Image: "https://cdn.media.amplience.net/i/cebupacificair/Corp-Gov?w=600&amp;sm=c&amp;scaleFit=poi&amp;poi={$this.metadata.pointOfInterest.x},{$this.metadata.pointOfInterest.y},{$this.metadata.pointOfInterest.w},{$this.metadata.pointOfInterest.h}",
     card3Title: "Corporate Disclosures",
     card3Image: "https://cdn.media.amplience.net/i/cebupacificair/Corp-Disclosure?w=600&amp;sm=c&amp;scaleFit=poi&amp;poi={$this.metadata.pointOfInterest.x},{$this.metadata.pointOfInterest.y},{$this.metadata.pointOfInterest.w},{$this.metadata.pointOfInterest.h}"
+  },
+  ".splash-screen-component": {
+    position: "relative",
+    background_color: "#f7f7f7",
+    logo_url: "https://i8.amplience.net/i/cebupacificair/ceb-it-logo",
+    logo_width: "240px",
+    logo_height: "100%",
+    alt_text: "splash screen IT logo",
+    brandname_title: "App Name",
+    text_color: "#006EBF",
+    font_size: "32px"
   }
 };
 
