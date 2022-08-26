@@ -57,12 +57,14 @@ const PinCodeInput = (props) => {
           </div>
         </div>
       </div>*/ }
-      <input type={ 'text' } placeholder={ placeholder } style={ {
-        backgroundColor: block.parameters.backgroundColor,
-        height: block.parameters.height,
-        width: block.parameters.width,
-        fontFamily: block.parameters.fontFamily,
-      } }/>
+      <div className={ 'container' }>
+        <input type={ 'text' } placeholder={ placeholder } style={ {
+          backgroundColor: block.parameters.backgroundColor,
+          height: block.parameters.height,
+          width: block.parameters.width,
+          fontFamily: block.parameters.fontFamily,
+        } }/>
+      </div>
 
     </div>
 
