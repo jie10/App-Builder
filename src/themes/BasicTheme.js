@@ -139,6 +139,60 @@ export const BASIC_THEME_STYLE = {
     fontFamily: '\'Source Sans Pro\', sans-serif',
     placeholder: 'Enter your Pin Code',
   },
+  '.Signup_Form': {
+    placeholder: 'Enter your CEB Email',
+    placeholder2: '92xx xxx xxx',
+    label1: 'Email',
+    label2: 'Mobile Number',
+    label3: 'Target Location',
+    label4: 'No Landmark',
+    text1: 'Your preferred pickup or drop off used in carpool matching',
+    text2: 'Region, province, municipality, Barangay',
+
+    fontSize1: '',
+    fontFamily1: '',
+    fontWeight1: '',
+    color1: '',
+
+    fontSize: '',
+    fontFamily: '',
+    fontWeight: '',
+    color: '',
+    borderRadius: '',
+
+    fontSize2: '',
+    fontFamily2: '',
+    fontWeight2: '',
+    color2: '',
+
+    fontSize3: '',
+    fontFamily3: '',
+    fontWeight3: '',
+    color3: '',
+
+    btnHeight: '',
+    btnWidth: '',
+    btnColor: '',
+    btnRadius: '',
+
+    imgHeight: '',
+    imgWidth: '',
+
+    textSize1: '',
+    textFamily1: '',
+    textWeight1: '',
+    textcolor1: '',
+
+    textSize2: '',
+    textFamily2: '',
+    textWeight2: '',
+    textcolor2: '',
+
+    btnradius2: '',
+    btnHeight2: '',
+    btnWidth2: '',
+    btnColor2: '',
+  },
 }
 
 export default <GlobalStyles styles={ BASIC_THEME_STYLE }/>
