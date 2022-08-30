@@ -349,6 +349,20 @@ export const BASIC_THEME_STYLE = {
   '.address-button-component': {
     background_color: '#f7f7f7',
     width: '80%'
+  },
+  '.button-text-input-field-component': {
+    width: "auto",
+    background_color: "#FFFFFF",
+    input_type: "text",
+    input_background_color: "#FFFFFF",
+    input_color: "#212529",
+    input_font_size: "1rem",
+    input_label: "Text Label",
+    input_placeholder: "Text goes here",
+    input_max_length: 150,
+    input_default_value: "Default Value",
+    button_background_color: "#6c757d",
+    button_color: "#ffffff"
   }
 }
 

@@ -47,6 +47,7 @@ import ButtonText from '../Blocks/ButtonText'
 import ButtonIcon from '../Blocks/ButtonIcon'
 import ClickableTextInputField from '../Blocks/ClickableTextInputField'
 import AddressButton from '../Blocks/AddressButton'
+import ButtonTextInputField from '../Blocks/ButtonTextInputField'
 
 class Canvas extends Component {
   async componentDidMount() {
@@ -158,6 +159,8 @@ class Canvas extends Component {
                                 return <ClickableTextInputField key={ key } _id={ key } themeStyle={ themeStyle['.clickable-text-input-field-component'] } block={ block }/>
                             case 'ADDRESS_BUTTON':
                                 return <AddressButton key={ key } _id={ key } themeStyle={ themeStyle['.address-button-component'] } block={ block }/>
+                            case 'BUTTON_TEXT_INPUT_FIELD':
+                                return <ButtonTextInputField key={ key } _id={ key } themeStyle={ themeStyle['.button-text-input-field-component'] } block={ block }/>
                             default:
                                 return <div key={key}>DEFAULT</div>
                         }   
