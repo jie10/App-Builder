@@ -277,6 +277,22 @@ export const OMNIX_THEME_STYLE = {
     input_placeholder: 'Select an option',
     options: 'red, green, blue'
   },
+  '.text-input-field-component': {
+    width: 'auto',
+    background_color: '#FFFFFF',
+    input_type: 'text',
+    input_background_color: '#FFFFFF',
+    input_color: '#212529',
+    input_font_size: '1rem',
+    input_label: 'Text Label',
+    input_placeholder: 'Text goes here',
+    input_max_length: 150,
+    input_num_max: 10,
+    input_num_min: 0,
+    input_num_step: 1,
+    input_regex_pattern: '',
+    input_default_value: 'Default Value'
+  },
   '.text-area-field-component': {
     width: 'auto',
     height: 'auto',
