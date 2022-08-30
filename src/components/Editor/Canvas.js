@@ -45,6 +45,7 @@ import TextInputField from '../Blocks/TextInputField'
 import TextAreaField from '../Blocks/TextAreaField'
 import ButtonText from '../Blocks/ButtonText'
 import ButtonIcon from '../Blocks/ButtonIcon'
+import ClickableTextInputField from '../Blocks/ClickableTextInputField'
 
 class Canvas extends Component {
   async componentDidMount() {
@@ -151,7 +152,9 @@ class Canvas extends Component {
                             case 'BUTTON_TEXT':
                                 return <ButtonText key={ key } _id={ key } themeStyle={ themeStyle['.button-with-text-component'] } block={ block }/>
                             case 'BUTTON_ICON':
-                                return <ButtonIcon key={ key } _id={ key } themeStyle={ themeStyle['.button-with-icon-component'] } block={ block }/>  
+                                return <ButtonIcon key={ key } _id={ key } themeStyle={ themeStyle['.button-with-icon-component'] } block={ block }/>
+                            case 'CLICKABLE_TEXT_INPUT_FIELD':
+                                return <ClickableTextInputField key={ key } _id={ key } themeStyle={ themeStyle['.clickable-text-input-field-component'] } block={ block }/>  
                             default:
                                 return <div key={key}>DEFAULT</div>
                         }   

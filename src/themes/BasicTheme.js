@@ -337,6 +337,14 @@ export const BASIC_THEME_STYLE = {
       button_text_label: "Button",
       button_src_url: "",
       button_icon_url: "https://i8.amplience.net/i/cebupacificair/brown-bag-icon"
+  },
+  '.clickable-text-input-field-component': {
+    width: 'auto',
+    background_color: '#FFFFFF',
+    input_background_color: '#FFFFFF',
+    input_color: '#212529',
+    input_font_size: '1rem',
+    input_placeholder: 'Where to?'
   }
 }
 
