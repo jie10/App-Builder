@@ -320,6 +320,23 @@ export const BASIC_THEME_STYLE = {
       button_is_disabled: "false",
       button_text_label: "Button",
       button_src_url: ""
+  },
+  '.button-with-icon-component': {
+      background_color: "#FFFFFF",
+      width: "auto",
+      padding: "1rem",
+      button_type: "button",
+      button_background_color: "#cccccc",
+      button_color: "#000000",
+      button_font_size: "1rem",
+      button_border_radius: "50rem",
+      button_border_width: "1px",
+      button_border_color: "transparent",
+      button_border_style: "solid",
+      button_is_disabled: "false",
+      button_text_label: "Button",
+      button_src_url: "",
+      button_icon_url: "https://i8.amplience.net/i/cebupacificair/brown-bag-icon"
   }
 }
 

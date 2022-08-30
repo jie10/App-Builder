@@ -44,6 +44,7 @@ import MultiSelectField from '../Blocks/MultiSelectField'
 import TextInputField from '../Blocks/TextInputField'
 import TextAreaField from '../Blocks/TextAreaField'
 import ButtonText from '../Blocks/ButtonText'
+import ButtonIcon from '../Blocks/ButtonIcon'
 
 class Canvas extends Component {
   async componentDidMount() {
@@ -148,7 +149,9 @@ class Canvas extends Component {
                             case 'TEXT_AREA_FIELD':
                                 return <TextAreaField key={ key } _id={ key } themeStyle={ themeStyle['.text-area-field-component'] } block={ block }/>
                             case 'BUTTON_TEXT':
-                                return <ButtonText key={ key } _id={ key } themeStyle={ themeStyle['.button-with-text-component'] } block={ block }/>      
+                                return <ButtonText key={ key } _id={ key } themeStyle={ themeStyle['.button-with-text-component'] } block={ block }/>
+                            case 'BUTTON_ICON':
+                                return <ButtonIcon key={ key } _id={ key } themeStyle={ themeStyle['.button-with-icon-component'] } block={ block }/>  
                             default:
                                 return <div key={key}>DEFAULT</div>
                         }   
