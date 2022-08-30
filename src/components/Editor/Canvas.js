@@ -36,6 +36,9 @@ import './Canvas.css'
 import PinCodeInput from '../Blocks/Forms/PinCodeInput'
 import SignupForm from '../Blocks/Forms/SignupForm'
 import BottomNavbar from '../Blocks/Navbar/Bottom-Navbar'
+import DatePicker from '../Blocks/DatePicker';
+import TimePicker from '../Blocks/TimePicker';
+import DateTimePicker from '../Blocks/DateTimePicker';
 
 
 class Canvas extends Component {
@@ -126,6 +129,12 @@ class Canvas extends Component {
                                     return <SignupForm key={ key } _id={ key } themeStyle={ themeStyle['.Signup_Form'] } block={ block }/>
                             case 'BOTTOM_NAVBAR':
                                     return <BottomNavbar key={ key } _id={ key } themeStyle={ themeStyle['.bottom_navbar'] } block={ block }/>
+                            case 'DATE_PICKER':
+                                return <DatePicker key={ key } _id={ key } themeStyle={ themeStyle['.date-picker-component'] } block={ block }/>
+                            case 'TIME_PICKER':
+                                return <TimePicker key={ key } _id={ key } themeStyle={ themeStyle['.time-picker-component'] } block={ block }/>    
+                            case 'DATETIME_PICKER':
+                                return <DateTimePicker key={ key } _id={ key } themeStyle={ themeStyle['.datetime-picker-component'] } block={ block }/>    
                             default:
                                 return <div key={key}>DEFAULT</div>
                         }   

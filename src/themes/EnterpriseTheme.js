@@ -280,6 +280,33 @@ export const ENTERPRISE_THEME_STYLE = {
     BottomNavbarItem4Name: "#",
     BottomNavbarItem4URL: "#",
     BottomNavbarItem4Icon: "#",
+  },
+  '.date-picker-component': {
+    width: 'auto',
+    background_color: '#FFFFFF',
+    input_background_color: '#FFFFFF',
+    input_color: '#212529',
+    input_font_size: '1rem',
+    input_placeholder: 'mm/dd/yyyy',
+    input_label: 'Date Label',
+  },
+  '.time-picker-component': {
+    width: 'auto',
+    background_color: '#FFFFFF',
+    input_background_color: '#FFFFFF',
+    input_color: '#212529',
+    input_font_size: '1rem',
+    input_placeholder: 'hh:mm a',
+    input_label: 'Time Label',
+  },
+  '.datetime-picker-component': {
+    width: 'auto',
+    background_color: '#FFFFFF',
+    input_background_color: '#FFFFFF',
+    input_color: '#212529',
+    input_font_size: '1rem',
+    input_placeholder: 'mm/dd/yyyy hh:mm a',
+    input_label: 'DateTime Label',
   }
 };
 
