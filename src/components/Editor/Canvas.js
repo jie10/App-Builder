@@ -41,6 +41,7 @@ import TimePicker from '../Blocks/TimePicker';
 import DateTimePicker from '../Blocks/DateTimePicker';
 import SingleSelectField from '../Blocks/SingleSelectField'
 import MultiSelectField from '../Blocks/MultiSelectField'
+import TextInputField from '../Blocks/TextInputField'
 
 class Canvas extends Component {
   async componentDidMount() {
@@ -140,6 +141,8 @@ class Canvas extends Component {
                                 return <SingleSelectField key={ key } _id={ key } themeStyle={ themeStyle['.single-select-component'] } block={ block }/>
                             case 'MULTI_SELECT':
                                 return <MultiSelectField key={ key } _id={ key } themeStyle={ themeStyle['.multi-select-component'] } block={ block }/>   
+                            case 'TEXT_INPUT_FIELD':
+                                return <TextInputField key={ key } _id={ key } themeStyle={ themeStyle['.text-input-field-component'] } block={ block }/>   
                             default:
                                 return <div key={key}>DEFAULT</div>
                         }   
