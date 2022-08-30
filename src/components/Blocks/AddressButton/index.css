@@ -1,0 +1,51 @@
+.address-button-component {
+    padding: 0.5rem 0.25rem;
+}
+
+.address-button-component .address-button {
+    padding: 16px 0;
+    width: 100%;
+    border-radius: 8px;
+    background-color: #FFFFFF;
+    border: 1px solid transparent;
+    display: flex;
+    display: -webkit-flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    cursor: pointer;
+}
+
+.address-button-component .address-button span {
+    display: block;
+    text-align: left;
+}
+
+.address-button-component .address-button span.details {
+    flex-grow: 1;
+    overflow: hidden;
+}
+
+.address-button-component .address-button span.icon {
+    width: auto;
+    height: auto;
+}
+
+.address-button-component .address-button span.icon svg {
+    height: 20px;
+    padding: 0 18px;
+}
+
+.address-button-component .address-button span.landmark-label {
+    font-size: 1.25rem;
+    font-weight: 700;
+    word-wrap: break-word;
+}
+
+.address-button-component .address-button span.address-label {
+    font-size: 0.875rem;
+}
+
+.address-button-component .address-button-group button {
+    margin: 0 0 16px 0; 
+}

@@ -345,6 +345,10 @@ export const BASIC_THEME_STYLE = {
     input_color: '#212529',
     input_font_size: '1rem',
     input_placeholder: 'Where to?'
+  },
+  '.address-button-component': {
+    background_color: '#f7f7f7',
+    width: '80%'
   }
 }
 
