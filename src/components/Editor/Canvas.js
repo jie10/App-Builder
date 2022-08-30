@@ -39,7 +39,8 @@ import BottomNavbar from '../Blocks/Navbar/Bottom-Navbar'
 import DatePicker from '../Blocks/DatePicker';
 import TimePicker from '../Blocks/TimePicker';
 import DateTimePicker from '../Blocks/DateTimePicker';
-
+import SingleSelectField from '../Blocks/SingleSelectField'
+import MultiSelectField from '../Blocks/MultiSelectField'
 
 class Canvas extends Component {
   async componentDidMount() {
@@ -134,7 +135,11 @@ class Canvas extends Component {
                             case 'TIME_PICKER':
                                 return <TimePicker key={ key } _id={ key } themeStyle={ themeStyle['.time-picker-component'] } block={ block }/>    
                             case 'DATETIME_PICKER':
-                                return <DateTimePicker key={ key } _id={ key } themeStyle={ themeStyle['.datetime-picker-component'] } block={ block }/>    
+                                return <DateTimePicker key={ key } _id={ key } themeStyle={ themeStyle['.datetime-picker-component'] } block={ block }/>
+                            case 'SINGLE_SELECT':
+                                return <SingleSelectField key={ key } _id={ key } themeStyle={ themeStyle['.single-select-component'] } block={ block }/>
+                            case 'MULTI_SELECT':
+                                return <MultiSelectField key={ key } _id={ key } themeStyle={ themeStyle['.multi-select-component'] } block={ block }/>   
                             default:
                                 return <div key={key}>DEFAULT</div>
                         }   

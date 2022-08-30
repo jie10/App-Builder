@@ -255,6 +255,27 @@ export const OMNIX_THEME_STYLE = {
     input_font_size: '1rem',
     input_placeholder: 'mm/dd/yyyy hh:mm a',
     input_label: 'DateTime Label',
+  },
+  '.single-select-component': {
+    width: 'auto',
+    background_color: '#FFFFFF',
+    input_background_color: '#FFFFFF',
+    input_color: '#212529',
+    input_font_size: '1rem',
+    input_label: 'Single Select Label',
+    input_placeholder: 'Select an option',
+    options: 'red, green, blue'
+  },
+  '.multi-select-component': {
+    width: 'auto',
+    height: 'auto',
+    background_color: '#FFFFFF',
+    input_background_color: '#FFFFFF',
+    input_color: '#212529',
+    input_font_size: '1rem',
+    input_label: 'Multi Select Label',
+    input_placeholder: 'Select an option',
+    options: 'red, green, blue'
   }
 };
 
