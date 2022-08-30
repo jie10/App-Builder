@@ -357,6 +357,22 @@ export const ENTERPRISE_THEME_STYLE = {
     input_max_length: 150,
     input_default_value: 'Default Value',
     input_resize: 'none'
+  },
+  '.button-with-text-component': {
+    background_color: "transparent",
+      width: "auto",
+      padding: "0.375rem 0.75rem",
+      button_type: "button",
+      button_background_color: "#0d6efd",
+      button_color: "#ffffff",
+      button_font_size: "1rem",
+      button_border_radius: "50rem",
+      button_border_width: "1px",
+      button_border_color: "transparent",
+      button_border_style: "solid",
+      button_is_disabled: "false",
+      button_text_label: "Button",
+      button_src_url: ""
   }
 };
 
