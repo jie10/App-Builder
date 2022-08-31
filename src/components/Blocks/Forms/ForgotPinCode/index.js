@@ -46,23 +46,28 @@ const ForgotPinCode = (props) => {
             src="/images/round_close_black_24dp.png"/>
         </Grid>
       </Grid>
-      <div id="modal-js-example" className="modal">
-        <div className="modal-background"></div>
+      <div className={ 'container' }>
+        <p>
+          <a data-target="modal-js-example" className="f-text-center">Forgot PIN Code</a>
+        </p>
+        <div id="modal-js-example" className="modal">
+          <div className="modal-background"></div>
 
-        <div className="modal-content">
-          <div className="box">
-            <p>Modal JS example</p>
-            <label style={ {
-              fontWeight: block.parameters.label_weight,
-              fontSize: block.parameters.label_size,
-              fontFamily: block.parameters.label_family,
-            } }>{ label_text }</label>
-            <input type="text" placeholder={ input_placeholder }/>
-            <div></div>
+          <div className="modal-content">
+            <div className="box">
+              <p>Modal JS example</p>
+              <label style={ {
+                fontWeight: block.parameters.label_weight,
+                fontSize: block.parameters.label_size,
+                fontFamily: block.parameters.label_family,
+              } }>{ label_text }</label>
+              <input type="text" placeholder={ input_placeholder }/>
+              <div></div>
+            </div>
           </div>
-        </div>
 
-        <button className="modal-close is-large" aria-label="close"></button>
+          <button className="modal-close is-large" aria-label="close"></button>
+        </div>
       </div>
     </div>
 
