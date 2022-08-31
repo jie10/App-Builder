@@ -56,7 +56,7 @@ const ForgotPinCode = (props) => {
               fontWeight: block.parameters.label_weight,
               fontSize: block.parameters.label_size,
               fontFamily: block.parameters.label_family,
-            } }>{ {label_text} }</label>
+            } }>{ label_text }</label>
             <input type="text" placeholder={ input_placeholder }/>
             <div></div>
           </div>
