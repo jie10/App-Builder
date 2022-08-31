@@ -277,12 +277,13 @@ const Inserter = (props) => {
         <ListItemText primary="form blocks"/>
       </ListItemButton>
       <ListItemButton onClick={ () => sendBlocks({
-        type: 'PinCode_Input', parameters: {
-          backgroundColor: '#FFFFFF',
-          height: 'auto',
-          width: 'auto',
-          fontFamily: '\'Source Sans Pro\', sans-serif',
-          placeholder: 'Enter your Pin Code',
+        type: 'PINCODE_INPUT', parameters: {
+          label_text: '',
+          label_color: '',
+          label_size: '',
+          label_weight: '',
+          input_placeholder: 'Enter your Pin Code',
+          input_bgcolor: '',
         },
       }) }>
         <ListItemIcon>
@@ -351,6 +352,20 @@ const Inserter = (props) => {
           <DraftsIcon/>
         </ListItemIcon>
         <ListItemText primary="Signup_Form"/>
+      </ListItemButton>
+      <ListItemButton onClick={ () => sendBlocks({
+        type: 'FORGOTPINCODE_INPUT', parameters: {
+          label_text: 'Pin Code',
+          input_placeholder: '',
+          label_weight: '',
+          label_size: '',
+          label_family: '',
+        },
+      }) }>
+        <ListItemIcon>
+          <DraftsIcon/>
+        </ListItemIcon>
+        <ListItemText primary="forgot pin code"/>
       </ListItemButton>
     </List>
 
