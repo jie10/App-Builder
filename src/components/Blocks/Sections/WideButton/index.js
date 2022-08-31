@@ -1,27 +1,31 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import { Grid } from '@mui/material';
-import './index.css';
+import React from 'react'
+import { connect } from 'react-redux'
+import { Grid } from '@mui/material'
+import './style.css'
 
 import {
     deleteBlock,
     moveUpBlock,
     moveDownBlock,
     getBlock
-} from '../../../stores/actions'
+} from '../../../../stores/actions'
 
-const TextInputField = (props) => {
+const WideButton = (props) => {
     const { _id, block, deleteBlock, moveUpBlock, moveDownBlock, getBlock, themeStyle } = props
 
     if (block.status === "added") {
         block.parameters = themeStyle
     }
 
+    const [open, setOpen] = React.useState(false);
+
     return(
         <div
-            style={{
-            width: '100%'
-            
+        className='wide_button'
+        style={{
+            width: '100%',
+            height: block.parameters.height,
+            backgroundColor: block.parameters.backgroundColor
         }} onClick={() => getBlock(_id, block)}>
             <Grid container direction="row" justifyContent="flex-end" alignItems="center">
                 <Grid item onClick={() => moveUpBlock(_id)}>
@@ -43,20 +47,10 @@ const TextInputField = (props) => {
                         src='/images/round_close_black_24dp.png' />
                 </Grid>
             </Grid>
-            <div id="text_input_field_component" className="text-input-field-component" style={{ backgroundColor: block.parameters.background_color }}>
-                <label htmlFor="text_input_field">{ block.parameters.input_label }</label>
-                <input type={ block.parameters.input_type }
-                        id="text_input_field"
-                        className="text-input-field"
-                        name="new_text_input_field"
-                        placeholder={ block.parameters.input_placeholder }
-                        maxLength={ block.parameters.input_max_length }
-                        min={ block.parameters.input_num_min }
-                        max={ block.parameters.input_num_max }
-                        step={ block.parameters.input_num_step }
-                        pattern={ block.parameters.input_regex_pattern }
-                        defaultValue={ block.parameters.input_default_value }
-                        style={{ width: block.parameters.width, backgroundColor: block.parameters.input_background_color, color: block.parameters.input_color, fontSize: block.parameters.input_font_size }} />
+            <div className="main_container" style={{padding: block.parameters.padding}}>
+                <div className="button_container">
+                    <div style={{height: block.parameters.button_height, background: block.parameters.button_background}}>{block.parameters.label}</div>
+                </div>
             </div>
         </div>
     )
@@ -73,4 +67,6 @@ export default connect(mapStateToProps, {
     moveUpBlock,
     moveDownBlock,
     getBlock
-})(TextInputField)
+})(WideButton)
+
+

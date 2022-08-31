@@ -10,7 +10,7 @@ import {
     getBlock
 } from '../../../stores/actions'
 
-const TextInputField = (props) => {
+const SplashScreen = (props) => {
     const { _id, block, deleteBlock, moveUpBlock, moveDownBlock, getBlock, themeStyle } = props
 
     if (block.status === "added") {
@@ -43,20 +43,11 @@ const TextInputField = (props) => {
                         src='/images/round_close_black_24dp.png' />
                 </Grid>
             </Grid>
-            <div id="text_input_field_component" className="text-input-field-component" style={{ backgroundColor: block.parameters.background_color }}>
-                <label htmlFor="text_input_field">{ block.parameters.input_label }</label>
-                <input type={ block.parameters.input_type }
-                        id="text_input_field"
-                        className="text-input-field"
-                        name="new_text_input_field"
-                        placeholder={ block.parameters.input_placeholder }
-                        maxLength={ block.parameters.input_max_length }
-                        min={ block.parameters.input_num_min }
-                        max={ block.parameters.input_num_max }
-                        step={ block.parameters.input_num_step }
-                        pattern={ block.parameters.input_regex_pattern }
-                        defaultValue={ block.parameters.input_default_value }
-                        style={{ width: block.parameters.width, backgroundColor: block.parameters.input_background_color, color: block.parameters.input_color, fontSize: block.parameters.input_font_size }} />
+            <div id="splash_screen_component" className="splash-screen-component" style={{ position: block.parameters.position, backgroundColor: block.parameters.background_color }}>
+                <div className="logo-container">
+                    <img className="logo" style={{ width: block.parameters.logo_width, height: block.parameters.logo_height }} src={ block.parameters.logo_url } alt={ block.parameters.alt_text } />
+                    <h1 className="brand-name" style={{ color: block.parameters.text_color, fontSize: block.parameters.font_size }}>{ block.parameters.brandname_title }</h1>
+                </div>
             </div>
         </div>
     )
@@ -73,4 +64,4 @@ export default connect(mapStateToProps, {
     moveUpBlock,
     moveDownBlock,
     getBlock
-})(TextInputField)
+})(SplashScreen)

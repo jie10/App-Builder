@@ -87,22 +87,26 @@ const theme = createTheme({
 const ComponentPreview = (props) => {
     const { component, onPreview } = props;
 
-    return (
-        <div className={`component-preview-container ${component && onPreview !== true ? 'hidden' : '' }`}>
-            <div className="component-preview-image-container">
-                <img src={component.preview_image} alt={`${component.text} preview`} />
-            </div>
-            <div className="component-preview-details-container">
-                <div className="component-preview-details-icon">
-                    <img src={component.icon} alt={`${component.text} icon`} />
+    try {
+        return (
+            <div className={`component-preview-container ${component && onPreview !== true ? 'hidden' : '' }`}>
+                <div className="component-preview-image-container">
+                    <img src={component.preview_image} alt={`${component.text} preview`} />
                 </div>
-                <div className="component-preview-details-text">
-                    <h6 className="component-preview-text">{ component.text }</h6>
-                    <p className="component-preview-description">{ component.preview_description }</p>
+                <div className="component-preview-details-container">
+                    <div className="component-preview-details-icon">
+                        <img src={component.icon} alt={`${component.text} icon`} />
+                    </div>
+                    <div className="component-preview-details-text">
+                        <h6 className="component-preview-text">{ component.text }</h6>
+                        <p className="component-preview-description">{ component.preview_description }</p>
+                    </div>
                 </div>
             </div>
-        </div>
-    );
+        );
+    }catch(e){
+        return (<div>Preview Image</div>)
+    }
 }
 
 const BlocksList = (props) => {

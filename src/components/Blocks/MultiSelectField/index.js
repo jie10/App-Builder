@@ -10,7 +10,7 @@ import {
     getBlock
 } from '../../../stores/actions'
 
-const TextInputField = (props) => {
+const MultiSelectField = (props) => {
     const { _id, block, deleteBlock, moveUpBlock, moveDownBlock, getBlock, themeStyle } = props
 
     if (block.status === "added") {
@@ -43,20 +43,12 @@ const TextInputField = (props) => {
                         src='/images/round_close_black_24dp.png' />
                 </Grid>
             </Grid>
-            <div id="text_input_field_component" className="text-input-field-component" style={{ backgroundColor: block.parameters.background_color }}>
-                <label htmlFor="text_input_field">{ block.parameters.input_label }</label>
-                <input type={ block.parameters.input_type }
-                        id="text_input_field"
-                        className="text-input-field"
-                        name="new_text_input_field"
-                        placeholder={ block.parameters.input_placeholder }
-                        maxLength={ block.parameters.input_max_length }
-                        min={ block.parameters.input_num_min }
-                        max={ block.parameters.input_num_max }
-                        step={ block.parameters.input_num_step }
-                        pattern={ block.parameters.input_regex_pattern }
-                        defaultValue={ block.parameters.input_default_value }
-                        style={{ width: block.parameters.width, backgroundColor: block.parameters.input_background_color, color: block.parameters.input_color, fontSize: block.parameters.input_font_size }} />
+            <div id="multi_select_component" className="multi-select-component" style={{ backgroundColor: block.parameters.background_color }}>
+                <label htmlFor="multi_select">{ block.parameters.input_label }</label>
+                <select id="multi_select" className="multi-select" name="new_multi_select" style={{ height: block.parameters.height, width: block.parameters.width, backgroundColor: block.parameters.input_background_color, color: block.parameters.input_color, fontSize: block.parameters.input_font_size }} multiple>
+                    <option selected disabled>{ block.parameters.input_placeholder }</option>
+                    { block.parameters.options && block.parameters.options.split(',').map(options => <option value={options}>{options}</option>) }
+                </select>
             </div>
         </div>
     )
@@ -73,4 +65,4 @@ export default connect(mapStateToProps, {
     moveUpBlock,
     moveDownBlock,
     getBlock
-})(TextInputField)
+})(MultiSelectField)

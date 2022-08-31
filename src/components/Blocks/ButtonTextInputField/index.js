@@ -10,7 +10,7 @@ import {
     getBlock
 } from '../../../stores/actions'
 
-const TextInputField = (props) => {
+const ButtonTextInputField = (props) => {
     const { _id, block, deleteBlock, moveUpBlock, moveDownBlock, getBlock, themeStyle } = props
 
     if (block.status === "added") {
@@ -43,20 +43,20 @@ const TextInputField = (props) => {
                         src='/images/round_close_black_24dp.png' />
                 </Grid>
             </Grid>
-            <div id="text_input_field_component" className="text-input-field-component" style={{ backgroundColor: block.parameters.background_color }}>
-                <label htmlFor="text_input_field">{ block.parameters.input_label }</label>
+            <div id="button_text_input_field_component" className="button-text-input-field-component" style={{  width: block.parameters.width, backgroundColor: block.parameters.background_color }}>
                 <input type={ block.parameters.input_type }
-                        id="text_input_field"
-                        className="text-input-field"
-                        name="new_text_input_field"
+                        id="button_text_input_field"
+                        className="button-text-input-field"
+                        name="new_button_text_input_field"
                         placeholder={ block.parameters.input_placeholder }
                         maxLength={ block.parameters.input_max_length }
-                        min={ block.parameters.input_num_min }
-                        max={ block.parameters.input_num_max }
-                        step={ block.parameters.input_num_step }
-                        pattern={ block.parameters.input_regex_pattern }
                         defaultValue={ block.parameters.input_default_value }
-                        style={{ width: block.parameters.width, backgroundColor: block.parameters.input_background_color, color: block.parameters.input_color, fontSize: block.parameters.input_font_size }} />
+                        style={{ backgroundColor: block.parameters.input_background_color,
+                                    color: block.parameters.input_color,
+                                    fontSize: block.parameters.input_font_size }} />
+                <button class="button-text" type="button" id="button_text" style={{ backgroundColor: block.parameters.button_background_color, color: block.parameters.button_color }}>
+                    <svg style={{ fill: block.parameters.button_color }} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M438.6 278.6l-160 160C272.4 444.9 264.2 448 256 448s-16.38-3.125-22.62-9.375c-12.5-12.5-12.5-32.75 0-45.25L338.8 288H32C14.33 288 .0016 273.7 .0016 256S14.33 224 32 224h306.8l-105.4-105.4c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0l160 160C451.1 245.9 451.1 266.1 438.6 278.6z"/></svg>
+                </button>
             </div>
         </div>
     )
@@ -73,4 +73,4 @@ export default connect(mapStateToProps, {
     moveUpBlock,
     moveDownBlock,
     getBlock
-})(TextInputField)
+})(ButtonTextInputField)
