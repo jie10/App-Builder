@@ -12,7 +12,7 @@ import {
 
 const PinCodeInput = (props) => {
   const {key, _id, block, deleteBlock, moveUpBlock, moveDownBlock, getBlock, themeStyle} = props
-  const placeholder = block.parameters.placeholder
+  const placeholder = block.parameters.input_placeholder
   const label_text = block.parameters.label_text
   if (block.status === 'added') {
     block.parameters = themeStyle
@@ -59,13 +59,13 @@ const PinCodeInput = (props) => {
         </div>
       </div>*/ }
       <div className={ 'container' }>
-        <label>{ label_text }</label>
-        <input type={ 'text' } placeholder={ placeholder } style={ {
-          backgroundColor: block.parameters.backgroundColor,
-          height: block.parameters.height,
-          width: block.parameters.width,
-          fontFamily: block.parameters.fontFamily,
-        } }/>
+        <label
+          style={ {
+            color: block.parameters.label_color,
+            fontSize: block.parameters.label_size,
+            fontWeight: block.parameters.label_weight,
+          } }>{ label_text }</label>
+        <input type={ 'text' } placeholder={ placeholder } style={ {backgroundColor: block.parameters.input_bgcolor} }/>
       </div>
 
     </div>
