@@ -6,8 +6,6 @@
     opacity: 0.2;
 }
 
-
-
 .cebapp-header-component.rounded-buttom {
     border-bottom-left-radius: 50% 10%;
     border-bottom-right-radius: 50% 10%;
@@ -25,12 +23,14 @@
     font-weight: 700;
     line-height: 150%;
     letter-spacing: .0025em;
+    width: 100%;
 }
 .cebapp-header-component span.country p {
     margin: 0;
 }
 .cebapp-header-component .container {
-    max-width: 1056px;
+    /*max-width: 1056px;*/
+    max-width: 100%;
     width: 100%;
     position: absolute;
     top: 32px;
@@ -45,6 +45,7 @@
 }
 .cebapp-header-component figure {
     margin: 0;
+    display: flex;
 }
 .cebapp-header-component figure img {
     width: 100%;
@@ -63,4 +64,8 @@
     .cebapp-header-component figure img {
         height: 323px;
     }
+}
+
+.header-nav-btn {
+    padding: 0.375rem 0.75rem;
 }
