@@ -11,8 +11,9 @@ import {
 } from '../../../../stores/actions'
 
 const PinCodeInput = (props) => {
-  const {_id, block, deleteBlock, moveUpBlock, moveDownBlock, getBlock, themeStyle} = props
+  const {key, _id, block, deleteBlock, moveUpBlock, moveDownBlock, getBlock, themeStyle} = props
   const placeholder = block.parameters.placeholder
+  const label_text = block.parameters.label_text
   if (block.status === 'added') {
     block.parameters = themeStyle
   }
@@ -23,7 +24,7 @@ const PinCodeInput = (props) => {
       width: '100%',
       height: block.parameters.height,
 
-    } } onClick={ () => getBlock(_id, block) }>
+    } } onClick={ () => getBlock(key, _id, block) }>
       <Grid container direction="row" justifyContent="flex-end" alignItems="center">
         <Grid item onClick={ () => moveUpBlock(_id) }>
           <img
@@ -58,6 +59,7 @@ const PinCodeInput = (props) => {
         </div>
       </div>*/ }
       <div className={ 'container' }>
+        <label style={ }>{ label_text }</label>
         <input type={ 'text' } placeholder={ placeholder } style={ {
           backgroundColor: block.parameters.backgroundColor,
           height: block.parameters.height,
