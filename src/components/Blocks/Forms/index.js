@@ -4,7 +4,6 @@ import { Grid } from '@mui/material'
 import './style.css'
 import SignupForm from './SignupForm'
 import PinCodeInput from './PinCodeInput'
-import '../../Editor/Canvas'
 import {
   deleteBlock,
   moveUpBlock,
@@ -13,7 +12,7 @@ import {
 } from '../../../stores/actions'
 
 const FormBlocks = (props) => {
-  const {key, _id, block, deleteBlock, moveUpBlock, moveDownBlock, getBlock, themeStyle} = props
+  const {_id, block, deleteBlock, moveUpBlock, moveDownBlock, getBlock, themeStyle} = props
 
   if (block.status === 'added') {
     block.parameters = themeStyle
@@ -81,10 +80,8 @@ const FormBlocks = (props) => {
           </button>
 
         </div>
-        { selected === 'Signup' &&
-          <SignupForm/> }
-        { selected === 'PinCode' &&
-          <PinCodeInput/> }
+        { selected === 'Login' && <SignupForm/> }
+        { selected === 'PinCode' && <PinCodeInput/> }
       </div>
     </div>
 
