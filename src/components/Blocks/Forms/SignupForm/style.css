@@ -1,0 +1,8 @@
+input {
+    border-radius: 20px;
+}
+
+.label1, .label2, .label3 {
+    font-weight: bold;
+    font-size: medium;
+}
