@@ -1,9 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Grid } from '@mui/material'
-import TextInputField from '../../TextInputField';
 import './style.css'
-import navigationLogo from '../../../../assets/svgs/navigation-svgrepo-com.svg'
 import {
   deleteBlock,
   moveUpBlock,
@@ -13,27 +11,13 @@ import {
 
 const SignupForm = (props) => {
   const {_id, block, deleteBlock, moveUpBlock, moveDownBlock, getBlock, themeStyle} = props
-  const placeholder = block.parameters.placeholder
-  const placeholder2 = block.parameters.placeholder2
-
-  const label1 = block.parameters.label1
-  const label2 = block.parameters.label2
-  const label3 = block.parameters.label3
-  const label4 = block.parameters.label4
-
-  const text1 = block.parameters.text1
-  const text2 = block.parameters.text2
 
   if (block.status === 'added') {
     block.parameters = themeStyle
   }
 
   return (
-    <div style={ {
-      width: '100%',
-      height: block.parameters.height,
-
-    } } onClick={ () => getBlock(_id, block) }>
+    <div style={ { width: "100%"} } onClick={ () => getBlock(_id, block) }>
       <Grid container direction="row" justifyContent="flex-end" alignItems="center">
         <Grid item onClick={ () => moveUpBlock(_id) }>
           <img
@@ -54,10 +38,9 @@ const SignupForm = (props) => {
             src="/images/round_close_black_24dp.png"/>
         </Grid>
       </Grid>
-
-      <div className={ 'container' }>
+      <div className="container">
         <form className='sign-up-form' id={ block.parameters.form_id } action={ block.parameters.action } method={ block.parameters.method } style={{ backgroundColor: block.parameters.background_color }}>
-          <div className='form-container' style={{ width: block.parameters.form_fields_width }}>
+          <div className='form-container' style={{ padding: block.parameters.form_fields_padding }}>
             <div id="text_input_field_component" className="text-input-field-component">
               <label htmlFor="text_input_field" style={{ fontSize: block.parameters.label_font_size }}>Email</label>
               <input type="email"
@@ -106,9 +89,7 @@ const SignupForm = (props) => {
           </div>
         </form>
       </div>
-
     </div>
-
   )
 }
 

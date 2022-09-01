@@ -12,13 +12,11 @@ import {
 
 const PinCodeInput = (props) => {
   const {_id, block, deleteBlock, moveUpBlock, moveDownBlock, getBlock, themeStyle} = props
-  const placeholder = block.parameters.input_placeholder
-  const label_text = block.parameters.label_text
+
   if (block.status === 'added') {
     block.parameters = themeStyle
   }
-  const [ selected, setSelected ] = useState('')
-  const [ toggle, setToggle ] = useState(false)
+
   return (
     <div style={ {
       width: '100%',
@@ -45,31 +43,47 @@ const PinCodeInput = (props) => {
             src="/images/round_close_black_24dp.png"/>
         </Grid>
       </Grid>
-      {/*<div className="c-campaigns__cards">
-        <div className="c-campaigns__card" style={{backgroundColor: block.parameters.backgroundColor}}>
-          <div>
-            <img alt="" src={block.parameters.card1Image}/>
+      <div className="container">
+        <form className='login-form' id={ block.parameters.form_id } action={ block.parameters.action } method={ block.parameters.method } style={{ backgroundColor: block.parameters.background_color }}>
+          <div className='form-container' style={{ padding: block.parameters.form_fields_padding }}>
+            <div id="text_input_field_component" className="text-input-field-component" style={{ margin: '0 0 8px 0' }}>
+              <label htmlFor="text_input_field" style={{ fontSize: block.parameters.label_font_size }}>{ block.parameters.label_text }</label>
+              <input type="email"
+                      id="text_input_field"
+                      className="text-input-field"
+                      name="new_text_input_field"
+                      placeholder={ block.parameters.input_placeholder }
+                      maxLength={ block.parameters.input_max_length } readOnly />
+            </div>
+            <div id="button_text_component" className="button-with-text-component" >
+                  <button type="button"
+                          id="button_text"
+                          className={"button-text button-primary"}
+                          style={{ borderRadius: block.parameters.button_border_radius }}
+                          disabled>
+                      Login
+                  </button>
+            </div>
+            <div id="button_text_component" className="button-with-text-component" >
+                  <button type="button"
+                          id="button_text"
+                          className={"button-text button-secondary"}
+                          style={{ borderRadius: block.parameters.button_border_radius }}>
+                      Sign Up
+                  </button>
+            </div>
+            <div id="button_text_component" className="button-with-text-component" >
+                  <button type="button"
+                          id="button_text"
+                          className={"button-text"}
+                          style={{ borderRadius: block.parameters.button_border_radius }}>
+                      Forgot PIN Code
+                  </button>
+            </div>
           </div>
-          <div className="content">
-            <h6><strong>{block.parameters.card1Title}</strong></h6>
-            <p><p>As the country's leading carrier, Cebu Pacific celebrates its 25th year by continuously making air travel fun, safe, convenient, flexible, accessible, and affordable for everyJuan.</p></p>
-            <button className="o-btn fixed-size o-btn--primary-blue" type="button"
-                    style={{background: block.parameters.buttonColor}}> View more information</button>
-          </div>
-        </div>
-      </div>*/ }
-      <div className={ 'container' }>
-        <label
-          style={ {
-            color: block.parameters.label_color,
-            fontSize: block.parameters.label_size,
-            fontWeight: block.parameters.label_weight,
-          } }>{ label_text }</label>
-        <input type={ 'text' } placeholder={ placeholder } style={ {backgroundColor: block.parameters.input_bgcolor} }/>
+        </form>
       </div>
-
     </div>
-
   )
 }
 
