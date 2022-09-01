@@ -2,17 +2,28 @@
     padding: 0.5rem 0.25rem;
 }
 
+.address-button-component .address-title {
+    display: inline-block;
+    margin: 0;
+    font-weight: 700;   
+}
+
+.address-button-component .address-title-info {
+    font-size: 0.75rem;
+    margin: 8px 0 12px 0;
+    color: #6c757d;
+}
+
 .address-button-component .address-button {
     padding: 16px 0;
     width: 100%;
     border-radius: 8px;
+    border: 1px solid rgb(206, 212, 218);
     background-color: #FFFFFF;
-    border: 1px solid transparent;
     display: flex;
     display: -webkit-flex;
     justify-content: center;
     align-items: center;
-    margin: auto;
     cursor: pointer;
 }
 
@@ -37,6 +48,7 @@
 }
 
 .address-button-component .address-button span.landmark-label {
+    color:  #cccccc;
     font-size: 1.25rem;
     font-weight: 700;
     word-wrap: break-word;
