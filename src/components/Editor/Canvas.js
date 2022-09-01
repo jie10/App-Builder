@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 
 import HeaderSimple from '../Blocks/Headers/HeaderSimple'
@@ -43,7 +43,6 @@ import ClickableTextInputField from '../Blocks/ClickableTextInputField'
 import AddressButton from '../Blocks/AddressButton'
 import ButtonTextInputField from '../Blocks/ButtonTextInputField'
 import ForgotPinCode from '../Blocks/Forms/ForgotPinCode'
-import FormBlockModal from '../Modals/FormBlockModal/index'
 
 import './Canvas.css'
 import {

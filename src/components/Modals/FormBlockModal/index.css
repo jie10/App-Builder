@@ -16,6 +16,8 @@
     display: -webkit-flex;
     justify-content: center;
     align-items: center;
+    flex-flow: row wrap;
+    -ms-flex-flow: row wrap;
 }
 
 .form-options-list .form-options {
@@ -23,8 +25,9 @@
     border-radius: 4px;
     overflow: hidden;
     padding: 16px 16px 8px 16px;
-    width: 100px;
-    margin: 0 8px;
+    width: 120px;
+    height: 100px;
+    margin: 8px;
     background-color: #007CBA;
     cursor: pointer;
 }
@@ -39,7 +42,7 @@
 }
 
 .form-options-list .form-options .label {
-    font-size: 0.875rem;
+    font-size: 0.75rem;
     margin: 0 0 4px 0;
     text-transform: uppercase;
     font-weight: 700;
