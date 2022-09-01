@@ -354,13 +354,22 @@ export const BASIC_THEME_STYLE = {
     button_color: '#ffffff',
   },
   '.forgotpincode_input': {
-    label_text: '',
-    input_placeholder: '',
-    label_weight: '',
+    label_text: 'Forgot Pin Code',
+    label_color: '',
     label_size: '',
-    label_family: '',
+    label_weight: '',
+    input_bgcolor: '',
+    input_placeholder: 'Your Email',
+    btn1_text: 'Send',
+    bnt1_color: '',
+    btn2_text: 'Cancel',
+    btn2_color: '',
   },
-  '.profilestats': {},
+  '.profilestats': {
+    fontWeight: '',
+    fontSize: '',
+    fontColor: '',
+  },
 }
 
 export default <GlobalStyles styles={ BASIC_THEME_STYLE }/>
