@@ -278,7 +278,7 @@ const Inserter = (props) => {
       </ListItemButton>
       <ListItemButton onClick={ () => sendBlocks({
         type: 'PINCODE_INPUT', parameters: {
-          label_text: '',
+          label_text: 'Pin Code',
           label_color: '',
           label_size: '',
           label_weight: '',
@@ -293,59 +293,39 @@ const Inserter = (props) => {
       </ListItemButton>
       <ListItemButton onClick={ () => sendBlocks({
         type: 'Signup_Form', parameters: {
-
-          placeholder: 'Enter your CEB Email',
-          placeholder2: '92xx xxx xxx',
           label1: 'Email',
+          placeholder: 'Enter your CEB Email',
           label2: 'Mobile Number',
-          label3: 'Target Location',
-          label4: 'No Landmark',
-          text1: 'Your preferred pickup or drop off used in carpool matching',
-          text2: 'Region, province, municipality, Barangay',
-
-          fontSize1: '',
-          fontFamily1: '',
-          fontWeight1: '',
-          color1: '',
+          placeholder2: '92xx xxx xxx',
 
           fontSize: '',
           fontFamily: '',
           fontWeight: '',
-          color: '',
+          bgColor: '',
           borderRadius: '',
 
-          fontSize2: '',
-          fontFamily2: '',
-          fontWeight2: '',
-          color2: '',
+          label3: 'Target Location',
+          label4: 'No Landmark',
+          label4_Size: '',
+          label4_fontFamily: '',
+          label4_fontWeight: '',
 
-          fontSize3: '',
-          fontFamily3: '',
-          fontWeight3: '',
-          color3: '',
+          text1: 'Your preferred pickup or drop off used in carpool matching',
+          text1_Size: '',
+          text1_textWeight: '',
+          text2: 'Region, province, municipality, Barangay',
+          text2_Size: '',
+          text2_textWeight: '',
 
-          btnHeight: '',
-          btnWidth: '',
-          btnColor: '',
-          btnRadius: '',
+          btn1_Height: '',
+          btn1_btnWidth: '',
+          btn1_btnColor: '',
+          btn1_btnRadius: '',
 
-          imgHeight: '',
-          imgWidth: '',
-
-          textSize1: '',
-          textFamily1: '',
-          textWeight1: '',
-          textcolor1: '',
-
-          textSize2: '',
-          textFamily2: '',
-          textWeight2: '',
-          textcolor2: '',
-
-          btnradius2: '',
-          btnHeight2: '',
-          btnWidth2: '',
-          btnColor2: '',
+          btn2_Height: '',
+          btn2_btnWidth: '',
+          btn2_btnColor: '',
+          btn2_btnRadius: '',
         },
       }) }>
         <ListItemIcon>
@@ -366,6 +346,14 @@ const Inserter = (props) => {
           <DraftsIcon/>
         </ListItemIcon>
         <ListItemText primary="forgot pin code"/>
+      </ListItemButton>
+      <ListItemButton onClick={ () => sendBlocks({
+        type: 'PROFILESTATS', parameters: {},
+      }) }>
+        <ListItemIcon>
+          <DraftsIcon/>
+        </ListItemIcon>
+        <ListItemText primary="profile status"/>
       </ListItemButton>
     </List>
 
