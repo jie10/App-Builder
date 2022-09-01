@@ -12,15 +12,13 @@ import Canvas from './Canvas'
 import Inserter from './Inserter_v2'
 import Settings from './Settings'
 
-import FormBlockModal from '../Modals/FormBlockModal/index'
-
 const Editor = (props) => {
     const [isInserterEnabled, setInserterEnabled] = useState(false)
     const [isSettingsEnabled, setSettingsEnabled] = useState(false)
     const [inserterWidth, setInserterWidth] = useState('0%')
     const [canvasWidth, setCanvasWidth] = useState('100%')
     const [settingsWidth, setSettingsWidth] = useState('0%')
-    const [openFormBlockModal, setOpenFormBlockModal] = useState(false);
+
     props.toggleInserter(isInserterEnabled)
 
     const toggleInserter = () => {
@@ -84,8 +82,7 @@ const Editor = (props) => {
             <Header toggleInserter={toggleInserter} toggleSettings={toggleSettings} />
             <Grid container style={{marginTop: '66px'}}>
                 <Grid item style={{width: inserterWidth, margin: '0px', backgroundColor: '#fff', height: 'calc(100vh - 5rem)'}}>
-                    <Inserter setOpenFormBlockModal={setOpenFormBlockModal()} />
-                    <FormBlockModal />
+                    <Inserter />
                 </Grid>
                 <Grid item style={{width: canvasWidth, margin: '0px', backgroundColor: '#fff', height: 'calc(100vh - 5rem)'}}>
                     <Canvas />
@@ -108,4 +105,3 @@ export default connect(mapStateToProps, {
     toggleInserter, 
     toggleSettings
 })(Editor)
-
