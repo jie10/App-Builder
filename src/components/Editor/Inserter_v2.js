@@ -13,6 +13,7 @@ import { Close as CloseIcon, Search as SearchIcon } from '@mui/icons-material';
 import "./Inserter_v2.css";
 
 import { getComponents } from "../../api/Components";
+import FormBlockModal from '../Modals/FormBlockModal/index'
 
 import {
     sendBlocks
@@ -165,11 +166,15 @@ const BlocksList = (props) => {
                                                 className={`component-box component-box-${i}-${component.name}`}
                                                 sx={styleGridComponent}
                                                 onClick={() => {
-                                                        sendBlocks({
-                                                            type: component.type,
-                                                            status: "added",
-                                                            parameters: component.parameters})
-                                                            setOnPreview(false);
+                                                        if (component.group !== "BLOCKS") {
+                                                            sendBlocks({
+                                                                type: component.type,
+                                                                status: "added",
+                                                                parameters: component.parameters})
+                                                        } else {
+                                                        }
+
+                                                        setOnPreview(false);
                                                     }}
                                                 onMouseOver={handleOnShowPreview}
                                                 onMouseLeave={handleOnHidePreview}>

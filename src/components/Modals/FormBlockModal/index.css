@@ -1,0 +1,47 @@
+.form-options-header {
+    margin: 0 0 24px 0;
+}
+
+.form-options-header h3 {
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.form-options-header p {
+    font-size: 0.875rem;
+}
+
+.form-options-list {
+    display: flex;
+    display: -webkit-flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.form-options-list .form-options {
+    border: 1px solid transparent;
+    border-radius: 4px;
+    overflow: hidden;
+    padding: 16px 16px 8px 16px;
+    width: 100px;
+    margin: 0 8px;
+    background-color: #007CBA;
+    cursor: pointer;
+}
+
+.form-options-list .form-options .icon {
+    width: 48px;
+}
+
+.form-options-list .form-options .icon svg {
+    fill: #FFFFFF;
+    color: #FFFFFF;
+}
+
+.form-options-list .form-options .label {
+    font-size: 0.875rem;
+    margin: 0 0 4px 0;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: #FFFFFF;
+}
