@@ -355,22 +355,13 @@ export const OMNIX_THEME_STYLE = {
     button_color: '#ffffff',
   },
   '.forgotpincode_input': {
-    label_text: 'Forgot Pin Code',
-    label_color: '',
-    label_size: '',
+    label_text: 'Pin Code',
+    input_placeholder: '',
     label_weight: '',
-    input_bgcolor: '',
-    input_placeholder: 'Your Email',
-    btn1_text: 'Send',
-    bnt1_color: '',
-    btn2_text: 'Cancel',
-    btn2_color: '',
+    label_size: '',
+    label_family: '',
   },
-  '.profilestats': {
-    fontWeight: '',
-    fontSize: '',
-    fontColor: '',
-  },
+  '.profilestats': {},
 }
 
 export default <GlobalStyles styles={ OMNIX_THEME_STYLE }/>
