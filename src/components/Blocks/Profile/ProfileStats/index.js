@@ -2,6 +2,10 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Grid } from '@mui/material'
 import './style.css'
+import star from './svg/star_FILL1_wght400_GRAD0_opsz48.svg'
+import flight from './svg/flight_FILL1_wght400_GRAD0_opsz48.svg'
+import badge from './svg/military_tech_FILL1_wght400_GRAD0_opsz48.svg'
+import awesome from './svg/auto_awesome_FILL1_wght400_GRAD0_opsz48.svg'
 
 import {
   deleteBlock,
@@ -44,11 +48,52 @@ const ProfileStats = (props) => {
               src="/images/round_close_black_24dp.png"/>
           </Grid>
         </Grid>
-        <div className={ 'columns' }>
-          <div className={ 'column' }>
 
+        <div className={ 'container' }>
+          <div className={ 'columns' }>
+            <div className={ 'column' }>
+              <div className={ 'columns' }>
+                <div className={ 'column' }><img alt={ star } src={ star }/></div>
+                <div className={ 'column' }>
+                  <h1>0</h1>
+                  <span>Points</span>
+                </div>
+              </div>
+            </div>
+
+
+            <div className={ 'column' }>
+              <div className={ 'columns' }>
+                <div className={ 'column' }><img alt={ flight } src={ flight }/></div>
+                <div className={ 'column' }>
+                  <h1>0</h1>
+                  <span>DTP</span>
+                </div>
+              </div>
+            </div>
+
+            <div className={ 'column' }>
+              <div className={ 'columns' }>
+                <div className={ 'column' }><img alt={ badge } src={ badge }/></div>
+                <div className={ 'column' }>
+                  <h1>0</h1>
+                  <span>Badges</span>
+                </div>
+              </div>
+            </div>
+
+            <div className={ 'column' }>
+              <div className={ 'columns' }>
+                <div className={ 'column' }><img alt={ awesome } src={ awesome }/></div>
+                <div className={ 'column' }>
+                  <h1>0</h1>
+                  <span>Items</span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
+
       </div>
     </div>
   )
