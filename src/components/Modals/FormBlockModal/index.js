@@ -45,6 +45,25 @@ const FormBlockModal = (props) => {
     const handleFormBlockType = (formBlockType) => {
         switch(formBlockType) {
             case "login_pincode_form":
+                let login_block = {
+                    type: "PINCODE_INPUT",
+                    status: "added",
+                    "parameters": {
+                        "action": "#",
+                        "method": "",
+                        "form_id": "login_pin_code_form",
+                        "label_text": "PIN Code",
+                        "input_placeholder": "Enter your PIN Code",
+                        "input_max_length": 6,
+                        "background_color": "#FFFFFF",
+                        "form_fields_padding": "2rem",
+                        "label_font_size": "1rem",
+                        "button_border_radius": "24px"
+                    }
+                };
+
+                sendBlocks(login_block);
+
                 break;
             case "forgot_pincode_form":
                 break;
