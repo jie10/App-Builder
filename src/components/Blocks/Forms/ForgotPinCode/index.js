@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import { Grid } from '@mui/material'
 import './style.css'
@@ -11,10 +11,8 @@ import {
 } from '../../../../stores/actions'
 
 const ForgotPinCode = (props) => {
-  const {key, _id, block, deleteBlock, moveUpBlock, moveDownBlock, getBlock, themeStyle} = props
-
-  const label_text = block.parameters.label_text
-  const input_placeholder = block.parameters.input_placeholder
+  const {_id, block, deleteBlock, moveUpBlock, moveDownBlock, getBlock, themeStyle} = props
+  const [ openModal, setOpenModal ] = useState(false)
 
   if (block.status === 'added') {
     block.parameters = themeStyle
@@ -25,7 +23,7 @@ const ForgotPinCode = (props) => {
       width: '100%',
       height: block.parameters.height,
 
-    } } onClick={ () => getBlock(key, _id, block) }>
+    } } onClick={ () => getBlock(_id, block) }>
       <Grid container direction="row" justifyContent="flex-end" alignItems="center">
         <Grid item onClick={ () => moveUpBlock(_id) }>
           <img
@@ -46,29 +44,27 @@ const ForgotPinCode = (props) => {
             src="/images/round_close_black_24dp.png"/>
         </Grid>
       </Grid>
-      <div className={ 'container' }>
-        <p>
-          <a data-target="modal-js-example" className="f-text-center">Forgot PIN Code</a>
-        </p>
-        <div id="modal-js-example" className="modal">
-          <div className="modal-background"></div>
 
-          <div className="modal-content">
-            <div className="box">
-              <p>Modal JS example</p>
-              <label style={ {
-                fontWeight: block.parameters.label_weight,
-                fontSize: block.parameters.label_size,
-                fontFamily: block.parameters.label_family,
-              } }>{ label_text }</label>
-              <input type="text" placeholder={ input_placeholder }/>
-              <div></div>
-            </div>
+      <p className="openModalBtn" onClick={ () => {
+        setOpenModal(true)
+      } }>Forgot PIN Code</p>
+
+      { openModal && <div className="modalBackground">
+        <div className="modalContainer">
+          <div className="title">Forgot PIN Code</div>
+          <div className="body">
+            <input type="text" placeholder="Your Email"/>
           </div>
-
-          <button className="modal-close is-large" aria-label="close"></button>
+          <div className="footer">
+            <button className="button">Send</button>
+            <button className="button" onClick={ () => {
+              setOpenModal(false)
+            }
+            }>Cancel
+            </button>
+          </div>
         </div>
-      </div>
+      </div> }
     </div>
 
   )
