@@ -53,7 +53,7 @@ const ProfileStats = (props) => {
           <div className={ 'columns' }>
             <div className={ 'column' }>
               <div className={ 'columns' }>
-                <div className={ 'column' }><img alt={ star } src={ star }/></div>
+                <div className={ 'column' }><img className={ 'statsicons' } alt={ star } src={ star }/></div>
                 <div className={ 'column' }>
                   <h1>0</h1>
                   <span>Points</span>
@@ -64,7 +64,7 @@ const ProfileStats = (props) => {
 
             <div className={ 'column' }>
               <div className={ 'columns' }>
-                <div className={ 'column' }><img alt={ flight } src={ flight }/></div>
+                <div className={ 'column' }><img className={ 'statsicons' } alt={ flight } src={ flight }/></div>
                 <div className={ 'column' }>
                   <h1>0</h1>
                   <span>DTP</span>
@@ -74,7 +74,7 @@ const ProfileStats = (props) => {
 
             <div className={ 'column' }>
               <div className={ 'columns' }>
-                <div className={ 'column' }><img alt={ badge } src={ badge }/></div>
+                <div className={ 'column' }><img className={ 'statsicons' } alt={ badge } src={ badge }/></div>
                 <div className={ 'column' }>
                   <h1>0</h1>
                   <span>Badges</span>
@@ -84,7 +84,7 @@ const ProfileStats = (props) => {
 
             <div className={ 'column' }>
               <div className={ 'columns' }>
-                <div className={ 'column' }><img alt={ awesome } src={ awesome }/></div>
+                <div className={ 'column' }><img className={ 'statsicons' } alt={ awesome } src={ awesome }/></div>
                 <div className={ 'column' }>
                   <h1>0</h1>
                   <span>Items</span>
