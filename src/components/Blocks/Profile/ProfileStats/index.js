@@ -55,7 +55,7 @@ const ProfileStats = (props) => {
               <div className={ 'columns' }>
                 <div className={ 'column' }><img className={ 'statsicons' } alt={ star } src={ star }/></div>
                 <div className={ 'column' }>
-                  <h1>0</h1>
+                  <h1 className={ 'points' } style={ {fontWeight: block.parameters.fontWeight, fontSize: block.parameters.fontSize, color: block.parameters.fontColor} }>0</h1>
                   <span>Points</span>
                 </div>
               </div>
@@ -66,7 +66,7 @@ const ProfileStats = (props) => {
               <div className={ 'columns' }>
                 <div className={ 'column' }><img className={ 'statsicons' } alt={ flight } src={ flight }/></div>
                 <div className={ 'column' }>
-                  <h1>0</h1>
+                  <h1 className={ 'points' } style={ {fontWeight: block.parameters.fontWeight, fontSize: block.parameters.fontSize, color: block.parameters.fontColor} }>0</h1>
                   <span>DTP</span>
                 </div>
               </div>
@@ -76,7 +76,7 @@ const ProfileStats = (props) => {
               <div className={ 'columns' }>
                 <div className={ 'column' }><img className={ 'statsicons' } alt={ badge } src={ badge }/></div>
                 <div className={ 'column' }>
-                  <h1>0</h1>
+                  <h1 className={ 'points' } style={ {fontWeight: block.parameters.fontWeight, fontSize: block.parameters.fontSize, color: block.parameters.fontColor} }>0</h1>
                   <span>Badges</span>
                 </div>
               </div>
@@ -86,7 +86,7 @@ const ProfileStats = (props) => {
               <div className={ 'columns' }>
                 <div className={ 'column' }><img className={ 'statsicons' } alt={ awesome } src={ awesome }/></div>
                 <div className={ 'column' }>
-                  <h1>0</h1>
+                  <h1 className={ 'points' } style={ {fontWeight: block.parameters.fontWeight, fontSize: block.parameters.fontSize, color: block.parameters.fontColor} }>0</h1>
                   <span>Items</span>
                 </div>
               </div>
