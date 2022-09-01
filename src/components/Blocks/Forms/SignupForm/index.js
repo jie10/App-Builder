@@ -57,53 +57,49 @@ const SignupForm = (props) => {
       <div className={ 'container' }>
         <form>
           <div>
-            <label style={ {
-              fontSize: block.parameters.fontSize1,
-              fontFamily: block.parameters.fontFamily1,
-              fontWeight: block.parameters.fontWeight1,
-              color: block.parameters.color1,
+            <label className="label1" style={ {
+              fontSize: block.parameters.fontSize,
+              fontFamily: block.parameters.fontFamily,
+              fontWeight: block.parameters.fontWeight,
             } }>{ label1 }</label>
             <input type={ 'text' } placeholder={ placeholder } style={ {
+              fontSize: block.parameters.input_fontSize,
+              fontFamily: block.parameters.input_fontFamily,
+              fontWeight: block.parameters.input_fontWeight,
+              backgroundColor: block.parameters.input_bgColor,
+              borderRadius: block.parameters.input_borderRadius,
+            } }/>
+          </div>
+          <div>
+            <label className="label2" style={ {
               fontSize: block.parameters.fontSize,
               fontFamily: block.parameters.fontFamily,
               fontWeight: block.parameters.fontWeight,
               color: block.parameters.color,
-              borderRadius: block.parameters.borderRadius,
-            } }/>
-          </div>
-          <div>
-            <label style={ {
-              fontSize: block.parameters.fontSize2,
-              fontFamily: block.parameters.fontFamily2,
-              fontWeight: block.parameters.fontWeight2,
-              color: block.parameters.color2,
             } }>{ label2 }</label>
             <input type={ 'text' } placeholder={ placeholder2 } style={ {
-              fontSize: block.parameters.fontSize,
-              fontFamily: block.parameters.fontFamily,
-              fontWeight: block.parameters.fontWeight,
-              color: block.parameters.color,
-              borderRadius: block.parameters.borderRadius,
+              fontSize: block.parameters.input_fontSize,
+              fontFamily: block.parameters.input_fontFamily,
+              fontWeight: block.parameters.input_fontWeight,
+              backgroundColor: block.parameters.input_bgColor,
+              borderRadius: block.parameters.input_borderRadius,
             } }/>
           </div>
           <div>
-            <label style={ {
-              fontSize: block.parameters.fontSize3,
-              fontFamily: block.parameters.fontFamily3,
-              fontWeight: block.parameters.fontWeight3,
-              color: block.parameters.color3,
+            <label className="label3" style={ {
+              fontSize: block.parameters.fontSize,
+              fontFamily: block.parameters.fontFamily,
+              fontWeight: block.parameters.fontWeight,
             } }>{ label3 }</label>
             <p style={ {
-              fontSize: block.parameters.textSize1,
-              fontFamily: block.parameters.textFamily1,
-              fontWeight: block.parameters.textWeight1,
-              color: block.parameters.textcolor1,
+              fontSize: block.parameters.text1_Size,
+              fontWeight: block.parameters.text1_textWeight,
             } }>{ text1 }</p>
-            <button style={ {
-              height: block.parameters.btnHeight,
-              width: block.parameters.btnWidth,
-              backgroundColor: block.parameters.btnColor,
-              borderRadius: block.parameters.btnRadius,
+            <button className={ 'button' } style={ {
+              height: block.parameters.btn1_Height,
+              width: block.parameters.btn1_btnWidth,
+              backgroundColor: block.parameters.btn1_btnColor,
+              borderRadius: block.parameters.btn1_btnRadius,
             } }>
               <div className={ 'columns' }>
                 <div className={ 'column' }>
@@ -112,26 +108,23 @@ const SignupForm = (props) => {
                 </div>
                 <div className={ 'column' }>
                   <label style={ {
-                    fontSize: block.parameters.fontSize4,
-                    fontFamily: block.parameters.fontFamily4,
-                    fontWeight: block.parameters.fontWeight4,
-                    color: block.parameters.color4,
+                    fontSize: block.parameters.label4_Size,
+                    fontFamily: block.parameters.label4_fontFamily,
+                    fontWeight: block.parameters.label4_fontWeight,
                   } }>{ label4 }</label>
                   <p style={ {
-                    fontSize: block.parameters.textSize2,
-                    fontFamily: block.parameters.textFamily2,
-                    fontWeight: block.parameters.textWeight2,
-                    color: block.parameters.textcolor2,
+                    fontSize: block.parameters.text2_Size,
+                    fontWeight: block.parameters.text2_textWeight,
                   } }>{ text2 }</p>
                 </div>
               </div>
             </button>
           </div>
-          <button style={ {
-            borderRadius: block.parameters.btnradius2,
-            height: block.parameters.btnHeight2,
-            width: block.parameters.btnWidth2,
-            backgroundColor: block.parameters.btnColor2,
+          <button className={ 'button is-info m-1' } style={ {
+            height: block.parameters.btn2_Height,
+            width: block.parameters.btn2_btnWidth,
+            backgroundColor: block.parameters.btn2_btnColor,
+            borderRadius: block.parameters.btn2_btnRadius,
           } }>Sign Up
           </button>
         </form>
