@@ -335,16 +335,11 @@ const Inserter = (props) => {
       </ListItemButton>
       <ListItemButton onClick={ () => sendBlocks({
         type: 'FORGOTPINCODE_INPUT', parameters: {
-          label_text: 'Forgot Pin Code',
-          label_color: '',
-          label_size: '',
+          label_text: 'Pin Code',
+          input_placeholder: '',
           label_weight: '',
-          input_bgcolor: '',
-          input_placeholder: 'Your Email',
-          btn1_text: 'Send',
-          bnt1_color: '',
-          btn2_text: 'Cancel',
-          btn2_color: '',
+          label_size: '',
+          label_family: '',
         },
       }) }>
         <ListItemIcon>
@@ -353,11 +348,7 @@ const Inserter = (props) => {
         <ListItemText primary="forgot pin code"/>
       </ListItemButton>
       <ListItemButton onClick={ () => sendBlocks({
-        type: 'PROFILESTATS', parameters: {
-          fontWeight: '',
-          fontSize: '',
-          fontColor: '',
-        },
+        type: 'PROFILESTATS', parameters: {},
       }) }>
         <ListItemIcon>
           <DraftsIcon/>
