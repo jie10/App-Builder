@@ -23,7 +23,7 @@ const ForgotPinCode = (props) => {
   }
 
   return (
-    <div className="div-absolute" style={ {
+    <div className="div-absolute pin-bgcolor" style={ {
       width: '100%',
       height: block.parameters.height,
 
@@ -56,7 +56,7 @@ const ForgotPinCode = (props) => {
       </div>
 
       { openModal && <div className="modalBackground">
-        <div className="modalContainer">
+        <div className="modalContainer" style={ {backgroundColor: block.parameters.backgroundColor} }>
           <div className="title" style={ {fontStyle: block.parameters.label2_fontStyle, fontSize: block.parameters.label2_fontSize, fontWeight: block.parameters.label2_weight} }><p>{ label2_text }</p>
           </div>
           <div className="body">

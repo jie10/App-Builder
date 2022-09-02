@@ -369,9 +369,10 @@ export const ENTERPRISE_THEME_STYLE = {
     label1_fontSize: '',
     label1_weight: '',
 
+    backgroundColor: '',
     label2_text: 'Forgot PIN Code',
     label2_fontStyle: '',
-    label2_fontSize: '40px',
+    label2_fontSize: '1.5rem',
     label2_weight: '900',
 
     input_placeholder: 'Your Email',
@@ -381,6 +382,7 @@ export const ENTERPRISE_THEME_STYLE = {
     btn2_bgColor: '',
   },
   '.profilestats': {
+    backgroundColor: 'white',
     label_weight: '',
     label_size: '',
     label1_text: 'Points',
