@@ -60,28 +60,28 @@ input[type=email] {
 }
 
 .btn-send {
-    background-color: #A66CFF;
+    background-color: #7066e0;
     color: white !important;
     padding: 20px;
     text-align: center;
 }
 
 .btn-cancel {
-    background-color: #748DA6;
+    background-color: #6e7881;
     color: white !important;
     padding: 20px;
     text-align: center;
 }
 
 .btn-send:hover {
-    background-color: #A66CFF;
+    background-color: #7066e0;
     color: white !important;
     padding: 20px;
     text-align: center;
 }
 
 .btn-cancel:hover {
-    background-color: #748DA6;
+    background-color: #6e7881;
     color: white !important;
     padding: 20px;
     text-align: center;
