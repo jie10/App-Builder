@@ -394,6 +394,22 @@ export const ENTERPRISE_THEME_STYLE = {
     points_fontSize: '',
     points_fontColor: '#006fc1',
   },
+  '.top-navbar-component': {
+    background_color: "#fee014",
+    brand_title_font_color: "#2472ba",
+    brand_title: "App Name",
+    visible_button_1: "true",
+    button_1_image_url: "https://i8.amplience.net/i/cebupacificair/brown-bag-icon",
+    visible_button_2: "false",
+    button_2_image_url: "https://i8.amplience.net/i/cebupacificair/brown-bag-icon"
+  },
+  '.paragraph-component': {
+    background_color: "transparent",
+    font_color: "#000000",
+    font_size: "0.875rem",
+    p_content: "Text goes here",
+    padding: "0"
+  }
 }
 
 export default <GlobalStyles styles={ ENTERPRISE_THEME_STYLE }/>

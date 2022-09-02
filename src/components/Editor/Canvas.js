@@ -43,6 +43,8 @@ import ClickableTextInputField from '../Blocks/ClickableTextInputField'
 import AddressButton from '../Blocks/AddressButton'
 import ButtonTextInputField from '../Blocks/ButtonTextInputField'
 import ForgotPinCode from '../Blocks/Forms/ForgotPinCode'
+import ParagraphBlock from '../Blocks/ParagraphBlock'
+import TopNavbar from '../Blocks/TopNavbar'
 
 import './Canvas.css'
 import {
@@ -168,6 +170,10 @@ const Canvas = (props) => {
               return <ForgotPinCode key={ key } _id={ key } themeStyle={ themeStyle['.forgotpincode_input'] } block={ block }/>
             case 'PROFILESTATS':
               return <ProfileStats key={ key } _id={ key } themeStyle={ themeStyle['.profilestats'] } block={ block }/>
+            case 'TOP_NAVBAR':
+              return <TopNavbar key={ key } _id={ key } themeStyle={ themeStyle['.top-navbar-component'] } block={ block }/>
+            case 'PARAGRAPH_BLOCK':
+              return <ParagraphBlock key={ key } _id={ key } themeStyle={ themeStyle['.paragraph-component'] } block={ block }/>
             default:
               return <div key={ key }>DEFAULT</div>
           }

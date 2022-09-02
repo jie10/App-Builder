@@ -10,7 +10,7 @@ import {
     getBlock
 } from '../../../stores/actions'
 
-const ParagraphBlock = (props) => {
+const TopNavbar = (props) => {
     const { _id, block, deleteBlock, moveUpBlock, moveDownBlock, getBlock, themeStyle } = props
 
     if (block.status === "added") {
@@ -43,15 +43,32 @@ const ParagraphBlock = (props) => {
                         src='/images/round_close_black_24dp.png' />
                 </Grid>
             </Grid>
-            <p id="paragraph_component"
-                className="paragraph-component"
-                contentEditable
-                style={{ backgroundColor: block.parameters.background_color,
-                            padding: block.parameters.padding,
-                            color: block.parameters.font_color,
-                            fontSize: block.parameters.font_size }}>
-                { `${block.parameters.p_content}` }
-            </p>
+            <div className="top-navbar-component"
+                    id="top_navbar_component"
+                    style={{ backgroundColor: block.parameters.background_color }}>
+                <div className="col">
+                    {
+                        block.parameters.visible_button_1 === "true" ? <button type="button" class="nav-button">
+                                                                <span className="icon">
+                                                                    <img src={ block.parameters.button_1_image_url } alt="button 1" />
+                                                                </span>
+                                                            </button> : null
+                    }
+                </div>
+                <div className="col col-brand-title">
+                    <span className="brand-title"
+                        style={{ color: block.parameters.brand_title_font_color }}>{ block.parameters.brand_title }</span>
+                </div>
+                <div className="col">
+                    {
+                        block.parameters.visible_button_2 === "true" ? <button type="button" class="nav-button">
+                                                                <span className="icon">
+                                                                    <img src={ block.parameters.button_2_image_url } alt="button 2" />
+                                                                </span>
+                                                            </button> : null
+                    }
+                </div>
+            </div>
         </div>
     )
 }
@@ -67,4 +84,4 @@ export default connect(mapStateToProps, {
     moveUpBlock,
     moveDownBlock,
     getBlock
-})(ParagraphBlock)
+})(TopNavbar)
