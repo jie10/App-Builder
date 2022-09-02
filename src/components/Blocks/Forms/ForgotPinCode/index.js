@@ -16,7 +16,7 @@ const ForgotPinCode = (props) => {
 
   const label1_text = block.parameters.label1_text
   const label2_text = block.parameters.label2_text
-  const placeholder = block.parameters.placeholder
+  const placeholder = block.parameters.input_placeholder
 
   if (block.status === 'added') {
     block.parameters = themeStyle
