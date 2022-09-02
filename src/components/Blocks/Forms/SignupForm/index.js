@@ -105,5 +105,3 @@ export default connect(mapStateToProps, {
   moveDownBlock,
   getBlock,
 })(SignupForm)
-
-
