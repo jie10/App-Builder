@@ -91,3 +91,7 @@ input[type=email] {
     text-align: center;
     border-radius: .25em !important;
 }
+
+.pin-bgcolor {
+    background-color: white;
+}

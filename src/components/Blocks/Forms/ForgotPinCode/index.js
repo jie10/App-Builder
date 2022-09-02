@@ -23,7 +23,7 @@ const ForgotPinCode = (props) => {
   }
 
   return (
-    <div className="div-absolute" style={ {
+    <div className="div-absolute pin-bgcolor" style={ {
       width: '100%',
       height: block.parameters.height,
 
