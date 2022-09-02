@@ -1,11 +1,4 @@
-.statsicons {
-    height: 30px;
-    width: auto;
-    fill: blue;
-}
-
-.points {
-    font-size: medium;
-    font-weight: bold;
-    color: #00a4e5;
+.center-container {
+    display: flex;
+    justify-content: center;
 }
