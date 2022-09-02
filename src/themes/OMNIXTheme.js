@@ -370,6 +370,12 @@ export const OMNIX_THEME_STYLE = {
     visible_button_2: "false",
     button_2_image_url: "https://i8.amplience.net/i/cebupacificair/brown-bag-icon"
   },
+  '.header-nav-component': {
+    background_color: "#fee014",
+    nav_button_color: "#373737",
+    page_title_color: "#373737",
+    page_title: "Page Title"
+  },
   '.paragraph-component': {
     background_color: "transparent",
     font_color: "#000000",

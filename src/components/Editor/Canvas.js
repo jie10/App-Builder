@@ -45,6 +45,7 @@ import ButtonTextInputField from '../Blocks/ButtonTextInputField'
 import ForgotPinCode from '../Blocks/Forms/ForgotPinCode'
 import ParagraphBlock from '../Blocks/ParagraphBlock'
 import TopNavbar from '../Blocks/TopNavbar'
+import HeaderNav from '../Blocks/HeaderNav'
 
 import './Canvas.css'
 import {
@@ -174,6 +175,8 @@ const Canvas = (props) => {
               return <TopNavbar key={ key } _id={ key } themeStyle={ themeStyle['.top-navbar-component'] } block={ block }/>
             case 'PARAGRAPH_BLOCK':
               return <ParagraphBlock key={ key } _id={ key } themeStyle={ themeStyle['.paragraph-component'] } block={ block }/>
+            case 'HEADER_NAV':
+              return <HeaderNav key={ key } _id={ key } themeStyle={ themeStyle['.header-nav-component'] } block={ block }/>
             default:
               return <div key={ key }>DEFAULT</div>
           }
