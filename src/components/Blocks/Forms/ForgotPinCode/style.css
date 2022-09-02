@@ -1,8 +1,22 @@
+input[type=email] {
+    font-weight: normal !important;
+}
+
+.btnModal {
+    position: absolute;
+    text-align: center;
+}
+
+.text-center {
+    border: none;
+    background-color: transparent;
+}
+
 .modalBackground {
     width: 100vw;
     /*height: 100vh;*/
-    background-color: white;
-    position: fixed;
+    background-color: transparent;
+    position: absolute;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -24,24 +38,12 @@
     margin-top: 5px;
 }
 
-.titleCloseBtn {
-    display: flex;
-    justify-content: flex-end;
-}
-
-.titleCloseBtn button {
-    background-color: transparent;
-    border: none;
-    font-size: 25px;
-    cursor: pointer;
-}
-
 .modalContainer .body {
     flex: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 1rem;
+    font-size: 1.7rem;
     text-align: center;
 }
 
@@ -52,18 +54,35 @@
     align-items: center;
 }
 
-.modalContainer .footer button {
-    width: 150px;
-    height: 45px;
-    margin: 10px;
-    border: none;
-    background-color: cornflowerblue;
-    color: white;
-    border-radius: 8px;
-    font-size: 20px;
-    cursor: pointer;
+.footer {
+    background-color: white;
+    padding: 0;
 }
 
-#cancelBtn {
-    background-color: crimson;
+.btn-send {
+    background-color: #A66CFF;
+    color: white !important;
+    padding: 20px;
+    text-align: center;
+}
+
+.btn-cancel {
+    background-color: #748DA6;
+    color: white !important;
+    padding: 20px;
+    text-align: center;
+}
+
+.btn-send:hover {
+    background-color: #A66CFF;
+    color: white !important;
+    padding: 20px;
+    text-align: center;
+}
+
+.btn-cancel:hover {
+    background-color: #748DA6;
+    color: white !important;
+    padding: 20px;
+    text-align: center;
 }
