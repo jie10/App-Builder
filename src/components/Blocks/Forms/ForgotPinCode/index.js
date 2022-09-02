@@ -14,12 +14,16 @@ const ForgotPinCode = (props) => {
   const {_id, block, deleteBlock, moveUpBlock, moveDownBlock, getBlock, themeStyle} = props
   const [ openModal, setOpenModal ] = useState(false)
 
+  const label1_text = block.parameters.label1_text
+  const label2_text = block.parameters.label2_text
+  const placeholder = block.parameters.placeholder
+
   if (block.status === 'added') {
     block.parameters = themeStyle
   }
 
   return (
-    <div style={ {
+    <div className="div-absolute" style={ {
       width: '100%',
       height: block.parameters.height,
 
@@ -45,22 +49,25 @@ const ForgotPinCode = (props) => {
         </Grid>
       </Grid>
 
-      <p className="openModalBtn" onClick={ () => {
-        setOpenModal(true)
-      } }>Forgot PIN Code</p>
+      <div className="btnModal container">
+        <button className="openModalBtn text-center" onClick={ () => {
+          setOpenModal(true)
+        } } style={ {fontStyle: block.parameters.label1_fontStyle, fontSize: block.parameters.label1_fontSize, fontWeight: block.parameters.label1_weight} }>{ label1_text }</button>
+      </div>
 
       { openModal && <div className="modalBackground">
         <div className="modalContainer">
-          <div className="title">Forgot PIN Code</div>
+          <div className="title" style={ {fontStyle: block.parameters.label2_fontStyle, fontSize: block.parameters.label2_fontSize, fontWeight: block.parameters.label2_weight} }><p>{ label2_text }</p>
+          </div>
           <div className="body">
-            <input type="text" placeholder="Your Email"/>
+            <input className="input-email" type="email" placeholder={ placeholder } style={ {backgroundColor: block.parameters.input_bgcolor} }/>
           </div>
           <div className="footer">
-            <button className="button">Send</button>
-            <button className="button" onClick={ () => {
+            <button className="button mt-5 mr-2 btn-send" style={ {backgroundColor: block.parameters.btn1_bgColor} }>Send</button>
+            <button className="button mt-5 ml-2 btn-cancel" onClick={ () => {
               setOpenModal(false)
             }
-            }>Cancel
+            } style={ {backgroundColor: block.parameters.btn2_bgColor} }>Cancel
             </button>
           </div>
         </div>
