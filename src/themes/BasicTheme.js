@@ -169,27 +169,27 @@ export const BASIC_THEME_STYLE = {
     height: 'auto',
   },
   '.pincode_input': {
-    action: "#",
-    method: "",
-    form_id: "login_pin_code_form",
-    label_text: "PIN Code",
-    input_placeholder: "Enter your PIN Code",
+    action: '#',
+    method: '',
+    form_id: 'login_pin_code_form',
+    label_text: 'PIN Code',
+    input_placeholder: 'Enter your PIN Code',
     input_max_length: 6,
-    background_color: "#FFFFFF",
-    form_fields_padding: "2rem",
-    label_font_size: "1rem",
-    button_border_radius: "24px"
+    background_color: '#FFFFFF',
+    form_fields_padding: '2rem',
+    label_font_size: '1rem',
+    button_border_radius: '24px',
   },
   '.signup_form': {
-    action: "#",
-    method: "",
-    form_id: "sign_up_form",
-    background_color: "#FFFFFF",
-    form_fields_padding: "2rem",
-    label_font_size: "1rem",
-    button_background_color: "rgb(13, 110, 253)",
-    button_text_color: "#ffffff",
-    button_border_radius: "24px"
+    action: '#',
+    method: '',
+    form_id: 'sign_up_form',
+    background_color: '#FFFFFF',
+    form_fields_padding: '2rem',
+    label_font_size: '1rem',
+    button_background_color: 'rgb(13, 110, 253)',
+    button_text_color: '#ffffff',
+    button_border_radius: '24px',
   },
   '.date-picker-component': {
     width: 'auto',
@@ -328,13 +328,36 @@ export const BASIC_THEME_STYLE = {
     button_color: '#ffffff',
   },
   '.forgotpincode_input': {
-    label_text: '',
-    input_placeholder: '',
+    label1_text: 'Forgot PIN Code',
+    label1_fontStyle: '',
+    label1_fontSize: '',
+    label1_weight: '',
+
+    label2_text: 'Forgot PIN Code',
+    label2_fontStyle: '',
+    label2_fontSize: '40px',
+    label2_weight: '900',
+
+    input_placeholder: 'Your Email',
+    input_bgcolor: '',
+
+    btn1_bgColor: '',
+    btn2_bgColor: '',
+  },
+  '.profilestats': {
     label_weight: '',
     label_size: '',
-    label_family: '',
+    label1_text: 'Points',
+    label2_text: 'DTP',
+    label3_text: 'Badges',
+    label4_text: 'Items',
+
+    icon_color: '#006fc1',
+
+    points_fontWeight: '',
+    points_fontSize: '',
+    points_fontColor: '#006fc1',
   },
-  '.profilestats': {},
 }
 
 export default <GlobalStyles styles={ BASIC_THEME_STYLE }/>

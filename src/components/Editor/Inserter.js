@@ -335,11 +335,21 @@ const Inserter = (props) => {
       </ListItemButton>
       <ListItemButton onClick={ () => sendBlocks({
         type: 'FORGOTPINCODE_INPUT', parameters: {
-          label_text: 'Pin Code',
-          input_placeholder: '',
-          label_weight: '',
-          label_size: '',
-          label_family: '',
+          label1_text: 'Forgot PIN Code',
+          label1_fontStyle: '',
+          label1_fontSize: '',
+          label1_weight: '',
+
+          label2_text: 'Forgot PIN Code',
+          label2_fontStyle: '',
+          label2_fontSize: '40px',
+          label2_weight: '900',
+
+          input_placeholder: 'Your Email',
+          input_bgcolor: '',
+
+          btn1_bgColor: '',
+          btn2_bgColor: '',
         },
       }) }>
         <ListItemIcon>
@@ -348,7 +358,20 @@ const Inserter = (props) => {
         <ListItemText primary="forgot pin code"/>
       </ListItemButton>
       <ListItemButton onClick={ () => sendBlocks({
-        type: 'PROFILESTATS', parameters: {},
+        type: 'PROFILESTATS', parameters: {
+          label_weight: '',
+          label_size: '',
+          label1_text: 'Points',
+          label2_text: 'DTP',
+          label3_text: 'Badges',
+          label4_text: 'Items',
+
+          icon_color: '#006fc1',
+
+          points_fontWeight: '',
+          points_fontSize: '',
+          points_fontColor: '#006fc1',
+        },
       }) }>
         <ListItemIcon>
           <DraftsIcon/>
