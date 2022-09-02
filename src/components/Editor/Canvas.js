@@ -165,9 +165,9 @@ const Canvas = (props) => {
             case 'BUTTON_TEXT_INPUT_FIELD':
               return <ButtonTextInputField key={ key } _id={ key } themeStyle={ themeStyle['.button-text-input-field-component'] } block={ block }/>
             case 'FORGOTPINCODE_INPUT':
-              return <ForgotPinCode key={ key } id={ key } themeStyle={ themeStyle['.forgotpincode_input'] } block={ block }/>
+              return <ForgotPinCode key={ key } _id={ key } themeStyle={ themeStyle['.forgotpincode_input'] } block={ block }/>
             case 'PROFILESTATS':
-              return <ProfileStats key={ key } id={ key } themeStyle={ themeStyle['.profilestats'] } block={ block }/>
+              return <ProfileStats key={ key } _id={ key } themeStyle={ themeStyle['.profilestats'] } block={ block }/>
             default:
               return <div key={ key }>DEFAULT</div>
           }
