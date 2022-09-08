@@ -277,12 +277,13 @@ const Inserter = (props) => {
         <ListItemText primary="form blocks"/>
       </ListItemButton>
       <ListItemButton onClick={ () => sendBlocks({
-        type: 'PinCode_Input', parameters: {
-          backgroundColor: '#FFFFFF',
-          height: 'auto',
-          width: 'auto',
-          fontFamily: '\'Source Sans Pro\', sans-serif',
-          placeholder: 'Enter your Pin Code',
+        type: 'PINCODE_INPUT', parameters: {
+          label_text: 'Pin Code',
+          label_color: '',
+          label_size: '',
+          label_weight: '',
+          input_placeholder: 'Enter your Pin Code',
+          input_bgcolor: '',
         },
       }) }>
         <ListItemIcon>
@@ -292,65 +293,92 @@ const Inserter = (props) => {
       </ListItemButton>
       <ListItemButton onClick={ () => sendBlocks({
         type: 'Signup_Form', parameters: {
-
-          placeholder: 'Enter your CEB Email',
-          placeholder2: '92xx xxx xxx',
           label1: 'Email',
+          placeholder: 'Enter your CEB Email',
           label2: 'Mobile Number',
-          label3: 'Target Location',
-          label4: 'No Landmark',
-          text1: 'Your preferred pickup or drop off used in carpool matching',
-          text2: 'Region, province, municipality, Barangay',
-
-          fontSize1: '',
-          fontFamily1: '',
-          fontWeight1: '',
-          color1: '',
+          placeholder2: '92xx xxx xxx',
 
           fontSize: '',
           fontFamily: '',
           fontWeight: '',
-          color: '',
+          bgColor: '',
           borderRadius: '',
 
-          fontSize2: '',
-          fontFamily2: '',
-          fontWeight2: '',
-          color2: '',
+          label3: 'Target Location',
+          label4: 'No Landmark',
+          label4_Size: '',
+          label4_fontFamily: '',
+          label4_fontWeight: '',
 
-          fontSize3: '',
-          fontFamily3: '',
-          fontWeight3: '',
-          color3: '',
+          text1: 'Your preferred pickup or drop off used in carpool matching',
+          text1_Size: '',
+          text1_textWeight: '',
+          text2: 'Region, province, municipality, Barangay',
+          text2_Size: '',
+          text2_textWeight: '',
 
-          btnHeight: '',
-          btnWidth: '',
-          btnColor: '',
-          btnRadius: '',
+          btn1_Height: '',
+          btn1_btnWidth: '',
+          btn1_btnColor: '',
+          btn1_btnRadius: '',
 
-          imgHeight: '',
-          imgWidth: '',
-
-          textSize1: '',
-          textFamily1: '',
-          textWeight1: '',
-          textcolor1: '',
-
-          textSize2: '',
-          textFamily2: '',
-          textWeight2: '',
-          textcolor2: '',
-
-          btnradius2: '',
-          btnHeight2: '',
-          btnWidth2: '',
-          btnColor2: '',
+          btn2_Height: '',
+          btn2_btnWidth: '',
+          btn2_btnColor: '',
+          btn2_btnRadius: '',
         },
       }) }>
         <ListItemIcon>
           <DraftsIcon/>
         </ListItemIcon>
         <ListItemText primary="Signup_Form"/>
+      </ListItemButton>
+      <ListItemButton onClick={ () => sendBlocks({
+        type: 'FORGOTPINCODE_INPUT', parameters: {
+          label1_text: 'Forgot PIN Code',
+          label1_fontStyle: '',
+          label1_fontSize: '',
+          label1_weight: '',
+
+          backgroundColor: '',
+          label2_text: 'Forgot PIN Code',
+          label2_fontStyle: '',
+          label2_fontSize: '1.5rem',
+          label2_weight: '900',
+
+          input_placeholder: 'Your Email',
+          input_bgcolor: '',
+
+          btn1_bgColor: '',
+          btn2_bgColor: '',
+        },
+      }) }>
+        <ListItemIcon>
+          <DraftsIcon/>
+        </ListItemIcon>
+        <ListItemText primary="forgot pin code"/>
+      </ListItemButton>
+      <ListItemButton onClick={ () => sendBlocks({
+        type: 'PROFILESTATS', parameters: {
+          backgroundColor: 'white',
+          label_weight: '',
+          label_size: '',
+          label1_text: 'Points',
+          label2_text: 'DTP',
+          label3_text: 'Badges',
+          label4_text: 'Items',
+
+          icon_color: '#006fc1',
+
+          points_fontWeight: '',
+          points_fontSize: '',
+          points_fontColor: '#006fc1',
+        },
+      }) }>
+        <ListItemIcon>
+          <DraftsIcon/>
+        </ListItemIcon>
+        <ListItemText primary="profile status"/>
       </ListItemButton>
     </List>
 

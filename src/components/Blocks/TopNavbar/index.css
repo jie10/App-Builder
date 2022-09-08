@@ -1,0 +1,63 @@
+.top-navbar-component {
+    position: relative;
+    display: flex;
+    display: -webkit-flex;
+    width: 100%;
+    height: 50px;
+    padding: 8px 0;
+    background-color: #fee014;
+}
+
+.top-navbar-component .col {
+    flex: 1 0 0%;
+}
+
+
+.top-navbar-component .col:first-child {
+    text-align: left;
+}
+
+.top-navbar-component .col:last-child {
+    text-align: right;
+}
+
+.top-navbar-component .col-brand-title {
+    text-align: center;
+    margin: auto;
+    flex: 0 0 auto;
+    width: 50%;
+}
+
+.top-navbar-component .col-brand-title .brand-title {
+    color: #2472ba;
+    margin: 0;
+    font-weight: 700;
+    font-size: 1.25rem;
+}
+
+.top-navbar-component .nav-button {
+    display: inline-block;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
+    text-align: center;
+    text-decoration: none;
+    vertical-align: middle;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+    background-color: transparent;
+    border: 1px solid transparent;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    border-radius: 0.25rem;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    cursor: pointer;
+}
+
+.top-navbar-component .nav-button img {
+    pointer-events: none;
+    height: 24px;
+    width: 24px;
+}

@@ -1,0 +1,97 @@
+input[type=email] {
+    font-weight: normal !important;
+    border-radius: .1875em;
+}
+
+.btnModal {
+    position: absolute;
+    text-align: center;
+}
+
+.text-center {
+    border: none;
+    background-color: transparent;
+}
+
+.modalBackground {
+    width: 100vw;
+    /*height: 100vh;*/
+    background-color: transparent;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modalContainer {
+    width: 500px;
+    border-radius: 12px;
+    background-color: white;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    display: flex;
+    flex-direction: column;
+    padding: 25px;
+}
+
+.modalContainer .title {
+    display: inline-block;
+    text-align: center;
+    margin-top: 5px;
+}
+
+.modalContainer .body {
+    flex: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.7rem;
+    text-align: center;
+}
+
+.modalContainer .footer {
+    flex: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.footer {
+    background-color: transparent;
+    padding: 0;
+}
+
+.btn-send {
+    background-color: #7066e0;
+    color: white !important;
+    padding: 1em;
+    text-align: center;
+    border-radius: .25em !important;
+}
+
+.btn-cancel {
+    background-color: #6e7881;
+    color: white !important;
+    padding: 1em;
+    text-align: center;
+    border-radius: .25em !important;
+}
+
+.btn-send:hover {
+    background-color: #7066e0;
+    color: white !important;
+    padding: 1em;
+    text-align: center;
+    border-radius: .25em !important;
+}
+
+.btn-cancel:hover {
+    background-color: #6e7881;
+    color: white !important;
+    padding: 1em;
+    text-align: center;
+    border-radius: .25em !important;
+}
+
+.pin-bgcolor {
+    background-color: white;
+}

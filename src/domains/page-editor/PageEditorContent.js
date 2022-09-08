@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 /** List of available project themes */
 import { applyCustomTheme } from "../../themes/CustomTheme";
@@ -12,11 +12,14 @@ import { ENTERPRISE_THEME_STYLE } from '../../themes/EnterpriseTheme';
 import Canvas from '../../components/Editor/Canvas';
 import Inserter from '../../components/Editor/Inserter_v2';
 import Settings from '../../components/Editor/Settings';
+import FormBlockModal from '../../components/Modals/FormBlockModal/index'
 
 import "./PageEditorContent.css";
 
 const PageEditorContent = (props) => {
     const { projectBuldMode, customGlobalStyleSettings, selectedPreviewMenu, isInserterEnabled, isSettingsEnabled } = props;
+
+    const [openFormBlockModal, setOpenFormBlockModal] = useState(false);
 
     const loadProjectThemeStyle = (buildMode) => {
         switch (buildMode) {
@@ -46,15 +49,20 @@ const PageEditorContent = (props) => {
 
     const loadCustomGlobalStyleSettings = () => customGlobalStyleSettings ? applyCustomTheme(customGlobalStyleSettings) : null;
 
+    useEffect(() => {
+        console.log(openFormBlockModal)
+    }, [openFormBlockModal]);
+
     return (
         <div className='page-editor-content-container'>
-            <Inserter isInserterEnabled={isInserterEnabled} />
+            <Inserter isInserterEnabled={isInserterEnabled} setOpenFormBlockModal={setOpenFormBlockModal} />
             <>
                 { loadProjectTheme(projectBuldMode) }
                 { loadCustomGlobalStyleSettings() }
                 <Canvas isInserterEnabled={isInserterEnabled} isSettingsEnabled={isSettingsEnabled} themeStyle={loadProjectThemeStyle(projectBuldMode)} selectedPreviewMenu={selectedPreviewMenu} />
             </>
             <Settings isSettingsEnabled={isSettingsEnabled} />
+            <FormBlockModal openFormBlockModal={openFormBlockModal} setOpenFormBlockModal={setOpenFormBlockModal} />
         </div>
     );
 }

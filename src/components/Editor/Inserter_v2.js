@@ -110,7 +110,7 @@ const ComponentPreview = (props) => {
 }
 
 const BlocksList = (props) => {
-    const { sendBlocks, setOnPreview, setSelectedComponent, componentsList } = props;
+    const { sendBlocks, setOnPreview, setSelectedComponent, componentsList, setOpenFormBlockModal } = props;
 
     const styleGridComponent = {
         padding: "16px 8px",
@@ -165,11 +165,16 @@ const BlocksList = (props) => {
                                                 className={`component-box component-box-${i}-${component.name}`}
                                                 sx={styleGridComponent}
                                                 onClick={() => {
-                                                        sendBlocks({
-                                                            type: component.type,
-                                                            status: "added",
-                                                            parameters: component.parameters})
-                                                            setOnPreview(false);
+                                                        if (component.group !== "BUILDERS") {
+                                                            sendBlocks({
+                                                                type: component.type,
+                                                                status: "added",
+                                                                parameters: component.parameters})
+                                                        } else {
+                                                            setOpenFormBlockModal(true);
+                                                        }
+
+                                                        setOnPreview(false);
                                                     }}
                                                 onMouseOver={handleOnShowPreview}
                                                 onMouseLeave={handleOnHidePreview}>
@@ -273,14 +278,14 @@ const SearchResultsList = (props) => {
 }
 
 const TabPanel = (props) => {
-    const { value, sendBlocks, keyword, components } = props;
+    const { value, sendBlocks, keyword, components, setOpenFormBlockModal } = props;
     const [onPreview, setOnPreview] = useState(false);
     const [selectedComponent, setSelectedComponent] = useState({});
-    
+
     return (
         keyword && keyword.length > 0 ? 
             <>
-                <SearchResultsList sendBlocks={sendBlocks} keyword={keyword} setOnPreview={setOnPreview} setSelectedComponent={setSelectedComponent} componentsList={components} />
+                <SearchResultsList setOpenFormBlockModal={setOpenFormBlockModal} sendBlocks={sendBlocks} keyword={keyword} setOnPreview={setOnPreview} setSelectedComponent={setSelectedComponent} componentsList={components} />
                 <ComponentPreview  component={selectedComponent} onPreview={onPreview} />
             </>
         :
@@ -288,7 +293,7 @@ const TabPanel = (props) => {
                 <div
                     hidden={value !== 0 ? true : false}
                     id={`simple-tabpanel-0`} >
-                    <BlocksList sendBlocks={sendBlocks} setOnPreview={setOnPreview} setSelectedComponent={setSelectedComponent} componentsList={components} />
+                    <BlocksList setOpenFormBlockModal={setOpenFormBlockModal} sendBlocks={sendBlocks} setOnPreview={setOnPreview} setSelectedComponent={setSelectedComponent} componentsList={components} />
                     <ComponentPreview  component={selectedComponent} onPreview={onPreview} />
                 </div>
                 <div
@@ -351,7 +356,7 @@ const ComponentSearchBar = (props) => {
 }
 
 const ComponentTabs = (props) => {
-    const { sendBlocks, components } = props
+    const { sendBlocks, components, setOpenFormBlockModal } = props
     const [value, setValue] = useState(0);
     const [keyword, setKeyword] = useState('');
 
@@ -391,14 +396,14 @@ const ComponentTabs = (props) => {
                             aria-controls="component-tab-1" />
                     </Tabs>
                 </div>
-                <TabPanel value={value} sendBlocks={sendBlocks} keyword={keyword} components={components} />
+                <TabPanel setOpenFormBlockModal={setOpenFormBlockModal} value={value} sendBlocks={sendBlocks} keyword={keyword} components={components} />
             </Box>
         </ThemeProvider>
     );
 }
 
 const Inserter = (props) => {
-    const { isInserterVisible, sendBlocks, isInserterEnabled } = props
+    const { isInserterVisible, sendBlocks, isInserterEnabled, setOpenFormBlockModal } = props
     const [components , setComponents] = useState(null);
 
     useEffect(() => {
@@ -411,7 +416,7 @@ const Inserter = (props) => {
 
     return(
         <div className={`inserter-container ${isInserterEnabled  ? '' : 'inserter-container-hide'}`}>
-            { isInserterVisible && <ComponentTabs sendBlocks={sendBlocks} components={components} /> }
+            { isInserterVisible && <ComponentTabs setOpenFormBlockModal={setOpenFormBlockModal} sendBlocks={sendBlocks} components={components} /> }
         </div>
     )
 }

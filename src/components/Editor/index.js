@@ -1,4 +1,4 @@
-import React, { Component, Fragment, useState } from 'react'
+import React, { Fragment, useState } from 'react'
 import { connect } from 'react-redux'
 
 import {
@@ -18,6 +18,7 @@ const Editor = (props) => {
     const [inserterWidth, setInserterWidth] = useState('0%')
     const [canvasWidth, setCanvasWidth] = useState('100%')
     const [settingsWidth, setSettingsWidth] = useState('0%')
+
     props.toggleInserter(isInserterEnabled)
 
     const toggleInserter = () => {
@@ -104,4 +105,3 @@ export default connect(mapStateToProps, {
     toggleInserter, 
     toggleSettings
 })(Editor)
-
