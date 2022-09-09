@@ -47,6 +47,7 @@ import ParagraphBlock from "../Blocks/ParagraphBlock"
 import TopNavbar from "../Blocks/TopNavbar"
 import HeaderNav from "../Blocks/HeaderNav"
 import FindPoolTabPanel from "../Blocks/Juander/FindPoolTabPanel"
+import ShareRideTabPanel from "../Blocks/Juander/ShareRideTabPanel"
 
 import "./Canvas.css"
 import {
@@ -187,6 +188,8 @@ const Canvas = (props) => {
               return <ProfileMenu key={key} _id={key} themeStyle={themeStyle[".profile-menu-component"]} block={block}/>
             case "FIND_POOL_TAB_PANEL":
               return <FindPoolTabPanel key={key} _id={key} themeStyle={themeStyle[".find-pool-tab-panel-component"]} block={block}/>
+            case "SHARE_RIDE_TAB_PANEL":
+              return <ShareRideTabPanel key={key} _id={key} themeStyle={themeStyle[".share-ride-tab-panel-component"]} block={block}/>
             default:
               return <div key={key}>DEFAULT</div>
           }

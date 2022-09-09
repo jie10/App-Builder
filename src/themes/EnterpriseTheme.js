@@ -437,6 +437,18 @@ export const ENTERPRISE_THEME_STYLE = {
     inputBorder: "1px solid #ced4da",
     inputContainerWidth: "60%",
     inputPlaceholder: "Where to?"
+  },
+  ".share-ride-tab-panel-component": {
+    backgroundColor: "#FFFFFF",
+    borderTop: "1px solid #C0CED8",
+    height: "60vh",
+    marginTop: "0px",
+    inputBorder: "1px solid #ced4da",
+    inputContainerWidth: "80%",
+    inputPlaceholder: "Where to?",
+    inputMaxLength: 300,
+    buttonBackgroundColor: "#6c757d",
+    buttonColor: "#FFFFFF"
   }
 }
 
