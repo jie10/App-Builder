@@ -408,6 +408,15 @@ export const OMNIX_THEME_STYLE = {
     headerColor: "#0060a7",
     descriptionSize: "",
     descriptionColor: "",
+  },
+  ".find-pool-tab-panel-component": {
+    backgroundColor: "#FFFFFF",
+    borderTop: "1px solid #C0CED8",
+    height: "60vh",
+    marginTop: "0px",
+    inputBorder: "1px solid #ced4da",
+    inputContainerWidth: "60%",
+    inputPlaceholder: "Where to?"
   }
 }
 
