@@ -55,6 +55,7 @@ import ProfileStats from "../Blocks/Profile/ProfileStats"
 import MenuHeader from "../Blocks/Profile/ProfileHeader";
 import ProfileHeader from "../Blocks/Profile/ProfileHeader";
 import ProfileMenu from "../Blocks/Profile/ProfileMenu";
+import FAQ from "../Blocks/Profile/ProfileMenu/FAQ";
 
 
 const Canvas = (props) => {
@@ -184,6 +185,8 @@ const Canvas = (props) => {
               return <ProfileHeader key={key} _id={key} themeStyle={themeStyle[".profile-header-component"]} block={block}/>
             case "PROFILE_MENU":
               return <ProfileMenu key={key} _id={key} themeStyle={themeStyle[".profile-menu-component"]} block={block}/>
+            case "PROFILE_FAQ":
+              return <FAQ key={key} _id={key} themeStyle={themeStyle[".profile-faq-component"]} block={block}/>
             default:
               return <div key={key}>DEFAULT</div>
           }

@@ -428,6 +428,25 @@ export const ENTERPRISE_THEME_STYLE = {
     headerColor: "#0060a7",
     descriptionSize: "",
     descriptionColor: "",
+  },
+  ".profile-faq-component": {
+    backgroundColor: "white",
+    faqHeader: "Frequently Asked Questions",
+    headerSize: "",
+    headerWeight: "",
+    faqTitle1: "What is the difference between Carpool and Shuttle rides?",
+    contentText1: "When you look for a <b>Carpool</b> ride, you are looking for a matching driver who is willing to share a ride with anyone going to and from the office with the same designated route as yours.",
+    content2Text1: "By using the <b>Shuttle</b> ride service, you are joining a group of colleagues with the same designated route as yours while riding the company's assigned vehicles.",
+    faqTitle2: "How do I find a Carpool ride?",
+    contentText2: "Simply go to <b>Carpool</b> via the <b>Find Pool</b> tab (selected by default when you load the Carpool screen). Simply search your target location or choose to book on suggested rides if available.",
+    faqTitle3: "How do I join a Shuttle ride?How do I join a Shuttle ride?",
+    contentText3: "Simply go to <b>Shuttle</b> and select a route when rides are available during the morning and evening schedules provided by HR via email (EDSA, Cavite and Parañaque routes).",
+    faqTitle4: "How do I get a new PIN Code?",
+    contentText4: "Go to <b>Settings</b> and click on the <b>Reset PIN Code</b> button.",
+    titleSize: "",
+    titleWeight: "",
+    contentSize: "",
+    contentWeight: "",
   }
 }
 

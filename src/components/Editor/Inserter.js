@@ -411,34 +411,63 @@ const Inserter = (props) => {
           <DraftsIcon/>
         </ListItemIcon>
         <ListItemText primary="profile header"/>
-      </ListItemButton><ListItemButton onClick={() => sendBlocks({
-      type: "PROFILE_MENU", parameters: {
-        backgroundColor: "white",
-        title1: "My Bookings",
-        description1: "View your carpool/shuttle bookings",
-        title2: "My Trips",
-        description2: "View your share carpool rides",
-        title3: "Feedback",
-        description3: "Send us a feedback",
-        title4: "FAQ",
-        description4: "Read frequently asked questions",
-        title5: "Settings",
-        description5: "Update your account info",
-        title6: "Log out",
-        description6: "Log out your account",
+      </ListItemButton>
+      <ListItemButton onClick={() => sendBlocks({
+        type: "PROFILE_MENU", parameters: {
+          backgroundColor: "white",
+          title1: "My Bookings",
+          description1: "View your carpool/shuttle bookings",
+          title2: "My Trips",
+          description2: "View your share carpool rides",
+          title3: "Feedback",
+          description3: "Send us a feedback",
+          title4: "FAQ",
+          description4: "Read frequently asked questions",
+          title5: "Settings",
+          description5: "Update your account info",
+          title6: "Log out",
+          description6: "Log out your account",
 
-        iconColor: "#fee014",
-        headerSize: "",
-        headerColor: "#0060a7",
-        descriptionSize: "",
-        descriptionColor: "",
-      },
-    })}>
-      <ListItemIcon>
-        <DraftsIcon/>
-      </ListItemIcon>
-      <ListItemText primary="profile menu"/>
-    </ListItemButton>
+          iconColor: "#fee014",
+          headerSize: "",
+          headerColor: "#0060a7",
+          descriptionSize: "",
+          descriptionColor: "",
+        },
+      })}>
+        <ListItemIcon>
+          <DraftsIcon/>
+        </ListItemIcon>
+        <ListItemText primary="profile menu"/>
+      </ListItemButton>
+
+      <ListItemButton onClick={() => sendBlocks({
+        type: "PROFILE_FAQ", parameters: {
+          backgroundColor: "white",
+          faqHeader: "Frequently Asked Questions",
+          headerSize: "",
+          headerWeight: "",
+          faqTitle1: "What is the difference between Carpool and Shuttle rides?",
+          contentText1: "When you look for a <b>Carpool</b> ride, you are looking for a matching driver who is willing to share a ride with anyone going to and from the office with the same designated route as yours.",
+          content2Text1: "By using the <b>Shuttle</b> ride service, you are joining a group of colleagues with the same designated route as yours while riding the company's assigned vehicles.",
+          faqTitle2: "How do I find a Carpool ride?",
+          contentText2: "Simply go to <b>Carpool</b> via the <b>Find Pool</b> tab (selected by default when you load the Carpool screen). Simply search your target location or choose to book on suggested rides if available.",
+          faqTitle3: "How do I join a Shuttle ride?How do I join a Shuttle ride?",
+          contentText3: "Simply go to <b>Shuttle</b> and select a route when rides are available during the morning and evening schedules provided by HR via email (EDSA, Cavite and Parañaque routes).",
+          faqTitle4: "How do I get a new PIN Code?",
+          contentText4: "Go to <b>Settings</b> and click on the <b>Reset PIN Code</b> button.",
+          titleSize: "",
+          titleWeight: "",
+          contentSize: "",
+          contentWeight: "",
+        },
+      })}>
+        <ListItemIcon>
+          <DraftsIcon/>
+        </ListItemIcon>
+        <ListItemText primary="profile faq"/>
+      </ListItemButton>
+
     </List>
 
   )
