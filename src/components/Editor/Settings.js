@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from 'react'
+import React, { useState } from 'react'
 import { connect } from 'react-redux'
 
 import ListSubheader from '@mui/material/ListSubheader'
@@ -112,7 +112,6 @@ const Settings = (props) => {
     */
 
     const getSettings = (block) => {
-
         if(block.block !== undefined){
             var params = []
             var data = block.block.parameters
@@ -132,7 +131,7 @@ const Settings = (props) => {
                     id="outlined-basic" 
                     label={item.key} 
                     variant="outlined" 
-                    value={item.value}
+                    value={  item.value }
                     placeholder={item.value} 
                     onFocus={() => setBlockKey(item.key)}
                     onChange={(e) => _handleTextFieldChange(e)} />
@@ -143,7 +142,7 @@ const Settings = (props) => {
         }
 
     }
-    
+
     return(
         <div className={`settings-container ${isSettingsEnabled  ? '' : 'settings-container-hide'}`}>
             {block && getSettings(block)}
@@ -157,7 +156,8 @@ const Settings = (props) => {
 const mapStateToProps = state => {
     return {
         isSettingsVisible: state.isSettingsVisible,
-        block: state.block
+        block: state.block,
+        p_text: state.p_text
     }
 }
 

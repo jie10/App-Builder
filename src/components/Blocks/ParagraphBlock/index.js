@@ -7,14 +7,32 @@ import {
     deleteBlock,
     moveUpBlock,
     moveDownBlock,
-    getBlock
+    getBlock,
+    updateBlock
 } from '../../../stores/actions'
 
 const ParagraphBlock = (props) => {
-    const { _id, block, deleteBlock, moveUpBlock, moveDownBlock, getBlock, themeStyle } = props
+    const { _id, block, deleteBlock, moveUpBlock, moveDownBlock, getBlock, themeStyle, updateBlock } = props;
 
     if (block.status === "added") {
         block.parameters = themeStyle
+    }
+
+    const createPayload = (block, textfieldValue) => {
+        var blockParams = block.parameters
+        blockParams["p_content"] = textfieldValue
+
+        let newBlock = {
+            type: block.type,
+            parameters: blockParams
+        }
+    
+        console.log(newBlock)
+        return newBlock
+    }
+
+    function handleParagraphBlockContent (e) {
+        updateBlock(_id, createPayload(block, e.target.innerHTML));
     }
 
     return(
@@ -46,6 +64,7 @@ const ParagraphBlock = (props) => {
             <p id="paragraph_component"
                 className="paragraph-component"
                 contentEditable
+                onKeyUp={handleParagraphBlockContent}
                 style={{ backgroundColor: block.parameters.background_color,
                             padding: block.parameters.padding,
                             color: block.parameters.font_color,
@@ -66,5 +85,6 @@ export default connect(mapStateToProps, {
     deleteBlock,
     moveUpBlock,
     moveDownBlock,
-    getBlock
+    getBlock,
+    updateBlock
 })(ParagraphBlock)

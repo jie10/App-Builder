@@ -16,7 +16,7 @@ import {
     INITSOCKET
  } from './types'
 
- import { SOCKETURL } from '../../utils/constants/socket'
+//  import { SOCKETURL } from '../../utils/constants/socket'
 
 export const getComponents = () => async dispatch => {
     var components = [
