@@ -40,6 +40,7 @@ import { addNewBlock, getBlocksByPageId, removeBlockById } from "../../api/Block
 import { delay } from '../../utils/helpers/timing';
 import { sendBlocks, deleteBlocks } from '../../stores/actions';
 import { useOutsideClick } from '../../utils/helpers/hooks';
+import { capitalizeWord } from '../../utils/helpers/convert';
 
 import siteLogo from "../../assets/logos/ceblogo.png";
 
@@ -105,9 +106,8 @@ const EditNavBar = (props) => {
     const [previousBlocks, setPreviousBlocks] = useState([]);
     const [pageName, setPageName] = useState(null);
 
-    const findHeaderTitle = (components) => {
-        let result = components.length > 0 ? components.filter(component => component.settings.type === "HEADER")[0] : null;
-        return result ? result.settings.parameters.title : "Untitled";
+    const findHeaderTitle = () => {
+        return pageName ? capitalizeWord(pageName) : "Untitled";
     }
 
     const saveDraftPage = () => {
@@ -124,7 +124,7 @@ const EditNavBar = (props) => {
         if (!page_id && action === "create") {
             addNewPage(appId, {
                 pageName : pageName && pageName !== "" ? pageName.toLowerCase() : "index",
-                pageTitle: findHeaderTitle(currentComponents),
+                pageTitle: findHeaderTitle(),
                 pageStatus: "draft",
                 scheduledTimestamp: null,
                 visibility: pageVisibility,
@@ -152,7 +152,7 @@ const EditNavBar = (props) => {
         } else {
             updatePageById(page_id, appId, {
                 pageName : pageName && pageName !== "" ? pageName.toLowerCase() : null,
-                pageTitle: findHeaderTitle(currentComponents),
+                pageTitle: findHeaderTitle(),
                 pageStatus: "draft",
                 scheduledTimestamp: null,
                 visibility: pageVisibility,
@@ -200,7 +200,7 @@ const EditNavBar = (props) => {
         if (action === "create") {
             addNewPage(appId, {
                 pageName : "index",
-                pageTitle: findHeaderTitle(currentComponents),
+                pageTitle: findHeaderTitle(),
                 pageStatus: "published",
                 scheduledTimestamp: publishDate,
                 visibility: pageVisibility,
@@ -229,7 +229,7 @@ const EditNavBar = (props) => {
         } else {
             updatePageById(page_id, appId, {
                 pageName : pageName && pageName !== "" ? pageName.toLowerCase() : null,
-                pageTitle: findHeaderTitle(currentComponents),
+                pageTitle: findHeaderTitle(),
                 pageStatus: "published",
                 scheduledTimestamp: publishDate,
                 visibility: pageVisibility,
