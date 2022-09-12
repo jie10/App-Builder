@@ -48,6 +48,7 @@ import TopNavbar from "../Blocks/TopNavbar"
 import HeaderNav from "../Blocks/HeaderNav"
 import FindPoolTabPanel from "../Blocks/Juander/FindPoolTabPanel"
 import ShareRideTabPanel from "../Blocks/Juander/ShareRideTabPanel"
+import FeedbackForm from "../Blocks/Forms/FeedbackForm"
 
 import "./Canvas.css"
 import {
@@ -191,6 +192,8 @@ const Canvas = (props) => {
               return <FindPoolTabPanel key={key} _id={key} themeStyle={themeStyle[".find-pool-tab-panel-component"]} block={block}/>
             case "SHARE_RIDE_TAB_PANEL":
               return <ShareRideTabPanel key={key} _id={key} themeStyle={themeStyle[".share-ride-tab-panel-component"]} block={block}/>
+            case "FEEDBACK_FORM":
+              return <FeedbackForm key={key} _id={key} themeStyle={themeStyle[".feedback-form"]} block={block}/>
             default:
               return <div key={key}>DEFAULT</div>
           }
