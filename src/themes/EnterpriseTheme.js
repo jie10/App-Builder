@@ -471,6 +471,19 @@ export const ENTERPRISE_THEME_STYLE = {
     textarea_field_border: "1px solid #f2f3f5",
     textarea_field_max_length: 300,
     textarea_field_resize: "vertical"
+  },
+  ".header-custom-component": {
+    background_image: "https://www.robinsonsbank.com.ph/wp-content/uploads/2020/09/company-overview-header-72-min.jpg",
+    background_color: "#fee014",
+    text_color: "#ffffff",
+    page_title: "Page Title",
+    page_excerpt: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+    button_text: "Continue",
+    button_width: "auto",
+    button_background_color: "transparent",
+    button_text_color: "#ffffff",
+    button_border_radius: "0.25rem",
+    button_border_color: "#ffffff"
   }
 }
 
