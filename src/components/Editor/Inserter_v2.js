@@ -13,6 +13,7 @@ import { Close as CloseIcon, Search as SearchIcon } from '@mui/icons-material';
 import "./Inserter_v2.css";
 
 import { getComponents } from "../../api/Components";
+import { sortByKey } from "../../utils/helpers/sort";
 
 import {
     sendBlocks
@@ -124,10 +125,16 @@ const BlocksList = (props) => {
     };
 
     let categories = Object.keys(componentsList).map((key, i) => ({
-        "_id": i + 1,
         "group": key,
-        "components_list": componentsList[key]
+        "components_list": sortByKey(componentsList[key], "text")
     }));
+
+    categories = sortByKey(categories, "group");
+    categories = categories.map((category, i) => {
+                    category._id = category.group.toLowerCase() === "default" ? 1 : i + 2
+                    return category;    
+                });
+    categories = sortByKey(categories, "_id");
 
     const handleOnShowPreview = (e) => {
         let uniqueId = e.target.className.split(" ")[1];
