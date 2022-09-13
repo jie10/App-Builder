@@ -51,6 +51,7 @@ import ShareRideTabPanel from "../Blocks/Juander/ShareRideTabPanel"
 import FeedbackForm from "../Blocks/Forms/FeedbackForm"
 import HeaderCustom from "../Blocks/Headers/HeaderCustom"
 import CreateTripForm from "../Blocks/Juander/CreateTripForm"
+import UpdateAccountForm from "../Blocks/Juander/UpdateAccountForm"
 
 import "./Canvas.css"
 import {
@@ -200,6 +201,8 @@ const Canvas = (props) => {
               return <HeaderCustom key={key} _id={key} themeStyle={themeStyle[".header-custom-component"]} block={block}/>
             case "CREATE_TRIP_FORM":
               return <CreateTripForm key={key} _id={key} themeStyle={themeStyle[".create-trip-form"]} block={block}/>
+            case "UPDATE_ACCOUNT_FORM":
+              return <UpdateAccountForm key={key} _id={key} themeStyle={themeStyle[".update-account-form"]} block={block}/>
             default:
               return <div key={key}>DEFAULT</div>
           }

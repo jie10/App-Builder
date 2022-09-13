@@ -484,6 +484,17 @@ export const OMNIX_THEME_STYLE = {
     button_background_color: "rgb(13, 110, 253)",
     button_text_color: "#ffffff",
     button_border_radius: "24px"
+  },
+  ".update-account-form": {
+    action: "#",
+    method: "",
+    form_id: "update_account_form",
+    background_color: "#FFFFFF",
+    form_fields_padding: "2rem",
+    label_font_size: "1rem",
+    button_background_color: "rgb(13, 110, 253)",
+    button_text_color: "#ffffff",
+    button_border_radius: "24px",
   }
 }
 
