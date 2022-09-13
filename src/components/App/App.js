@@ -9,7 +9,6 @@ import theme from './Theme'
 
 import './App.css'
 
-import Editor from '../Editor'
 import CreateApp from '../../domains/create-app/CreateApp';
 import AppDashboard from '../../domains/app-dashboard/AppDashboard';
 import PageEditor from '../../domains/page-editor/PageEditor';
@@ -31,8 +30,7 @@ export default class extends Component {
       <ThemeProvider theme={theme}>
         <BrowserRouter>
           <Switch>
-            <Route exact path="/" render={() => <Editor />} />
-            <Route exact path="/account/apps" render={() => <CreateApp />} />
+            <Route exact path="/" render={() => <CreateApp />} />
             <Route path="/dashboard/:id/:page/:sub_page?" render={() => <AppDashboard />} />
             <Route path="/editor/:id/page/:page_id?" render={() => <PageEditor />} />
           </Switch>
