@@ -1,0 +1,44 @@
+/** BOTTOM NAVBAR */
+.bottom-navbar-component {
+    background-color: #FFFFFF;
+    border-top: 1px solid #C0CED8;
+    /*position: fixed;*/
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.bottom-navbar-component .navbar-container {
+    display: flex;
+    display: -webkit-flex;
+    justify-content: center;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0.75rem;
+}
+
+.bottom-navbar-component .nav-tab {
+    display: flex;
+    display: -webkit-flex;
+    flex-direction: column;
+    -ms-flex-direction: column;
+    text-align: center;
+    width: 156px;
+    font-size: 0.875rem;
+    cursor: pointer;
+    text-decoration: none;
+    padding: 9.5px 8px;
+    justify-content: center;
+}
+.bottom-navbar-component .nav-tab svg {
+    font-size: 1rem;
+    width: 24px;
+    margin: auto;
+}
+
+@media screen and (max-width: 480px) {
+    .bottom-navbar-component .navbar-container {
+        padding: 0;
+    }
+}

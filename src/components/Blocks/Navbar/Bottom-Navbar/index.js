@@ -1,7 +1,8 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { connect } from 'react-redux'
-import { Grid, Button } from '@mui/material'
-import './style.css'
+import { Grid } from '@mui/material'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import './index.css'
 
 import {
     deleteBlock,
@@ -43,33 +44,21 @@ const BottomNavbar = (props) => {
             </Grid>
         </Grid>
         <div>
-            <div class="main-bottom-navbar" style={{height:block.parameters.height,
-                backgroundColor: block.parameters.backgroundColor}}>
-                <div class="container d-flex justify-content-center" style={{height:block.parameters.height}}> 
-                    <a class="text-center d-flex flex-column carpool-tab-button" style={{color: block.parameters.fontColor}}
-                        name={block.parameters.BottomNavbarItem1Name} 
-                        href="block.parameters.BottomNavbarItem1URL"> 
-                        <span class="material-icons-round">{block.parameters.BottomNavbarItem1Icon}</span><label>{block.parameters.BottomNavbarItem1Name}</label>
-                    </a> 
-                    <a class="text-center d-flex flex-column shuttle-tab-button" style={{color: block.parameters.fontColor}}
-                        name={block.parameters.BottomNavbarItem2Name}
-                        href="block.parameters.BottomNavbarItem2URL"> 
-                        <span class="material-icons-round">{block.parameters.BottomNavbarItem2Icon}</span><label>{block.parameters.BottomNavbarItem2Name}</label>
-                    </a> 
-                    <a class="text-center d-flex flex-column user-account-tab-button" style={{color: block.parameters.fontColor}}
-                        name={block.parameters.BottomNavbarItem3Name}
-                        href="block.parameters.BottomNavbarItem3URL"> 
-                        <span class="material-icons-round">{block.parameters.BottomNavbarItem3Icon}</span><label>{block.parameters.BottomNavbarItem3Name}</label>
-                    </a> 
-                    <a class="text-center d-flex flex-column user-account-tab-button" style={{color: block.parameters.fontColor}}
-                        name={block.parameters.BottomNavbarItem4Name}
-                        href="block.parameters.BottomNavbarItem4URL"> 
-                        <span class="material-icons-round">{block.parameters.BottomNavbarItem4Icon}</span><label>{block.parameters.BottomNavbarItem4Name}</label>
-                    </a> 
+            <div className="bottom-navbar-component" style={{ backgroundColor: block.parameters.background_color, borderTop: block.parameters.border_top }}>
+                <div className="navbar-container">
+                    { block.parameters.tabs_name.split(',').map((tab_name, i) => {
+                        let icons = block.parameters.tabs_icon.split(',');
+                        return <a className={`nav-tab`} key={i} style={{ color: block.parameters.tab_active_index === i ? block.parameters.font_color_active : block.parameters.font_color, pointerEvents: "none" }}
+                                    id={`nav_tab_${i}`} href="/"> 
+                                    { icons[i] ? <FontAwesomeIcon icon={icons[i]} /> : null }
+                                    { tab_name }
+                                </a>;
+                    }) }
+                    
                 </div>
             </div>   
         </div>
-        </div>
+    </div>
     )
 }
 

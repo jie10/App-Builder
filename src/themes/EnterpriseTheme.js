@@ -484,6 +484,15 @@ export const ENTERPRISE_THEME_STYLE = {
     button_text_color: "#ffffff",
     button_border_radius: "0.25rem",
     button_border_color: "#ffffff"
+  },
+  ".bottom-navbar-component": {
+    background_color: "#FFFFFF",
+    border_top: "border-top: 1px solid #C0CED8",
+    font_color: "#373737",
+    font_color_active: "#2472ba",
+    tab_active_index: 0,
+    tabs_name: "carpool,shuttle,account",
+    tabs_icon: "fa-solid fa-car-side,fa-solid fa-van-shuttle,fa-solid fa-user"
   }
 }
 
