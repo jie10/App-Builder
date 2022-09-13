@@ -50,6 +50,7 @@ import FindPoolTabPanel from "../Blocks/Juander/FindPoolTabPanel"
 import ShareRideTabPanel from "../Blocks/Juander/ShareRideTabPanel"
 import FeedbackForm from "../Blocks/Forms/FeedbackForm"
 import HeaderCustom from "../Blocks/Headers/HeaderCustom"
+import CreateTripForm from "../Blocks/Juander/CreateTripForm"
 
 import "./Canvas.css"
 import {
@@ -197,6 +198,8 @@ const Canvas = (props) => {
               return <FeedbackForm key={key} _id={key} themeStyle={themeStyle[".feedback-form"]} block={block}/>
             case "HEADER_CUSTOM":
               return <HeaderCustom key={key} _id={key} themeStyle={themeStyle[".header-custom-component"]} block={block}/>
+            case "CREATE_TRIP_FORM":
+              return <CreateTripForm key={key} _id={key} themeStyle={themeStyle[".create-trip-form"]} block={block}/>
             default:
               return <div key={key}>DEFAULT</div>
           }
