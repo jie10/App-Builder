@@ -1,16 +1,20 @@
+/* eslint-disable import/no-anonymous-default-export */
 import React, { Component } from 'react'
 import { ThemeProvider } from '@mui/material/styles'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { fas } from '@fortawesome/free-solid-svg-icons'
+import { fab } from '@fortawesome/free-brands-svg-icons'
 import theme from './Theme'
 
 import './App.css'
-import Layout from '../Layout'
 
 import Editor from '../Editor'
 import CreateApp from '../../domains/create-app/CreateApp';
 import AppDashboard from '../../domains/app-dashboard/AppDashboard';
 import PageEditor from '../../domains/page-editor/PageEditor';
 
+library.add(fas, fab);
 export default class extends Component {
   state = {
     pages: [
@@ -22,9 +26,7 @@ export default class extends Component {
     ]
   }
 
-  render(){
-    const { pages } = this.state
-
+  render() {
     return(
       <ThemeProvider theme={theme}>
         <BrowserRouter>
