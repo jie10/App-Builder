@@ -1,6 +1,6 @@
-import GlobalStyles from '@mui/material/GlobalStyles'
+import GlobalStyles from '@mui/material/GlobalStyles';
 
-import { WHITE, EERIE_BLACK } from '../utils/constants/colors'
+import { WHITE, EERIE_BLACK } from '../utils/constants/colors';
 
 export const BASIC_THEME_STYLE = {
   body: {
@@ -22,26 +22,30 @@ export const BASIC_THEME_STYLE = {
   '.image_only_section': {
     backgroundColor: '#FFFFFF',
     height: 'auto',
-    image: 'https://cdn.media.amplience.net/i/cebupacificair/Safety measures for contactless flights?w=undefined&amp;h=undefined&amp;sm=c&amp;scaleFit=poi&amp;poi={$this.metadata.pointOfInterest.x},{$this.metadata.pointOfInterest.y},{$this.metadata.pointOfInterest.w},{$this.metadata.pointOfInterest.h}',
+    image:
+      'https://cdn.media.amplience.net/i/cebupacificair/Safety measures for contactless flights?w=undefined&amp;h=undefined&amp;sm=c&amp;scaleFit=poi&amp;poi={$this.metadata.pointOfInterest.x},{$this.metadata.pointOfInterest.y},{$this.metadata.pointOfInterest.w},{$this.metadata.pointOfInterest.h}',
     alignment: 'center',
   },
   '.video_only_section': {
     backgroundColor: '#FFFFFF',
     height: 'auto',
-    video: 'https://cdn.media.amplience.net/v/cebupacificair/[ONTIVA.COM]-A Message from our Chief Pilot for our 25th Anniversary-720P/mp4_720p',
+    video:
+      'https://cdn.media.amplience.net/v/cebupacificair/[ONTIVA.COM]-A Message from our Chief Pilot for our 25th Anniversary-720P/mp4_720p',
     alignment: 'center',
   },
   '.image_with_text_section': {
     backgroundColor: '#FFFFFF',
     height: 'auto',
-    image: 'https://cdn.media.amplience.net/i/cebupacificair/Safety measures for contactless flights?w=undefined&amp;h=undefined&amp;sm=c&amp;scaleFit=poi&amp;poi={$this.metadata.pointOfInterest.x},{$this.metadata.pointOfInterest.y},{$this.metadata.pointOfInterest.w},{$this.metadata.pointOfInterest.h}',
+    image:
+      'https://cdn.media.amplience.net/i/cebupacificair/Safety measures for contactless flights?w=undefined&amp;h=undefined&amp;sm=c&amp;scaleFit=poi&amp;poi={$this.metadata.pointOfInterest.x},{$this.metadata.pointOfInterest.y},{$this.metadata.pointOfInterest.w},{$this.metadata.pointOfInterest.h}',
     title: 'Title',
     text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent quis sapien quis lectus elementum laoreet sed sit amet velit. Praesent nec enim est. Nulla blandit bibendum ipsum non gravida. Nam placerat purus quis lacinia consequat. Donec magna dolor, dictum ut tortor auctor, pulvinar ultricies turpis. Sed vulputate nunc sit amet iaculis placerat. Morbi non risus vel ex iaculis bibendum. Cras sit amet eleifend nisi, at mattis tortor. Nunc id ornare nunc. Donec porttitor euismod magna eu fermentum.',
   },
   '.left_image_with_text_and_button_section': {
     backgroundColor: '#FFFFFF',
     height: 'auto',
-    image: 'https://cdn.media.amplience.net/i/cebupacificair/Our-Story-About?w=800&amp;sm=c&amp;scaleFit=poi&amp;poi={$this.metadata.pointOfInterest.x},{$this.metadata.pointOfInterest.y},{$this.metadata.pointOfInterest.w},{$this.metadata.pointOfInterest.h}',
+    image:
+      'https://cdn.media.amplience.net/i/cebupacificair/Our-Story-About?w=800&amp;sm=c&amp;scaleFit=poi&amp;poi={$this.metadata.pointOfInterest.x},{$this.metadata.pointOfInterest.y},{$this.metadata.pointOfInterest.w},{$this.metadata.pointOfInterest.h}',
     title: 'Title',
     text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent quis sapien quis lectus elementum laoreet sed sit amet velit. Praesent nec enim est. Nulla blandit bibendum ipsum non gravida. Nam placerat purus quis lacinia consequat. Donec magna dolor, dictum ut tortor auctor, pulvinar ultricies turpis. Sed vulputate nunc sit amet iaculis placerat. Morbi non risus vel ex iaculis bibendum. Cras sit amet eleifend nisi, at mattis tortor. Nunc id ornare nunc. Donec porttitor euismod magna eu fermentum.',
     url: '/pages/about/our-story/our-fleet',
@@ -49,7 +53,8 @@ export const BASIC_THEME_STYLE = {
   '.right_image_with_text_and_button_section': {
     backgroundColor: '#FFFFFF',
     height: 'auto',
-    image: 'https://cdn.media.amplience.net/i/cebupacificair/Our-Story-About?w=800&amp;sm=c&amp;scaleFit=poi&amp;poi={$this.metadata.pointOfInterest.x},{$this.metadata.pointOfInterest.y},{$this.metadata.pointOfInterest.w},{$this.metadata.pointOfInterest.h}',
+    image:
+      'https://cdn.media.amplience.net/i/cebupacificair/Our-Story-About?w=800&amp;sm=c&amp;scaleFit=poi&amp;poi={$this.metadata.pointOfInterest.x},{$this.metadata.pointOfInterest.y},{$this.metadata.pointOfInterest.w},{$this.metadata.pointOfInterest.h}',
     title: 'Title',
     text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent quis sapien quis lectus elementum laoreet sed sit amet velit. Praesent nec enim est. Nulla blandit bibendum ipsum non gravida. Nam placerat purus quis lacinia consequat. Donec magna dolor, dictum ut tortor auctor, pulvinar ultricies turpis. Sed vulputate nunc sit amet iaculis placerat. Morbi non risus vel ex iaculis bibendum. Cras sit amet eleifend nisi, at mattis tortor. Nunc id ornare nunc. Donec porttitor euismod magna eu fermentum.',
     url: '/pages/about/our-story/our-fleet',
@@ -108,7 +113,8 @@ export const BASIC_THEME_STYLE = {
     backgroundColor: '#fff',
     height: 'auto',
     button_height: '48px',
-    button_background: 'linear-gradient(134.96deg, #00A4E5 17.86%, #006FC1 87.93%)',
+    button_background:
+      'linear-gradient(134.96deg, #00A4E5 17.86%, #006FC1 87.93%)',
     padding: '0',
     margin: '0',
     label: 'Start',
@@ -117,27 +123,34 @@ export const BASIC_THEME_STYLE = {
     backgroundColor: '#fbe700',
     height: '160px',
     title: 'Header',
-    image: 'https://cdn.media.amplience.net/i/cebupacificair/BKK-Bangkok-Thailand-SightSeeing2-6000x4000?w=1980&amp;sm=c&amp;scaleFit=poi&amp;poi={$this.metadata.pointOfInterest.x},{$this.metadata.pointOfInterest.y},{$this.metadata.pointOfInterest.w},{$this.metadata.pointOfInterest.h}?&amp;fmt=jpg&amp;fmt.options=interlaced',
+    image:
+      'https://cdn.media.amplience.net/i/cebupacificair/BKK-Bangkok-Thailand-SightSeeing2-6000x4000?w=1980&amp;sm=c&amp;scaleFit=poi&amp;poi={$this.metadata.pointOfInterest.x},{$this.metadata.pointOfInterest.y},{$this.metadata.pointOfInterest.w},{$this.metadata.pointOfInterest.h}?&amp;fmt=jpg&amp;fmt.options=interlaced',
   },
   '.cards': {
     backgroundColor: '#FFFFFF',
     height: 'auto',
     card1Title: 'Corporate Profile',
-    card1Image: 'https://cdn.media.amplience.net/i/cebupacificair/Corp-Prof?w=600&amp;sm=c&amp;scaleFit=poi&amp;poi={$this.metadata.pointOfInterest.x},{$this.metadata.pointOfInterest.y},{$this.metadata.pointOfInterest.w},{$this.metadata.pointOfInterest.h}',
+    card1Image:
+      'https://cdn.media.amplience.net/i/cebupacificair/Corp-Prof?w=600&amp;sm=c&amp;scaleFit=poi&amp;poi={$this.metadata.pointOfInterest.x},{$this.metadata.pointOfInterest.y},{$this.metadata.pointOfInterest.w},{$this.metadata.pointOfInterest.h}',
     card2Title: 'Corporate Governance',
-    card2Image: 'https://cdn.media.amplience.net/i/cebupacificair/Corp-Gov?w=600&amp;sm=c&amp;scaleFit=poi&amp;poi={$this.metadata.pointOfInterest.x},{$this.metadata.pointOfInterest.y},{$this.metadata.pointOfInterest.w},{$this.metadata.pointOfInterest.h}',
+    card2Image:
+      'https://cdn.media.amplience.net/i/cebupacificair/Corp-Gov?w=600&amp;sm=c&amp;scaleFit=poi&amp;poi={$this.metadata.pointOfInterest.x},{$this.metadata.pointOfInterest.y},{$this.metadata.pointOfInterest.w},{$this.metadata.pointOfInterest.h}',
     card3Title: 'Corporate Disclosures',
-    card3Image: 'https://cdn.media.amplience.net/i/cebupacificair/Corp-Disclosure?w=600&amp;sm=c&amp;scaleFit=poi&amp;poi={$this.metadata.pointOfInterest.x},{$this.metadata.pointOfInterest.y},{$this.metadata.pointOfInterest.w},{$this.metadata.pointOfInterest.h}',
+    card3Image:
+      'https://cdn.media.amplience.net/i/cebupacificair/Corp-Disclosure?w=600&amp;sm=c&amp;scaleFit=poi&amp;poi={$this.metadata.pointOfInterest.x},{$this.metadata.pointOfInterest.y},{$this.metadata.pointOfInterest.w},{$this.metadata.pointOfInterest.h}',
   },
   '.campaign_cards': {
     backgroundColor: '#FFFFFF',
     height: 'auto',
     card1Title: 'Corporate Profile',
-    card1Image: 'https://cdn.media.amplience.net/i/cebupacificair/Corp-Prof?w=600&amp;sm=c&amp;scaleFit=poi&amp;poi={$this.metadata.pointOfInterest.x},{$this.metadata.pointOfInterest.y},{$this.metadata.pointOfInterest.w},{$this.metadata.pointOfInterest.h}',
+    card1Image:
+      'https://cdn.media.amplience.net/i/cebupacificair/Corp-Prof?w=600&amp;sm=c&amp;scaleFit=poi&amp;poi={$this.metadata.pointOfInterest.x},{$this.metadata.pointOfInterest.y},{$this.metadata.pointOfInterest.w},{$this.metadata.pointOfInterest.h}',
     card2Title: 'Corporate Governance',
-    card2Image: 'https://cdn.media.amplience.net/i/cebupacificair/Corp-Gov?w=600&amp;sm=c&amp;scaleFit=poi&amp;poi={$this.metadata.pointOfInterest.x},{$this.metadata.pointOfInterest.y},{$this.metadata.pointOfInterest.w},{$this.metadata.pointOfInterest.h}',
+    card2Image:
+      'https://cdn.media.amplience.net/i/cebupacificair/Corp-Gov?w=600&amp;sm=c&amp;scaleFit=poi&amp;poi={$this.metadata.pointOfInterest.x},{$this.metadata.pointOfInterest.y},{$this.metadata.pointOfInterest.w},{$this.metadata.pointOfInterest.h}',
     card3Title: 'Corporate Disclosures',
-    card3Image: 'https://cdn.media.amplience.net/i/cebupacificair/Corp-Disclosure?w=600&amp;sm=c&amp;scaleFit=poi&amp;poi={$this.metadata.pointOfInterest.x},{$this.metadata.pointOfInterest.y},{$this.metadata.pointOfInterest.w},{$this.metadata.pointOfInterest.h}',
+    card3Image:
+      'https://cdn.media.amplience.net/i/cebupacificair/Corp-Disclosure?w=600&amp;sm=c&amp;scaleFit=poi&amp;poi={$this.metadata.pointOfInterest.x},{$this.metadata.pointOfInterest.y},{$this.metadata.pointOfInterest.w},{$this.metadata.pointOfInterest.h}',
   },
   '.toggle-nav-tab-component': {
     background_color: '#f9eec0',
@@ -361,9 +374,11 @@ export const BASIC_THEME_STYLE = {
     brand_title_font_color: '#2472ba',
     brand_title: 'App Name',
     visible_button_1: 'true',
-    button_1_image_url: 'https://i8.amplience.net/i/cebupacificair/brown-bag-icon',
+    button_1_image_url:
+      'https://i8.amplience.net/i/cebupacificair/brown-bag-icon',
     visible_button_2: 'false',
-    button_2_image_url: 'https://i8.amplience.net/i/cebupacificair/brown-bag-icon',
+    button_2_image_url:
+      'https://i8.amplience.net/i/cebupacificair/brown-bag-icon',
   },
   '.header-nav-component': {
     background_color: '#fee014',
@@ -414,14 +429,19 @@ export const BASIC_THEME_STYLE = {
     headerSize: '',
     headerWeight: '',
     faqTitle1: 'What is the difference between Carpool and Shuttle rides?',
-    contentText1: 'When you look for a <b>Carpool</b> ride, you are looking for a matching driver who is willing to share a ride with anyone going to and from the office with the same designated route as yours.',
-    content2Text1: 'By using the <b>Shuttle</b> ride service, you are joining a group of colleagues with the same designated route as yours while riding the company\'s assigned vehicles.',
+    contentText1:
+      'When you look for a <b>Carpool</b> ride, you are looking for a matching driver who is willing to share a ride with anyone going to and from the office with the same designated route as yours.',
+    content2Text1:
+      "By using the <b>Shuttle</b> ride service, you are joining a group of colleagues with the same designated route as yours while riding the company's assigned vehicles.",
     faqTitle2: 'How do I find a Carpool ride?',
-    contentText2: 'Simply go to <b>Carpool</b> via the <b>Find Pool</b> tab (selected by default when you load the Carpool screen). Simply search your target location or choose to book on suggested rides if available.',
+    contentText2:
+      'Simply go to <b>Carpool</b> via the <b>Find Pool</b> tab (selected by default when you load the Carpool screen). Simply search your target location or choose to book on suggested rides if available.',
     faqTitle3: 'How do I join a Shuttle ride?How do I join a Shuttle ride?',
-    contentText3: 'Simply go to <b>Shuttle</b> and select a route when rides are available during the morning and evening schedules provided by HR via email (EDSA, Cavite and Parañaque routes).',
+    contentText3:
+      'Simply go to <b>Shuttle</b> and select a route when rides are available during the morning and evening schedules provided by HR via email (EDSA, Cavite and Parañaque routes).',
     faqTitle4: 'How do I get a new PIN Code?',
-    contentText4: 'Go to <b>Settings</b> and click on the <b>Reset PIN Code</b> button.',
+    contentText4:
+      'Go to <b>Settings</b> and click on the <b>Reset PIN Code</b> button.',
     titleSize: '',
     titleWeight: '',
     contentSize: '',
@@ -432,6 +452,63 @@ export const BASIC_THEME_STYLE = {
     slide2: '',
     slide3: '',
   },
-}
+  '.find-pool-tab-panel-component': {
+    backgroundColor: '#FFFFFF',
+    borderTop: '1px solid #C0CED8',
+    height: '60vh',
+    marginTop: '0px',
+    inputBorder: '1px solid #ced4da',
+    inputContainerWidth: '60%',
+    inputPlaceholder: 'Where to?',
+  },
+  '.share-ride-tab-panel-component': {
+    backgroundColor: '#FFFFFF',
+    borderTop: '1px solid #C0CED8',
+    height: '60vh',
+    marginTop: '0px',
+    inputBorder: '1px solid #ced4da',
+    inputContainerWidth: '80%',
+    inputPlaceholder: 'Where to?',
+    inputMaxLength: 300,
+    buttonBackgroundColor: '#6c757d',
+    buttonColor: '#FFFFFF',
+  },
+  '.feedback-form': {
+    action: '#',
+    method: '',
+    form_id: 'feedback_form',
+    background_color: '#FFFFFF',
+    form_fields_padding: '2rem',
+    label_font_size: '1rem',
+    button_width: 'auto',
+    button_background_color: '#212a89',
+    button_text_color: '#ffffff',
+    button_border_radius: '0.25rem',
+    button_border_color: '#212a89',
+    input_field_max_length: 150,
+    input_field_background_color: '#f2f3f5',
+    input_field_border: '1px solid #f2f3f5',
+    input_field_text_color: '#212529',
+    textarea_field_background_color: '#f2f3f5',
+    textarea_field_text_color: '#212529',
+    textarea_field_border: '1px solid #f2f3f5',
+    textarea_field_max_length: 300,
+    textarea_field_resize: 'vertical',
+  },
+  '.header-custom-component': {
+    background_image:
+      'https://www.robinsonsbank.com.ph/wp-content/uploads/2020/09/company-overview-header-72-min.jpg',
+    background_color: '#fee014',
+    text_color: '#ffffff',
+    page_title: 'Page Title',
+    page_excerpt: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
+    button_text: 'Continue',
+    button_width: 'auto',
+    button_background_color: 'transparent',
+    button_text_color: '#ffffff',
+    button_border_radius: '0.25rem',
+    button_border_color: '#ffffff',
+  },
+};
 
-export default <GlobalStyles styles={ BASIC_THEME_STYLE }/>
+export default <GlobalStyles styles={BASIC_THEME_STYLE} />;

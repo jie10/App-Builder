@@ -46,6 +46,10 @@ import ForgotPinCode from '../Blocks/Forms/ForgotPinCode'
 import ParagraphBlock from '../Blocks/ParagraphBlock'
 import TopNavbar from '../Blocks/TopNavbar'
 import HeaderNav from '../Blocks/HeaderNav'
+import FindPoolTabPanel from '../Blocks/Juander/FindPoolTabPanel'
+import ShareRideTabPanel from '../Blocks/Juander/ShareRideTabPanel'
+import FeedbackForm from '../Blocks/Forms/FeedbackForm'
+import HeaderCustom from '../Blocks/Headers/HeaderCustom'
 
 import './Canvas.css'
 import {
@@ -85,6 +89,7 @@ const Canvas = (props) => {
         { blocks && Object.keys(blocks).map(key => {
           let block = blocks[key]
           switch (block.type) {
+
             case 'HEADER':
               return <HeaderSimple key={ key } _id={ key } themeStyle={ themeStyle['.header_simple'] }
                                    block={ block }/>
@@ -186,10 +191,17 @@ const Canvas = (props) => {
               return <ProfileHeader key={ key } _id={ key } themeStyle={ themeStyle['.profile-header-component'] } block={ block }/>
             case 'PROFILE_MENU':
               return <ProfileMenu key={ key } _id={ key } themeStyle={ themeStyle['.profile-menu-component'] } block={ block }/>
-            case 'PROFILE_FAQ':
-              return <FAQ key={ key } _id={ key } themeStyle={ themeStyle['.profile-faq-component'] } block={ block }/>
+            case 'FIND_POOL_TAB_PANEL':
+              return <FindPoolTabPanel key={ key } _id={ key } themeStyle={ themeStyle['.find-pool-tab-panel-component'] } block={ block }/>
+            case 'SHARE_RIDE_TAB_PANEL':
+              return <ShareRideTabPanel key={ key } _id={ key } themeStyle={ themeStyle['.share-ride-tab-panel-component'] } block={ block }/>
+            case 'FEEDBACK_FORM':
+              return <FeedbackForm key={ key } _id={ key } themeStyle={ themeStyle['.feedback-form'] } block={ block }/>
+            case 'HEADER_CUSTOM':
+              return <HeaderCustom key={ key } _id={ key } themeStyle={ themeStyle['.header-custom-component'] } block={ block }/>
             case 'CAROUSEL':
               return <Carousel key={ key } _id={ key } themeStyle={ themeStyle['.carousel'] } block={ block }/>
+
             default:
               return <div key={ key }>DEFAULT</div>
           }
