@@ -61,6 +61,7 @@ import ProfileHeader from '../Blocks/Profile/ProfileHeader'
 import ProfileMenu from '../Blocks/Profile/ProfileMenu'
 import FAQ from '../Blocks/Profile/ProfileMenu/FAQ'
 import Carousel from '../Blocks/Carousel'
+import FooterLinks from '../Blocks/Footers/FooterLinks'
 
 
 const Canvas = (props) => {
@@ -201,7 +202,8 @@ const Canvas = (props) => {
               return <HeaderCustom key={ key } _id={ key } themeStyle={ themeStyle['.header-custom-component'] } block={ block }/>
             case 'CAROUSEL':
               return <Carousel key={ key } _id={ key } themeStyle={ themeStyle['.carousel'] } block={ block }/>
-
+            case 'FOOTER_LINKS':
+              return <FooterLinks key={ key } _id={ key } themeStyle={ themeStyle['.footer-link'] } block={ block }/>
             default:
               return <div key={ key }>DEFAULT</div>
           }

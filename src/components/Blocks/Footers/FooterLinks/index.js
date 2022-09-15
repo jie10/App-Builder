@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import { Grid, Button } from '@mui/material'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import './style.css'
 
 import {
@@ -46,10 +47,12 @@ const FooterLinks = (props) => {
 
       <div className={ 'columns' } style={ {backgroundColor: block.parameters.backgroundColor} }>
         <div className="column">
-          <img src={ block.parameters.icon } alt="icon"/>
-          <p>{ block.parameters.paragraph }</p>
+          <img src={ block.parameters.brandLogo } alt="logo"/>
+          <p>{ block.parameters.brandParagraph }</p>
           <div>
-          
+            <a href={ block.parameters.fbLink }><FontAwesomeIcon icon="fa-brands fa-facebook"/></a>
+            <a href={ block.parameters.igLink }><FontAwesomeIcon icon="fa-brands fa-instagram"/></a>
+            <a href={ block.parameters.twitterLink }><FontAwesomeIcon icon="fa-brands fa-twitter"/></a>
           </div>
         </div>
         <div className={ 'column' }>
@@ -58,15 +61,15 @@ const FooterLinks = (props) => {
         </div>
         <div className={ 'column' }>
           <h1>{ block.parameters.title2 }</h1>
-          <p><a href={ block.parameters.url1 }>{ block.parameters.link2 }</a></p>
+          <p><a href={ block.parameters.url2 }>{ block.parameters.link2 }</a></p>
         </div>
         <div className={ 'column' }>
           <h1>{ block.parameters.title3 }</h1>
-          <p><a href={ block.parameters.url1 }>{ block.parameters.link3 }</a></p>
+          <p><a href={ block.parameters.url3 }>{ block.parameters.link3 }</a></p>
         </div>
         <div className={ 'column' }>
           <h1>{ block.parameters.title4 }</h1>
-          <p><a href={ block.parameters.url1 }>{ block.parameters.link4 }</a></p>
+          <p><a href={ block.parameters.url4 }>{ block.parameters.link4 }</a></p>
         </div>
       </div>
     </div>

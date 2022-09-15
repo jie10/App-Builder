@@ -480,6 +480,38 @@ const Inserter = (props) => {
         </ListItemIcon>
         <ListItemText primary="carousel"/>
       </ListItemButton>
+
+      <ListItemButton onClick={ () => sendBlocks({
+        type: 'FOOTER_LINKS', parameters: {
+          backgroundColor: '',
+          brandLogo: '',
+          brandParagraph: '',
+          fbLink: '',
+          igLink: '',
+          twitterLink: '',
+
+          title1: '',
+          url1: '',
+          link1: '',
+
+          title2: '',
+          url2: '',
+          link2: '',
+
+          title3: '',
+          url3: '',
+          link3: '',
+
+          title4: '',
+          url4: '',
+          link4: '',
+        },
+      }) }>
+        <ListItemIcon>
+          <DraftsIcon/>
+        </ListItemIcon>
+        <ListItemText primary="carousel"/>
+      </ListItemButton>
     </List>
 
   )

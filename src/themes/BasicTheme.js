@@ -1,6 +1,6 @@
-import GlobalStyles from '@mui/material/GlobalStyles';
+import GlobalStyles from '@mui/material/GlobalStyles'
 
-import { WHITE, EERIE_BLACK } from '../utils/constants/colors';
+import { WHITE, EERIE_BLACK } from '../utils/constants/colors'
 
 export const BASIC_THEME_STYLE = {
   body: {
@@ -432,7 +432,7 @@ export const BASIC_THEME_STYLE = {
     contentText1:
       'When you look for a <b>Carpool</b> ride, you are looking for a matching driver who is willing to share a ride with anyone going to and from the office with the same designated route as yours.',
     content2Text1:
-      "By using the <b>Shuttle</b> ride service, you are joining a group of colleagues with the same designated route as yours while riding the company's assigned vehicles.",
+      'By using the <b>Shuttle</b> ride service, you are joining a group of colleagues with the same designated route as yours while riding the company\'s assigned vehicles.',
     faqTitle2: 'How do I find a Carpool ride?',
     contentText2:
       'Simply go to <b>Carpool</b> via the <b>Find Pool</b> tab (selected by default when you load the Carpool screen). Simply search your target location or choose to book on suggested rides if available.',
@@ -509,6 +509,30 @@ export const BASIC_THEME_STYLE = {
     button_border_radius: '0.25rem',
     button_border_color: '#ffffff',
   },
-};
+  '.footer-link': {
+    backgroundColor: '',
+    brandLogo: '',
+    brandParagraph: '',
+    fbLink: '',
+    igLink: '',
+    twitterLink: '',
 
-export default <GlobalStyles styles={BASIC_THEME_STYLE} />;
+    title1: '',
+    url1: '',
+    link1: '',
+
+    title2: '',
+    url2: '',
+    link2: '',
+
+    title3: '',
+    url3: '',
+    link3: '',
+
+    title4: '',
+    url4: '',
+    link4: '',
+  },
+}
+
+export default <GlobalStyles styles={ BASIC_THEME_STYLE }/>
