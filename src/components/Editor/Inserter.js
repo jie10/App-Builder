@@ -529,6 +529,23 @@ const Inserter = (props) => {
         </ListItemIcon>
         <ListItemText primary="my booking list"/>
       </ListItemButton>
+      <ListItemButton onClick={ () => sendBlocks({
+        type: 'MY_TRIPS_LIST', parameters: {
+          backgroundColor: '',
+          count: '',
+          cellPadding: '',
+          passengerTrip: '',
+          dataTime: '',
+          passengerLocation: '',
+          passengerName: '',
+          status: '',
+        },
+      }) }>
+        <ListItemIcon>
+          <DraftsIcon/>
+        </ListItemIcon>
+        <ListItemText primary="my trips list"/>
+      </ListItemButton>
     </List>
 
   )

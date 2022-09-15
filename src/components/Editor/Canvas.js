@@ -63,6 +63,7 @@ import FAQ from '../Blocks/Profile/ProfileMenu/FAQ'
 import Carousel from '../Blocks/Carousel'
 import FooterLinks from '../Blocks/Footers/FooterLinks'
 import MyBookingList from '../Blocks/Juander/MyBookingList'
+import MyTripsList from '../Blocks/Juander/MyTripsList'
 
 
 const Canvas = (props) => {
@@ -207,6 +208,8 @@ const Canvas = (props) => {
               return <FooterLinks key={ key } _id={ key } themeStyle={ themeStyle['.footer-link'] } block={ block }/>
             case 'MY_BOOKING_LIST':
               return <MyBookingList key={ key } _id={ key } themeStyle={ themeStyle['.my-booking-list'] } block={ block }/>
+            case 'MY_TRIPS_LIST':
+              return <MyTripsList key={ key } _id={ key } themeStyle={ themeStyle['.my-trips-list'] } block={ block }/>
             default:
               return <div key={ key }>DEFAULT</div>
           }

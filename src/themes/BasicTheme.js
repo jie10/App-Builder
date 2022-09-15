@@ -542,6 +542,16 @@ export const BASIC_THEME_STYLE = {
     passengerLocation: '',
     status: '',
   },
+  '.my-trips-list': {
+    backgroundColor: '',
+    count: '',
+    cellPadding: '',
+    passengerTrip: '',
+    dataTime: '',
+    passengerLocation: '',
+    passengerName: '',
+    status: '',
+  },
 }
 
 export default <GlobalStyles styles={ BASIC_THEME_STYLE }/>
