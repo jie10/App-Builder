@@ -533,6 +533,15 @@ export const BASIC_THEME_STYLE = {
     url4: '',
     link4: '',
   },
+  '.my-booking-list': {
+    backgroundColor: '',
+    count: '',
+    cellPadding: '',
+    passengerName: '',
+    dataTime: '',
+    passengerLocation: '',
+    status: '',
+  },
 }
 
 export default <GlobalStyles styles={ BASIC_THEME_STYLE }/>

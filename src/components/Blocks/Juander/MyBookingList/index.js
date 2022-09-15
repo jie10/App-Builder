@@ -17,8 +17,6 @@ const MyBookingList = (props) => {
     block.parameters = themeStyle
   }
 
-  const [ open, setOpen ] = React.useState(false)
-
   return (
     <div
       className="list_section"
@@ -48,28 +46,22 @@ const MyBookingList = (props) => {
         </Grid>
       </Grid>
       <div>
-        <ul className="list_container">
+        <ul className="list_container" style={ {backgroundColor: block.parameters.backgroundColor} }>
           { (() => {
-            var list = []
+            let list = []
             for (let i = 0; i < block.parameters.count; i++) {
               list.push(<li style={ {padding: block.parameters.cellPadding} }>
                 <div className="list_container_div">
                   <div className="list_container_div_inner">
-                    <img src="https://i8.amplience.net/i/cebupacificair/no-avatar"/>
                     <div className="list_container_div_text">
-                      <p className="list_container_text_title">EDSA Shuttle</p>
-                      <p className="list_container_text_detail">Epifanio Delos Santos Avenue</p>
-                      <p className="list_container_text_phone">
-                        <span>Mobile:</span>639178451030</p>
-                      <p className="list_container_text_time">
-                        <span>Departure:</span>6:30pm</p>
+                      <p className="list_container_text_title">{ block.parameters.passengerName }</p>
+                      <p className="list_container_text_detail">{ block.parameters.dataTime }</p>
+                      <p className="list_container_text_location">
+                        { block.parameters.passengerLocation }</p>
                     </div>
                   </div>
                   <div className="list_container_div_seats">
-                    <p className="list_container_div_seats_text">2</p>
-                    <p className="list_container_div_seats_available">
-                      <span>seats available</span>
-                    </p>
+                    <p className="list_container_div_status">{ block.parameters.status }</p>
                   </div>
                 </div>
               </li>)
@@ -95,6 +87,6 @@ export default connect(mapStateToProps, {
   moveUpBlock,
   moveDownBlock,
   getBlock,
-})(ListSection)
+})(MyBookingList)
 
 
