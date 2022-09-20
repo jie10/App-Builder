@@ -2,12 +2,6 @@ import React from "react"
 import { connect } from "react-redux"
 import { Grid } from "@mui/material"
 import "./style.css"
-import BookOnline from "./svg/book_online_FILL0_wght400_GRAD0_opsz20.svg"
-import Direction from "./svg/directions_car_FILL0_wght400_GRAD0_opsz20.svg"
-import Comment from "./svg/comment_FILL0_wght400_GRAD0_opsz20.svg"
-import LiveHelp from "./svg/live_help_FILL0_wght400_GRAD0_opsz20.svg"
-import Settings from "./svg/settings_FILL0_wght400_GRAD0_opsz20.svg"
-import Logout from "./svg/logout_FILL0_wght400_GRAD0_opsz20.svg"
 
 import {
   deleteBlock,

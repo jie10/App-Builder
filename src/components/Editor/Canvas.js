@@ -217,6 +217,10 @@ const Canvas = (props) => {
               return <CreateTripForm key={key} _id={key} themeStyle={themeStyle[".create-trip-form"]} block={block}/>
             case "UPDATE_ACCOUNT_FORM":
               return <UpdateAccountForm key={key} _id={key} themeStyle={themeStyle[".update-account-form"]} block={block}/>
+            case "PROFILE_FAQ":
+              return <FAQ key={key} _id={key} themeStyle={themeStyle[".profile-faq-component"]} block={block}/>
+            case "PROFILE_HEADER":
+              return <MenuHeader key={key} _id={key} themeStyle={themeStyle[".profile-header"]} block={block}/>
             default:
               return <div key={ key }>DEFAULT</div>
           }

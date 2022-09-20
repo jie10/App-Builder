@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { makeStyles } from '@mui/styles'
 import { connect } from 'react-redux'
 import { Modal } from '@mui/material'

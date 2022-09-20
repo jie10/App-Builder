@@ -1,6 +1,7 @@
-import React, { useState } from 'react'
+/* eslint-disable jsx-a11y/anchor-is-valid */
+import React from 'react'
 import { connect } from 'react-redux'
-import { Grid, Button } from '@mui/material'
+import { Grid } from '@mui/material'
 import './style.css'
 
 import {
@@ -28,15 +29,13 @@ const SeatSaleSection = (props) => {
                     src='/images/round_expand_less_black_24dp.png' />
             </Grid>
             <Grid item onClick={() => moveDownBlock(_id)}>
-                <img 
+                <img alt="seat sale" 
                     className='buttoncontrols' 
-                    alt='downbutton' 
                     src='/images/round_expand_more_black_24dp.png' />
             </Grid>
             <Grid item onClick={() => deleteBlock(_id)}>
-                <img 
+                <img alt="seat sale" 
                     className='buttoncontrols' 
-                    alt='deletebutton' 
                     src='/images/round_close_black_24dp.png' />
             </Grid>
         </Grid>
@@ -59,7 +58,7 @@ const SeatSaleSection = (props) => {
                     <div className="container row">
                         <div className="col-6 col-md-7 col-sm-6 row m-0">
                             <div className="col-md-7 col-sm-6">
-                                <img className="icon-flight-blue" src="https://cdn.media.amplience.net/i/cebupacificair/planeicon?w=15&amp;sm=c&amp;scaleFit=poi&amp;poi={$this.metadata.pointOfInterest.x},{$this.metadata.pointOfInterest.y},{$this.metadata.pointOfInterest.w},{$this.metadata.pointOfInterest.h}"/>
+                                <img alt="seat sale" className="icon-flight-blue" src="https://cdn.media.amplience.net/i/cebupacificair/planeicon?w=15&amp;sm=c&amp;scaleFit=poi&amp;poi={$this.metadata.pointOfInterest.x},{$this.metadata.pointOfInterest.y},{$this.metadata.pointOfInterest.w},{$this.metadata.pointOfInterest.h}"/>
                                 <span>Manila to</span>
                                 <br/>
                                 <h5><strong>Macau</strong></h5>
@@ -68,7 +67,7 @@ const SeatSaleSection = (props) => {
                                 <span>For as low as</span>
                                 <br/>
                                 <span class="seat-sale-fare">₱899.00</span>
-                                <img src="https://cdn.media.amplience.net/i/cebupacificair/SeatSale_BaseFare_Icon?w=60&amp;sm=c&amp;scaleFit=poi&amp;poi={$this.metadata.pointOfInterest.x},{$this.metadata.pointOfInterest.y},{$this.metadata.pointOfInterest.w},{$this.metadata.pointOfInterest.h}"/>
+                                <img alt="seat sale" src="https://cdn.media.amplience.net/i/cebupacificair/SeatSale_BaseFare_Icon?w=60&amp;sm=c&amp;scaleFit=poi&amp;poi={$this.metadata.pointOfInterest.x},{$this.metadata.pointOfInterest.y},{$this.metadata.pointOfInterest.w},{$this.metadata.pointOfInterest.h}"/>
                             </div>
                         </div>
                         <div className="col-6 col-md-5 col-sm-6 row m-0 p-0">
@@ -79,8 +78,8 @@ const SeatSaleSection = (props) => {
                             </div>
                             <div className="col-sm-6 d-flex">
                                 <div className="m-auto w-100">
-                                    <a className="tool-tip">
-                                        <img className="icon-seat-blue" src="https://cdn.media.amplience.net/i/cebupacificair/SeatSale_Tooltip_Modal_Icon?w=40&amp;sm=c&amp;scaleFit=poi&amp;poi={$this.metadata.pointOfInterest.x},{$this.metadata.pointOfInterest.y},{$this.metadata.pointOfInterest.w},{$this.metadata.pointOfInterest.h}"/>
+                                    <a href="#" className="tool-tip">
+                                        <img alt="seat sale" className="icon-seat-blue" src="https://cdn.media.amplience.net/i/cebupacificair/SeatSale_Tooltip_Modal_Icon?w=40&amp;sm=c&amp;scaleFit=poi&amp;poi={$this.metadata.pointOfInterest.x},{$this.metadata.pointOfInterest.y},{$this.metadata.pointOfInterest.w},{$this.metadata.pointOfInterest.h}"/>
                                     </a>
                                     <button className="o-btn o-btn--primary-blue btn-book-now"> BOOK NOW </button>
                                 </div>
@@ -93,7 +92,7 @@ const SeatSaleSection = (props) => {
                     <div className="container row">
                         <div className="col-6 col-md-7 col-sm-6 row m-0">
                             <div className="col-md-7 col-sm-6">
-                                <img className="icon-flight-blue" src="https://cdn.media.amplience.net/i/cebupacificair/planeicon?w=15&amp;sm=c&amp;scaleFit=poi&amp;poi={$this.metadata.pointOfInterest.x},{$this.metadata.pointOfInterest.y},{$this.metadata.pointOfInterest.w},{$this.metadata.pointOfInterest.h}"/>
+                                <img alt="seat sale" className="icon-flight-blue" src="https://cdn.media.amplience.net/i/cebupacificair/planeicon?w=15&amp;sm=c&amp;scaleFit=poi&amp;poi={$this.metadata.pointOfInterest.x},{$this.metadata.pointOfInterest.y},{$this.metadata.pointOfInterest.w},{$this.metadata.pointOfInterest.h}"/>
                                 <span>Manila to</span>
                                 <br/>
                                 <h5><strong>Macau</strong></h5>
@@ -102,7 +101,7 @@ const SeatSaleSection = (props) => {
                                 <span>For as low as</span>
                                 <br/>
                                 <span class="seat-sale-fare">₱899.00</span>
-                                <img src="https://cdn.media.amplience.net/i/cebupacificair/SeatSale_BaseFare_Icon?w=60&amp;sm=c&amp;scaleFit=poi&amp;poi={$this.metadata.pointOfInterest.x},{$this.metadata.pointOfInterest.y},{$this.metadata.pointOfInterest.w},{$this.metadata.pointOfInterest.h}"/>
+                                <img alt="seat sale" src="https://cdn.media.amplience.net/i/cebupacificair/SeatSale_BaseFare_Icon?w=60&amp;sm=c&amp;scaleFit=poi&amp;poi={$this.metadata.pointOfInterest.x},{$this.metadata.pointOfInterest.y},{$this.metadata.pointOfInterest.w},{$this.metadata.pointOfInterest.h}"/>
                             </div>
                         </div>
                         <div className="col-6 col-md-5 col-sm-6 row m-0 p-0">
@@ -113,8 +112,8 @@ const SeatSaleSection = (props) => {
                             </div>
                             <div className="col-sm-6 d-flex">
                                 <div className="m-auto w-100">
-                                    <a className="tool-tip">
-                                        <img className="icon-seat-blue" src="https://cdn.media.amplience.net/i/cebupacificair/SeatSale_Tooltip_Modal_Icon?w=40&amp;sm=c&amp;scaleFit=poi&amp;poi={$this.metadata.pointOfInterest.x},{$this.metadata.pointOfInterest.y},{$this.metadata.pointOfInterest.w},{$this.metadata.pointOfInterest.h}"/>
+                                    <a href="#" className="tool-tip">
+                                        <img alt="seat sale" className="icon-seat-blue" src="https://cdn.media.amplience.net/i/cebupacificair/SeatSale_Tooltip_Modal_Icon?w=40&amp;sm=c&amp;scaleFit=poi&amp;poi={$this.metadata.pointOfInterest.x},{$this.metadata.pointOfInterest.y},{$this.metadata.pointOfInterest.w},{$this.metadata.pointOfInterest.h}"/>
                                     </a>
                                     <button className="o-btn o-btn--primary-blue btn-book-now"> BOOK NOW </button>
                                 </div>
@@ -127,7 +126,7 @@ const SeatSaleSection = (props) => {
                     <div className="container row">
                         <div className="col-6 col-md-7 col-sm-6 row m-0">
                             <div className="col-md-7 col-sm-6">
-                                <img className="icon-flight-blue" src="https://cdn.media.amplience.net/i/cebupacificair/planeicon?w=15&amp;sm=c&amp;scaleFit=poi&amp;poi={$this.metadata.pointOfInterest.x},{$this.metadata.pointOfInterest.y},{$this.metadata.pointOfInterest.w},{$this.metadata.pointOfInterest.h}"/>
+                                <img alt="seat sale" className="icon-flight-blue" src="https://cdn.media.amplience.net/i/cebupacificair/planeicon?w=15&amp;sm=c&amp;scaleFit=poi&amp;poi={$this.metadata.pointOfInterest.x},{$this.metadata.pointOfInterest.y},{$this.metadata.pointOfInterest.w},{$this.metadata.pointOfInterest.h}"/>
                                 <span>Manila to</span>
                                 <br/>
                                 <h5><strong>Macau</strong></h5>
@@ -136,7 +135,7 @@ const SeatSaleSection = (props) => {
                                 <span>For as low as</span>
                                 <br/>
                                 <span class="seat-sale-fare">₱899.00</span>
-                                <img src="https://cdn.media.amplience.net/i/cebupacificair/SeatSale_BaseFare_Icon?w=60&amp;sm=c&amp;scaleFit=poi&amp;poi={$this.metadata.pointOfInterest.x},{$this.metadata.pointOfInterest.y},{$this.metadata.pointOfInterest.w},{$this.metadata.pointOfInterest.h}"/>
+                                <img alt="seat sale" src="https://cdn.media.amplience.net/i/cebupacificair/SeatSale_BaseFare_Icon?w=60&amp;sm=c&amp;scaleFit=poi&amp;poi={$this.metadata.pointOfInterest.x},{$this.metadata.pointOfInterest.y},{$this.metadata.pointOfInterest.w},{$this.metadata.pointOfInterest.h}"/>
                             </div>
                         </div>
                         <div className="col-6 col-md-5 col-sm-6 row m-0 p-0">
@@ -147,8 +146,8 @@ const SeatSaleSection = (props) => {
                             </div>
                             <div className="col-sm-6 d-flex">
                                 <div className="m-auto w-100">
-                                    <a className="tool-tip">
-                                        <img className="icon-seat-blue" src="https://cdn.media.amplience.net/i/cebupacificair/SeatSale_Tooltip_Modal_Icon?w=40&amp;sm=c&amp;scaleFit=poi&amp;poi={$this.metadata.pointOfInterest.x},{$this.metadata.pointOfInterest.y},{$this.metadata.pointOfInterest.w},{$this.metadata.pointOfInterest.h}"/>
+                                    <a href="#" className="tool-tip">
+                                        <img alt="seat sale" className="icon-seat-blue" src="https://cdn.media.amplience.net/i/cebupacificair/SeatSale_Tooltip_Modal_Icon?w=40&amp;sm=c&amp;scaleFit=poi&amp;poi={$this.metadata.pointOfInterest.x},{$this.metadata.pointOfInterest.y},{$this.metadata.pointOfInterest.w},{$this.metadata.pointOfInterest.h}"/>
                                     </a>
                                     <button className="o-btn o-btn--primary-blue btn-book-now"> BOOK NOW </button>
                                 </div>
@@ -161,7 +160,7 @@ const SeatSaleSection = (props) => {
                     <div className="container row">
                         <div className="col-6 col-md-7 col-sm-6 row m-0">
                             <div className="col-md-7 col-sm-6">
-                                <img className="icon-flight-blue" src="https://cdn.media.amplience.net/i/cebupacificair/planeicon?w=15&amp;sm=c&amp;scaleFit=poi&amp;poi={$this.metadata.pointOfInterest.x},{$this.metadata.pointOfInterest.y},{$this.metadata.pointOfInterest.w},{$this.metadata.pointOfInterest.h}"/>
+                                <img alt="seat sale" className="icon-flight-blue" src="https://cdn.media.amplience.net/i/cebupacificair/planeicon?w=15&amp;sm=c&amp;scaleFit=poi&amp;poi={$this.metadata.pointOfInterest.x},{$this.metadata.pointOfInterest.y},{$this.metadata.pointOfInterest.w},{$this.metadata.pointOfInterest.h}"/>
                                 <span>Manila to</span>
                                 <br/>
                                 <h5><strong>Macau</strong></h5>
@@ -170,7 +169,7 @@ const SeatSaleSection = (props) => {
                                 <span>For as low as</span>
                                 <br/>
                                 <span class="seat-sale-fare">₱899.00</span>
-                                <img src="https://cdn.media.amplience.net/i/cebupacificair/SeatSale_BaseFare_Icon?w=60&amp;sm=c&amp;scaleFit=poi&amp;poi={$this.metadata.pointOfInterest.x},{$this.metadata.pointOfInterest.y},{$this.metadata.pointOfInterest.w},{$this.metadata.pointOfInterest.h}"/>
+                                <img alt="seat sale" src="https://cdn.media.amplience.net/i/cebupacificair/SeatSale_BaseFare_Icon?w=60&amp;sm=c&amp;scaleFit=poi&amp;poi={$this.metadata.pointOfInterest.x},{$this.metadata.pointOfInterest.y},{$this.metadata.pointOfInterest.w},{$this.metadata.pointOfInterest.h}"/>
                             </div>
                         </div>
                         <div className="col-6 col-md-5 col-sm-6 row m-0 p-0">
@@ -181,8 +180,8 @@ const SeatSaleSection = (props) => {
                             </div>
                             <div className="col-sm-6 d-flex">
                                 <div className="m-auto w-100">
-                                    <a className="tool-tip">
-                                        <img className="icon-seat-blue" src="https://cdn.media.amplience.net/i/cebupacificair/SeatSale_Tooltip_Modal_Icon?w=40&amp;sm=c&amp;scaleFit=poi&amp;poi={$this.metadata.pointOfInterest.x},{$this.metadata.pointOfInterest.y},{$this.metadata.pointOfInterest.w},{$this.metadata.pointOfInterest.h}"/>
+                                    <a href="#" className="tool-tip">
+                                        <img alt="seat sale" className="icon-seat-blue" src="https://cdn.media.amplience.net/i/cebupacificair/SeatSale_Tooltip_Modal_Icon?w=40&amp;sm=c&amp;scaleFit=poi&amp;poi={$this.metadata.pointOfInterest.x},{$this.metadata.pointOfInterest.y},{$this.metadata.pointOfInterest.w},{$this.metadata.pointOfInterest.h}"/>
                                     </a>
                                     <button className="o-btn o-btn--primary-blue btn-book-now"> BOOK NOW </button>
                                 </div>
@@ -195,7 +194,7 @@ const SeatSaleSection = (props) => {
                     <div className="container row">
                         <div className="col-6 col-md-7 col-sm-6 row m-0">
                             <div className="col-md-7 col-sm-6">
-                                <img className="icon-flight-blue" src="https://cdn.media.amplience.net/i/cebupacificair/planeicon?w=15&amp;sm=c&amp;scaleFit=poi&amp;poi={$this.metadata.pointOfInterest.x},{$this.metadata.pointOfInterest.y},{$this.metadata.pointOfInterest.w},{$this.metadata.pointOfInterest.h}"/>
+                                <img alt="seat sale" className="icon-flight-blue" src="https://cdn.media.amplience.net/i/cebupacificair/planeicon?w=15&amp;sm=c&amp;scaleFit=poi&amp;poi={$this.metadata.pointOfInterest.x},{$this.metadata.pointOfInterest.y},{$this.metadata.pointOfInterest.w},{$this.metadata.pointOfInterest.h}"/>
                                 <span>Manila to</span>
                                 <br/>
                                 <h5><strong>Macau</strong></h5>
@@ -204,7 +203,7 @@ const SeatSaleSection = (props) => {
                                 <span>For as low as</span>
                                 <br/>
                                 <span class="seat-sale-fare">₱899.00</span>
-                                <img src="https://cdn.media.amplience.net/i/cebupacificair/SeatSale_BaseFare_Icon?w=60&amp;sm=c&amp;scaleFit=poi&amp;poi={$this.metadata.pointOfInterest.x},{$this.metadata.pointOfInterest.y},{$this.metadata.pointOfInterest.w},{$this.metadata.pointOfInterest.h}"/>
+                                <img alt="seat sale" src="https://cdn.media.amplience.net/i/cebupacificair/SeatSale_BaseFare_Icon?w=60&amp;sm=c&amp;scaleFit=poi&amp;poi={$this.metadata.pointOfInterest.x},{$this.metadata.pointOfInterest.y},{$this.metadata.pointOfInterest.w},{$this.metadata.pointOfInterest.h}"/>
                             </div>
                         </div>
                         <div className="col-6 col-md-5 col-sm-6 row m-0 p-0">
@@ -215,8 +214,8 @@ const SeatSaleSection = (props) => {
                             </div>
                             <div className="col-sm-6 d-flex">
                                 <div className="m-auto w-100">
-                                    <a className="tool-tip">
-                                        <img className="icon-seat-blue" src="https://cdn.media.amplience.net/i/cebupacificair/SeatSale_Tooltip_Modal_Icon?w=40&amp;sm=c&amp;scaleFit=poi&amp;poi={$this.metadata.pointOfInterest.x},{$this.metadata.pointOfInterest.y},{$this.metadata.pointOfInterest.w},{$this.metadata.pointOfInterest.h}"/>
+                                    <a href="#" className="tool-tip">
+                                        <img alt="seat sale" className="icon-seat-blue" src="https://cdn.media.amplience.net/i/cebupacificair/SeatSale_Tooltip_Modal_Icon?w=40&amp;sm=c&amp;scaleFit=poi&amp;poi={$this.metadata.pointOfInterest.x},{$this.metadata.pointOfInterest.y},{$this.metadata.pointOfInterest.w},{$this.metadata.pointOfInterest.h}"/>
                                     </a>
                                     <button className="o-btn o-btn--primary-blue btn-book-now"> BOOK NOW </button>
                                 </div>
@@ -229,7 +228,7 @@ const SeatSaleSection = (props) => {
                     <div className="container row">
                         <div className="col-6 col-md-7 col-sm-6 row m-0">
                             <div className="col-md-7 col-sm-6">
-                                <img className="icon-flight-blue" src="https://cdn.media.amplience.net/i/cebupacificair/planeicon?w=15&amp;sm=c&amp;scaleFit=poi&amp;poi={$this.metadata.pointOfInterest.x},{$this.metadata.pointOfInterest.y},{$this.metadata.pointOfInterest.w},{$this.metadata.pointOfInterest.h}"/>
+                                <img alt="seat sale" className="icon-flight-blue" src="https://cdn.media.amplience.net/i/cebupacificair/planeicon?w=15&amp;sm=c&amp;scaleFit=poi&amp;poi={$this.metadata.pointOfInterest.x},{$this.metadata.pointOfInterest.y},{$this.metadata.pointOfInterest.w},{$this.metadata.pointOfInterest.h}"/>
                                 <span>Manila to</span>
                                 <br/>
                                 <h5><strong>Macau</strong></h5>
@@ -238,7 +237,7 @@ const SeatSaleSection = (props) => {
                                 <span>For as low as</span>
                                 <br/>
                                 <span class="seat-sale-fare">₱899.00</span>
-                                <img src="https://cdn.media.amplience.net/i/cebupacificair/SeatSale_BaseFare_Icon?w=60&amp;sm=c&amp;scaleFit=poi&amp;poi={$this.metadata.pointOfInterest.x},{$this.metadata.pointOfInterest.y},{$this.metadata.pointOfInterest.w},{$this.metadata.pointOfInterest.h}"/>
+                                <img alt="seat sale" src="https://cdn.media.amplience.net/i/cebupacificair/SeatSale_BaseFare_Icon?w=60&amp;sm=c&amp;scaleFit=poi&amp;poi={$this.metadata.pointOfInterest.x},{$this.metadata.pointOfInterest.y},{$this.metadata.pointOfInterest.w},{$this.metadata.pointOfInterest.h}"/>
                             </div>
                         </div>
                         <div className="col-6 col-md-5 col-sm-6 row m-0 p-0">
@@ -249,8 +248,8 @@ const SeatSaleSection = (props) => {
                             </div>
                             <div className="col-sm-6 d-flex">
                                 <div className="m-auto w-100">
-                                    <a className="tool-tip">
-                                        <img className="icon-seat-blue" src="https://cdn.media.amplience.net/i/cebupacificair/SeatSale_Tooltip_Modal_Icon?w=40&amp;sm=c&amp;scaleFit=poi&amp;poi={$this.metadata.pointOfInterest.x},{$this.metadata.pointOfInterest.y},{$this.metadata.pointOfInterest.w},{$this.metadata.pointOfInterest.h}"/>
+                                    <a href="#" className="tool-tip">
+                                        <img alt="seat sale" className="icon-seat-blue" src="https://cdn.media.amplience.net/i/cebupacificair/SeatSale_Tooltip_Modal_Icon?w=40&amp;sm=c&amp;scaleFit=poi&amp;poi={$this.metadata.pointOfInterest.x},{$this.metadata.pointOfInterest.y},{$this.metadata.pointOfInterest.w},{$this.metadata.pointOfInterest.h}"/>
                                     </a>
                                     <button className="o-btn o-btn--primary-blue btn-book-now"> BOOK NOW </button>
                                 </div>

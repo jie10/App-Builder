@@ -1,16 +1,16 @@
 import React, { useState } from 'react'
 import { connect } from 'react-redux'
 
-import ListSubheader from '@mui/material/ListSubheader'
 import TextField from '@mui/material/TextField'
 import List from '@mui/material/List'
-import ListItemButton from '@mui/material/ListItemButton'
-import ListItemIcon from '@mui/material/ListItemIcon'
-import ListItemText from '@mui/material/ListItemText'
-import Collapse from '@mui/material/Collapse'
-import ExpandLess from '@mui/icons-material/ExpandLess'
-import ExpandMore from '@mui/icons-material/ExpandMore'
-import StarBorder from '@mui/icons-material/StarBorder'
+// import ListSubheader from '@mui/material/ListSubheader'
+// import ListItemButton from '@mui/material/ListItemButton'
+// import ListItemIcon from '@mui/material/ListItemIcon'
+// import ListItemText from '@mui/material/ListItemText'
+// import Collapse from '@mui/material/Collapse'
+// import ExpandLess from '@mui/icons-material/ExpandLess'
+// import ExpandMore from '@mui/icons-material/ExpandMore'
+// import StarBorder from '@mui/icons-material/StarBorder'
 
 import {
     updateBlock
@@ -20,16 +20,16 @@ import "./Settings.css";
 
 const Settings = (props) => {
     const { block, updateBlock, isSettingsEnabled } = props
-    const [open, setOpen] = useState(false)
+    // const [open, setOpen] = useState(false)
     const [blockKey, setBlockKey] = useState(null)
-    const [blockParams, setBlockParams] = useState(null)
+    // const [blockParams, setBlockParams] = useState(null)
 
-    const handleClick = () => {
-        setOpen(!open)
-    }
+    // const handleClick = () => {
+    //     setOpen(!open)
+    // }
 
     const _handleTextFieldChange = (e) => {
-        setBlockParams(e)
+        // setBlockParams(e)
         updateBlock(block.id, createPayload(block.block, e.target.value))
     }
 
@@ -56,38 +56,38 @@ const Settings = (props) => {
         return rows
     }*/
 
-    const componentList = (
-        <List
-            sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}
-            component="nav"
-            aria-labelledby="nested-list-subheader"
-            subheader={
-            <ListSubheader component="div" id="nested-list-subheader">
-                Page
-            </ListSubheader>
-            }>
-            <ListItemButton>
-                <ListItemText primary="Status and Visibility" />
-            </ListItemButton>
-            <ListItemButton>
-                <ListItemText primary="Revisions" />
-            </ListItemButton>
-            <ListItemButton onClick={handleClick}>
-                <ListItemText primary="Tags" />
-            {open ? <ExpandLess /> : <ExpandMore />}
-            </ListItemButton>
-            <Collapse in={open} timeout="auto" unmountOnExit>
-                <List component="div" disablePadding>
-                    <ListItemButton sx={{ pl: 4 }}>
-                    <ListItemIcon>
-                        <StarBorder />
-                    </ListItemIcon>
-                    <ListItemText primary="SSO Login" />
-                    </ListItemButton>
-                </List>
-            </Collapse>
-        </List>
-    )
+    // const componentList = (
+    //     <List
+    //         sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}
+    //         component="nav"
+    //         aria-labelledby="nested-list-subheader"
+    //         subheader={
+    //         <ListSubheader component="div" id="nested-list-subheader">
+    //             Page
+    //         </ListSubheader>
+    //         }>
+    //         <ListItemButton>
+    //             <ListItemText primary="Status and Visibility" />
+    //         </ListItemButton>
+    //         <ListItemButton>
+    //             <ListItemText primary="Revisions" />
+    //         </ListItemButton>
+    //         <ListItemButton onClick={handleClick}>
+    //             <ListItemText primary="Tags" />
+    //         {open ? <ExpandLess /> : <ExpandMore />}
+    //         </ListItemButton>
+    //         <Collapse in={open} timeout="auto" unmountOnExit>
+    //             <List component="div" disablePadding>
+    //                 <ListItemButton sx={{ pl: 4 }}>
+    //                 <ListItemIcon>
+    //                     <StarBorder />
+    //                 </ListItemIcon>
+    //                 <ListItemText primary="SSO Login" />
+    //                 </ListItemButton>
+    //             </List>
+    //         </Collapse>
+    //     </List>
+    // )
 
     // { isSettingsVisible && componentList }
     /*

@@ -17,8 +17,6 @@ const ListSection = (props) => {
         block.parameters = themeStyle
     }
 
-    const [open, setOpen] = React.useState(false);
-
     return(
         <div
         className='list_section'
@@ -55,7 +53,7 @@ const ListSection = (props) => {
                             list.push(<li style={{padding: block.parameters.cellPadding}}>
                                 <div className='list_container_div'>
                                     <div className='list_container_div_inner'>
-                                        <img src='https://i8.amplience.net/i/cebupacificair/no-avatar'/>
+                                        <img src='https://i8.amplience.net/i/cebupacificair/no-avatar' alt="avatar" />
                                         <div className='list_container_div_text'>
                                             <p className='list_container_text_title'>EDSA Shuttle</p>
                                             <p className='list_container_text_detail'>Epifanio Delos Santos Avenue</p>
