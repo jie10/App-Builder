@@ -158,7 +158,7 @@ const Canvas = (props) => {
             case 'SIGNUP_FORM':
               return <SignupForm key={ key } _id={ key } themeStyle={ themeStyle['.signup_form'] } block={ block }/>
             case 'BOTTOM_NAVBAR':
-              return <BottomNavbar key={ key } _id={ key } themeStyle={ themeStyle['.bottom_navbar'] } block={ block }/>
+              return <BottomNavbar key={ key } _id={ key } themeStyle={ themeStyle['.bottom-navbar-component'] } block={ block }/>
             case 'DATE_PICKER':
               return <DatePicker key={ key } _id={ key } themeStyle={ themeStyle['.date-picker-component'] } block={ block }/>
             case 'TIME_PICKER':
