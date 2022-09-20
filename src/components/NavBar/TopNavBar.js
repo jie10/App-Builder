@@ -149,7 +149,7 @@ const TopNavBar = () => {
     return (
         <div className="top-nav-bar-container">
             <div className="top-nav-bar top-nav-bar-site-nav">
-                <a className="site-logo-link" href={ `/account/apps` } target="_self">
+                <a className="site-logo-link" href={ `/` } target="_self">
                     <div className="logo-protector"></div>
                     <img className="site-logo" src={siteLogo} alt="logo" />
                 </a>
@@ -163,7 +163,7 @@ const TopNavBar = () => {
                         <div className="pointer"></div>
                         <div className="list-header">
                             <span className="header-title">Apps Last Opened</span>
-                            <a className="header-link" href={ `/account/apps?action=create` } target="_self">
+                            <a className="header-link" href={ `/?action=create` } target="_self">
                                 <span className="link-icon"><AddOutlinedIcon /></span>
                                 <span className="link-label">Create New App</span>
                             </a>
@@ -172,7 +172,7 @@ const TopNavBar = () => {
                             { loadApps() }
                         </div>
                         <div className="list-footer">
-                            <a className="footer-link" href="/account/apps" target="_self">Go to all Apps</a>
+                            <a className="footer-link" href="/" target="_self">Go to all Apps</a>
                         </div>
                     </div>
                 </div>

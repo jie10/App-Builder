@@ -433,7 +433,7 @@ const CreateNewAppModal = (props) => {
         e.preventDefault();
 
         if ((action && stepper.count <= 1) || (createSuccess && stepper.count >= MAX_STEPS)) {
-            window.location.href = "/account/apps";
+            window.location.href = "/";
         } else if (stepper.count > 1 && stepper.count <= MAX_STEPS) {
             dispatchStepper({type: 'decrement'});
         } else {

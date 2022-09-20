@@ -1,6 +1,6 @@
-import GlobalStyles from '@mui/material/GlobalStyles'
+import GlobalStyles from '@mui/material/GlobalStyles';
 
-import { WHITE, BLUE_CHARCOAL } from '../utils/constants/colors'
+import { WHITE, BLUE_CHARCOAL } from '../utils/constants/colors';
 
 export const OMNIX_THEME_STYLE = {
   body: {
@@ -132,13 +132,16 @@ export const OMNIX_THEME_STYLE = {
     height: 'auto',
     card1Title: 'Corporate Profile',
     card1Paragraph: '',
-    card1Image: 'https://cdn.media.amplience.net/i/cebupacificair/Corp-Prof?w=600&amp;sm=c&amp;scaleFit=poi&amp;poi={$this.metadata.pointOfInterest.x},{$this.metadata.pointOfInterest.y},{$this.metadata.pointOfInterest.w},{$this.metadata.pointOfInterest.h}',
+    card1Image:
+      'https://cdn.media.amplience.net/i/cebupacificair/Corp-Prof?w=600&amp;sm=c&amp;scaleFit=poi&amp;poi={$this.metadata.pointOfInterest.x},{$this.metadata.pointOfInterest.y},{$this.metadata.pointOfInterest.w},{$this.metadata.pointOfInterest.h}',
     card2Title: 'Corporate Governance',
     card2Paragraph: '',
-    card2Image: 'https://cdn.media.amplience.net/i/cebupacificair/Corp-Gov?w=600&amp;sm=c&amp;scaleFit=poi&amp;poi={$this.metadata.pointOfInterest.x},{$this.metadata.pointOfInterest.y},{$this.metadata.pointOfInterest.w},{$this.metadata.pointOfInterest.h}',
+    card2Image:
+      'https://cdn.media.amplience.net/i/cebupacificair/Corp-Gov?w=600&amp;sm=c&amp;scaleFit=poi&amp;poi={$this.metadata.pointOfInterest.x},{$this.metadata.pointOfInterest.y},{$this.metadata.pointOfInterest.w},{$this.metadata.pointOfInterest.h}',
     card3Title: 'Corporate Disclosures',
     card3Paragraph: '',
-    card3Image: 'https://cdn.media.amplience.net/i/cebupacificair/Corp-Disclosure?w=600&amp;sm=c&amp;scaleFit=poi&amp;poi={$this.metadata.pointOfInterest.x},{$this.metadata.pointOfInterest.y},{$this.metadata.pointOfInterest.w},{$this.metadata.pointOfInterest.h}',
+    card3Image:
+      'https://cdn.media.amplience.net/i/cebupacificair/Corp-Disclosure?w=600&amp;sm=c&amp;scaleFit=poi&amp;poi={$this.metadata.pointOfInterest.x},{$this.metadata.pointOfInterest.y},{$this.metadata.pointOfInterest.w},{$this.metadata.pointOfInterest.h}',
   },
   '.campaign_cards': {
     backgroundColor: '#FFFFFF',
@@ -433,7 +436,7 @@ export const OMNIX_THEME_STYLE = {
     contentText1:
       'When you look for a <b>Carpool</b> ride, you are looking for a matching driver who is willing to share a ride with anyone going to and from the office with the same designated route as yours.',
     content2Text1:
-      'By using the <b>Shuttle</b> ride service, you are joining a group of colleagues with the same designated route as yours while riding the company\'s assigned vehicles.',
+      "By using the <b>Shuttle</b> ride service, you are joining a group of colleagues with the same designated route as yours while riding the company's assigned vehicles.",
     faqTitle2: 'How do I find a Carpool ride?',
     contentText2:
       'Simply go to <b>Carpool</b> via the <b>Find Pool</b> tab (selected by default when you load the Carpool screen). Simply search your target location or choose to book on suggested rides if available.',
@@ -496,20 +499,7 @@ export const OMNIX_THEME_STYLE = {
     textarea_field_max_length: 300,
     textarea_field_resize: 'vertical',
   },
-  '.header-custom-component': {
-    background_image:
-      'https://www.robinsonsbank.com.ph/wp-content/uploads/2020/09/company-overview-header-72-min.jpg',
-    background_color: '#fee014',
-    text_color: '#ffffff',
-    page_title: 'Page Title',
-    page_excerpt: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
-    button_text: 'Continue',
-    button_width: 'auto',
-    button_background_color: 'transparent',
-    button_text_color: '#ffffff',
-    button_border_radius: '0.25rem',
-    button_border_color: '#ffffff',
-  },
+
   '.footer-link': {
     backgroundColor: '',
     brandLogo: '',
@@ -553,6 +543,51 @@ export const OMNIX_THEME_STYLE = {
     passengerName: '',
     status: '',
   },
-}
+  '.header-custom-component': {
+    background_image:
+      'https://www.robinsonsbank.com.ph/wp-content/uploads/2020/09/company-overview-header-72-min.jpg',
+    background_color: '#fee014',
+    text_color: '#ffffff',
+    page_title: 'Page Title',
+    page_excerpt: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
+    button_text: 'Continue',
+    button_width: 'auto',
+    button_background_color: 'transparent',
+    button_text_color: '#ffffff',
+    button_border_radius: '0.25rem',
+    button_border_color: '#ffffff',
+  },
+  '.bottom-navbar-component': {
+    background_color: '#FFFFFF',
+    border_top: 'border-top: 1px solid #C0CED8',
+    font_color: '#373737',
+    font_color_active: '#2472ba',
+    tab_active_index: 0,
+    tabs_name: 'carpool,shuttle,account',
+    tabs_icon: 'fa-solid fa-car-side,fa-solid fa-van-shuttle,fa-solid fa-user',
+  },
+  '.create-trip-form': {
+    action: '#',
+    method: '',
+    form_id: 'create_trip_form',
+    background_color: '#FFFFFF',
+    form_fields_padding: '2rem',
+    label_font_size: '1rem',
+    button_background_color: 'rgb(13, 110, 253)',
+    button_text_color: '#ffffff',
+    button_border_radius: '24px',
+  },
+  '.update-account-form': {
+    action: '#',
+    method: '',
+    form_id: 'update_account_form',
+    background_color: '#FFFFFF',
+    form_fields_padding: '2rem',
+    label_font_size: '1rem',
+    button_background_color: 'rgb(13, 110, 253)',
+    button_text_color: '#ffffff',
+    button_border_radius: '24px',
+  },
+};
 
-export default <GlobalStyles styles={ OMNIX_THEME_STYLE }/>
+export default <GlobalStyles styles={OMNIX_THEME_STYLE} />;
