@@ -50,27 +50,20 @@ const Cards = (props) => {
             <img alt="" src={ block.parameters.card1Image }/>
             <h6 className="title">{ block.parameters.card1Title }</h6>
             <p className="paragraph">{ block.parameters.card1Paragraph }</p>
-            <img alt="" src={ block.parameters.card2Image }/>
           </a>
-          <a className="c-explore__threecards--item ng-star-inserted" target="_self" href="/pages/about/corporate-governance/corporate-governance-manual?nohf=true&amp;header=Corporate%20Governance">
+          <a className="c-explore__threecards--item ng-star-inserted" target="_self" href="#">
             <figure>
               <img alt="" src={ block.parameters.card2Image }/>
             </figure>
             <h6 className="title">{ block.parameters.card2Title }</h6>
             <p className="paragraph">{ block.parameters.card2Paragraph }</p>
+          </a>
+          <a className="c-explore__threecards--item ng-star-inserted" target="_self" href="#">
             <figure>
               <img alt="" src={ block.parameters.card3Image }/>
             </figure>
-          </a>
-          <a className="c-explore__threecards--item ng-star-inserted" target="_self" href="/pages/about/corporate-disclosure/sec-filing?nohf=true&amp;header=Corporate%20Disclosures">
-            <figure>
-              <img alt="" src={ block.parameters.card4Image }/>
-            </figure>
             <h6 className="title">{ block.parameters.card3Title }</h6>
             <p className="paragraph">{ block.parameters.card3Paragraph }</p>
-            <figure>
-              <img alt="" src={ block.parameters.card5Image }/>
-            </figure>
           </a>
         </div>
       </div>
