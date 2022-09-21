@@ -8,7 +8,7 @@ import {
     moveUpBlock,
     moveDownBlock,
     getBlock
-} from '../../../stores/actions'
+} from '../../../../stores/actions'
 
 const TextAreaField = (props) => {
     const { _id, block, deleteBlock, moveUpBlock, moveDownBlock, getBlock, themeStyle } = props
