@@ -65,7 +65,7 @@ const FooterSimple = (props) => {
       </Grid>
       <footer className="footer-simple-component" style={{ backgroundColor: block.parameters.background_color, color: block.parameters.text_color }}>
         <div class="div-wrapper row align-items-center py-3">
-            <div class="col"> © { new Date().getFullYear } All Rights Reserved. { block.parameters.brand_name } </div>
+            <div class="col"> © { new Date().getFullYear() } All Rights Reserved. { block.parameters.brand_name } </div>
             <div class="col footer-icons">
                 <a href={block.parameters.fbLink} target="_blank" rel="noopener noreferrer">
                   <FontAwesomeIcon icon='fa-brands fa-facebook' />
