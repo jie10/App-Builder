@@ -44,6 +44,37 @@ const FormBlockModal = (props) => {
 
     const handleFormBlockType = (formBlockType) => {
         switch(formBlockType) {
+            case "feedback_form":
+                let feedback_block = {
+                    type: "FEEDBACK_FORM",
+                    status: "added",
+                    "parameters": {
+                        "action": "#",
+                        "method": "",
+                        "form_id": "feedback_form",
+                        "background_color": "#FFFFFF",
+                        "form_fields_padding": "2rem",
+                        "label_font_size": "1rem",
+                        "button_width": "auto",
+                        "button_background_color": "#212a89",
+                        "button_text_color": "#ffffff",
+                        "button_border_radius": "0.25rem",
+                        "button_border_color": "#212a89",
+                        "input_field_max_length": 150,
+                        "input_field_background_color": "#f2f3f5",
+                        "input_field_border": "1px solid #f2f3f5",
+                        "input_field_text_color": "#212529",
+                        "textarea_field_background_color": "#f2f3f5",
+                        "textarea_field_text_color": "#212529",
+                        "textarea_field_border": "1px solid #f2f3f5",
+                        "textarea_field_max_length": 300,
+                        "textarea_field_resize": "vertical"
+                    }
+                };
+                console.log(feedback_block)
+                sendBlocks(feedback_block);
+
+                break;
             case "login_pincode_form":
                 let login_block = {
                     type: "PINCODE_INPUT",
@@ -64,8 +95,6 @@ const FormBlockModal = (props) => {
 
                 sendBlocks(login_block);
 
-                break;
-            case "forgot_pincode_form":
                 break;
             case "signup_form":
                 let signup_block = {
@@ -105,19 +134,19 @@ const FormBlockModal = (props) => {
                         <p>Please select which type of form you want to add to the canvas</p>
                     </div>
                     <div className='form-options-list'>
+                    <button type='button' className='form-options' onClick={() => {
+                            handleFormBlockType("feedback_form");
+                            handleClose();
+                        }}>
+                            <span className='icon'><GridViewImage /></span>
+                            <span className='label'>Feedback</span>
+                        </button>
                         <button type='button' className='form-options' onClick={() => {
                             handleFormBlockType("login_pincode_form");
                             handleClose();
                         }}>
                             <span className='icon'><GridViewImage /></span>
-                            <span className='label'>Login PIN Code</span>
-                        </button>
-                        <button type='button' className='form-options' onClick={() => {
-                            handleFormBlockType("forgot_pincode_form");
-                            handleClose();
-                        }}>
-                            <span className='icon'><GridViewImage /></span>
-                            <span className='label'>Forgot PIN Code</span>
+                            <span className='label'>Login PIN</span>
                         </button>
                         <button type='button' className='form-options' onClick={() => {
                             handleFormBlockType("signup_form");
