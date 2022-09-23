@@ -553,6 +553,7 @@ export const OMNIX_THEME_STYLE = {
     button_text: 'Continue',
     button_width: 'auto',
     button_background_color: 'transparent',
+    button_hidden: 'true',
     button_text_color: '#ffffff',
     button_border_radius: '0.25rem',
     button_border_color: '#ffffff',

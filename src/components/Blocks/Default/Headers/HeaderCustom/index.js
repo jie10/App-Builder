@@ -56,6 +56,7 @@ const HeaderCustom = (props) => {
                                             color: block.parameters.button_text_color,
                                             borderColor: block.parameters.button_border_color,
                                             borderRadius: block.parameters.button_border_radius,
+                                            display: block.parameters.button_hidden.toLowerCase() === "false" ? "inline-block" : "none",
                                             pointerEvents: "none" }}>
                             { block.parameters.button_text }
                         </button>
