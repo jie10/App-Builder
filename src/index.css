@@ -14,5 +14,5 @@ code {
 }
 
 #root {
-  box-sizing: initial;
+  box-sizing: border-box;
 }
