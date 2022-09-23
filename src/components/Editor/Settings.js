@@ -12,17 +12,89 @@ import ExpandLess from '@mui/icons-material/ExpandLess'
 import ExpandMore from '@mui/icons-material/ExpandMore'
 import StarBorder from '@mui/icons-material/StarBorder'
 
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+
+import Box from '@mui/material/Box';
+import Tabs from '@mui/material/Tabs';
+import Tab from '@mui/material/Tab';
+
 import {
     updateBlock
 } from '../../stores/actions'
 
 import "./Settings.css";
 
+const theme = createTheme({
+    components: {
+        MuiTab: {
+            defaultProps: {
+                disableRipple: true
+            },
+            styleOverrides: {
+                root: {
+                    textTransform: "capitalize",
+                    fontWeight: "bold",
+                    fontSize: "12px",
+                    padding: "12px 16px 8px 16px",
+                    alignItems: "flex-start",
+                    color: '#1e1e1e',
+                    "&:hover": {
+                        color: "#1e1e1e"
+                    },
+                    "&.Mui-selected": {
+                        color: "#1e1e1e"
+                    }
+                }
+            }
+        },
+        MuiTabs: {
+            styleOverrides: {
+                root: {
+                    borderBottom: "2px solid #F0F0F0",
+                    width: 250
+                },
+                indicator: {
+                    height: "4px",
+                    backgroundColor: "#68A9C3"
+                }
+            }
+        },
+        MuiIconButton: {
+            defaultProps: {
+                disableRipple: true
+            },
+            styleOverrides: {
+                root: {
+                    color: '#1e1e1e',
+                    transform: "scale(-0.8, 0.8)",
+                    "&:hover": {
+                        backgroundColor: "transparent"
+                    }
+                }
+            }
+        },
+        MuiButton: {
+            defaultProps: {
+                disableRipple: true
+            },
+            styleOverrides: {
+                root: {
+                    color: '#1e1e1e',
+                    "&:hover": {
+                        backgroundColor: "transparent"
+                    }
+                }
+            }
+        }
+    }
+});
+
 const Settings = (props) => {
-    const { block, updateBlock, isSettingsEnabled } = props
+    const { block, updateBlock, isSettingsEnabled, isSettingsVisible } = props
     const [open, setOpen] = useState(false)
     const [blockKey, setBlockKey] = useState(null)
     const [blockParams, setBlockParams] = useState(null)
+    const [value, setValue] = useState(0);
 
     const handleClick = () => {
         setOpen(!open)
@@ -32,6 +104,20 @@ const Settings = (props) => {
         setBlockParams(e)
         updateBlock(block.id, createPayload(block.block, e.target.value))
     }
+
+    const styleSettingModeTabs = {
+        position: "relative",
+        margin: 0,
+        height: 1,
+        borderRight: "1.5px solid #F0F0F0",
+        maxHeight: 1,
+        overflow: "auto"
+    };
+    const styleTabs = { width: 1 };
+
+    const handleChange = (event, newValue) => {
+        setValue(newValue);
+      };
 
     const createPayload = (block, textfieldValue) => {
         var blockParams = block.parameters
@@ -43,18 +129,6 @@ const Settings = (props) => {
         }
         return newBlock
     }
-
-    /*
-    const getParameters = (parameters) => {
-        var rows = []
-        for (var key in parameters) {
-            if (parameters.hasOwnProperty(key)) {
-                rows.push(<TextField key={key} style={{width: '80%', padding: '8px', marginBottom: '16px'}} id="outlined-basic" label={key} variant="outlined" placeholder={parameters[key]} onChange={() => console.log(key)} />)
-            }
-        }
-
-        return rows
-    }*/
 
     const componentList = (
         <List
@@ -88,28 +162,6 @@ const Settings = (props) => {
             </Collapse>
         </List>
     )
-
-    // { isSettingsVisible && componentList }
-    /*
-    return(
-        <Fragment>
-            <div style={{height: '60px'}}></div>
-            <List>
-                {params.map(item => {
-                    return <TextField 
-                    key={item.key} 
-                    style={{width: '80%', padding: '8px', marginBottom: '16px'}} 
-                    id="outlined-basic" 
-                    label={item.key} 
-                    variant="outlined" 
-                    placeholder={item.value} 
-                    onFocus={() => setBlockKey(item.key)}
-                    onChange={(e) => _handleTextFieldChange(e)} />
-                })}
-            </List>
-        </Fragment>
-    )
-    */
 
     const getSettings = (block) => {
         if(block.block !== undefined){
@@ -145,13 +197,42 @@ const Settings = (props) => {
 
     return(
         <div className={`settings-container ${isSettingsEnabled  ? '' : 'settings-container-hide'}`}>
-            {block && getSettings(block)}
+            { isSettingsVisible && <ThemeProvider theme={theme}>
+                <Box className="component-tabs" sx={styleSettingModeTabs}>
+                    <div className="components-tabs-controls-container">
+                        <Tabs
+                            id="nested-list-subheader"
+                            component="div"
+                            variant="fullWidth"
+                            value={value}
+                            onChange={handleChange}
+                            sx={styleTabs}>
+                            <Tab
+                                label="Basic"
+                                id="component-tab-0"
+                                aria-controls="component-tab-0" />
+                            <Tab
+                                label="Advanced"
+                                id="component-tab-1"
+                                aria-controls="component-tab-1" />
+                        </Tabs>
+                    </div>
+                    <Box sx={{ padding: '1rem 0.5rem' }}>
+                        <div
+                            hidden={value !== 0 ? true : false}
+                            id={`simple-tabpanel-0`} >
+                            {block && getSettings(block)}
+                        </div>
+                        <div
+                            hidden={value !== 1 ? true : false}
+                            id={`simple-tabpanel-1`} >
+                        </div>
+                    </Box>
+                </Box>
+            </ThemeProvider> }
         </div>
     )
 }
-
-//<TextField style={{width: '80%', padding: '8px'}} id="outlined-basic" label="Background Color" variant="outlined" />
-//<Button variant="text" onClick={() => updateBlock(block.id, createPayload(block.block))}>Color Update</Button>
 
 const mapStateToProps = state => {
     return {

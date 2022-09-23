@@ -8,7 +8,7 @@
     height: calc(100vh - 50px);
     width: 18%;
     z-index: 999;
-    padding: 16px 0;
+    padding: 0 0 16px 0;
     overflow: auto;
 }
 
