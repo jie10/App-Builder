@@ -589,6 +589,14 @@ export const OMNIX_THEME_STYLE = {
     button_text_color: '#ffffff',
     button_border_radius: '24px',
   },
+  '.footer-simple-component': {
+      background_color: "#004e96",
+      text_color: "#ffffff",
+      brand_name: "Your Brand Name",
+      fbLink: "",
+      igLink: "",
+      twitterLink: ""
+  }
 };
 
 export default <GlobalStyles styles={OMNIX_THEME_STYLE} />;

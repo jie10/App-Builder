@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Grid } from '@mui/material'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import './style.css'
 
 import {
@@ -62,39 +63,22 @@ const FooterSimple = (props) => {
           />
         </Grid>
       </Grid>
-      <div>
-        <div
-          className='c-footer__copyright'
-          style={{ borderTop: block.parameters.borderTop }}
-        >
-          <div className='container'>
-            <div className='row'>
-              <div className='col-lg-8 d-none d-lg-block'>
-                <ul>
-                  <li className='ng-star-inserted'>
-                    <a href='javascript:void(0);'>Privacy and Cookie Policy</a>
-                  </li>
-                  <li className='ng-star-inserted'>
-                    <a href='javascript:void(0);'>Website Terms of Use</a>
-                  </li>
-                  <li className='ng-star-inserted'>
-                    <a href='javascript:void(0);'>Security</a>
-                  </li>
-                  <li className='ng-star-inserted'>
-                    <a href='javascript:void(0);'>Accessibility</a>
-                  </li>
-                  <li className='ng-star-inserted'>
-                    <a href='javascript:void(0);'>Site Map</a>
-                  </li>
-                </ul>
-              </div>
-              <div className='col-lg-4 text-center text-lg-right'>
-                <p>© Copyright 2021 Cebu Pacific</p>
-              </div>
+      <footer className="footer-simple-component" style={{ backgroundColor: block.parameters.background_color, color: block.parameters.text_color }}>
+        <div class="div-wrapper row align-items-center py-3">
+            <div class="col"> © { new Date().getFullYear } All Rights Reserved. { block.parameters.brand_name } </div>
+            <div class="col footer-icons">
+                <a href={block.parameters.fbLink} target="_blank" rel="noopener noreferrer">
+                  <FontAwesomeIcon icon='fa-brands fa-facebook' />
+                </a>
+                <a href={block.parameters.igLink} target="_blank" rel="noopener noreferrer">
+                  <FontAwesomeIcon icon='fa-brands fa-instagram' />
+                </a>
+                <a href={block.parameters.twitterLink} target="_blank" rel="noopener noreferrer">
+                  <FontAwesomeIcon icon='fa-brands fa-twitter' />
+                </a>
             </div>
-          </div>
         </div>
-      </div>
+      </footer>
     </div>
   )
 }

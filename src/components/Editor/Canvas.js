@@ -292,7 +292,7 @@ const Canvas = (props) => {
                   <FooterSimple
                     key={key}
                     _id={key}
-                    themeStyle={themeStyle[".footer_simple"]}
+                    themeStyle={themeStyle[".footer-simple-component"]}
                     block={block}
                   />
                 )
